@@ -147,22 +147,21 @@ GRADUATION_PRICE_TIMEOUT_SECONDS = _env_float("GRADUATION_PRICE_TIMEOUT_SECONDS"
 # it has banked proportionally -- rather than one big sale at a far-off target.
 #
 # The ladder is a flat, ordered list of (market-cap USD, % of *remaining* tokens to
-# sell). The default uses coarse, round milestones -- $100k, $250k, $500k, $1M, then
-# $4M/$5M and continuing upward -- selling a quarter of what is left at each step.
-# Coarse steps mean fewer, larger sales at levels a coin is likely to print, rather
-# than many tiny sales at levels it may never reach.
+# sell). Entries are ~$3k, so these rungs are roughly 17x, 34x, 60x, 103x, 172x,
+# 259x and 345x. Half the position is banked at $50k, then the rest is tapered out
+# and fully closed at $1M.
 #
-# Override with MC_SCALE_OUT_LADDER="100000:25,250000:25,..." (ascending).
+# Override with MC_SCALE_OUT_LADDER="50000:50,100000:30,..." (ascending).
 # Set MC_SCALE_OUT_LADDER=off to disable banking entirely (pure ride).
+# A final rung of 100 closes the whole position at that level.
 _DEFAULT_SCALE_OUT_LADDER: tuple[tuple[float, float], ...] = (
-    (100_000.0, 25.0),
-    (250_000.0, 25.0),
-    (500_000.0, 25.0),
-    (1_000_000.0, 25.0),
-    (4_000_000.0, 25.0),
-    (5_000_000.0, 25.0),
-    (10_000_000.0, 25.0),
-    (20_000_000.0, 25.0),
+    (50_000.0, 50.0),      # ~17x  - bank half the position
+    (100_000.0, 30.0),     # ~34x
+    (175_000.0, 30.0),     # ~60x
+    (300_000.0, 30.0),     # ~103x
+    (500_000.0, 40.0),     # ~172x
+    (750_000.0, 40.0),     # ~259x
+    (1_000_000.0, 100.0),  # ~345x - close everything
 )
 
 

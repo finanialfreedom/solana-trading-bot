@@ -547,6 +547,33 @@ class Trader:
                 return
             position.realized_sol += sol_out
             left = position.tokens_held
+            if left <= 0:
+                # The ladder sold the whole position: book it as a completed trade
+                # instead of leaving a zero-token position occupying a slot.
+                pnl = (
+                    (position.realized_sol - position.sol_spent) / position.sol_spent * 100.0
+                    if position.sol_spent > 0
+                    else 0.0
+                )
+                result = REPORT.record_close(
+                    mint=str(position.mint),
+                    pnl_pct=pnl,
+                    exit_sol=position.realized_sol / LAMPORTS_PER_SOL,
+                    reason=f"scale-out complete ({reason})",
+                    mfe_pct=position.mfe_pct,
+                    mae_pct=position.mae_pct,
+                )
+                self.book.close(position.mint)
+                logger.info(
+                    "%s  %s  %+0.1f%% (fully scaled out)  in=%.4f SOL  out=%.4f SOL  mint=%s",
+                    result,
+                    position.symbol,
+                    pnl,
+                    position.sol_spent / LAMPORTS_PER_SOL,
+                    position.realized_sol / LAMPORTS_PER_SOL,
+                    position.mint,
+                )
+                return
         logger.info(
             "SCALE-OUT  %s  sold=%s tokens  got=%.4f SOL  left=%s (%.0f%%)  %s  mint=%s",
             position.symbol,

@@ -39,21 +39,27 @@ TARGET_EXPECTANCY = 0.0
 MAX_TRADES = "1500"
 
 PURE_RIDE = {"MC_SCALE_OUT_LADDER": "off"}
-COARSE_LEVELS = "100000,250000,500000,1000000,4000000,5000000,10000000,20000000"
+
+# Middle + tail of the agreed schedule: taper the remainder out and close fully at
+# $1M. Only the size of the *first* rung ($50k) is varied between arms, because that
+# is the one real decision left -- how much of a ~17x to bank versus how much to keep
+# riding. Every arm shares the same entry (~$3k) and the same full exit at $1M.
+TAIL = "100000:30,175000:30,300000:30,500000:40,750000:40,1000000:100"
 
 
-def _ladder(pct: float) -> str:
-    return ",".join(f"{float(mc)}:{pct}" for mc in COARSE_LEVELS.split(","))
+def ladder_with(first_rung_pct: float) -> str:
+    return f"50000:{first_rung_pct},{TAIL}"
 
 
 SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    # Same coarse levels in every banking arm, so this isolates one variable: how
-    # much of the remaining position to sell at each step. Entries are ~$3k, so the
-    # first rung ($100k) is roughly a 33x.
-    ("A-pure-ride", dict(PURE_RIDE)),
-    ("B-coarse-15", {"MC_SCALE_OUT_LADDER": _ladder(15)}),
-    ("C-coarse-25", {"MC_SCALE_OUT_LADDER": _ladder(25)}),
-    ("D-coarse-40", {"MC_SCALE_OUT_LADDER": _ladder(40)}),
+    # A is the control that must be beaten: no profit taking at all, pure ride.
+    ("A-control-pure-ride", dict(PURE_RIDE)),
+    # B banks less at the first rung and keeps more riding.
+    ("B-bank30", {"MC_SCALE_OUT_LADDER": ladder_with(30)}),
+    # C is the agreed default (50% banked at $50k) straight from .env.
+    ("C-bank50", {}),
+    # D banks most of the position at the first rung.
+    ("D-bank70", {"MC_SCALE_OUT_LADDER": ladder_with(70)}),
 ]
 
 

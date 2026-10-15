@@ -214,7 +214,12 @@ def test_gradual_ladder_banks_proportionally() -> None:
     try:
         ladder = config_mod._parse_scale_out(config_mod.os.getenv("MC_SCALE_OUT_LADDER", ""))
         trailing_mod.MC_SCALE_OUT = ladder
-        check("default ladder has the coarse levels", len(ladder) >= 6, f"{len(ladder)} levels")
+        check("default ladder starts at $50k", ladder and ladder[0][0] == 50_000.0,
+              f"first rung ${ladder[0][0]:,.0f}" if ladder else "empty")
+        check("first rung banks half the position", ladder and ladder[0][1] == 50.0,
+              f"{ladder[0][1]:.0f}%" if ladder else "-")
+        check("final rung closes everything", ladder and ladder[-1][1] == 100.0,
+              f"last rung {ladder[-1][1]:.0f}% at ${ladder[-1][0]:,.0f}" if ladder else "-")
         check("ladder is ascending",
               all(ladder[i][0] < ladder[i + 1][0] for i in range(len(ladder) - 1)))
 
@@ -242,12 +247,16 @@ def test_gradual_ladder_banks_proportionally() -> None:
         check("banked once per level", pos.milestones_taken == len(ladder),
               f"{pos.milestones_taken}/{len(ladder)}")
         check("proceeds banked", pos.realized_sol > 0, f"{pos.realized_sol} lamports")
-        check("still holding a substantial tail after 3 sales",
-              retained_after.get(3, 0) > 0.35,
-              f"{retained_after.get(3, 0) * 100:.0f}% retained")
-        final = pos.tokens_held / held
-        check("a tail is still riding at the top level", final > 0.05,
-              f"{final * 100:.0f}% retained after all levels")
+        check("half banked after the first rung",
+              abs(retained_after.get(1, 0) - 0.5) < 0.01,
+              f"{retained_after.get(1, 0) * 100:.0f}% retained")
+        check("a tail is still riding mid-ladder",
+              retained_after.get(len(ladder) - 1, 0) > 0.0,
+              f"{retained_after.get(len(ladder) - 1, 0) * 100:.0f}% retained before the last rung")
+        check("fully closed at the final rung", pos.tokens_held == 0,
+              f"{pos.tokens_held} tokens left")
+        check("the completed trade is closed out of the book",
+              trader.book.get(pos.mint) is None)
     finally:
         trailing_mod.MC_SCALE_OUT = original
 
