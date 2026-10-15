@@ -130,12 +130,28 @@ DEADCOIN_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("D-dead-off", {"DEAD_COIN_SECONDS": "0"}),
 ]
 
+# Confirm-window sell pressure. The gate has only ever looked at gross buy volume,
+# which the deployer and a couple of bots can manufacture on their own. Track sells
+# too and reject launches that are being dumped into. MIN_CONFIRM_BUY_SOL stays at its
+# current 2.0 in every arm so this measures the increment, not the level.
+#   A-press-off   control
+#   B-press-net1  require buys - sells >= 1 SOL in the window
+#   C-press-r50   require sells <= 0.5x buys
+#   D-press-both  both guards together
+PRESSURE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-press-off", {"MIN_CONFIRM_NET_SOL": "0", "MAX_CONFIRM_SELL_RATIO": "0"}),
+    ("B-press-net1", {"MIN_CONFIRM_NET_SOL": "1"}),
+    ("C-press-r50", {"MAX_CONFIRM_SELL_RATIO": "0.5"}),
+    ("D-press-both", {"MIN_CONFIRM_NET_SOL": "1", "MAX_CONFIRM_SELL_RATIO": "0.5"}),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
     "entry": ENTRY_SCHEDULE,
     "gate": GATE_SCHEDULE,
     "deadcoin": DEADCOIN_SCHEDULE,
+    "pressure": PRESSURE_SCHEDULE,
 }
 
 

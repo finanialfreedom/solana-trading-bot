@@ -122,6 +122,12 @@ MIN_UNIQUE_BUYERS = _env_int("MIN_UNIQUE_BUYERS", 0)
 #   morning win rate 84.8% (off) -> 95.2% at 2 SOL
 # and it keeps the big runners (identical max MFE), unlike an exit-side cap.
 MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 2.0)
+# Confirm-window sell pressure. Gross buy volume alone is trivially produced by the
+# deployer and a couple of bots, and gross buys are what the bot has been gating on.
+# A launch where more money is leaving than arriving is being dumped into -- which is
+# the population that goes flat and then bleeds. Both default to off (0).
+MIN_CONFIRM_NET_SOL = _env_float("MIN_CONFIRM_NET_SOL", 0.0)
+MAX_CONFIRM_SELL_RATIO = _env_float("MAX_CONFIRM_SELL_RATIO", 0.0)
 MIN_CONFIRM_MC_USD = _env_float("MIN_CONFIRM_MC_USD", 0.0)
 MIN_ADD_UNIQUE_BUYERS = _env_int("MIN_ADD_UNIQUE_BUYERS", 0)
 MIN_ADD_MC_USD = _env_float("MIN_ADD_MC_USD", 5_000.0)

@@ -21,6 +21,8 @@ from config import (
     MIN_ADD_UNIQUE_BUYERS,
     MIN_CONFIRM_BUY_SOL,
     MIN_CONFIRM_MC_USD,
+    MIN_CONFIRM_NET_SOL,
+    MAX_CONFIRM_SELL_RATIO,
     MIN_UNIQUE_BUYERS,
     PUMP_TOKEN_SUPPLY,
     SOL_USD_FALLBACK,
@@ -47,6 +49,7 @@ class Candidate:
     seen_at: float = field(default_factory=time)
     buyers: set[str] = field(default_factory=set)
     buy_sol: int = 0
+    sell_sol: int = 0
     last_quote: int = 0
     last_token: int = 0
     trades: int = 0
@@ -57,6 +60,22 @@ class Candidate:
     @property
     def unique_buyers(self) -> int:
         return len(self.buyers)
+
+    @property
+    def net_buy_sol(self) -> int:
+        """Lamports bought minus lamports sold during the confirm window.
+
+        Gross buys alone are easily produced by the deployer and a couple of bots;
+        what separates a real launch from a dump is whether demand survives the
+        selling that follows it.
+        """
+        return self.buy_sol - self.sell_sol
+
+    @property
+    def sell_ratio(self) -> float:
+        if self.buy_sol <= 0:
+            return 0.0
+        return self.sell_sol / self.buy_sol
 
     def mc_usd(self, sol_usd: float) -> float:
         return market_cap_usd(self.last_quote, self.last_token, sol_usd)
@@ -104,6 +123,8 @@ class Confirmer:
                 creator = str(cand.info.creator) if cand.info.creator else ""
                 if user and user != creator:
                     cand.buyers.add(user)
+        else:
+            cand.sell_sol += trade.sol_amount
 
     async def run(self, stop: asyncio.Event) -> None:
         logger.info(
@@ -213,6 +234,27 @@ class Confirmer:
             return (
                 f"low-buy-sol {cand.buy_sol / LAMPORTS_PER_SOL:.2f} "
                 f"< {MIN_CONFIRM_BUY_SOL:.1f}"
+            )
+        if (
+            MIN_CONFIRM_NET_SOL > 0
+            and cand.net_buy_sol < int(MIN_CONFIRM_NET_SOL * LAMPORTS_PER_SOL)
+        ):
+            return (
+                f"low-net-buy {cand.net_buy_sol / LAMPORTS_PER_SOL:+.2f} "
+                f"(bought {cand.buy_sol / LAMPORTS_PER_SOL:.2f}, "
+                f"sold {cand.sell_sol / LAMPORTS_PER_SOL:.2f}) "
+                f"< {MIN_CONFIRM_NET_SOL:.1f}"
+            )
+        if (
+            MAX_CONFIRM_SELL_RATIO > 0
+            and cand.buy_sol > 0
+            and cand.sell_ratio > MAX_CONFIRM_SELL_RATIO
+        ):
+            return (
+                f"sell-pressure {cand.sell_ratio:.2f}x "
+                f"(sold {cand.sell_sol / LAMPORTS_PER_SOL:.2f} vs "
+                f"bought {cand.buy_sol / LAMPORTS_PER_SOL:.2f}) "
+                f"> {MAX_CONFIRM_SELL_RATIO:.2f}x"
             )
         mc = cand.mc_usd(sol_usd)
         if MIN_CONFIRM_MC_USD > 0 and mc < MIN_CONFIRM_MC_USD:

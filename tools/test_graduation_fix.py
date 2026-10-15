@@ -333,6 +333,60 @@ def test_regime_gate_blocks_cold_market() -> None:
         pass
 
 
+def test_confirm_sell_pressure() -> None:
+    """Gross buys are gameable; the filter must also see money leaving."""
+    print("\n[confirm sell pressure]")
+    import confirm as confirm_mod
+    from confirm import Candidate, Confirmer
+    from pumpfun import CreateInfo
+
+    info = CreateInfo(
+        name="T", symbol="T", uri="", mint=Pubkey.from_string(WSOL),
+        bonding_curve=Pubkey.from_string(WSOL), creator=None,
+        virtual_token_reserves=int(1.073e15), virtual_quote_reserves=int(30 * LAMPORTS_PER_SOL),
+    )
+
+    # 2 SOL bought, 1.8 SOL sold: passes a gross-buy gate, but is being dumped into.
+    heavy_sell = Candidate(info=info, buy_sol=int(2 * LAMPORTS_PER_SOL),
+                           sell_sol=int(1.8 * LAMPORTS_PER_SOL))
+    check("net buy math", heavy_sell.net_buy_sol == int(0.2 * LAMPORTS_PER_SOL))
+    check("sell ratio math", abs(heavy_sell.sell_ratio - 0.9) < 1e-9,
+          f"{heavy_sell.sell_ratio:.2f}")
+
+    healthy = Candidate(info=info, buy_sol=int(4 * LAMPORTS_PER_SOL),
+                        sell_sol=int(1 * LAMPORTS_PER_SOL))
+
+    gate = Confirmer.__new__(Confirmer)
+    orig = (confirm_mod.MIN_CONFIRM_NET_SOL, confirm_mod.MAX_CONFIRM_SELL_RATIO,
+            confirm_mod.MIN_CONFIRM_BUY_SOL, confirm_mod.MIN_UNIQUE_BUYERS,
+            confirm_mod.MIN_CONFIRM_MC_USD)
+    try:
+        confirm_mod.MIN_CONFIRM_BUY_SOL, confirm_mod.MIN_UNIQUE_BUYERS = 2.0, 0
+        confirm_mod.MIN_CONFIRM_MC_USD = 0.0
+        confirm_mod.MIN_CONFIRM_NET_SOL, confirm_mod.MAX_CONFIRM_SELL_RATIO = 0.0, 0.0
+        check("off by default: dump passes a gross-buy-only gate",
+              Confirmer._probe_block_reason(gate, heavy_sell, 0.0) is None)
+
+        confirm_mod.MIN_CONFIRM_NET_SOL = 1.0
+        r = Confirmer._probe_block_reason(gate, heavy_sell, 0.0)
+        check("net-buy guard rejects the dump", r is not None and "net-buy" in r, f"{r}")
+
+        confirm_mod.MIN_CONFIRM_NET_SOL = 0.0
+        confirm_mod.MAX_CONFIRM_SELL_RATIO = 0.5
+        r = Confirmer._probe_block_reason(gate, heavy_sell, 0.0)
+        check("sell-ratio guard rejects the dump", r is not None and "sell-pressure" in r, f"{r}")
+        check("sell-ratio guard passes real demand",
+              Confirmer._probe_block_reason(gate, healthy, 0.0) is None)
+
+        confirm_mod.MIN_CONFIRM_NET_SOL = 1.0
+        check("both guards pass real demand",
+              Confirmer._probe_block_reason(gate, healthy, 0.0) is None)
+    finally:
+        (confirm_mod.MIN_CONFIRM_NET_SOL, confirm_mod.MAX_CONFIRM_SELL_RATIO,
+         confirm_mod.MIN_CONFIRM_BUY_SOL, confirm_mod.MIN_UNIQUE_BUYERS,
+         confirm_mod.MIN_CONFIRM_MC_USD) = orig
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_curve_closing_before_first_mark_is_not_a_writeoff()
@@ -343,6 +397,7 @@ def main() -> None:
     test_ratchet_floor_blocks_round_trip()
     test_gradual_ladder_banks_proportionally()
     test_regime_gate_blocks_cold_market()
+    test_confirm_sell_pressure()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")
