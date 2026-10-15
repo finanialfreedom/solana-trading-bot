@@ -257,6 +257,13 @@ class TrailingGuard:
         if position.trailing_armed:
             if TRAILING_LOCK_BREAKEVEN and pnl <= 0:
                 return f"{source} breakeven {pnl:.1f}%"
+            # Absolute floor: a winner may never round-trip below its locked gain.
+            floor = position.ratchet_floor_pct()
+            if floor > 0 and pnl <= floor:
+                return (
+                    f"{source} ratchet-floor {pnl:.1f}% "
+                    f"(locked +{floor:.0f}%, peak +{position.peak_gain_pct:.0f}%)"
+                )
             callback = position.trail_callback_pct()
             if callback > 0 and position.peak_price > 0:
                 drop = position.drop_from_peak_pct

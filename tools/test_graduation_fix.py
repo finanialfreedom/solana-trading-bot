@@ -167,12 +167,50 @@ def test_trailing_tolerance_widens() -> None:
     check("a collapse well past tolerance exits", reason is not None, f"{reason}")
 
 
+def test_ratchet_floor_blocks_round_trip() -> None:
+    print("\n6. A winner must not round-trip into an overall loss")
+    from trailing import TrailingGuard
+
+    entry = 2.7958993476e-05
+    pos = make_position(entry)
+    pos.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+    pos.mark_graduated(entry * 21)  # peaked around +2000%
+    pos.track_peak()
+    check("peak recorded", pos.peak_gain_pct >= 2000.0, f"+{pos.peak_gain_pct:.0f}%")
+    check("floor locked at the top tier", pos.ratchet_floor_pct() >= 1400.0,
+          f"+{pos.ratchet_floor_pct():.0f}%")
+
+    # Must bind *before* the wide trailing tolerance, otherwise it would never matter.
+    trailing_implied = (1 - pos.trail_callback_pct() / 100.0) * (1 + pos.peak_gain_pct / 100.0) - 1
+    check("floor is tighter than the trailing stop",
+          pos.ratchet_floor_pct() / 100.0 > trailing_implied,
+          f"floor +{pos.ratchet_floor_pct():.0f}% vs trailing +{trailing_implied * 100:.0f}%")
+
+    # A slide to +1500% is still above the +1400% floor, so it holds.
+    pos.mark_graduated(entry * 16)
+    check("above the floor is held", TrailingGuard.decide_exit(pos, source="test") is None)
+    pos.mark_graduated(entry * 9)  # +800%, below the +1400% floor
+    reason = TrailingGuard.decide_exit(pos, source="test")
+    check("below the floor exits at a locked gain",
+          reason is not None and "ratchet" in reason, f"{reason}")
+
+    # The failure this guards against: a full round trip back toward entry.
+    worst = make_position(entry)
+    worst.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+    worst.mark_graduated(entry * 21)
+    worst.track_peak()
+    worst.mark_graduated(entry * 0.1)  # all the way under water
+    reason = TrailingGuard.decide_exit(worst, source="test")
+    check("a collapsed winner still reports a locked floor", reason is not None, f"{reason}")
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_graduation_is_priced_from_amm()
     test_scale_out_accounting()
     test_scale_out_actually_runs_from_watchdog()
     test_trailing_tolerance_widens()
+    test_ratchet_floor_blocks_round_trip()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")

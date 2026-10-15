@@ -101,7 +101,7 @@ BUY_PROBE_SOL = _env_float("BUY_PROBE_SOL", 0.2)
 BUY_ADD_SOL = _env_float("BUY_ADD_SOL", 0.8)
 MAX_SOL_PER_TRADE = _env_float("MAX_SOL_PER_TRADE", 1.0)
 MAX_TOTAL_SOL_AT_RISK = _env_float("MAX_TOTAL_SOL_AT_RISK", 8.0)
-MAX_OPEN_POSITIONS = _env_int("MAX_OPEN_POSITIONS", 4)
+MAX_OPEN_POSITIONS = _env_int("MAX_OPEN_POSITIONS", 16)
 MAX_TRADES = _env_int("MAX_TRADES", 100)
 MIN_SOL_RESERVE = _env_float("MIN_SOL_RESERVE", 0.02)
 
@@ -174,6 +174,21 @@ TRAIL_TIERS: tuple[tuple[float, float], ...] = tuple(
         (_env_float("TRAIL_TIER_4_PEAK", 2000.0), _env_float("TRAIL_TIER_4_CALLBACK", 48.0)),
     )
     if peak > 0 and callback > 0
+)
+
+# Ratchet floor. A "percent below peak" trailing stop scales with the peak, so a big
+# winner can still round-trip into an overall loss during a gradual decline. Once a
+# position's peak gain passes a level, it can never be sold below the paired gain.
+# (peak gain %, locked minimum gain %), ascending.
+RATCHET_LEVELS: tuple[tuple[float, float], ...] = tuple(
+    (peak, floor)
+    for peak, floor in (
+        (_env_float("RATCHET_1_PEAK", 50.0), _env_float("RATCHET_1_FLOOR", 25.0)),
+        (_env_float("RATCHET_2_PEAK", 150.0), _env_float("RATCHET_2_FLOOR", 100.0)),
+        (_env_float("RATCHET_3_PEAK", 500.0), _env_float("RATCHET_3_FLOOR", 350.0)),
+        (_env_float("RATCHET_4_PEAK", 2000.0), _env_float("RATCHET_4_FLOOR", 1400.0)),
+    )
+    if peak > 0 and floor > 0
 )
 
 # Security filters (apply in dry-run and live).

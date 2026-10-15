@@ -11,6 +11,7 @@ from config import (
     BREAKEVEN_ARM_PCT,
     LAMPORTS_PER_SOL,
     PUMP_TOKEN_SUPPLY,
+    RATCHET_LEVELS,
     TAKE_PROFIT_TRIGGER_PCT,
     TRAILING_STOP_PCT,
     TRAIL_TIERS,
@@ -96,6 +97,19 @@ class Position:
             if self.peak_gain_pct >= peak:
                 callback = tier_callback
         return callback
+
+    def ratchet_floor_pct(self) -> float:
+        """Minimum gain this position may be sold at, given how high it has been.
+
+        A percent-below-peak stop scales with the peak, so a big winner can still
+        round-trip into a loss. This locks in an absolute gain once the peak passes a
+        level; returns 0.0 when no level has been reached.
+        """
+        floor = 0.0
+        for peak, locked in RATCHET_LEVELS:
+            if self.peak_gain_pct >= peak:
+                floor = locked
+        return floor
 
     @property
     def drop_from_peak_pct(self) -> float:
