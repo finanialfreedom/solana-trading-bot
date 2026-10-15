@@ -7,7 +7,12 @@ from time import time
 
 from solders.pubkey import Pubkey
 
-from config import BREAKEVEN_ARM_PCT, LAMPORTS_PER_SOL, TAKE_PROFIT_TRIGGER_PCT
+from config import (
+    BREAKEVEN_ARM_PCT,
+    LAMPORTS_PER_SOL,
+    PUMP_TOKEN_SUPPLY,
+    TAKE_PROFIT_TRIGGER_PCT,
+)
 
 
 @dataclass(slots=True)
@@ -33,11 +38,30 @@ class Position:
     # Best/worst PnL seen while the position was open (max favorable / adverse excursion).
     mfe_pct: float = 0.0
     mae_pct: float = 0.0
+    # Post-graduation state. When the bonding curve completes it is closed and
+    # reads back zero reserves; the position is re-priced from the PumpSwap AMM.
+    graduated: bool = False
+    graduated_at: float = 0.0
+    amm_price: float = 0.0
+    last_good_price: float = 0.0
+    # Scale-out bookkeeping: tokens still held (-1 means "all of token_amount")
+    # and lamports already banked from partial profit taking.
+    remaining_tokens: int = -1
+    realized_sol: int = 0
+    milestones_taken: int = 0
+
+    @property
+    def tokens_held(self) -> int:
+        return self.token_amount if self.remaining_tokens < 0 else self.remaining_tokens
 
     @property
     def mark_price(self) -> float:
-        if self.virtual_token_reserves <= 0:
-            return 0.0
+        if self.graduated and self.amm_price > 0:
+            return self.amm_price
+        if self.virtual_token_reserves <= 0 or self.virtual_quote_reserves <= 0:
+            # Never fall back to zero: a closed/graduated curve must not mark the
+            # position to -100%. Retain the last price we actually observed.
+            return self.last_good_price
         return self.virtual_quote_reserves / self.virtual_token_reserves
 
     @property
@@ -46,21 +70,48 @@ class Position:
             return 0.0
         return (self.mark_price - self.entry_price) / self.entry_price * 100.0
 
+    def mc_usd(self, sol_usd: float) -> float:
+        """Market cap implied by the current mark, in USD."""
+        price = self.mark_price
+        if price <= 0 or sol_usd <= 0:
+            return 0.0
+        return price * PUMP_TOKEN_SUPPLY / LAMPORTS_PER_SOL * sol_usd
+
     @property
     def drop_from_peak_pct(self) -> float:
         if self.peak_price <= 0:
             return 0.0
         return (self.peak_price - self.mark_price) / self.peak_price * 100.0
 
-    def update_reserves(self, virtual_quote: int, virtual_token: int) -> None:
-        self.virtual_quote_reserves = virtual_quote
-        self.virtual_token_reserves = virtual_token
-        self.last_mark_at = time()
+    def _observe(self) -> None:
         pnl = self.pnl_pct
         if pnl > self.mfe_pct:
             self.mfe_pct = pnl
         if pnl < self.mae_pct:
             self.mae_pct = pnl
+        price = self.mark_price
+        if price > 0:
+            self.last_good_price = price
+
+    def update_reserves(self, virtual_quote: int, virtual_token: int) -> None:
+        # A graduated curve reports zeros; ignore those so we keep the last real mark.
+        if virtual_quote <= 0 or virtual_token <= 0:
+            self.last_mark_at = time()
+            return
+        self.virtual_quote_reserves = virtual_quote
+        self.virtual_token_reserves = virtual_token
+        self.last_mark_at = time()
+        self._observe()
+
+    def mark_graduated(self, amm_price: float) -> None:
+        """Re-price the position from the AMM after the bonding curve completes."""
+        if amm_price > 0:
+            self.amm_price = amm_price
+        if not self.graduated:
+            self.graduated = True
+            self.graduated_at = time()
+        self.last_mark_at = time()
+        self._observe()
 
     def lock_breakeven(self) -> bool:
         """Move the stop to entry once price has risen BREAKEVEN_ARM_PCT."""

@@ -133,6 +133,34 @@ TRAILING_ARMED_TICK_SECONDS = _env_float("TRAILING_ARMED_TICK_SECONDS", 0.08)
 # Re-poll a position's curve only if it has not been marked for this long.
 TRAILING_STALE_SECONDS = _env_float("TRAILING_STALE_SECONDS", 0.2)
 
+# Graduation (bonding curve -> PumpSwap AMM) handling.
+# When a coin completes its curve the curve account is closed and reports zero
+# reserves. Treating that as "price is zero" liquidated every winner for -100%,
+# so instead we hold through graduation and re-price from the AMM.
+HOLD_THROUGH_GRADUATION = _env_bool("HOLD_THROUGH_GRADUATION", True)
+# How long to keep retrying for an AMM price before giving up on a position.
+GRADUATION_PRICE_TIMEOUT_SECONDS = _env_float("GRADUATION_PRICE_TIMEOUT_SECONDS", 120.0)
+
+# Hybrid scale-out: bank partial profit at market-cap milestones, let the rest ride
+# on the trailing stop. Set a milestone to 0 to disable it.
+MC_MILESTONE_1_USD = _env_float("MC_MILESTONE_1_USD", 250_000.0)
+MC_MILESTONE_1_SELL_PCT = _env_float("MC_MILESTONE_1_SELL_PCT", 50.0)
+MC_MILESTONE_2_USD = _env_float("MC_MILESTONE_2_USD", 500_000.0)
+MC_MILESTONE_2_SELL_PCT = _env_float("MC_MILESTONE_2_SELL_PCT", 50.0)
+MC_MILESTONE_3_USD = _env_float("MC_MILESTONE_3_USD", 0.0)
+MC_MILESTONE_3_SELL_PCT = _env_float("MC_MILESTONE_3_SELL_PCT", 50.0)
+
+# (market-cap USD, percent of remaining tokens to sell) in ascending order.
+MC_SCALE_OUT: tuple[tuple[float, float], ...] = tuple(
+    (target, pct)
+    for target, pct in (
+        (MC_MILESTONE_1_USD, MC_MILESTONE_1_SELL_PCT),
+        (MC_MILESTONE_2_USD, MC_MILESTONE_2_SELL_PCT),
+        (MC_MILESTONE_3_USD, MC_MILESTONE_3_SELL_PCT),
+    )
+    if target > 0 and pct > 0
+)
+
 # Security filters (apply in dry-run and live).
 SECURITY_FILTERS_ENABLED = _env_bool("SECURITY_FILTERS_ENABLED", True)
 MIN_LIQUIDITY_USD = _env_float("MIN_LIQUIDITY_USD", 0.0)

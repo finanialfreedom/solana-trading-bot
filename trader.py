@@ -52,6 +52,7 @@ from pumpfun import (
     CreateInfo,
     GlobalConfig,
     TradeInfo,
+    apply_fee,
     associated_bonding_curve,
     build_buy_exact_sol_in,
     build_create_ata,
@@ -495,11 +496,12 @@ class Trader:
     async def sell_position(self, position: Position, reason: str) -> None:
         await self._sell(position, reason)
 
-    async def _sell(self, position: Position, reason: str) -> None:
-        async with self._sell_lock:
-            if self.book.get(position.mint) is None:
-                return
-        live = live_trading_enabled() and not position.dry_run
+    def _quote_exit(self, position: Position, token_amount: int) -> int:
+        """Lamports expected from selling token_amount, on the curve or the AMM."""
+        if position.graduated and position.amm_price > 0:
+            # Post-graduation the bonding curve is closed; value against the AMM mark.
+            gross = int(token_amount * position.amm_price)
+            return max(0, apply_fee(gross, self._fee_bps()))
         curve = BondingCurve(
             virtual_token_reserves=position.virtual_token_reserves,
             virtual_quote_reserves=position.virtual_quote_reserves,
@@ -509,15 +511,54 @@ class Trader:
             complete=False,
             creator=position.creator,
         )
-        sol_out = sol_out_for_tokens_in(curve, position.token_amount, self._fee_bps(curve))
-        pnl = position.pnl_pct
-        sig = "dry-run"
+        return sol_out_for_tokens_in(curve, token_amount, self._fee_bps(curve))
+
+    async def scale_out(self, position: Position, token_amount: int, reason: str) -> None:
+        """Sell part of a position and leave the remainder open (hybrid profit taking)."""
+        if token_amount <= 0:
+            return
+        sol_out = self._quote_exit(position, token_amount)
+        live = live_trading_enabled() and not position.dry_run
         if live:
-            sent = await self._send_sell(position, sol_out)
+            sent = await self._send_sell(position, sol_out, token_amount=token_amount)
             if not sent:
                 return
-            sig = sent
-        exit_sol = sol_out / LAMPORTS_PER_SOL
+        async with self._sell_lock:
+            if self.book.get(position.mint) is None:
+                return
+            remaining_before = position.tokens_held
+            position.remaining_tokens = max(0, remaining_before - token_amount)
+            position.realized_sol += sol_out
+            left = position.tokens_held
+        logger.info(
+            "SCALE-OUT  %s  sold=%s tokens  got=%.4f SOL  left=%s (%.0f%%)  %s  mint=%s",
+            position.symbol,
+            token_amount,
+            sol_out / LAMPORTS_PER_SOL,
+            left,
+            100.0 * left / max(1, position.token_amount),
+            reason,
+            position.mint,
+        )
+
+    async def _sell(self, position: Position, reason: str) -> None:
+        async with self._sell_lock:
+            if self.book.get(position.mint) is None:
+                return
+        held = position.tokens_held
+        sol_out = self._quote_exit(position, held)
+        total_out = sol_out + position.realized_sol
+        pnl = (
+            (total_out - position.sol_spent) / position.sol_spent * 100.0
+            if position.sol_spent > 0
+            else 0.0
+        )
+        live = live_trading_enabled() and not position.dry_run
+        if live:
+            sent = await self._send_sell(position, sol_out, token_amount=held)
+            if not sent:
+                return
+        exit_sol = total_out / LAMPORTS_PER_SOL
         async with self._sell_lock:
             if self.book.get(position.mint) is None:
                 return
@@ -543,13 +584,26 @@ class Trader:
             reason,
         )
 
-    async def _send_sell(self, position: Position, quoted_sol: int) -> str | None:
+    async def _send_sell(
+        self,
+        position: Position,
+        quoted_sol: int,
+        *,
+        token_amount: int | None = None,
+    ) -> str | None:
         creator = position.creator
         fee_recipient = self._fee_recipient()
         if creator is None or fee_recipient is None:
             logger.warning("Skip live sell %s: missing creator or fee recipient", position.symbol)
             return None
+        if position.graduated:
+            logger.warning(
+                "Live sell of graduated %s uses the bonding-curve program, which no longer "
+                "holds liquidity; an AMM (PumpSwap) swap path is still required for live exits.",
+                position.symbol,
+            )
         owner = self.wallet.pubkey()
+        sell_tokens = position.tokens_held if token_amount is None else token_amount
         min_sol = quoted_sol * (10_000 - SLIPPAGE_BPS) // 10_000
         user_ata = get_associated_token_address(owner, position.mint, TOKEN_PROGRAM_ID)
         ixs = [
@@ -563,7 +617,7 @@ class Trader:
                 user=owner,
                 fee_recipient=fee_recipient,
                 creator=creator,
-                token_amount=position.token_amount,
+                token_amount=sell_tokens,
                 min_sol_output=min_sol,
             ),
         ]

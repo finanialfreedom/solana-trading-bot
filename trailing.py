@@ -15,6 +15,9 @@ from config import (
     BREAKEVEN_ARM_PCT,
     DEAD_COIN_MIN_PNL_PCT,
     DEAD_COIN_SECONDS,
+    GRADUATION_PRICE_TIMEOUT_SECONDS,
+    HOLD_THROUGH_GRADUATION,
+    MC_SCALE_OUT,
     STOP_LOSS_PCT,
     TAKE_PROFIT_PCT,
     TAKE_PROFIT_TRIGGER_PCT,
@@ -38,6 +41,9 @@ class TrailingGuard:
         self.trader = trader
         self._exiting: set[str] = set()
         self._exit_tasks: set[asyncio.Task[Any]] = set()
+        # Cached SOL/USD so marks and market-cap milestones stay synchronous.
+        self._sol_usd = 0.0
+        self._sol_usd_ts = 0.0
 
     def is_exiting(self, mint: object) -> bool:
         return str(mint) in self._exiting
@@ -86,6 +92,7 @@ class TrailingGuard:
         positions = [p for p in self.trader.book.all() if not self.is_exiting(p.mint)]
         if not positions:
             return
+        await self._refresh_sol_usd()
         now = time()
         stale = [p for p in positions if now - p.last_mark_at >= TRAILING_STALE_SECONDS]
         for position in positions:
@@ -101,11 +108,52 @@ class TrailingGuard:
             if self.trader.book.get(position.mint) is None or self.is_exiting(position.mint):
                 continue
             curve = curves.get(str(position.bonding_curve))
-            if curve is None:
-                self._after_mark(position, source="watchdog")
+            if curve is None or curve.complete:
+                # The curve account is gone (or finished): the coin has graduated to
+                # an AMM. Price it from the AMM rather than liquidating at zero.
+                if HOLD_THROUGH_GRADUATION:
+                    await self._mark_from_amm(position, graduated=curve is not None)
+                    continue
+                self.schedule_exit(position, "curve-complete")
                 continue
             position.update_reserves(curve.virtual_quote_reserves, curve.virtual_token_reserves)
-            self._after_mark(position, source="watchdog", complete=curve.complete)
+            self._after_mark(position, source="watchdog")
+
+    async def _refresh_sol_usd(self) -> None:
+        now = time()
+        if self._sol_usd > 0 and now - self._sol_usd_ts < 30:
+            return
+        try:
+            price = await self.trader.security.sol_usd()
+        except Exception:
+            logger.exception("SOL/USD refresh failed for the trailing guard")
+            return
+        if price > 0:
+            self._sol_usd = price
+            self._sol_usd_ts = now
+
+    async def _mark_from_amm(self, position: Position, *, graduated: bool) -> None:
+        """Re-price a graduated position from the AMM pool price."""
+        usd = await self.trader.security.token_usd_price(str(position.mint))
+        if usd > 0 and self._sol_usd > 0:
+            # Jupiter quotes whole tokens; convert to lamports per raw unit so it
+            # matches the bonding-curve price convention used everywhere else.
+            price = usd / self._sol_usd * 1_000.0
+            position.mark_graduated(price)
+            self._after_mark(position, source="amm")
+            return
+        # No price yet: keep the last good mark and retry on the next tick, but do
+        # not hold an unpriceable position forever.
+        position.last_mark_at = time()
+        if graduated and position.graduated_at > 0:
+            waited = time() - position.graduated_at
+            if waited >= GRADUATION_PRICE_TIMEOUT_SECONDS:
+                logger.warning(
+                    "No AMM price for %s after %.0fs; exiting on last known mark",
+                    position.symbol,
+                    waited,
+                )
+                self.schedule_exit(position, "graduation-price-timeout")
 
     def _tick_seconds(self) -> float:
         if any(p.trailing_armed for p in self.trader.book.all()):
@@ -117,11 +165,7 @@ class TrailingGuard:
         position: Position,
         *,
         source: str,
-        complete: bool = False,
     ) -> None:
-        if complete:
-            self.schedule_exit(position, "curve-complete")
-            return
         if position.lock_breakeven():
             logger.info(
                 "SL TO BREAKEVEN  %s  at %+0.1f%%  floor=entry  mint=%s",
@@ -138,14 +182,47 @@ class TrailingGuard:
                 TRAILING_STOP_PCT,
                 position.mint,
             )
+        # Bank partial profit at market-cap milestones before considering a full exit.
+        if self._maybe_scale_out(position):
+            return
         reason = self.decide_exit(position, source)
         if reason:
             self.schedule_exit(position, reason)
 
+    def _maybe_scale_out(self, position: Position) -> bool:
+        if not MC_SCALE_OUT or self._sol_usd <= 0:
+            return False
+        queued = False
+        mc = position.mc_usd(self._sol_usd)
+        while position.milestones_taken < len(MC_SCALE_OUT):
+            target, pct = MC_SCALE_OUT[position.milestones_taken]
+            if mc < target:
+                break
+            position.milestones_taken += 1
+            tokens = int(position.tokens_held * pct / 100.0)
+            if tokens <= 0:
+                continue
+            logger.info(
+                "MC MILESTONE  %s  mc=$%.0f >= $%.0f  selling %.0f%% of remaining",
+                position.symbol,
+                mc,
+                target,
+                pct,
+            )
+            self.trader.scale_out(
+                position,
+                tokens,
+                f"scale-out mc>={target:,.0f}",
+            )
+            queued = True
+        return queued
+
     @staticmethod
     def decide_exit(position: Position, source: str) -> str | None:
         pnl = position.pnl_pct
-        if position.mark_price <= 0 or position.virtual_quote_reserves <= 0:
+        # Only bail when we have never obtained a usable price at all. A closed or
+        # graduated curve must not be mistaken for "the token is worth zero".
+        if position.mark_price <= 0 and position.last_good_price <= 0:
             return f"{source} emergency-flat {pnl:.1f}%"
         if position.breakeven_locked and pnl <= 0:
             return f"{source} breakeven {pnl:.1f}%"

@@ -311,6 +311,7 @@ class SecurityScanner:
         self.client = client
         self._sol_usd = SOL_USD_FALLBACK
         self._sol_usd_ts = 0.0
+        self._token_usd: dict[str, tuple[float, float]] = {}
         self.history = CreatorHistory()
 
     def note_rug(self, creator: Pubkey | None) -> None:
@@ -343,6 +344,32 @@ class SecurityScanner:
                     logger.debug("SOL/USD via %s = %.2f", name, price)
                     return price
         return 0.0
+
+    async def token_usd_price(self, mint: str, *, max_age: float = 3.0) -> float:
+        """USD price per whole token from Jupiter, for post-graduation (AMM) marks.
+
+        The bonding curve is closed once a coin graduates, so its reserves read zero.
+        Jupiter prices any liquid token, which keeps graduated positions valued.
+        """
+        now = time.time()
+        cached = self._token_usd.get(mint)
+        if cached is not None and now - cached[1] < max_age:
+            return cached[0]
+        price = 0.0
+        try:
+            async with httpx.AsyncClient(timeout=6.0, verify=_SSL_CONTEXT) as http:
+                resp = await http.get(
+                    "https://lite-api.jup.ag/price/v3",
+                    params={"ids": mint},
+                )
+                resp.raise_for_status()
+                entry = resp.json().get(mint) or {}
+                price = float(entry.get("usdPrice") or 0.0)
+        except Exception as exc:
+            logger.debug("AMM price via jupiter failed for %s: %s", mint, exc)
+        if price > 0:
+            self._token_usd[mint] = (price, now)
+        return price
 
     async def review(
         self,
