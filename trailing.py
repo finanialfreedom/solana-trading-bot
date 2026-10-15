@@ -41,6 +41,7 @@ class TrailingGuard:
         self.trader = trader
         self._exiting: set[str] = set()
         self._exit_tasks: set[asyncio.Task[Any]] = set()
+        self._scale_tasks: set[asyncio.Task[Any]] = set()
         # Cached SOL/USD so marks and market-cap milestones stay synchronous.
         self._sol_usd = 0.0
         self._sol_usd_ts = 0.0
@@ -81,7 +82,7 @@ class TrailingGuard:
                 except asyncio.TimeoutError:
                     continue
         finally:
-            pending = list(self._exit_tasks)
+            pending = list(self._exit_tasks) + list(self._scale_tasks)
             for task in pending:
                 task.cancel()
             if pending:
@@ -199,23 +200,38 @@ class TrailingGuard:
             if mc < target:
                 break
             position.milestones_taken += 1
-            tokens = int(position.tokens_held * pct / 100.0)
-            if tokens <= 0:
+            # Reserve synchronously so a milestone crossed in the same tick sizes off
+            # what is left, then sell asynchronously off the watchdog loop.
+            reserved = self.trader.reserve_scale_out(position, int(position.tokens_held * pct / 100.0))
+            if reserved <= 0:
                 continue
             logger.info(
-                "MC MILESTONE  %s  mc=$%.0f >= $%.0f  selling %.0f%% of remaining",
+                "MC MILESTONE  %s  mc=$%.0f >= $%.0f  selling %.0f%% (%s tokens)",
                 position.symbol,
                 mc,
                 target,
                 pct,
+                reserved,
             )
-            self.trader.scale_out(
-                position,
-                tokens,
-                f"scale-out mc>={target:,.0f}",
+            self._spawn(
+                self.trader.scale_out(position, reserved, f"scale-out mc>={target:,.0f}"),
+                name=f"scale-{position.symbol}-{target:.0f}",
             )
             queued = True
         return queued
+
+    def _spawn(self, coro: Any, *, name: str) -> None:
+        task = asyncio.create_task(coro, name=name)
+        self._scale_tasks.add(task)
+        task.add_done_callback(self._scale_done)
+
+    def _scale_done(self, task: asyncio.Task[Any]) -> None:
+        self._scale_tasks.discard(task)
+        if task.cancelled():
+            return
+        exc = task.exception()
+        if exc:
+            logger.exception("Scale-out task %s crashed", task.get_name(), exc_info=exc)
 
     @staticmethod
     def decide_exit(position: Position, source: str) -> str | None:

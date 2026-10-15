@@ -513,8 +513,24 @@ class Trader:
         )
         return sol_out_for_tokens_in(curve, token_amount, self._fee_bps(curve))
 
+    def reserve_scale_out(self, position: Position, token_amount: int) -> int:
+        """Reserve tokens for a partial sale.
+
+        Called synchronously before the (async) sale so that two milestones crossed
+        in the same tick size off the remaining amount instead of both sizing off
+        the original position.
+        """
+        held = position.tokens_held
+        tokens = min(int(token_amount), held)
+        if tokens <= 0:
+            return 0
+        if position.remaining_tokens < 0:
+            position.remaining_tokens = held
+        position.remaining_tokens -= tokens
+        return tokens
+
     async def scale_out(self, position: Position, token_amount: int, reason: str) -> None:
-        """Sell part of a position and leave the remainder open (hybrid profit taking)."""
+        """Sell already-reserved tokens and bank the proceeds; the rest stays open."""
         if token_amount <= 0:
             return
         sol_out = self._quote_exit(position, token_amount)
@@ -522,12 +538,13 @@ class Trader:
         if live:
             sent = await self._send_sell(position, sol_out, token_amount=token_amount)
             if not sent:
+                # Nothing was sold, so hand the reserved tokens back to the position.
+                if position.remaining_tokens >= 0:
+                    position.remaining_tokens += token_amount
                 return
         async with self._sell_lock:
             if self.book.get(position.mint) is None:
                 return
-            remaining_before = position.tokens_held
-            position.remaining_tokens = max(0, remaining_before - token_amount)
             position.realized_sol += sol_out
             left = position.tokens_held
         logger.info(

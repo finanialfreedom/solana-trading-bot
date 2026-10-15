@@ -87,17 +87,52 @@ def test_scale_out_accounting() -> None:
     held_before = pos.tokens_held
     sol_before = pos.realized_sol
     trader.book.add(pos)
-    asyncio.run(trader.scale_out(pos, held_before // 2, "test scale-out"))
-    check("half the tokens sold", pos.tokens_held == held_before - held_before // 2)
+    reserved = trader.reserve_scale_out(pos, held_before // 2)
+    check("reserved half the tokens", reserved == held_before // 2)
+    check("reservation applied immediately", pos.tokens_held == held_before - reserved)
+    asyncio.run(trader.scale_out(pos, reserved, "test scale-out"))
     check("proceeds banked", pos.realized_sol > sol_before, f"{pos.realized_sol} lamports")
     check("position still open", trader.book.get(pos.mint) is not None)
-    check("quote uses the AMM after graduation", trader._quote_exit(pos, 1_000) == int(1_000 * entry * 15 * 0.99))
+    check(
+        "quote uses the AMM after graduation",
+        trader._quote_exit(pos, 1_000) == int(1_000 * entry * 15 * 0.99),
+    )
+
+
+def test_scale_out_actually_runs_from_watchdog() -> None:
+    print("\n4. Milestones crossed at once must both sell, sizing off the remainder")
+    entry = 2.7958993476e-05
+    pos = make_position(entry)
+    pos.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+    pos.mark_graduated(entry * 200)  # deep past both configured milestones
+
+    trader = Trader(AsyncClient("http://127.0.0.1:8899"), Keypair())
+    trader.book.add(pos)
+    trader.trailing._sol_usd = 102.0
+    held_before = pos.tokens_held
+
+    async def run() -> None:
+        pos.mark_graduated(entry * 200)
+        trader.trailing._after_mark(pos, source="test")
+        if trader.trailing._scale_tasks:
+            await asyncio.gather(*list(trader.trailing._scale_tasks), return_exceptions=True)
+
+    asyncio.run(run())
+    check("both milestones taken", pos.milestones_taken == 2, f"{pos.milestones_taken}")
+    check("proceeds banked by the scheduled task", pos.realized_sol > 0, f"{pos.realized_sol}")
+    # 50% then 50% of the remainder leaves a quarter of the position open.
+    check(
+        "remainder is a quarter of the original",
+        abs(pos.tokens_held - held_before // 4) <= 1,
+        f"held={pos.tokens_held} of {held_before}",
+    )
 
 
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_graduation_is_priced_from_amm()
     test_scale_out_accounting()
+    test_scale_out_actually_runs_from_watchdog()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")
