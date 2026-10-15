@@ -83,9 +83,25 @@ SECURITY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ),
 ]
 
+# Entry-momentum filters. These three have been at zero all along, so the bot buys
+# every launch including ones with no buying interest -- which is exactly the ~54%
+# of cold-regime trades that never tick above entry. Joining the logged entry-time
+# momentum (buyers / buy_sol) to outcomes showed a large, monotonic improvement
+# *within both regimes*, and it does not cut the big runners (identical max MFE):
+#   evening win rate  9.3% -> 30.8% at buyers>=5, 32.7% at buy_sol>=3
+#   morning win rate 84.8% -> 95.6% at buy_sol>=1
+# This sweep re-tests that live, on current market conditions.
+ENTRY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-entry-none", {"MIN_CONFIRM_BUY_SOL": "0", "MIN_UNIQUE_BUYERS": "0"}),
+    ("B-entry-1", {"MIN_CONFIRM_BUY_SOL": "1"}),
+    ("C-entry-2", {"MIN_CONFIRM_BUY_SOL": "2"}),
+    ("D-entry-3", {"MIN_CONFIRM_BUY_SOL": "3"}),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
+    "entry": ENTRY_SCHEDULE,
 }
 
 

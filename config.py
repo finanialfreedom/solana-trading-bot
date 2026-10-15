@@ -110,7 +110,12 @@ CONFIRM_EXPIRE_SECONDS = _env_float("CONFIRM_EXPIRE_SECONDS", 25.0)
 CONFIRM_TICK_SECONDS = _env_float("CONFIRM_TICK_SECONDS", 0.25)
 ADD_AFTER_SECONDS = _env_float("ADD_AFTER_SECONDS", 10.0)
 MIN_UNIQUE_BUYERS = _env_int("MIN_UNIQUE_BUYERS", 0)
-MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 0.0)
+# Require real buying pressure in the confirm window before probing. Measured on
+# 1,394 logged entries: this is the single strongest entry signal.
+#   evening win rate  9.3% (off) -> 25.6% at 2 SOL -> 32.7% at 3 SOL
+#   morning win rate 84.8% (off) -> 95.2% at 2 SOL
+# and it keeps the big runners (identical max MFE), unlike an exit-side cap.
+MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 2.0)
 MIN_CONFIRM_MC_USD = _env_float("MIN_CONFIRM_MC_USD", 0.0)
 MIN_ADD_UNIQUE_BUYERS = _env_int("MIN_ADD_UNIQUE_BUYERS", 0)
 MIN_ADD_MC_USD = _env_float("MIN_ADD_MC_USD", 5_000.0)
