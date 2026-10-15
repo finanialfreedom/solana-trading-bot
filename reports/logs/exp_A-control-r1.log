@@ -1,0 +1,22 @@
+2026-10-15 15:30:22,494 INFO RPC HTTP https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:23,010 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:23,157 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:23,350 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:23,495 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:23,498 INFO Trader ready mode=DRY-RUN probe=0.20 add=0.80 SOL stop-loss=3.0% breakeven-after=+5.0% trailing-TP arm=12% callback=10% max_open=4 max_trades=1500 excel=D:\AI\solana-trading-bot\reports\pumpfun_trades.xlsx
+2026-10-15 15:30:23,498 INFO Security filters: no min liquidity, holders, LP-lock, or verified | no minimum total liquidity | tax fixed and <= 1%
+2026-10-15 15:30:23,498 INFO DRY-RUN is on: orders are simulated, no transactions are sent.
+2026-10-15 15:30:23,498 INFO Connecting WebSocket wss://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:23,498 INFO Watching Pump.fun program 6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P
+2026-10-15 15:30:23,499 INFO Trailing TP/SL watchdog started  tick=0.25s armed=0.08s stale=0.20s  SL floor=3.0%  breakeven after +5.0%  arm=12%  callback=10%
+2026-10-15 15:30:23,499 INFO Confirm window started  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 15:30:24,475 INFO Subscribed (id=30775271). Ctrl+C to stop.
+2026-10-15 15:30:26,496 INFO NEW TOKEN  Penguin Finance (PF)  mint=HZAzpcgH3dfFvshy3vkpSQVz51HSgPnUP4rh6iHKpump  curve=FrfvoncJWhxEFzvH1Lyv29wZ1ghua8NogFZyTp7Vc2qT  sig=62xCUNhQhv3DxoBuequktTb42SRDX8bYFtwD4bfrjiLisbKn8EcDqFMGTuKEoqwbyuTFUJNfzCxtvMB9xUoKn2b6
+2026-10-15 15:30:26,496 INFO WATCH  PF  mint=HZAzpcgH3dfFvshy3vkpSQVz51HSgPnUP4rh6iHKpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 15:30:29,006 INFO NEW TOKEN  sig=2QtpusQJvmtfkZoPtk4Hw9rPqfqqe6BSHUEtbcmcKYWdRUXZXovnZa3dj7m9fkDWmowuQwdBLWB5ept8teaKUg9B  (could not decode metadata)
+2026-10-15 15:30:31,719 INFO CONFIRM  PF  buyers=0  buy_sol=0.00  mc=$2860  probe=0.20  mint=HZAzpcgH3dfFvshy3vkpSQVz51HSgPnUP4rh6iHKpump
+2026-10-15 15:30:31,720 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 15:30:31,789 INFO NEW TOKEN  Iron Man (IM)  mint=DCRosPrrrrwtrTLPV1dMMEb284oZCtH9qSXi8a78pump  curve=J5TWmwfQ5DwsVzmG33imtfdx4SqipDyp2fE6rjrQyt3Y  sig=4hHxBasXbdRNbP66whwkqWsMJF1gMzVgDqFaLmjxRkJSAyrWsbGUKY6ca96XCba4HAqxxLg7JEFBDu3aUJ3uZavV
+2026-10-15 15:30:31,789 INFO WATCH  IM  mint=DCRosPrrrrwtrTLPV1dMMEb284oZCtH9qSXi8a78pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 15:30:31,914 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 15:30:32,045 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
