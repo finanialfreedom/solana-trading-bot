@@ -41,7 +41,8 @@ SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("A-control", {}),
     ("B-buysol-0.3", {"MIN_CONFIRM_BUY_SOL": "0.3"}),
     ("C-buysol-0.5", {"MIN_CONFIRM_BUY_SOL": "0.5"}),
-    ("D-buysol0.3-mc3000", {"MIN_CONFIRM_BUY_SOL": "0.3", "MIN_CONFIRM_MC_USD": "3000"}),
+    ("E-buysol0.3-tight", {"MIN_CONFIRM_BUY_SOL": "0.3",
+                           "TAKE_PROFIT_TRIGGER_PCT": "10", "TRAILING_STOP_PCT": "8"}),
 ]
 
 
