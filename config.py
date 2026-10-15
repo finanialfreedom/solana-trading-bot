@@ -133,8 +133,7 @@ TRAILING_ARMED_TICK_SECONDS = _env_float("TRAILING_ARMED_TICK_SECONDS", 0.08)
 # Re-poll a position's curve only if it has not been marked for this long.
 TRAILING_STALE_SECONDS = _env_float("TRAILING_STALE_SECONDS", 0.2)
 
-# Graduation (bonding curve -> PumpSwap AMM) handling.
-# When a coin completes its curve the curve account is closed and reports zero
+# Graduation (bonding curve -> PumpSwap AMM) handling.# When a coin completes its curve the curve account is closed and reports zero
 # reserves. Treating that as "price is zero" liquidated every winner for -100%,
 # so instead we hold through graduation and re-price from the AMM.
 HOLD_THROUGH_GRADUATION = _env_bool("HOLD_THROUGH_GRADUATION", True)
@@ -159,6 +158,22 @@ MC_SCALE_OUT: tuple[tuple[float, float], ...] = tuple(
         (MC_MILESTONE_3_USD, MC_MILESTONE_3_SELL_PCT),
     )
     if target > 0 and pct > 0
+)
+
+# Tiered trailing tolerance. A fixed callback arms early and cuts a runner on an
+# ordinary wobble, so the tolerance widens as the peak gain grows: a coin that only
+# manages +20% is protected tightly, while one that has already multiplied gets room
+# to keep going. Entries are (peak gain %, callback %), ascending; TRAILING_STOP_PCT
+# is the floor used below the first tier.
+TRAIL_TIERS: tuple[tuple[float, float], ...] = tuple(
+    (peak, callback)
+    for peak, callback in (
+        (_env_float("TRAIL_TIER_1_PEAK", 50.0), _env_float("TRAIL_TIER_1_CALLBACK", 18.0)),
+        (_env_float("TRAIL_TIER_2_PEAK", 150.0), _env_float("TRAIL_TIER_2_CALLBACK", 28.0)),
+        (_env_float("TRAIL_TIER_3_PEAK", 500.0), _env_float("TRAIL_TIER_3_CALLBACK", 38.0)),
+        (_env_float("TRAIL_TIER_4_PEAK", 2000.0), _env_float("TRAIL_TIER_4_CALLBACK", 48.0)),
+    )
+    if peak > 0 and callback > 0
 )
 
 # Security filters (apply in dry-run and live).

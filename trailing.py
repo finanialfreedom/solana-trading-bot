@@ -257,12 +257,13 @@ class TrailingGuard:
         if position.trailing_armed:
             if TRAILING_LOCK_BREAKEVEN and pnl <= 0:
                 return f"{source} breakeven {pnl:.1f}%"
-            if TRAILING_STOP_PCT > 0 and position.peak_price > 0:
+            callback = position.trail_callback_pct()
+            if callback > 0 and position.peak_price > 0:
                 drop = position.drop_from_peak_pct
-                if drop >= TRAILING_STOP_PCT:
+                if drop >= callback:
                     return (
                         f"{source} trailing-stop {pnl:.1f}% "
-                        f"(-{drop:.1f}% from peak)"
+                        f"(-{drop:.1f}% from peak, tol={callback:.0f}%)"
                     )
             return None
         if TRAILING_STOP_PCT <= 0 and TAKE_PROFIT_PCT > 0 and pnl >= TAKE_PROFIT_PCT:

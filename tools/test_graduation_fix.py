@@ -128,11 +128,42 @@ def test_scale_out_actually_runs_from_watchdog() -> None:
     )
 
 
+def test_trailing_tolerance_widens() -> None:
+    print("\n5. A runner must not be cut by the same tolerance as a non-runner")
+    from trailing import TrailingGuard
+
+    entry = 2.7958993476e-05
+    small = make_position(entry)
+    small.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+    small.mark_graduated(entry * 1.4)  # peaked around +40%
+    small.track_peak()
+    wide = make_position(entry)
+    wide.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+    wide.mark_graduated(entry * 20)  # peaked around +1900%
+    wide.track_peak()
+
+    check("small peak uses the tight tolerance", small.trail_callback_pct() <= 18.0,
+          f"{small.trail_callback_pct():.0f}%")
+    check("big peak uses a wider tolerance",
+          wide.trail_callback_pct() > small.trail_callback_pct(),
+          f"{wide.trail_callback_pct():.0f}% vs {small.trail_callback_pct():.0f}%")
+
+    # A 15% dip from a 10x peak must NOT trigger an exit, but the same dip on a
+    # top-of-range position should be tolerated too. Then a 60% collapse must fire.
+    wide.mark_graduated(entry * 20 * 0.85)
+    reason = TrailingGuard.decide_exit(wide, source="test")
+    check("15% dip from a big peak is tolerated", reason is None, f"{reason}")
+    wide.mark_graduated(entry * 20 * 0.35)
+    reason = TrailingGuard.decide_exit(wide, source="test")
+    check("a collapse well past tolerance exits", reason is not None, f"{reason}")
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_graduation_is_priced_from_amm()
     test_scale_out_accounting()
     test_scale_out_actually_runs_from_watchdog()
+    test_trailing_tolerance_widens()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")

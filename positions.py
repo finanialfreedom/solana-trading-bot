@@ -12,6 +12,8 @@ from config import (
     LAMPORTS_PER_SOL,
     PUMP_TOKEN_SUPPLY,
     TAKE_PROFIT_TRIGGER_PCT,
+    TRAILING_STOP_PCT,
+    TRAIL_TIERS,
 )
 
 
@@ -76,6 +78,24 @@ class Position:
         if price <= 0 or sol_usd <= 0:
             return 0.0
         return price * PUMP_TOKEN_SUPPLY / LAMPORTS_PER_SOL * sol_usd
+
+    @property
+    def peak_gain_pct(self) -> float:
+        if self.entry_price <= 0 or self.peak_price <= 0:
+            return 0.0
+        return (self.peak_price - self.entry_price) / self.entry_price * 100.0
+
+    def trail_callback_pct(self) -> float:
+        """Trailing tolerance, widened as the peak gain grows.
+
+        Keeps the stop tight for a coin that is going nowhere while giving a genuine
+        runner room to survive normal volatility instead of being cut at +15%.
+        """
+        callback = TRAILING_STOP_PCT
+        for peak, tier_callback in TRAIL_TIERS:
+            if self.peak_gain_pct >= peak:
+                callback = tier_callback
+        return callback
 
     @property
     def drop_from_peak_pct(self) -> float:
