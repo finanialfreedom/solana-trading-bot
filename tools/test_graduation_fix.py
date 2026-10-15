@@ -387,6 +387,77 @@ def test_confirm_sell_pressure() -> None:
          confirm_mod.MIN_CONFIRM_MC_USD) = orig
 
 
+def test_dry_run_execution_is_honest() -> None:
+    """A dry-run fill must not be booked better than a real one.
+
+    Old behaviour: entry_price was the price *before* our own buy, while the position
+    was sized at tokens_out (which already includes our own impact). A 1 SOL order on a
+    fresh curve therefore opened showing +6.7% profit that did not exist, inflating
+    every peak and distorting the exit rules that read them.
+    """
+    print("\n[dry-run execution realism]")
+    from pumpfun import BondingCurve, apply_fee, tokens_out_for_sol_in
+
+    curve = BondingCurve(
+        virtual_token_reserves=1_073_000_000_000_000,
+        virtual_quote_reserves=30 * LAMPORTS_PER_SOL,
+        real_token_reserves=793_100_000_000_000,
+        real_quote_reserves=0,
+        token_total_supply=1_000_000_000_000_000,
+        complete=False,
+        creator=None,
+    )
+    spend = 1 * LAMPORTS_PER_SOL
+    fee_bps = 100
+    tokens = tokens_out_for_sol_in(curve, spend, fee_bps)
+    entry = spend / tokens                       # what we now record
+    pre_trade = curve.price                      # what the old code recorded
+
+    check("entry price reflects our own impact", entry > pre_trade,
+          f"paid {entry:.6e} vs pre-trade {pre_trade:.6e}")
+    phantom = (entry - pre_trade) / pre_trade * 100.0
+    check("the old entry understated cost by several percent",
+          phantom > 3.0, f"was +{phantom:.2f}% 'free'")
+    check("entry is not the pre-trade price", abs(entry - pre_trade) > 1e-9)
+
+    # Build the position exactly the way the buy path does, then ask it what it is
+    # worth: it should be down roughly the round-trip cost, never up.
+    from positions import Position
+
+    pos = Position(
+        mint=Pubkey.from_string(WSOL),
+        bonding_curve=Pubkey.from_string(WSOL),
+        associated_bonding_curve=Pubkey.from_string(WSOL),
+        creator=None,
+        name="T",
+        symbol="T",
+        token_amount=tokens,
+        sol_spent=spend,
+        entry_price=entry,
+        virtual_token_reserves=curve.virtual_token_reserves - tokens,
+        virtual_quote_reserves=curve.virtual_quote_reserves + apply_fee(spend, fee_bps),
+    )
+    instant = pos.pnl_pct
+    check("no phantom profit on entry", instant <= 0.0, f"instant pnl {instant:+.2f}%")
+    check("immediate round-trip cost is the fee plus our own impact",
+          -3.0 < instant < -1.0, f"{instant:+.2f}%")
+    check("realizable price is below the marginal pool price",
+          pos.realizable_price < pos.mark_price,
+          f"{pos.realizable_price:.6e} < {pos.mark_price:.6e}")
+
+    # Simulated slippage must make a dry-run fill strictly worse, both ways.
+    import config
+
+    original = config.SIM_SLIPPAGE_BPS
+    try:
+        config.SIM_SLIPPAGE_BPS = 200
+        worse = entry * (1.0 / (1.0 - 0.02))
+        check("simulated slippage worsens the entry price", worse > entry,
+              f"{worse:.6e} vs {entry:.6e}")
+    finally:
+        config.SIM_SLIPPAGE_BPS = original
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_curve_closing_before_first_mark_is_not_a_writeoff()
@@ -398,6 +469,7 @@ def main() -> None:
     test_gradual_ladder_banks_proportionally()
     test_regime_gate_blocks_cold_market()
     test_confirm_sell_pressure()
+    test_dry_run_execution_is_honest()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")

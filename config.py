@@ -142,6 +142,12 @@ TAKE_PROFIT_TRIGGER_PCT = _env_float("TAKE_PROFIT_TRIGGER_PCT", TAKE_PROFIT_PCT)
 TRAILING_STOP_PCT = _env_float("TRAILING_STOP_PCT", 15.0)
 TRAILING_LOCK_BREAKEVEN = _env_bool("TRAILING_LOCK_BREAKEVEN", True)
 SLIPPAGE_BPS = _env_int("SLIPPAGE_BPS", 800)
+# Dry-run execution realism. The simulator fills at the exact bonding-curve quote with
+# no delay, which is optimistic: a real order competes with every other bot in the same
+# slots. This applies adverse slippage to both sides when not trading live, so dry-run
+# results stay honest. It is deliberately separate from SLIPPAGE_BPS, which is the live
+# order's tolerance, not a simulated cost.
+SIM_SLIPPAGE_BPS = _env_int("SIM_SLIPPAGE_BPS", 200)
 PRIORITY_FEE_MICROLAMPORTS = _env_int("PRIORITY_FEE_MICROLAMPORTS", 100_000)
 COMPUTE_UNIT_LIMIT = _env_int("COMPUTE_UNIT_LIMIT", 250_000)
 POSITION_POLL_SECONDS = _env_float("POSITION_POLL_SECONDS", 2.0)

@@ -35,6 +35,7 @@ from config import (
     SECURITY_FILTERS_ENABLED,
     PRIORITY_FEE_MICROLAMPORTS,
     BREAKEVEN_ARM_PCT,
+    SIM_SLIPPAGE_BPS,
     SLIPPAGE_BPS,
     STOP_LOSS_PCT,
     TAKE_PROFIT_TRIGGER_PCT,
@@ -385,9 +386,20 @@ class Trader:
             logger.info("Skip %s: quoted token amount is 0", info.symbol)
             return
 
-        min_tokens = tokens_out * (10_000 - SLIPPAGE_BPS) // 10_000
-        entry_price = curve.price
         live = live_trading_enabled()
+        if not live and SIM_SLIPPAGE_BPS > 0:
+            # Competing flow and latency: a dry-run fill must not be better than a
+            # real one, so take the adverse side of the quoted amount.
+            tokens_out = tokens_out * (10_000 - SIM_SLIPPAGE_BPS) // 10_000
+            if tokens_out <= 0:
+                logger.info("Skip %s: token amount is 0 after simulated slippage", info.symbol)
+                return
+        min_tokens = tokens_out * (10_000 - SLIPPAGE_BPS) // 10_000
+        # What we actually pay per token, not the price before our own buy. The old
+        # pre-trade price made every position open showing ~+6.7% for a 1 SOL order
+        # (the size of its own price impact), inflating every peak and distorting the
+        # exit rules that read those peaks.
+        entry_price = spend / tokens_out
         sig = "dry-run"
 
         if live:
@@ -420,7 +432,9 @@ class Trader:
             sol_spent=spend,
             entry_price=entry_price,
             virtual_token_reserves=curve.virtual_token_reserves - tokens_out,
-            virtual_quote_reserves=curve.virtual_quote_reserves + spend,
+            # Only the fee-net SOL actually reaches the curve. Adding the gross amount
+            # overstated the reserves and therefore the mark.
+            virtual_quote_reserves=curve.virtual_quote_reserves + apply_fee(spend, fee_bps),
             dry_run=not live,
         )
         self.book.add(position)
@@ -561,6 +575,8 @@ class Trader:
             )
             return
         live = live_trading_enabled() and not position.dry_run
+        if not live and SIM_SLIPPAGE_BPS > 0:
+            sol_out = sol_out * (10_000 - SIM_SLIPPAGE_BPS) // 10_000
         if live:
             sent = await self._send_sell(position, sol_out, token_amount=token_amount)
             if not sent:
@@ -627,6 +643,10 @@ class Trader:
                 position.symbol, reason, position.mark_price,
             )
             return
+        if not live_trading_enabled() and SIM_SLIPPAGE_BPS > 0:
+            # A dry-run exit must not be better than a real one: selling into a
+            # falling curve competes with every other seller.
+            sol_out = sol_out * (10_000 - SIM_SLIPPAGE_BPS) // 10_000
         total_out = sol_out + position.realized_sol
         pnl = (
             (total_out - position.sol_spent) / position.sol_spent * 100.0

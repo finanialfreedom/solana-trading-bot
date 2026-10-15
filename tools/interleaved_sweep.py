@@ -268,6 +268,18 @@ LADDER_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ),
 ]
 
+# How much simulated slippage the strategy can survive. This is the go-live question:
+# dry-run fills at the exact curve quote with no delay, so the recorded edge is an
+# upper bound. Each arm applies progressively harsher adverse slippage to both sides
+# (entry and exit) and the sweep shows where the edge dies. If it survives 5-8%, the
+# real thing has room; if it dies at 2%, the edge is too thin for real money.
+SLIPPAGE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-slip0", {"SIM_SLIPPAGE_BPS": "0"}),
+    ("B-slip2", {"SIM_SLIPPAGE_BPS": "200"}),
+    ("C-slip5", {"SIM_SLIPPAGE_BPS": "500"}),
+    ("D-slip8", {"SIM_SLIPPAGE_BPS": "800"}),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
@@ -280,6 +292,7 @@ SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "threshold": THRESHOLD_SCHEDULE,
     "protect2": PROTECT2_SCHEDULE,
     "ladder": LADDER_SCHEDULE,
+    "slippage": SLIPPAGE_SCHEDULE,
 }
 
 

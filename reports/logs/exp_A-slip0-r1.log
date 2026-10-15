@@ -1,0 +1,45 @@
+2026-10-16 03:18:33,237 INFO RPC HTTP https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:33,721 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:33,837 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:33,970 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:34,220 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:34,220 INFO Trader ready mode=DRY-RUN probe=1.00 add=0.00 SOL stop-loss=3.0% breakeven-after=+5.0% trailing-TP arm=12% callback=10% max_open=16 max_trades=1500 excel=D:\AI\solana-trading-bot\reports\pumpfun_trades.xlsx
+2026-10-16 03:18:34,220 INFO Security filters: no min liquidity, holders, LP-lock, or verified | no minimum total liquidity | tax fixed and <= 1%
+2026-10-16 03:18:34,220 INFO DRY-RUN is on: orders are simulated, no transactions are sent.
+2026-10-16 03:18:34,220 INFO Connecting WebSocket wss://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:34,220 INFO Watching Pump.fun program 6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P
+2026-10-16 03:18:34,220 INFO Trailing TP/SL watchdog started  tick=0.25s armed=0.08s stale=0.20s  SL floor=3.0%  breakeven after +5.0%  arm=12%  callback=10%
+2026-10-16 03:18:34,220 INFO Confirm window started  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 03:18:35,270 INFO Subscribed (id=36645410). Ctrl+C to stop.
+2026-10-16 03:18:36,039 INFO NEW TOKEN  PumpVeil (VEIL)  mint=3gTRin4F4eP2K8S7mY9y44EHrV8sbHy1pZwDHQULpump  curve=8vhKrSKFABXy3naFjNnCXbgmtcGmKwf8HPPYMhwm3nmP  sig=53uXtAdScErmHsqw36oDsmKqkkpzksMyUeq3QEbtdCUmUZyndPPU2qL9hitWMzb6kGvdVUrLjVTagkbrf854v5N1
+2026-10-16 03:18:36,039 INFO WATCH  VEIL  mint=3gTRin4F4eP2K8S7mY9y44EHrV8sbHy1pZwDHQULpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 03:18:37,953 INFO NEW TOKEN  50 CENT ( ¢50)  mint=26vQsQFScW9yyiPepSSZ8RcZ5TFdQvY5i3KdM6JXpump  curve=DPjB6CgpAKWa2XzDJ6rUsvM23D4tnG3RhQgQQWfviRcV  sig=5eGNLcgFd9gASndZTWGqi99tqKH9kh9vP4rLnBUqirF1YriXf9UhLwuEKr5Vp5oL27vPCidF3EsBomZH2EJjwbyT
+2026-10-16 03:18:37,953 INFO WATCH   ¢50  mint=26vQsQFScW9yyiPepSSZ8RcZ5TFdQvY5i3KdM6JXpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 03:18:39,054 INFO NEW TOKEN  SATINU (SATINU)  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump  curve=DqUjuPMpefZ6FozapRwvQsdmWfSiJbqQesANQMDR8QGw  sig=5jomDfqYYQE8gKfoi9J1MScrRoU9AK2kzQxZvt3nZytzVokMrTWdA4S7WRXNenRU413CmWGWVsUEuYs2DRTHZRQk
+2026-10-16 03:18:39,054 INFO WATCH  SATINU  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 03:18:41,270 INFO SKIP CONFIRM  VEIL  low-buy-sol 0.48 < 2.0  buyers=3  buy_sol=0.48  mc=$3092  mint=3gTRin4F4eP2K8S7mY9y44EHrV8sbHy1pZwDHQULpump
+2026-10-16 03:18:42,754 INFO NEW TOKEN  Trattable coin (TrattableC)  mint=HaMzRLWAs4GDfywCSi6iAzLMidTdEQ3WRH1m1mzSpump  curve=9nzzUk5bwFYUKTT2cUJTRoVaWCnXTmbGW2uGAhmbyssC  sig=2GM2ucGKziRX7W51XkxGFCz7qAxw8st5u1iWXLvBtRD62FrRW8FK9Z6daAwwv1dTuXLQe2byS8Vm8h36g8YDZkCc
+2026-10-16 03:18:42,754 INFO WATCH  TrattableC  mint=HaMzRLWAs4GDfywCSi6iAzLMidTdEQ3WRH1m1mzSpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 03:18:43,020 INFO SKIP CONFIRM   ¢50  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2945  mint=26vQsQFScW9yyiPepSSZ8RcZ5TFdQvY5i3KdM6JXpump
+2026-10-16 03:18:43,054 INFO NEW TOKEN  Doomed Rocket (DOOROC)  mint=6H79BsdH7ng4fbU5FZhukyVQ9gQWAR96KvCqdE4Kpump  curve=AfRDZgeLVLpX3eNDTT6AEJjHBtPX3BRKMC2PTfp4gDp9  sig=2petbyZT7Ax55kJMWQ179Y4q5EC33cqKe8K8rXshxUfUT51Eeckf22TiJqoFdmJRxp4L9UVpAHToR7P9x9Mu4vJ9
+2026-10-16 03:18:43,054 INFO WATCH  DOOROC  mint=6H79BsdH7ng4fbU5FZhukyVQ9gQWAR96KvCqdE4Kpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 03:18:44,264 INFO CONFIRM  SATINU  buyers=2  buy_sol=2.44  mc=$5087  probe=1.00  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump
+2026-10-16 03:18:44,404 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:44,602 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:44,787 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:45,087 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:45,237 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:45,437 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:45,587 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:45,587 INFO DRY-RUN BUY  SATINU (Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump)  spend=1.0000 SOL  tokens=34277831558568  entry_price=2.9173374001e-05  create_sig=probe
+2026-10-16 03:18:45,657 INFO BUY SATINU  1/1500  invested=1.0000 SOL  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-16 03:18:45,657 INFO SL TO BREAKEVEN  SATINU  at +86.4%  floor=entry  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump
+2026-10-16 03:18:45,657 INFO TRAILING ON  SATINU  armed at +86.4%  peak=5.4382088487e-05  callback=10%  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump
+Wallet: 2QjvSwLLdw5k9CZXMHgLbVHJ1tARwmsmFp4TNF5LKo2Q
+SOL balance: 0.000000000 SOL (0 lamports)
+SPL tokens: none
+Excel save failed for both paths: OSError(22, 'Invalid argument') / OSError(22, 'Invalid argument')
+2026-10-16 03:18:46,053 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 03:18:46,070 INFO LOST  SATINU  -2.1%  in=1.0000 SOL  out=0.9793 SOL  mint=Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump  watchdog breakeven -2.1%
+2026-10-16 03:18:47,921 INFO SKIP CONFIRM  TrattableC  low-buy-sol 0.02 < 2.0  buyers=2  buy_sol=0.02  mc=$3041  mint=HaMzRLWAs4GDfywCSi6iAzLMidTdEQ3WRH1m1mzSpump
+2026-10-16 03:18:48,186 INFO SKIP CONFIRM  DOOROC  low-buy-sol 0.03 < 2.0  buyers=1  buy_sol=0.03  mc=$2658  mint=6H79BsdH7ng4fbU5FZhukyVQ9gQWAR96KvCqdE4Kpump

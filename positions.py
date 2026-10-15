@@ -17,6 +17,10 @@ from config import (
     TRAIL_TIERS,
 )
 
+# pump.fun's trade fee, used only to mark open positions at what they could actually
+# be sold for. Kept local to avoid a config round-trip in a hot property.
+_MARK_FEE_BPS = 100
+
 
 @dataclass(slots=True)
 class Position:
@@ -70,10 +74,32 @@ class Position:
         return self.virtual_quote_reserves / self.virtual_token_reserves
 
     @property
+    def realizable_price(self) -> float:
+        """Average SOL per token if this position were sold right now.
+
+        The marginal pool price (mark_price) is what the next tiny trade would pay; it
+        is not what an open position is worth, because selling walks the price down the
+        curve. Marking against the marginal price flatters every position -- most of all
+        right after entry, when the position's own size is largest relative to the pool.
+        PnL and every exit rule read this instead, so they see the price we could
+        actually get.
+        """
+        held = self.tokens_held
+        quote = self.virtual_quote_reserves
+        reserves = self.virtual_token_reserves
+        if self.graduated and self.amm_price > 0:
+            return self.amm_price
+        if held <= 0 or quote <= 0 or reserves <= 0:
+            return self.mark_price
+        gross = quote * held / (reserves + held)
+        net = gross * (1.0 - _MARK_FEE_BPS / 10_000.0)
+        return net / held
+
+    @property
     def pnl_pct(self) -> float:
         if self.entry_price <= 0:
             return 0.0
-        return (self.mark_price - self.entry_price) / self.entry_price * 100.0
+        return (self.realizable_price - self.entry_price) / self.entry_price * 100.0
 
     def mc_usd(self, sol_usd: float) -> float:
         """Market cap implied by the current mark, in USD."""
@@ -117,7 +143,7 @@ class Position:
     def drop_from_peak_pct(self) -> float:
         if self.peak_price <= 0:
             return 0.0
-        return (self.peak_price - self.mark_price) / self.peak_price * 100.0
+        return (self.peak_price - self.realizable_price) / self.peak_price * 100.0
 
     def _observe(self) -> None:
         pnl = self.pnl_pct
@@ -160,7 +186,7 @@ class Position:
 
     def track_peak(self) -> bool:
         """Arm trailing TP and raise the peak. Returns True when newly armed."""
-        price = self.mark_price
+        price = self.realizable_price
         newly_armed = False
         if (
             TAKE_PROFIT_TRIGGER_PCT > 0
