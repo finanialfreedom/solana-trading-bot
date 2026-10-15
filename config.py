@@ -97,8 +97,14 @@ SCAN_INTERVAL_SECONDS = _env_float("SCAN_INTERVAL_SECONDS", 3.0)
 SCAN_REVIEW_DELAY_SECONDS = _env_float("SCAN_REVIEW_DELAY_SECONDS", 0.05)
 
 BUY_SOL_AMOUNT = _env_float("BUY_SOL_AMOUNT", 1.0)
-BUY_PROBE_SOL = _env_float("BUY_PROBE_SOL", 0.2)
-BUY_ADD_SOL = _env_float("BUY_ADD_SOL", 0.8)
+# Take the full position at the probe price and skip the price-based top-up. The add
+# fires only after the market cap has climbed (mc >= MIN_ADD_MC_USD), so it buys a
+# materially higher price and lifts the blended entry -- measured over 2854 closed
+# trades, probe-only returned +4.95% mean versus -0.97% for probe+add. Its original
+# purpose (confirmation) is now served by MIN_CONFIRM_BUY_SOL, which confirms at the
+# entry price instead of chasing it.
+BUY_PROBE_SOL = _env_float("BUY_PROBE_SOL", 1.0)
+BUY_ADD_SOL = _env_float("BUY_ADD_SOL", 0.0)
 MAX_SOL_PER_TRADE = _env_float("MAX_SOL_PER_TRADE", 1.0)
 MAX_TOTAL_SOL_AT_RISK = _env_float("MAX_TOTAL_SOL_AT_RISK", 8.0)
 MAX_OPEN_POSITIONS = _env_int("MAX_OPEN_POSITIONS", 16)
