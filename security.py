@@ -2,15 +2,25 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import logging
+import ssl
 import struct
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
-import certifi
 import httpx
+
+try:  # Prefer the OS trust store so TLS works behind AV/proxy root certs.
+    import truststore
+
+    _SSL_CONTEXT = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+except Exception:  # pragma: no cover - fall back to httpx's default bundle
+    _SSL_CONTEXT = True
+
 from solana.rpc.async_api import AsyncClient
 from solana.rpc.models import DataSliceOpts, MemcmpOpts
 from solders.pubkey import Pubkey
@@ -66,6 +76,41 @@ BURN_ADDRESSES = {
     str(SYSTEM),
     "1nc1nerator11111111111111111111111111111111",
 }
+
+
+def _coingecko_price(data: dict) -> float:
+    return float(data["solana"]["usd"])
+
+
+def _jupiter_price(data: dict) -> float:
+    return float(data[str(WSOL)]["usdPrice"])
+
+
+def _binance_price(data: dict) -> float:
+    return float(data["price"])
+
+
+# Public SOL/USD feeds, tried in order until one answers.
+_PRICE_SOURCES = (
+    (
+        "coingecko",
+        "https://api.coingecko.com/api/v3/simple/price",
+        {"ids": "solana", "vs_currencies": "usd"},
+        _coingecko_price,
+    ),
+    (
+        "jupiter",
+        "https://lite-api.jup.ag/price/v3",
+        {"ids": str(WSOL)},
+        _jupiter_price,
+    ),
+    (
+        "binance",
+        "https://api.binance.com/api/v3/ticker/price",
+        {"symbol": "SOLUSDT"},
+        _binance_price,
+    ),
+)
 
 CLONE_TICKERS = {
     "BTC", "ETH", "SOL", "WSOL", "USDT", "USDC", "DAI", "BNB", "XRP", "DOGE",
@@ -275,20 +320,29 @@ class SecurityScanner:
         now = time.time()
         if now - self._sol_usd_ts < 60 and self._sol_usd > 0:
             return self._sol_usd
-        try:
-            async with httpx.AsyncClient(timeout=8.0, verify=certifi.where()) as http:
-                resp = await http.get(
-                    "https://api.coingecko.com/api/v3/simple/price",
-                    params={"ids": "solana", "vs_currencies": "usd"},
-                )
-                resp.raise_for_status()
-                price = float(resp.json()["solana"]["usd"])
-                if price > 0:
-                    self._sol_usd = price
-                    self._sol_usd_ts = now
-        except Exception:
+        price = await self._fetch_sol_usd()
+        if price > 0:
+            self._sol_usd = price
+            self._sol_usd_ts = now
+        else:
             logger.warning("SOL/USD fetch failed; using %.2f", self._sol_usd)
         return self._sol_usd
+
+    async def _fetch_sol_usd(self) -> float:
+        """Try each public price feed until one returns a usable value."""
+        async with httpx.AsyncClient(timeout=8.0, verify=_SSL_CONTEXT) as http:
+            for name, url, params, extract in _PRICE_SOURCES:
+                try:
+                    resp = await http.get(url, params=params)
+                    resp.raise_for_status()
+                    price = float(extract(resp.json()))
+                except Exception as exc:
+                    logger.debug("SOL/USD via %s failed: %s", name, exc)
+                    continue
+                if price > 0:
+                    logger.debug("SOL/USD via %s = %.2f", name, price)
+                    return price
+        return 0.0
 
     async def review(
         self,
@@ -503,12 +557,7 @@ class SecurityScanner:
             skip.add(str(lp_t22))
         except Exception:
             pass
-        try:
-            resp = await self.client.get_token_largest_accounts(mint)
-            holders = list(resp.value or [])
-        except Exception:
-            logger.warning("get_token_largest_accounts failed for %s", mint)
-            holders = []
+        holders = await self._largest_accounts(mint)
 
         supply_ui = 0.0
         try:
@@ -558,28 +607,37 @@ class SecurityScanner:
                         f"creator-holds {report.creator_hold_pct:.1f}% > {MAX_CREATOR_HOLD_PCT:.0f}%"
                     )
 
-        counted = await self._count_holders(mint, skip)
-        if counted is None or (existing and counted < MIN_HOLDERS):
-            http_count = await self._count_holders_http(mint)
-            if http_count is not None:
-                counted = http_count
-        if counted is None:
-            report.holders = cluster
-            if existing:
-                logger.info("Holder count unknown for existing %s; not blocking on MIN_HOLDERS", mint)
-                return
-            counted = 0
+        # getProgramAccounts is disabled on many providers (it returns 0), so the
+        # largest-accounts count is the reliable lower bound for the holder count.
+        rpc_count = await self._count_holders(mint, skip)
+        counted = max(rpc_count or 0, cluster)
         report.holders = counted
         if existing and counted < MIN_HOLDERS:
-            # Public RPC token-account size filter undercounts Token-2022.
             logger.info(
-                "Existing %s holder RPC/API count %s; not blocking on MIN_HOLDERS",
+                "Existing %s holder count %s below MIN_HOLDERS; not blocking",
                 mint,
                 counted,
             )
             return
-        if MIN_HOLDERS > 0 and report.holders < MIN_HOLDERS:
-            report.reasons.append(f"too-few-holders {report.holders} < {MIN_HOLDERS}")
+        if MIN_HOLDERS > 0 and counted < MIN_HOLDERS:
+            report.reasons.append(f"too-few-holders {counted} < {MIN_HOLDERS}")
+
+    async def _largest_accounts(self, mint: Pubkey, attempts: int = 3) -> list[Any]:
+        for attempt in range(attempts):
+            try:
+                resp = await self.client.get_token_largest_accounts(mint)
+                return list(resp.value or [])
+            except Exception as exc:
+                if "not a token mint" in str(exc).lower():
+                    logger.debug("Skip holder read for %s: not a token mint", mint)
+                    return []
+                if attempt + 1 >= attempts:
+                    logger.warning(
+                        "get_token_largest_accounts failed for %s: %s", mint, exc
+                    )
+                else:
+                    await asyncio.sleep(0.25 * (attempt + 1))
+        return []
 
     async def _creator_balance(self, creator: Pubkey, mint: Pubkey) -> float:
         ata = get_associated_token_address(creator, mint, TOKEN_PROGRAM_ID)
@@ -611,32 +669,9 @@ class SecurityScanner:
                     owners.add(owner)
                 ok = True
                 best = max(best, len(owners))
-            except Exception:
-                logger.warning("holder count RPC failed for %s on %s", mint, program)
+            except Exception as exc:
+                logger.debug("holder count RPC failed for %s on %s: %s", mint, program, exc)
         return best if ok else None
-
-    async def _count_holders_http(self, mint: Pubkey) -> int | None:
-        try:
-            async with httpx.AsyncClient(timeout=8.0, verify=False) as http:
-                resp = await http.get(
-                    "https://public-api.solscan.io/token/holders",
-                    params={"tokenAddress": str(mint), "offset": 0, "size": 1},
-                    headers={
-                        "Accept": "application/json",
-                        "User-Agent": "Mozilla/5.0",
-                    },
-                )
-                if resp.status_code != 200:
-                    return None
-                data = resp.json()
-            total = data.get("total")
-            if total is None and isinstance(data.get("data"), dict):
-                total = data["data"].get("total")
-            if total is None:
-                return None
-            return int(total)
-        except Exception:
-            return None
 
     async def _check_pumpswap_lp_burn(
         self,
