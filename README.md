@@ -46,8 +46,15 @@ Stop with `Ctrl+C`.
 | `TAKE_PROFIT_TRIGGER_PCT` | `30` | Arm trailing take-profit once PnL reaches this percent |
 | `TRAILING_STOP_PCT` | `15` | After arming, sell if price drops this percent from the peak |
 | `TRAILING_LOCK_BREAKEVEN` | `true` | After the +30% arm, also sell if price falls back to entry |
-| `TRAILING_TICK_SECONDS` | `0.5` | Background watchdog interval for peak tracking and SL/TP |
-| `TRAILING_ARMED_TICK_SECONDS` | `0.15` | Faster poll while any position is in trailing mode |
+| `TRAILING_TICK_SECONDS` | `0.25` | Background watchdog interval for peak tracking and SL/TP |
+| `TRAILING_ARMED_TICK_SECONDS` | `0.08` | Faster poll while any position is in trailing mode |
+| `TRAILING_STALE_SECONDS` | `0.2` | Re-poll a position's curve only if unmarked for this long |
+| `SCAN_INTERVAL_SECONDS` | `3` | Pause between passes of the existing-coin scanner |
+| `SCAN_REVIEW_DELAY_SECONDS` | `0.05` | Gap between security reviews while scanning |
+
+The trailing/SL values above assume a Helius paid plan (50 req/s). On the free tier
+(10 req/s) raise `TRAILING_TICK_SECONDS` to `0.5`, `TRAILING_ARMED_TICK_SECONDS` to
+`0.15`, `SCAN_INTERVAL_SECONDS` to `8` and `SCAN_REVIEW_DELAY_SECONDS` to `0.4`.
 
 The live Excel report is `reports/pumpfun_trades.xlsx` (Trades + Blocked + Summary). Each trade row is WON or LOST with the percentage. Security rejects are listed on the **Blocked** sheet and in `reports/blocked.csv`.
 

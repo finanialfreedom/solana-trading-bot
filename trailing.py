@@ -20,6 +20,7 @@ from config import (
     TAKE_PROFIT_TRIGGER_PCT,
     TRAILING_ARMED_TICK_SECONDS,
     TRAILING_LOCK_BREAKEVEN,
+    TRAILING_STALE_SECONDS,
     TRAILING_STOP_PCT,
     TRAILING_TICK_SECONDS,
 )
@@ -51,10 +52,11 @@ class TrailingGuard:
 
     async def run(self, stop: asyncio.Event) -> None:
         logger.info(
-            "Trailing TP/SL watchdog started  tick=%.2fs armed=%.2fs  "
+            "Trailing TP/SL watchdog started  tick=%.2fs armed=%.2fs stale=%.2fs  "
             "SL floor=%.1f%%  breakeven after +%.1f%%  arm=%.0f%%  callback=%.0f%%",
             TRAILING_TICK_SECONDS,
             TRAILING_ARMED_TICK_SECONDS,
+            TRAILING_STALE_SECONDS,
             STOP_LOSS_PCT,
             BREAKEVEN_ARM_PCT,
             TAKE_PROFIT_TRIGGER_PCT,
@@ -85,7 +87,7 @@ class TrailingGuard:
         if not positions:
             return
         now = time()
-        stale = [p for p in positions if now - p.last_mark_at >= 0.4]
+        stale = [p for p in positions if now - p.last_mark_at >= TRAILING_STALE_SECONDS]
         for position in positions:
             if position not in stale:
                 self._after_mark(position, source="watchdog")
