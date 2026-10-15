@@ -6,7 +6,7 @@ import json
 from typing import Any
 
 from solana.rpc.async_api import AsyncClient
-from solana.rpc.types import TokenAccountOpts
+from solana.rpc.models import TokenAccountOpts
 from solders.keypair import Keypair
 from solders.pubkey import Pubkey
 
