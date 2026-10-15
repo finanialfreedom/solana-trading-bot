@@ -200,6 +200,74 @@ FINAL_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ),
 ]
 
+# Capacity is the binding constraint, so the bar should be higher than it is.
+#
+# Only ~8 positions fit inside MAX_TOTAL_SOL_AT_RISK=8 at 1 SOL each, and the logs show
+# 'max open positions' rejecting 2,750 entries and 'max total SOL at risk' rejecting
+# 1,221 -- all of which had already passed the entry filter. Slots are therefore scarce
+# and are currently filled first-come-first-served, so a coin with 2 SOL of buying takes
+# the same slot as one with 20. Raising the bar spends scarce slots on stronger coins.
+#
+# Total profit is what matters here, not expectancy: a stricter filter can raise
+# expectancy while lowering profit if it rejects too much. The earlier entry sweep
+# peaked at 2 SOL on net SOL, but its arms only saw 36-43 trades; this re-tests with
+# much higher thresholds and real sample sizes.
+THRESHOLD_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-thr2", {"MIN_CONFIRM_BUY_SOL": "2"}),
+    ("B-thr4", {"MIN_CONFIRM_BUY_SOL": "4"}),
+    ("C-thr8", {"MIN_CONFIRM_BUY_SOL": "8"}),
+    ("D-thr16", {"MIN_CONFIRM_BUY_SOL": "16"}),
+]
+
+# Reward-side packages. These knobs interact (a tight callback is only safe behind a
+# floor), so they are tested as coherent packages rather than one knob at a time.
+# Stop loss and per-trade risk are deliberately untouched.
+#   A-cur    what .env does today: arm +12%, trail 10%, first floor at peak 50%
+#   B-tight  arm +10%, trail 6%, floors from peak 20%
+#   C-mid    arm +12%, trail 8%, floors from peak 25%
+#   D-loose  arm +18%, trail 14%, floors unchanged
+# B/C protect modest winners that currently round-trip; D checks whether we are
+# cutting runners early, which would be the opposite mistake.
+PROTECT2_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-cur", {}),
+    (
+        "B-tight",
+        {
+            "TAKE_PROFIT_TRIGGER_PCT": "10", "TRAILING_STOP_PCT": "6",
+            "RATCHET_1_PEAK": "20", "RATCHET_1_FLOOR": "10",
+            "RATCHET_2_PEAK": "100", "RATCHET_2_FLOOR": "60",
+        },
+    ),
+    (
+        "C-mid",
+        {
+            "TAKE_PROFIT_TRIGGER_PCT": "12", "TRAILING_STOP_PCT": "8",
+            "RATCHET_1_PEAK": "25", "RATCHET_1_FLOOR": "12",
+            "RATCHET_2_PEAK": "100", "RATCHET_2_FLOOR": "60",
+        },
+    ),
+    (
+        "D-loose",
+        {
+            "TAKE_PROFIT_TRIGGER_PCT": "18", "TRAILING_STOP_PCT": "14",
+        },
+    ),
+]
+
+# Scale-out ladder. Banks partial profit as market cap rises. Moving it earlier banks
+# more from coins that stall before $50k; moving it later keeps more riding.
+LADDER_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-lad-cur", {}),
+    (
+        "B-lad-early",
+        {"MC_SCALE_OUT_LADDER": "25000:40,60000:30,150000:30,300000:40,600000:40,1000000:100"},
+    ),
+    (
+        "C-lad-late",
+        {"MC_SCALE_OUT_LADDER": "100000:50,250000:30,500000:30,1000000:100"},
+    ),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
@@ -209,6 +277,9 @@ SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "pressure": PRESSURE_SCHEDULE,
     "protect": PROTECT_SCHEDULE,
     "final": FINAL_SCHEDULE,
+    "threshold": THRESHOLD_SCHEDULE,
+    "protect2": PROTECT2_SCHEDULE,
+    "ladder": LADDER_SCHEDULE,
 }
 
 
