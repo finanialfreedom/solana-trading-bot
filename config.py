@@ -242,10 +242,12 @@ RATCHET_LEVELS: tuple[tuple[float, float], ...] = tuple(
 # remaining curve reserves (not real LP lock) and reports >100%, so a floor on it
 # would be meaningless. LP burn is still checked for graduated coins.
 SECURITY_FILTERS_ENABLED = _env_bool("SECURITY_FILTERS_ENABLED", True)
-# A launch entry prints with almost no real SOL in the curve yet (the bonding curve
-# is always liquid, so depth matters far less than it does on an AMM). This is a
-# minimal floor that only rejects genuinely empty curves.
-MIN_LIQUIDITY_USD = _env_float("MIN_LIQUIDITY_USD", 15.0)
+# A launch entry prints with almost no real SOL in the curve yet: at creation only the
+# *virtual* reserves exist and real_quote_reserves is ~0 until buyers arrive. Any
+# non-zero floor therefore rejects essentially every launch-time entry -- a floor of
+# even $15 blocked 100% of probes. A liquidity floor only becomes meaningful at the
+# post-graduation AMM stage, so this stays off for the bonding-curve entry path.
+MIN_LIQUIDITY_USD = _env_float("MIN_LIQUIDITY_USD", 0.0)
 # 10% of the 1B supply. A single non-reserve wallet this large at launch is a rug risk.
 MAX_INSIDER_TOKENS = _env_float("MAX_INSIDER_TOKENS", 100_000_000.0)
 MAX_HOLDER_PCT = _env_float("MAX_HOLDER_PCT", 30.0)

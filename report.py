@@ -326,10 +326,16 @@ class TradeReport:
         self._write_summary(wb.create_sheet("Summary", 0), rows)
         try:
             wb.save(self._path)
-        except PermissionError:
+        except (PermissionError, OSError) as exc:
+            # PermissionError is the usual "file open in Excel" case; OSError covers
+            # transient Windows sharing/lock failures (Errno 22) which would otherwise
+            # spam the log on every save.
             fallback = REPORT_DIR / "pumpfun_trades_live.xlsx"
-            wb.save(fallback)
-            self._path = fallback
+            try:
+                wb.save(fallback)
+                self._path = fallback
+            except (PermissionError, OSError) as exc2:
+                print(f"Excel save failed for both paths: {exc!r} / {exc2!r}", flush=True)
 
     def _write_blocked(self, ws, blocked: list[dict[str, object]]) -> None:
         ws.freeze_panes = "A2"
