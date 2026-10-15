@@ -21,6 +21,23 @@ try:  # Prefer the OS trust store so TLS works behind AV/proxy root certs.
 except Exception:  # pragma: no cover - fall back to httpx's default bundle
     _SSL_CONTEXT = True
 
+# One pooled HTTP client for every price lookup. Building a client per call forces a
+# fresh TCP + TLS handshake each time, which costs several round trips; at ~20ms RTT
+# that is tens of milliseconds of pure overhead on every single price read.
+_HTTP_CLIENT: httpx.AsyncClient | None = None
+
+
+def _http_client() -> httpx.AsyncClient:
+    global _HTTP_CLIENT
+    if _HTTP_CLIENT is None or _HTTP_CLIENT.is_closed:
+        _HTTP_CLIENT = httpx.AsyncClient(
+            timeout=8.0,
+            verify=_SSL_CONTEXT,
+            headers={"accept": "application/json"},
+            limits=httpx.Limits(max_keepalive_connections=8, keepalive_expiry=60.0),
+        )
+    return _HTTP_CLIENT
+
 from solana.rpc.async_api import AsyncClient
 from solana.rpc.models import DataSliceOpts, MemcmpOpts
 from solders.pubkey import Pubkey
@@ -331,18 +348,18 @@ class SecurityScanner:
 
     async def _fetch_sol_usd(self) -> float:
         """Try each public price feed until one returns a usable value."""
-        async with httpx.AsyncClient(timeout=8.0, verify=_SSL_CONTEXT) as http:
-            for name, url, params, extract in _PRICE_SOURCES:
-                try:
-                    resp = await http.get(url, params=params)
-                    resp.raise_for_status()
-                    price = float(extract(resp.json()))
-                except Exception as exc:
-                    logger.debug("SOL/USD via %s failed: %s", name, exc)
-                    continue
-                if price > 0:
-                    logger.debug("SOL/USD via %s = %.2f", name, price)
-                    return price
+        http = _http_client()
+        for name, url, params, extract in _PRICE_SOURCES:
+            try:
+                resp = await http.get(url, params=params)
+                resp.raise_for_status()
+                price = float(extract(resp.json()))
+            except Exception as exc:
+                logger.debug("SOL/USD via %s failed: %s", name, exc)
+                continue
+            if price > 0:
+                logger.debug("SOL/USD via %s = %.2f", name, price)
+                return price
         return 0.0
 
     async def token_usd_price(self, mint: str, *, max_age: float = 3.0) -> float:
@@ -357,14 +374,15 @@ class SecurityScanner:
             return cached[0]
         price = 0.0
         try:
-            async with httpx.AsyncClient(timeout=6.0, verify=_SSL_CONTEXT) as http:
-                resp = await http.get(
-                    "https://lite-api.jup.ag/price/v3",
-                    params={"ids": mint},
-                )
-                resp.raise_for_status()
-                entry = resp.json().get(mint) or {}
-                price = float(entry.get("usdPrice") or 0.0)
+            http = _http_client()
+            resp = await http.get(
+                "https://lite-api.jup.ag/price/v3",
+                params={"ids": mint},
+                timeout=6.0,
+            )
+            resp.raise_for_status()
+            entry = resp.json().get(mint) or {}
+            price = float(entry.get("usdPrice") or 0.0)
         except Exception as exc:
             logger.debug("AMM price via jupiter failed for %s: %s", mint, exc)
         if price > 0:
