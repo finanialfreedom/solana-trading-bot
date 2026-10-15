@@ -184,7 +184,7 @@
     "rugs": 0
   },
   "ArLugmai8XHkZY4cvz3hM3jPeEwz7FA7CgZUSXQtZq1X": {
-    "launches": 2,
+    "launches": 4,
     "rugs": 0
   },
   "5bModKSCkkWWQ9G518EYjK1JXTtRuQSYVwo6dBfs18oM": {
@@ -420,7 +420,7 @@
     "rugs": 0
   },
   "3NsTAKARF3HqgFj6JnnPU8iymmXfCfNcKrN9Z9rUJxak": {
-    "launches": 2,
+    "launches": 3,
     "rugs": 0
   },
   "5ZdusGZMC14SP6eh2XWdoeZDm3612psfxUsKS11DCqkG": {
@@ -636,7 +636,7 @@
     "rugs": 0
   },
   "B3UUvw94xf3t1qasUXcQWUoFMM7A5FPXvH1GyHSU7WXu": {
-    "launches": 2,
+    "launches": 3,
     "rugs": 0
   },
   "bwamJzztZsepfkteWRChggmXuiiCQvpLqPietdNfSXa": {
@@ -1096,7 +1096,7 @@
     "rugs": 0
   },
   "B1xMzWFxiRA7A3mApZPQRyMX8UcGutJCgQLN8kPGEJUc": {
-    "launches": 1,
+    "launches": 2,
     "rugs": 0
   },
   "5nmQFNpz7uGuCA6x1zApX9BcX8fMd8rK9E8XNh9jUegp": {
@@ -1144,7 +1144,7 @@
     "rugs": 0
   },
   "8rwh68LhKbwAcLGSkTQWJAyAEmchRwNHXQrZ6rCMJU4T": {
-    "launches": 1,
+    "launches": 2,
     "rugs": 0
   },
   "F58CGRR6iYSk15wHxYzD2Y4RKMHJgCpxeidbVXKxVJJZ": {
@@ -1197,6 +1197,186 @@
   },
   "4AkVi9jm9rwtzZHkwDFeYWY8dV19CdrUYtwCQxsv3yhY": {
     "launches": 1,
+    "rugs": 0
+  },
+  "CEC8SGJea2R4gUrL9C3cCJDa9ChhLie2NmCSFZfwD2hD": {
+    "launches": 3,
+    "rugs": 0
+  },
+  "Edb6y5gMuFkrKsm5RwqMSGBW7BNwZsq7kweiGJwjHC2p": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "3xtyS7oYkE8wQ3uZN4uMf3jdhBj5SKnM4HM6kZr7M6uc": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "5GW4Gk5JbkHxiyrXeuBejCeVnK7GSTyMcQ5Wf3jD1Qnt": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "246UpEm44rKQ7QPpxhGSLGAepVCCfWBTwjsiTGUqz4qq": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "Dp4JmgGENXMhCC3d3WCswC4W4vmHWvNiw4Z6g6m3Qyhn": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "EhNF48myBbHBF5ciNHduKZsuPjP2vXqd2i1u42eDTEUm": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "Bj6hmcKb7oguDHkusb7fhRrDKCg1pXHPK9WWDBhpX2aS": {
+    "launches": 3,
+    "rugs": 0
+  },
+  "HUnRxfNCCJobRczHsjjGDbsym8RR3xuQnMaSc9AC5qf": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "6rpgjL9m8ydC2gQR3FabffABSFK71FyQp6ReU2WVYJVT": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "Gkf5GBo33DVAYGJunnmvUCK3EXn7tPxAbJEx56sDXjcp": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "9BvPQTeipmg7UZvBtknQkadPdgZ5ekyWVPg1LrSbTYP8": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "AzK2Pxp3PXQwbxtGbrYhy8sBnHZgq8z3hjCXeV9wEVJZ": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "9SYxKyyTv1DuPimtBkB1FQgLvgcFFK8w5bs5LNAoePMk": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "ATCfGCW3soXVi8Fgt7xfm1BpQ6afdwoW2FKpkZ7QnMtC": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "6tBJCchNdBVQuGQtuG8BQzUjCEEL5kjRjAqrS8AEJ6oM": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "7tW3Y1b5aRxWCuVvRxr2RU6TqnsTpWSKMcrMNRCehqMD": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "26LE4Qovvoobz9VzuqSfUr4YbMPoDDHvCyeAvF7ZGmWS": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "4xY9T1Q7foJzJsJ6YZDSsfp9zkzeZsXnxd45SixduMmr": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "ErnDDZuwany5F6ALbMQeYJts6qnAYYEMR4faGQnPpRmN": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "871mpje9HZ8qqmm4uESn742xyF8Ves1Zze8BM4vJ5GLB": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "HHBf8Mi6vZZv2EFGVDAdfF3SpLum1Zq7jf1jzVXboZih": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "3CECSqTocUMCLfDZfiXAq4BmrQxD47j9moFMKH6W3bc7": {
+    "launches": 1,
+    "rugs": 1
+  },
+  "4Cb9pYB82TbtpGQANMsJtoHpbe8oHrMsDumCtdJJCU3n": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "7FYGy6Q2h832M84JbDENFR3oxcJv56A1F1YmxaGjHB31": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "ScfAx6ZjE9g1KrDw9wUHNJaw4fQSdgdtjnh2JZnx2H1": {
+    "launches": 2,
+    "rugs": 0
+  },
+  "F1ogUgrryFj9az7TWJpRQkcDtFAtdRHTN6RQQW67UFnC": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "7CtRdDRZAsfoerxdDCuhrs2EmfEwdUcpoqMCNNYyWrB1": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "BHYpogkR7VL2DJcQkVncUMkbuvKfPg8AgS7avNNcDSGd": {
+    "launches": 2,
+    "rugs": 0
+  },
+  "DwVjLtesZazk4hS6V4JoTkPB54k85A5A9KH18Apg4Fwg": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "J3FrcHHPrxJL4jdetgeUGQUD6vxfwjzmd3HeJp9EAT9o": {
+    "launches": 1,
+    "rugs": 1
+  },
+  "2KXjjL9aSscAKrRyGNUua1PGUPScvc5uYc6gPVmmPuyJ": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "3HruFq9V778ekgSC9K7e6DbhinETV3fQDARt99kLTZQM": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "HbPR3bpDR8WxsqgBu6QUAZcEXhUJrdChvBt7UWyz8M82": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "Gnq2zyreQxWJMp913n96TF5xWETtdR89HVSFZiCxAcwn": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "5tmmX7LwhD1cTCB7WP9U2hRKNP1LQVq1VkDeMtAGfxnz": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "GarriMRXYGcd2EUvsDFqj1jHNkK33ywXhtskUrEHNgwk": {
+    "launches": 2,
+    "rugs": 1
+  },
+  "6VBz24mmH7E1BA4gCQqJfqxk3SnxTacfcvPxDZjMz6Jn": {
+    "launches": 1,
+    "rugs": 1
+  },
+  "3X3KeNSSsAM2t1jjkvdwkztk6iyK9yuXLKj5gGxDcJ23": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "D9gQ6RhKEpnobPBUdWY5bPQt2p3zGk3iVz6ChpUi2ArA": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "3P1vFVGF2DRwFUcnVx6Hz1oHubXRL14WRSaQ4RQb7kQH": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "4RS3wvVkkr27Dp1A2BvviXezS9Hcr4czzMk7sSQpBW2P": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "GG9ykJpbegMt7AcvpW5FcXunCej7g6hPZLCtu6NmvQFk": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "qUZygx3dkuJWMK9MSCTCT8Wu897svrUPTvcHe77opD7": {
+    "launches": 1,
+    "rugs": 0
+  },
+  "GQQCYDdFagiVTKDGYVwVXZYc44ZWGnqhaaFne7Tut9BG": {
+    "launches": 2,
     "rugs": 0
   }
 }
