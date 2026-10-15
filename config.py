@@ -227,15 +227,28 @@ RATCHET_LEVELS: tuple[tuple[float, float], ...] = tuple(
 )
 
 # Security filters (apply in dry-run and live).
+#
+# Anti-rug checks that gate entry. The four that were previously disabled are now on:
+#   MIN_LIQUIDITY_USD   - floor on real SOL depth in the curve
+#   MAX_INSIDER_TOKENS  - no single non-reserve wallet may hold this many tokens
+#   BUNDLE_WALLET_COUNT - sybil/sniper bundles of this many wallets are rejected
+#   REJECT_TRANSFER_FEE - a non-zero transfer tax is rejected
+# MIN_LP_LOCKED_PCT is left at 0 on purpose: pre-graduation it is computed from the
+# remaining curve reserves (not real LP lock) and reports >100%, so a floor on it
+# would be meaningless. LP burn is still checked for graduated coins.
 SECURITY_FILTERS_ENABLED = _env_bool("SECURITY_FILTERS_ENABLED", True)
-MIN_LIQUIDITY_USD = _env_float("MIN_LIQUIDITY_USD", 0.0)
-MAX_INSIDER_TOKENS = _env_float("MAX_INSIDER_TOKENS", 10_000_000.0)
+# A launch entry prints with almost no real SOL in the curve yet (the bonding curve
+# is always liquid, so depth matters far less than it does on an AMM). This is a
+# minimal floor that only rejects genuinely empty curves.
+MIN_LIQUIDITY_USD = _env_float("MIN_LIQUIDITY_USD", 15.0)
+# 10% of the 1B supply. A single non-reserve wallet this large at launch is a rug risk.
+MAX_INSIDER_TOKENS = _env_float("MAX_INSIDER_TOKENS", 100_000_000.0)
 MAX_HOLDER_PCT = _env_float("MAX_HOLDER_PCT", 30.0)
 MAX_TAX_BPS = _env_int("MAX_TAX_BPS", 100)  # 1% buy/sell tax cap
 SOL_USD_FALLBACK = _env_float("SOL_USD_FALLBACK", 150.0)
 REJECT_FREEZE_AUTHORITY = _env_bool("REJECT_FREEZE_AUTHORITY", True)
 REJECT_EXTERNAL_MINT_AUTH = _env_bool("REJECT_EXTERNAL_MINT_AUTH", True)
-REJECT_TRANSFER_FEE = _env_bool("REJECT_TRANSFER_FEE", False)
+REJECT_TRANSFER_FEE = _env_bool("REJECT_TRANSFER_FEE", True)
 REJECT_MUTABLE_TAX = _env_bool("REJECT_MUTABLE_TAX", True)
 REJECT_UNVERIFIED = _env_bool("REJECT_UNVERIFIED", False)
 REJECT_PERMANENT_DELEGATE = _env_bool("REJECT_PERMANENT_DELEGATE", True)
@@ -245,7 +258,9 @@ REJECT_PAUSABLE = _env_bool("REJECT_PAUSABLE", True)
 MIN_LP_LOCKED_PCT = _env_float("MIN_LP_LOCKED_PCT", 0.0)
 MAX_CREATOR_HOLD_PCT = _env_float("MAX_CREATOR_HOLD_PCT", 10.0)
 MIN_HOLDERS = _env_int("MIN_HOLDERS", 0)
-BUNDLE_WALLET_COUNT = _env_int("BUNDLE_WALLET_COUNT", 5)
+# 8+ non-reserve wallets holding the token at launch is the classic bundled-sniper
+# setup. Note the counter includes zero-balance accounts, so this is a loose bound.
+BUNDLE_WALLET_COUNT = _env_int("BUNDLE_WALLET_COUNT", 8)
 MAX_CREATOR_LAUNCHES = _env_int("MAX_CREATOR_LAUNCHES", 5)
 MAX_CREATOR_RUGS = _env_int("MAX_CREATOR_RUGS", 1)
 REJECT_CLONE_TICKERS = _env_bool("REJECT_CLONE_TICKERS", True)
