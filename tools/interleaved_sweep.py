@@ -25,6 +25,7 @@ Note: only ONE bot may run at a time because every run writes reports/trades.csv
 from __future__ import annotations
 
 import json
+import re
 import statistics as st
 import subprocess
 import sys
@@ -46,6 +47,11 @@ SCHEDULE: list[tuple[str, dict[str, str]]] = [
 ]
 
 
+def base_label(label: str) -> str:
+    """Collapse a per-rep label ('B-buysol-0.3-r2') back to its config ('B-buysol-0.3')."""
+    return re.sub(r"-r\d+$", "", label)
+
+
 def read_results() -> list[dict]:
     if not RESULTS.exists():
         return []
@@ -60,11 +66,12 @@ def read_results() -> list[dict]:
 
 
 def pooled_by_label() -> dict[str, dict]:
-    """Pool every block of a label into one trade-weighted estimate."""
+    """Pool every block of a config into one trade-weighted estimate."""
+    known = {label for label, _ in SCHEDULE}
     agg: dict[str, dict] = {}
     for row in read_results():
-        label = row.get("label", "")
-        if not label or not row.get("n"):
+        label = base_label(row.get("label", ""))
+        if label not in known or not row.get("n"):
             continue
         bucket = agg.setdefault(label, {"n": 0, "weighted_exp": 0.0, "blocks": [], "net": 0.0})
         bucket["n"] += row["n"]
