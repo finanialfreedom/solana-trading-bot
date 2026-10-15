@@ -141,11 +141,12 @@ HOLD_THROUGH_GRADUATION = _env_bool("HOLD_THROUGH_GRADUATION", True)
 GRADUATION_PRICE_TIMEOUT_SECONDS = _env_float("GRADUATION_PRICE_TIMEOUT_SECONDS", 120.0)
 
 # Hybrid scale-out: bank partial profit at market-cap milestones, let the rest ride
-# on the trailing stop. Set a milestone to 0 to disable it.
+# on the trailing stop. This is the only defence against a one-candle gap-down, which
+# no exit threshold can catch. Set a milestone to 0 to disable it.
 MC_MILESTONE_1_USD = _env_float("MC_MILESTONE_1_USD", 250_000.0)
-MC_MILESTONE_1_SELL_PCT = _env_float("MC_MILESTONE_1_SELL_PCT", 50.0)
-MC_MILESTONE_2_USD = _env_float("MC_MILESTONE_2_USD", 500_000.0)
-MC_MILESTONE_2_SELL_PCT = _env_float("MC_MILESTONE_2_SELL_PCT", 50.0)
+MC_MILESTONE_1_SELL_PCT = _env_float("MC_MILESTONE_1_SELL_PCT", 25.0)
+MC_MILESTONE_2_USD = _env_float("MC_MILESTONE_2_USD", 1_000_000.0)
+MC_MILESTONE_2_SELL_PCT = _env_float("MC_MILESTONE_2_SELL_PCT", 25.0)
 MC_MILESTONE_3_USD = _env_float("MC_MILESTONE_3_USD", 0.0)
 MC_MILESTONE_3_SELL_PCT = _env_float("MC_MILESTONE_3_SELL_PCT", 50.0)
 

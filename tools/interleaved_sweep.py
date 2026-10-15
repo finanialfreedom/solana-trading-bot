@@ -38,18 +38,21 @@ MIN_SAMPLE = 200
 TARGET_EXPECTANCY = 0.0
 MAX_TRADES = "1500"
 
+PURE_RIDE = {"MC_MILESTONE_1_USD": "0", "MC_MILESTONE_2_USD": "0", "MC_MILESTONE_3_USD": "0"}
+
 SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    ("A-pure-ride", {}),
-    ("B-wide-tiers", {
-        "TRAIL_TIER_1_PEAK": "50", "TRAIL_TIER_1_CALLBACK": "25",
-        "TRAIL_TIER_2_PEAK": "150", "TRAIL_TIER_2_CALLBACK": "40",
-        "TRAIL_TIER_3_PEAK": "500", "TRAIL_TIER_3_CALLBACK": "55",
-    }),
-    ("C-tight-tiers", {
-        "TRAIL_TIER_1_PEAK": "30", "TRAIL_TIER_1_CALLBACK": "14",
-        "TRAIL_TIER_2_PEAK": "120", "TRAIL_TIER_2_CALLBACK": "22",
-        "TRAIL_TIER_3_PEAK": "400", "TRAIL_TIER_3_CALLBACK": "30",
-    }),
+    # Pure-ride arms must zero the milestones explicitly: the shipped default now
+    # banks partial profit at $250k/$1M, so relying on defaults would make these
+    # arms identical to D.
+    ("A-pure-ride", dict(PURE_RIDE)),
+    ("B-wide-tiers", {**PURE_RIDE,
+                      "TRAIL_TIER_1_PEAK": "50", "TRAIL_TIER_1_CALLBACK": "25",
+                      "TRAIL_TIER_2_PEAK": "150", "TRAIL_TIER_2_CALLBACK": "40",
+                      "TRAIL_TIER_3_PEAK": "500", "TRAIL_TIER_3_CALLBACK": "55"}),
+    ("C-tight-tiers", {**PURE_RIDE,
+                       "TRAIL_TIER_1_PEAK": "30", "TRAIL_TIER_1_CALLBACK": "14",
+                       "TRAIL_TIER_2_PEAK": "120", "TRAIL_TIER_2_CALLBACK": "22",
+                       "TRAIL_TIER_3_PEAK": "400", "TRAIL_TIER_3_CALLBACK": "30"}),
     ("D-light-bank", {
         "MC_MILESTONE_1_USD": "250000", "MC_MILESTONE_1_SELL_PCT": "25",
         "MC_MILESTONE_2_USD": "1000000", "MC_MILESTONE_2_SELL_PCT": "25",
