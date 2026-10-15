@@ -1,0 +1,1619 @@
+2026-10-15 10:45:25,512 INFO RPC HTTP https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:26,012 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:26,205 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:26,392 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:26,590 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:26,594 INFO Trader ready mode=DRY-RUN probe=0.20 add=0.80 SOL stop-loss=3.0% breakeven-after=+5.0% trailing-TP arm=12% callback=10% max_open=4 max_trades=600 excel=D:\AI\solana-trading-bot\reports\pumpfun_trades.xlsx
+2026-10-15 10:45:26,594 INFO Security filters: no min liquidity, holders, LP-lock, or verified | no minimum total liquidity | tax fixed and <= 1%
+2026-10-15 10:45:26,595 INFO DRY-RUN is on: orders are simulated, no transactions are sent.
+2026-10-15 10:45:26,595 INFO Connecting WebSocket wss://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:26,595 INFO Watching Pump.fun program 6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P
+2026-10-15 10:45:26,596 INFO Trailing TP/SL watchdog started  tick=0.25s armed=0.08s stale=0.20s  SL floor=3.0%  breakeven after +5.0%  arm=12%  callback=10%
+2026-10-15 10:45:26,596 INFO Confirm window started  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:27,793 INFO Subscribed (id=40769443). Ctrl+C to stop.
+2026-10-15 10:45:28,744 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=64CWyzEmSuSGNdUq6e8Qnybstig7QqrRwtPok46apump  curve=Hifm8CRVhoZobFnuCihEr89GacaZdzJv58qnUYGP77Ry  sig=3Du33BDLZdPifJxzPmevPfx1s8EEDWzxXDW4wKVKW9Gh1syVX6HkTB6GYUkdi3WyzeKuh7pG5CBT3f8nupxVQD9M
+2026-10-15 10:45:28,744 INFO WATCH  MNKY  mint=64CWyzEmSuSGNdUq6e8Qnybstig7QqrRwtPok46apump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:33,583 INFO NEW TOKEN  1 solinu (final1solinu)  mint=26uUQ2u85d5retaUUR7LSbF3orQczok8DGAGMWMSpump  curve=FgVDEhNVtpeGnqZGKCg8fXyNK7y4sPDTvtJj1pA5HnZN  sig=23uBYLPrsaywfzwBSy8XmjGGNKnCXVAyTSQbw4iSfkQEqA9943zoAsziPUwcaamtDod6nZiGL7A28ttiAoPorRFo
+2026-10-15 10:45:33,583 INFO WATCH  final1solinu  mint=26uUQ2u85d5retaUUR7LSbF3orQczok8DGAGMWMSpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:33,843 INFO CONFIRM  MNKY  buyers=1  buy_sol=0.51  mc=$7148  probe=0.20  mint=64CWyzEmSuSGNdUq6e8Qnybstig7QqrRwtPok46apump
+2026-10-15 10:45:33,843 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:45:34,044 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:34,202 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:34,350 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:34,592 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:34,703 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:34,859 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:35,005 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:35,008 INFO SECURITY BLOCK MNKY (64CWyzEmSuSGNdUq6e8Qnybstig7QqrRwtPok46apump)  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0 | BLOCK serial-deployer launches=16 > 5
+2026-10-15 10:45:38,766 INFO SKIP CONFIRM  final1solinu  low-buy-sol 0.17 < 0.3  buyers=1  buy_sol=0.17  mc=$3715  mint=26uUQ2u85d5retaUUR7LSbF3orQczok8DGAGMWMSpump
+2026-10-15 10:45:39,643 INFO NEW TOKEN  base44 (BAS$44)  mint=8Azmn94ZcjsQhUrSPUSHtSEB1yz6cbdXxUsKjsaXpump  curve=BBpZw7tk4mSWwSaTySkcNWJJ6mL6qeQxjEMdqqN7ajju  sig=3ZredWBHvCqcfareQfSk8RfQFbNJNYJxzzzo6hTaA1TSL15HJXScoMCwsRkcCcGvQHBoxhx5KWJHVXgu3usqu2ee
+2026-10-15 10:45:39,643 INFO WATCH  BAS$44  mint=8Azmn94ZcjsQhUrSPUSHtSEB1yz6cbdXxUsKjsaXpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:42,392 INFO NEW TOKEN  sig=3eo49yjyZhnn3E7VXBHGA457PhwQkPKNcjR8SLLK5uUBGGPCgHYUK36bkYNczgCRZHpbP3goJMR7zTEi3kwTvBdL  (could not decode metadata)
+2026-10-15 10:45:44,748 INFO NEW TOKEN  sig=3xvjUePPzkNaLRvKuuXUHYNpC7yCfEyyGLkD7DxCa6qnrocoyW6QHpRiRoTqVjcq18ATNNArVSjwHCCk75WXtXSf  (could not decode metadata)
+2026-10-15 10:45:44,760 INFO SKIP CONFIRM  BAS$44  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$1946  mint=8Azmn94ZcjsQhUrSPUSHtSEB1yz6cbdXxUsKjsaXpump
+2026-10-15 10:45:47,839 INFO NEW TOKEN  The Black Serval (Serval)  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump  curve=DJ7REDevUgJUr2kZtmzTVemYtxo7eAvaWdH99Md276f1  sig=2XdVxfYBLQTw5Nywejmz6k7PtW7sdhMvB4F2mVa1W9aKWECs9tqwZpjGoJobeEwn1LXYnSB3SaKamgYBrA9u9DEc
+2026-10-15 10:45:47,839 INFO WATCH  Serval  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:48,172 INFO NEW TOKEN  Pure Carbon ($C)  mint=LEzfmAXuar1gVbfFPDn52aWdzvnHnhgGjDDwnQfpump  curve=BSTtsxSCrJztpJjC6Mi4Suf6846mLQJ76A85YC8gJGQx  sig=2NTp86eAd4psi1MpVmj8UV1XXQ4GJKNnaSJ29mP67mLDou7QFqAhSCbugZbMnKwbBZ2rQEceqyTTTptv6wBX3uw7
+2026-10-15 10:45:48,172 INFO WATCH  $C  mint=LEzfmAXuar1gVbfFPDn52aWdzvnHnhgGjDDwnQfpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:48,297 INFO NEW TOKEN  sig=4nEcM6PCmeyvpYfp58HTwsYCUf7GzbA1YyrGa8oj598D4QjJmGAauyqkx68PoN6rvrL2u9JTsScTBhHFYumCo3Dg  (could not decode metadata)
+2026-10-15 10:45:49,292 INFO NEW TOKEN  sig=64Rbc36DRSZd9X3vqz2jULkZbMzG8QU9ob32C6RwwqX9XWPukA53ComEbJDqSciyoQPtDtUW8FA4oTWQ9zQLM2kq  (could not decode metadata)
+2026-10-15 10:45:49,323 INFO NEW TOKEN  Axel (Axel)  mint=9QCGMoge3T4KZchsPPp6WiwpCnF3dYSmkHhDMQAhpump  curve=63SfG2yDVjW3Q2YipWmptPLWTBdNKanoPRGzuEG2LE7r  sig=5WJ4JvorikQSssaBmn6zdzUEVPa5XChQwerHoZ4tBQBKgTGugcM26FZxARa73Qa9yJiQLbyPdY25kqNuFMuuoCGn
+2026-10-15 10:45:49,324 INFO WATCH  Axel  mint=9QCGMoge3T4KZchsPPp6WiwpCnF3dYSmkHhDMQAhpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:51,405 INFO NEW TOKEN  Jaba (Thicc)  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump  curve=J9hjADLpRG43YZmv3Lt8kTniLgv8ctrkZMpLjAtg4fox  sig=3z8oXRPZBBDgd5xMtJbyXfUmMy4CMZMfGML5fu6SckLFp194tc14Ty6XyEW6pQq9k1ojWYJdmh96ei7BGSjwTeG4
+2026-10-15 10:45:51,405 INFO WATCH  Thicc  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:52,593 INFO NEW TOKEN  SUPER INU (SI)  mint=Dyk8X11Np2vyxJCzmJuZHoAPtFJxQAgbvHmpPtkJpump  curve=4kQBtFdFbtPEXtSjBtteLgtXnkfmePhR6gKwa5TBNGQS  sig=3pz2cvdSvNCjVTPWrEKPkUCKJzyv3RjFKDW8kArG3y6CT531KMTuDEih7FXCASM4ZNmTN41zqmWrZrH2dkDuq2kc
+2026-10-15 10:45:52,593 INFO WATCH  SI  mint=Dyk8X11Np2vyxJCzmJuZHoAPtFJxQAgbvHmpPtkJpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:45:53,033 INFO CONFIRM  Serval  buyers=15  buy_sol=7.88  mc=$3323  probe=0.20  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump
+2026-10-15 10:45:53,033 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:45:53,237 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:53,376 INFO NEW TOKEN  sig=5xAdHPcPknhUYutCVYeMkTkAhFfRTEz8xa34mLRiKJ2b7dyQ3bqfKdXY6UUaMzVL7xXiv2y1Mh7CNKdYu7UAwWxb  (could not decode metadata)
+2026-10-15 10:45:53,414 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:53,534 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:53,825 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:53,944 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:53,954 INFO NEW TOKEN  sig=WVJyR44vmHfZF7WvjmVUqesQpkbKme8d6uSmQJFaZojvjLC8ApNqhsoHKkBGnV8YqJxfn9qthkukc6Nb1Jv8XN5  (could not decode metadata)
+2026-10-15 10:45:54,081 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:54,248 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:54,248 INFO DRY-RUN BUY  Serval (wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:45:54,252 INFO BUY Serval  1/600  invested=0.2000 SOL  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:45:54,503 INFO SKIP CONFIRM  $C  low-buy-sol 0.02 < 0.3  buyers=1  buy_sol=0.02  mc=$2922  mint=LEzfmAXuar1gVbfFPDn52aWdzvnHnhgGjDDwnQfpump
+2026-10-15 10:45:54,503 INFO SKIP CONFIRM  Axel  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2860  mint=9QCGMoge3T4KZchsPPp6WiwpCnF3dYSmkHhDMQAhpump
+2026-10-15 10:45:54,727 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:54,731 INFO SL TO BREAKEVEN  Serval  at +54.8%  floor=entry  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump
+2026-10-15 10:45:54,731 INFO TRAILING ON  Serval  armed at +54.8%  peak=4.3288921264e-05  callback=10%  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump
+2026-10-15 10:45:55,122 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:55,138 INFO NEW TOKEN  sig=2T8Ko1yuFWVBwHpSKKtqTsmKBoDfJqEC3nuBJGpeBBYaRtZWdF2UDBMbzAS6qR5tpfU2DP3qScA2GjeAdJmT4GA6  (could not decode metadata)
+2026-10-15 10:45:55,523 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:55,524 INFO WON  Serval  +30.2%  in=0.2000 SOL  out=0.2516 SOL  mint=wR3zYoY79oKvL3KJsJqB8iunHFJgw7xbq12umQCpump  watchdog trailing-stop 30.2% (-15.9% from peak)
+2026-10-15 10:45:56,540 INFO CONFIRM  Thicc  buyers=1  buy_sol=0.31  mc=$6512  probe=0.20  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump
+2026-10-15 10:45:56,540 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:45:56,651 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:56,759 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:56,880 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:57,118 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:57,245 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:57,445 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:57,650 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:57,650 INFO DRY-RUN BUY  Thicc (FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:45:57,650 INFO BUY Thicc  2/600  invested=0.2000 SOL  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:45:57,801 INFO NEW TOKEN  sig=557Vk4MC5kxpU4uyTgKWwKE8pwf3LXLDMNacH3jSP3qgJkBEHJbbEZFxrKZuqmKEmzqaPEXgzgBC57d33fhetopf  (could not decode metadata)
+2026-10-15 10:45:57,899 INFO SKIP CONFIRM  SI  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$671  mint=Dyk8X11Np2vyxJCzmJuZHoAPtFJxQAgbvHmpPtkJpump
+2026-10-15 10:45:57,997 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:58,414 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:58,438 INFO SL TO BREAKEVEN  Thicc  at +68.6%  floor=entry  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump
+2026-10-15 10:45:58,438 INFO TRAILING ON  Thicc  armed at +68.6%  peak=4.7125010932e-05  callback=10%  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump
+2026-10-15 10:45:58,823 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:45:58,829 INFO WON  Thicc  +1.7%  in=0.2000 SOL  out=0.1967 SOL  mint=FLSKEmHu4sMMJSnpuaopZXyfjaphMs5Ru4TpWzrwpump  watchdog trailing-stop 1.7% (-39.7% from peak)
+2026-10-15 10:45:59,129 INFO NEW TOKEN  NightTrader (NightTrade)  mint=7QhcASrrFFVVCJk4ooTBtsjBw4Jp73QwExXrHrEPpump  curve=9UUMwLDkmjNFaHYbK7UWAjrjhzfpjqx361QhLYW4rrfh  sig=3J7mbnipgUzkVnjFtEuDiVTinrxaZk444pN1oBjWfZzjgaf9B1DRHbPFrTvLDd6HFcxuQvd8CKuXQ3uCBiFa2eok
+2026-10-15 10:45:59,129 INFO WATCH  NightTrade  mint=7QhcASrrFFVVCJk4ooTBtsjBw4Jp73QwExXrHrEPpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:01,047 INFO NEW TOKEN  Heurix (HRX)  mint=HCyT2TWrkCYZNmpbvNxUyDbHY6wBTo2iNdxsngR1RXus  curve=FHVvVFFqMuoJV1MZL4nxptwDou66UWtFkfE3Gc7jXCxe  sig=2aQAJicZedXzNrvwcYu1yn74Ub2EvAVRW5GfN88qFmQQoaa17nng6b2CrQretUCRFd3QMBxk5LDDrDWeEGs1f4vk
+2026-10-15 10:46:01,047 INFO WATCH  HRX  mint=HCyT2TWrkCYZNmpbvNxUyDbHY6wBTo2iNdxsngR1RXus  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:04,221 INFO CONFIRM  NightTrade  buyers=2  buy_sol=0.32  mc=$2046  probe=0.20  mint=7QhcASrrFFVVCJk4ooTBtsjBw4Jp73QwExXrHrEPpump
+2026-10-15 10:46:04,221 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:04,435 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:04,547 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:04,693 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:05,000 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:05,177 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:05,327 INFO NEW TOKEN  The Roakey agent (Roakey)  mint=GeVk9CitSpD6HFnrZ3iU6zLP18rgQ4NArWBfUEDnpump  curve=DUbg9npSDHCxRFtC4MDroYmeuhdkbDkxqoseS4FRgCBA  sig=2hy7Uy8ogQJdhMU4K18odeUN5HDraRMogE4o5dSD4TBX16hxai53pN3ZvGFyaPYGX6VDVfoT8uiqdwDxf5igvfLA
+2026-10-15 10:46:05,328 INFO WATCH  Roakey  mint=GeVk9CitSpD6HFnrZ3iU6zLP18rgQ4NArWBfUEDnpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:05,332 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:05,528 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:05,528 INFO DRY-RUN BUY  NightTrade (7QhcASrrFFVVCJk4ooTBtsjBw4Jp73QwExXrHrEPpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:05,529 INFO BUY NightTrade  3/600  invested=0.2000 SOL  mint=7QhcASrrFFVVCJk4ooTBtsjBw4Jp73QwExXrHrEPpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:05,900 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:06,251 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:06,251 INFO SKIP CONFIRM  HRX  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$51326  mint=HCyT2TWrkCYZNmpbvNxUyDbHY6wBTo2iNdxsngR1RXus
+2026-10-15 10:46:06,670 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:07,080 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:07,455 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:07,459 INFO LOST  NightTrade  -15.2%  in=0.2000 SOL  out=0.1641 SOL  mint=7QhcASrrFFVVCJk4ooTBtsjBw4Jp73QwExXrHrEPpump  watchdog stop-loss -15.2%
+2026-10-15 10:46:10,534 INFO SKIP CONFIRM  Roakey  low-buy-sol 0.00 < 0.3  buyers=2  buy_sol=0.00  mc=$0  mint=GeVk9CitSpD6HFnrZ3iU6zLP18rgQ4NArWBfUEDnpump
+2026-10-15 10:46:10,992 INFO NEW TOKEN  Axel (AXEL)  mint=E5MvcNzsRKeSwV98XQVjNN4ZW57TCkxSrsH843wQpump  curve=5Wheg7eoXHgEfWAAuvoDNE7PmN3vFYtBQpXoYdvFGSxt  sig=55x2WKKt74LhgPVe3DmRYf8QYrS6KtvgAY5dEESP9BPtKadh9QEQ2MfzMnkyHFZB7Kn6bSZoJNaSmWC7vbqcp3F6
+2026-10-15 10:46:10,992 INFO WATCH  AXEL  mint=E5MvcNzsRKeSwV98XQVjNN4ZW57TCkxSrsH843wQpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:15,861 INFO NEW TOKEN  Pumpi (Pumpi)  mint=CFF6bLLJKF2R7RUZJnKdsNhUPZWFunY3X9oVa1Ndpump  curve=97CjATWLaxXjU8oszS5xHMZ6Kk3NvBUtf851HpUye7wQ  sig=jevsBMYkAoZibcJgbtg6n622pGt1Pyyor5Xri1qEq8rs9KTwHsaLr1iCFxhjUmh71fR7WY2nhVMxdv6xLc8ffmy
+2026-10-15 10:46:15,861 INFO WATCH  Pumpi  mint=CFF6bLLJKF2R7RUZJnKdsNhUPZWFunY3X9oVa1Ndpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:16,091 INFO SKIP CONFIRM  AXEL  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$92  mint=E5MvcNzsRKeSwV98XQVjNN4ZW57TCkxSrsH843wQpump
+2026-10-15 10:46:16,359 INFO NEW TOKEN  ChatGPT-6 (OpenAI)  mint=5KBN4nYRgJBFQjrwNiKbg9QTaoCwhY9FCkxABy1pump  curve=CeePqhn7UEyZMy4XdyT67cpoVbH9drsHVtSLBNGHAmfY  sig=5LUXejyWfQRMh4VKcHiqpfrwQag3RrZYkj9cBYtC7tyn6cuBHFoY2aGyEJF4YsK7tNRL81U55jnd98bjgH2dgTDo
+2026-10-15 10:46:16,359 INFO WATCH  OpenAI  mint=5KBN4nYRgJBFQjrwNiKbg9QTaoCwhY9FCkxABy1pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:16,360 INFO NEW TOKEN  sig=aHgvT1BBRfQMZWpojxphb3HbNDPJKPVapVaEMzmtFsX39hAfgGomdGRckvda6MtK4LfPadFZnCpFNEvpSVLWhwy  (could not decode metadata)
+2026-10-15 10:46:20,918 INFO SKIP CONFIRM  Pumpi  low-buy-sol 0.14 < 0.3  buyers=1  buy_sol=0.14  mc=$5413  mint=CFF6bLLJKF2R7RUZJnKdsNhUPZWFunY3X9oVa1Ndpump
+2026-10-15 10:46:21,012 INFO NEW TOKEN  sig=fDP2HZapzD6hfwAh5628c3XjHqewUVtAVrY4jUTdPXGq3ASgWwacPXqGWyyEpUzni3C3Fi7DrJNv1y9fh8wgr6b  (could not decode metadata)
+2026-10-15 10:46:21,430 INFO SKIP CONFIRM  OpenAI  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2860  mint=5KBN4nYRgJBFQjrwNiKbg9QTaoCwhY9FCkxABy1pump
+2026-10-15 10:46:21,950 INFO NEW TOKEN  sig=4SLDAWULnYtCn9QWHsLiAVkTeRPPWhsNW9M9LwTQVj5U4nb2ZEvUTcNZeGsBeVm8TCsR6qGAVjbfsWFkVufsHV8d  (could not decode metadata)
+2026-10-15 10:46:23,449 INFO NEW TOKEN  sig=3gFYn1Zrc1dFmmBdVAEPTPVjTpTGprue37JSCW8KXSZB5fZsVvLcV17C3q3M2ZTSikNgSq8DE94su3CezKaSk1r6  (could not decode metadata)
+2026-10-15 10:46:23,780 INFO NEW TOKEN  WEENIECOIN (WEENIECOIN)  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump  curve=Exwo6bWq79HqETocUW8ia8z9BxLZCZFfhfbMTBoJ4ddT  sig=jQG1TGQMgcGcRge9SeCCct7eyePUCuL47ziVhAJMZjkbdAYvuahdH4KztjCZf23vpt3TNTeg9B7BrHJupaSSe5E
+2026-10-15 10:46:23,780 INFO WATCH  WEENIECOIN  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:23,888 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=BWDNPgP6XuspJcgKjzsrieHmuRfsQaEUYSaM2qCZpump  curve=CuApzBNeAgzNvbDUCMJBG2TcdUtfBnKQ3XWShK9vQudg  sig=4jMrWFNJ2Myp8FTRqmRdTs58bVhKSc3VkFvqA5EBem7hzUAq3nNKDdZ6D6bBHHjRfqtMvEhBdK58y4YJmntCCwgQ
+2026-10-15 10:46:23,888 INFO WATCH  MNKY  mint=BWDNPgP6XuspJcgKjzsrieHmuRfsQaEUYSaM2qCZpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:24,128 INFO NEW TOKEN  Solar Hamster (SOL)  mint=5qcH2iyQcuEC4Lje2ZbmvWWNeVEkQwqpGSdMWDU3ksYG  curve=5FCkQum8V2JZAGP6n4XxVojJs45JK577zW7qVRJBHhhQ  sig=5okhWHGtiX4BGS5sEb1qmMCxNieRj3jnuwMdCbWjvQGWUPrXvUKgHY2FQibs7M8BT18UqBJEzo2vgZdqypqw5RT2
+2026-10-15 10:46:24,128 INFO WATCH  SOL  mint=5qcH2iyQcuEC4Lje2ZbmvWWNeVEkQwqpGSdMWDU3ksYG  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:24,141 INFO NEW TOKEN  Mr. Almost (ALMOST)  mint=43E2ntSe8VSwQevLmkLDqC9WSrJShBs6TQzzJAz2pump  curve=ELdLPxChcfTxFKZc2hUYN4mnAxtzSV8urN8MZYNCEYqP  sig=5qfpWFLr5LiowfTdSftB7WWiqR3sQJ7pYJqscjr5PyTp6qG36PraRMcihPq8DFTDooijutXn9zb2qNwXjtgkfQEK
+2026-10-15 10:46:24,141 INFO WATCH  ALMOST  mint=43E2ntSe8VSwQevLmkLDqC9WSrJShBs6TQzzJAz2pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:25,266 INFO NEW TOKEN  Altai the Tiger (Altai)  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump  curve=EHHcLvq8pA8itRmiCrNkeFTTr8miYMsjRR1XhgGxfpSW  sig=5C5NNKPvAEgymGa6ToF42ozNB97mXh8zLC896EgZGMqBCJaUGkMBU2eS86b7YpB2ckFTbGGStRmG2g4TMfA5gHBK
+2026-10-15 10:46:25,266 INFO WATCH  Altai  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:25,445 INFO NEW TOKEN  sig=653iE1RhVVcccs6tT1RQaanNLeh3F9p9DBGMtzzW4c3C5NBH95gbZx6QYJuXQJX147brmVpDEhziGqLLbJv17pPX  (could not decode metadata)
+2026-10-15 10:46:25,448 INFO NEW TOKEN  addicted to mayhem (mayhemgoat)  mint=7SWChfBAVPhNh7wPCNCN8bnDCF6Sxb2fKAQVPxftpump  curve=2wg2WanAhBHGghLPSRt45mAW4RiphrW8FHg6KwXgqXNe  sig=2K5uqVH3YPhumteywtXDzVtwCJznRpHRTPxzUwKHuUQzPd45j5hSTTN7fM3JyjZ8YT9nE8wzvrcxF6EyHZtSewFH
+2026-10-15 10:46:25,448 INFO WATCH  mayhemgoat  mint=7SWChfBAVPhNh7wPCNCN8bnDCF6Sxb2fKAQVPxftpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:25,479 INFO NEW TOKEN  sig=22dG3Y6WecHA6QDCTJTsyQnkUjL4GEoFf8mg9T37zz1KiGQ7p2q8AFQDe1DRPjtVjjRJbmsKwWR67dZeMQUn88a6  (could not decode metadata)
+2026-10-15 10:46:25,592 INFO NEW TOKEN  Nuannuan (Nuannuan)  mint=pxfCbyS6TMafTLT5gcGYPjPsRftx5NBNJzg9dXvpump  curve=DEGGB3njgxAyU77bJY8Avj2GPXBpLgcdtrt7U1kfbSq9  sig=28MQHwD5t3jSC5xxSvExCeiuuAuWiisxQFLhbajQdDsHkWFXFZtpvVRAVLy5t8zV58b4zQj3dcgPzvjdHdZMq1dd
+2026-10-15 10:46:25,592 INFO WATCH  Nuannuan  mint=pxfCbyS6TMafTLT5gcGYPjPsRftx5NBNJzg9dXvpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:25,693 INFO NEW TOKEN  Altai the Tiger (Altai)  mint=2XeyvTJG3ZjtabLjqmFttUiSmQkkNqRP55uTgVrfTMzn  curve=DtT2ggxHfo6ZD2zVZbDL2oXaq3E6755fDEVTB1pgGaju  sig=4TakgshrNfNzpCuLQ9PvpR9iZ8mnE3J7TZVDyVGpcidf61tDT2vu7YL378KhF9uoBwTjsiKhr42cbZmNzWn6jWUH
+2026-10-15 10:46:25,693 INFO WATCH  Altai  mint=2XeyvTJG3ZjtabLjqmFttUiSmQkkNqRP55uTgVrfTMzn  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:27,462 INFO NEW TOKEN  beer (beer)  mint=7BNEAkAN4Z4dN1HHHMSj5kKtuDCnbQzMwFbC5erApump  curve=7rEqnZ4MYvX4sj8HE2dE4kprQLqufkk6oSLEbnZ6XR5L  sig=4zidNeE9Q9SJ8uTNyGYo2dQtQMMFUtUDeQq6KLUac9s5d8jJXSNmbJY9tFrSNi256e4GA9UZCowSF7ncmpgKK9pt
+2026-10-15 10:46:27,463 INFO WATCH  beer  mint=7BNEAkAN4Z4dN1HHHMSj5kKtuDCnbQzMwFbC5erApump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:28,828 INFO CONFIRM  WEENIECOIN  buyers=14  buy_sol=12.27  mc=$4577  probe=0.20  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump
+2026-10-15 10:46:28,828 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:28,972 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,090 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,209 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,438 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,546 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,668 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,861 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:29,861 INFO DRY-RUN BUY  WEENIECOIN (2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:29,862 INFO BUY WEENIECOIN  4/600  invested=0.2000 SOL  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:30,120 INFO CONFIRM  MNKY  buyers=1  buy_sol=0.38  mc=$5239  probe=0.20  mint=BWDNPgP6XuspJcgKjzsrieHmuRfsQaEUYSaM2qCZpump
+2026-10-15 10:46:30,120 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:30,185 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,297 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,409 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,557 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,564 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,717 INFO NEW TOKEN  sig=2HxLVPMSyF4oKA6oDsxtW1jq1mtaqsCP5U7gXoAEVAPo2evEnup75YjwfsZFRuGETAeJbTNJsTr2KSXAGJPAMWHb  (could not decode metadata)
+2026-10-15 10:46:30,795 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,938 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,959 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:30,961 INFO SL TO BREAKEVEN  WEENIECOIN  at +32.0%  floor=entry  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump
+2026-10-15 10:46:30,962 INFO TRAILING ON  WEENIECOIN  armed at +32.0%  peak=3.6901225581e-05  callback=10%  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump
+2026-10-15 10:46:31,047 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:31,197 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:31,197 INFO SECURITY BLOCK MNKY (BWDNPgP6XuspJcgKjzsrieHmuRfsQaEUYSaM2qCZpump)  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0 | BLOCK serial-deployer launches=17 > 5
+2026-10-15 10:46:31,198 INFO SKIP CONFIRM  SOL  low-buy-sol 0.05 < 0.3  buyers=1  buy_sol=0.05  mc=$2108  mint=5qcH2iyQcuEC4Lje2ZbmvWWNeVEkQwqpGSdMWDU3ksYG
+2026-10-15 10:46:31,198 INFO SKIP CONFIRM  ALMOST  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2857  mint=43E2ntSe8VSwQevLmkLDqC9WSrJShBs6TQzzJAz2pump
+2026-10-15 10:46:31,442 INFO CONFIRM  Altai  buyers=6  buy_sol=8.28  mc=$4562  probe=0.20  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump
+2026-10-15 10:46:31,442 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:31,557 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:31,568 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:31,571 INFO WON  WEENIECOIN  +32.4%  in=0.2000 SOL  out=0.2558 SOL  mint=2zYHATSxWpjiV5UfzLKFvkgkCSh8gSMtN9m7KejWpump  watchdog trailing-stop 32.4% (-14.4% from peak)
+2026-10-15 10:46:31,672 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:31,818 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,050 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,160 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,323 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,436 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,441 INFO DRY-RUN BUY  Altai (HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:32,442 INFO BUY Altai  5/600  invested=0.2000 SOL  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:32,442 INFO SKIP CONFIRM  mayhemgoat  low-buy-sol 0.12 < 0.3  buyers=1  buy_sol=0.12  mc=$7176  mint=7SWChfBAVPhNh7wPCNCN8bnDCF6Sxb2fKAQVPxftpump
+2026-10-15 10:46:32,442 INFO CONFIRM  Nuannuan  buyers=8  buy_sol=10.24  mc=$16997  probe=0.20  mint=pxfCbyS6TMafTLT5gcGYPjPsRftx5NBNJzg9dXvpump
+2026-10-15 10:46:32,442 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:32,461 INFO NEW TOKEN  CATCASH (CATCASH)  mint=GewkZLtDjyzyr7RvHTQ3RLwcsDwqFjEuMXXZLjJYpump  curve=AW8iyr5NmkKUdzR7N1XTydztcVfeBwYpXAxST96KjikG  sig=3YCRMnQcd2yt1D8YGzUWSTzVEcwqRLpTGLxcwYBptpQtvw4e6wEfDfHfRhJ2pDAWmxrVEcz9jXDQiWUWLytBKo4K
+2026-10-15 10:46:32,461 INFO WATCH  CATCASH  mint=GewkZLtDjyzyr7RvHTQ3RLwcsDwqFjEuMXXZLjJYpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:32,594 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,703 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,817 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,992 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:32,993 INFO SL TO BREAKEVEN  Altai  at +85.1%  floor=entry  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump
+2026-10-15 10:46:32,993 INFO TRAILING ON  Altai  armed at +85.1%  peak=5.1757368998e-05  callback=10%  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump
+2026-10-15 10:46:33,077 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:33,135 INFO WON  Altai  +36.0%  in=0.2000 SOL  out=0.2628 SOL  mint=HzymNscwoKDagLaBc9TMk5e1puJ87Z2wqGcnBZeKpump  trade-event trailing-stop 36.0% (-26.5% from peak)
+2026-10-15 10:46:33,243 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:33,449 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:33,576 INFO NEW TOKEN  sig=5TC4VNu7WAept72Mb1nsWurdzbHJRNUsJQXQ3VjuGfvZM8TnQhQzropAXXx2P2PUwxdzJfQCjbDg7XbtFxuVofVm  (could not decode metadata)
+2026-10-15 10:46:33,643 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:33,646 INFO DRY-RUN BUY  Nuannuan (pxfCbyS6TMafTLT5gcGYPjPsRftx5NBNJzg9dXvpump)  spend=0.2000 SOL  tokens=1096780516493  entry_price=1.8006008259e-04  create_sig=probe
+2026-10-15 10:46:33,647 INFO BUY Nuannuan  6/600  invested=0.2000 SOL  mint=pxfCbyS6TMafTLT5gcGYPjPsRftx5NBNJzg9dXvpump  1- Liquidity (LP tokens) Locked 18.02% | 2- Total Locked Liquidity $4.7K
+2026-10-15 10:46:33,647 INFO SKIP CONFIRM  Altai  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$41  mint=2XeyvTJG3ZjtabLjqmFttUiSmQkkNqRP55uTgVrfTMzn
+2026-10-15 10:46:33,889 INFO SKIP CONFIRM  beer  low-buy-sol 0.14 < 0.3  buyers=1  buy_sol=0.14  mc=$1587  mint=7BNEAkAN4Z4dN1HHHMSj5kKtuDCnbQzMwFbC5erApump
+2026-10-15 10:46:34,062 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:34,392 INFO NEW TOKEN  BLUE33 (BLUE33)  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump  curve=HwUP9RiGNF6tCjdG4ixkYsAJ9w9d8kCmtUgnMVZuWbf3  sig=2ZyEwc3SvNw7gQqYtYzcUmG72tP7d8pztSxhntUYGaV2UrLAnCgrS1DebjxBtXPfCCEHcDxE3Zc8eWKfzHwCKouE
+2026-10-15 10:46:34,392 INFO WATCH  BLUE33  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:34,404 INFO NEW TOKEN  finalprofitinu (finalprofit.)  mint=26uUaxzn635WjaV3qynQPaPp2GnEaMYmiHaZ3XYMpump  curve=3JVhtcZdqY6rtgKWgjxUMT78HB53DzsjHQgAdts2ynxz  sig=2BgjE8NgsMgHjAj1g4XavyrULnedT961kVm5UiDjSCkqvDwvD9JvqPUuom1CrD9F1Z2f1G6416Uvh7pZGmPpLCi6
+2026-10-15 10:46:34,404 INFO WATCH  finalprofit.  mint=26uUaxzn635WjaV3qynQPaPp2GnEaMYmiHaZ3XYMpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:34,509 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:34,512 INFO LOST  Nuannuan  -8.0%  in=0.2000 SOL  out=0.1794 SOL  mint=pxfCbyS6TMafTLT5gcGYPjPsRftx5NBNJzg9dXvpump  watchdog stop-loss -8.0%
+2026-10-15 10:46:35,765 INFO NEW TOKEN  99 (99)  mint=BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump  curve=Cyf8bbtDY7LontdJ4zF6WpRF6MxfsYgi47srJU9EZhC3  sig=66pJ6Gzybx7ZnBZoL4eJhMCjgBitLaPifNStmE6FgrwJS9PpadqqCzf9CRaR3bFPW1hNbprxS7LHTkXyk3Z4NjH8
+2026-10-15 10:46:35,766 INFO WATCH  99  mint=BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:36,445 INFO NEW TOKEN  sig=21DreBC6GRsfFkjqdTotLzaxzDxLwxNqYJjYU62dWdM5k6Tu4zYo9rVdVN83xmkPBeUHvPfkd94RSw1P95VXc5ot  (could not decode metadata)
+2026-10-15 10:46:36,832 INFO NEW TOKEN  xavier coin (xavi)  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump  curve=9SZbp5P22tAZgnrdf1PoV4tXnDnqaZEYeKvxNqQ9u1Hs  sig=5B4XrXLicRxrjrTKziAhzdbwbr3cXfPaNCh5ueAwNW8iFgpSaZJySPg4iQpi5USUp1qiMQLYwY1Gqf7KZRZFfwf6
+2026-10-15 10:46:36,832 INFO WATCH  xavi  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:37,652 INFO SKIP CONFIRM  CATCASH  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2857  mint=GewkZLtDjyzyr7RvHTQ3RLwcsDwqFjEuMXXZLjJYpump
+2026-10-15 10:46:39,067 INFO NEW TOKEN  SUPER INU (SI)  mint=D3BTY1rFKsbXBNJPchVnTFHmdF3XUjfsanGSfn7vpump  curve=H5Gtoho93L5jJ6jkHfkncjhozGsNAmHMG5Xyt39JnGaG  sig=22wNGWQicDWoi4Tw4eDSqVcKEg32xL88bECffs4ky2UncMKAgDmCiiNgsS6FMNHaN9N9P6EnUfMPPTy1sJMeo42X
+2026-10-15 10:46:39,067 INFO WATCH  SI  mint=D3BTY1rFKsbXBNJPchVnTFHmdF3XUjfsanGSfn7vpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:39,412 INFO CONFIRM  BLUE33  buyers=24  buy_sol=6.63  mc=$4204  probe=0.20  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump
+2026-10-15 10:46:39,412 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:39,542 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:39,703 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:39,846 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:40,017 INFO NEW TOKEN  sig=2VAwjkVMeC7oXEVtEhbk97ZoaUywE8chmj3gSCW3Ydk56iZ2yCViHgZfFbGX8t6VVbdb8ht9dHAmA6rUWh1HKWp3  (could not decode metadata)
+2026-10-15 10:46:40,094 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:40,209 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:40,378 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:40,572 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:40,573 INFO DRY-RUN BUY  BLUE33 (7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:40,574 INFO BUY BLUE33  7/600  invested=0.2000 SOL  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:40,574 INFO SKIP CONFIRM  finalprofit.  low-buy-sol 0.02 < 0.3  buyers=1  buy_sol=0.02  mc=$1240  mint=26uUaxzn635WjaV3qynQPaPp2GnEaMYmiHaZ3XYMpump
+2026-10-15 10:46:40,814 INFO CONFIRM  99  buyers=2  buy_sol=0.59  mc=$3106  probe=0.20  mint=BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump
+2026-10-15 10:46:40,814 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:40,944 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:40,973 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:41,093 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:41,198 INFO SL TO BREAKEVEN  BLUE33  at +46.6%  floor=entry  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump
+2026-10-15 10:46:41,199 INFO TRAILING ON  BLUE33  armed at +46.6%  peak=4.0993884636e-05  callback=10%  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump
+2026-10-15 10:46:41,237 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:41,336 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:41,341 INFO WON  BLUE33  +11.6%  in=0.2000 SOL  out=0.2158 SOL  mint=7aQ9cNYYo7RnjLaSrDn6Dau1o9kpzfgRZF5vA2fEpump  watchdog trailing-stop 11.6% (-23.9% from peak)
+2026-10-15 10:46:41,483 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:41,626 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:41,684 INFO NEW TOKEN  The Black Serval (Serval)  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump  curve=3xFPE8Zror1V4rotxFp7NYVPeQrohxcjp63X1H2VgPQH  sig=hfH1e89qrZBzMGPA4aJymzE1JT2XQZhsVNLF4iN5aRA2rGUxEQwdysbeJZ49xGq7Juh9TcMyik3c75y1EviGSYt
+2026-10-15 10:46:41,685 INFO WATCH  Serval  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:41,823 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:42,028 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:42,032 INFO DRY-RUN BUY  99 (BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:42,032 INFO BUY 99  8/600  invested=0.2000 SOL  mint=BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:42,289 INFO CONFIRM  xavi  buyers=1  buy_sol=0.60  mc=$4319  probe=0.20  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump
+2026-10-15 10:46:42,289 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:42,417 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:42,573 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:42,601 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:42,602 INFO SL TO BREAKEVEN  99  at +9.4%  floor=entry  mint=BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump
+2026-10-15 10:46:42,621 INFO NEW TOKEN  sig=4ChffBHR91mrPMxLcayQ8zU37QR3xMqjEWwaetrZVTVQjCKigQ7q9xDFvaqhcag9RdL22QpA2QpRAMiwRcXqvBkY  (could not decode metadata)
+2026-10-15 10:46:42,726 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:42,986 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,051 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,174 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,283 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,352 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,440 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,443 INFO DRY-RUN BUY  xavi (9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:43,444 INFO BUY xavi  9/600  invested=0.2000 SOL  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:43,768 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:43,851 INFO SL TO BREAKEVEN  xavi  at +104.6%  floor=entry  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump
+2026-10-15 10:46:43,851 INFO TRAILING ON  xavi  armed at +104.6%  peak=5.7215117412e-05  callback=10%  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump
+2026-10-15 10:46:44,189 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:44,190 INFO SKIP CONFIRM  SI  low-buy-sol 0.08 < 0.3  buyers=1  buy_sol=0.08  mc=$3839  mint=D3BTY1rFKsbXBNJPchVnTFHmdF3XUjfsanGSfn7vpump
+2026-10-15 10:46:44,381 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:44,382 INFO WON  xavi  +3.3%  in=0.2000 SOL  out=0.1999 SOL  mint=9XPaV8EdXwAz6i65JCWTA7TncDrMmMX4358as9sCpump  watchdog trailing-stop 3.3% (-49.5% from peak)
+2026-10-15 10:46:44,612 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:44,890 INFO NEW TOKEN  sig=2r2ULfQrNj5ySmELLikmxfntX6aS2sdTsAoLucPMYmHgUzQbGzq7XESn9BtMNXhLygdPyRzEGaq3UQXa1q9TvUnY  (could not decode metadata)
+2026-10-15 10:46:44,990 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:45,385 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:45,786 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:46,148 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:46,474 INFO NEW TOKEN  sig=QDsrSaAqvLeD331bkPe64bXEQpDBjkU5x3AUSgQS6aZkGJvfwmAy2R5QV1Af8DBo8nVwoEsigKp8g3du6hYYb6H  (could not decode metadata)
+2026-10-15 10:46:46,492 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:46,712 INFO CONFIRM  Serval  buyers=28  buy_sol=12.98  mc=$4446  probe=0.20  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump
+2026-10-15 10:46:46,712 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:46:46,803 INFO NEW TOKEN  sig=63v44RsydvW8LZ1cQ1Cz8L1u4rdnTWrfsGstU2CPzSf2LgdPkGm6VnJhNPZiGa54Qc1CPnRFqNSyVJFEsHrkGFQo  (could not decode metadata)
+2026-10-15 10:46:46,852 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:46,867 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,041 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,159 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,230 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,324 INFO NEW TOKEN  sig=4GYHHKVwq8TsQXodV7webxY3ddnG9L2NKRpWuXyvVQcmSNn5SuBu9K7gLH46imxfGxtYgPZKUJgGnTciSMBhxmcL  (could not decode metadata)
+2026-10-15 10:46:47,353 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=E5rnjzqxAWohLLXx6TDwtLkyKeEQ6Spwb5Kr7oBFpump  curve=BQPt9USwBYXoGca4ntmLUo3BwuPEbWD5LFLn4MqbP3VB  sig=3XzUuBxn8k1Pccq5VNQuu6HP4VSNmwoHszEcWsufF2uacPgpbbvr4z7uMKeqVUt91tqyp6jm4KEyfnCq36jSGg1W
+2026-10-15 10:46:47,353 INFO WATCH  MNKY  mint=E5rnjzqxAWohLLXx6TDwtLkyKeEQ6Spwb5Kr7oBFpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:47,468 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,509 INFO NEW TOKEN  sig=6Zrk1MbMvna1Un1Hr6FmPscuasahF573Pog2cG89pH3krghT144JpfnPKtKnr1kdAhN8ym2WKmGjajokphH4ZbX  (could not decode metadata)
+2026-10-15 10:46:47,572 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,603 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,771 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,933 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,969 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:47,972 INFO DRY-RUN BUY  Serval (6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:46:47,972 INFO BUY Serval  10/600  invested=0.2000 SOL  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:46:47,980 INFO SL TO BREAKEVEN  Serval  at +19.8%  floor=entry  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump
+2026-10-15 10:46:47,980 INFO TRAILING ON  Serval  armed at +19.8%  peak=3.3481656839e-05  callback=10%  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump
+2026-10-15 10:46:48,273 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:48,641 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:49,073 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:49,437 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:49,810 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:50,023 INFO NEW TOKEN  sig=3rRu3fz6GCzxuHAd5HhRj4t4mQgcYRc7RWa9BUPR6b8P2gpLBV2YjhAXWXjF4QqjwMS4VMEJSf8xV72DQvrKoVQz  (could not decode metadata)
+2026-10-15 10:46:50,051 INFO NEW TOKEN  sig=5n747YicevsL4CjT1oTena6Zj9RGeZ3Dkfb6m7a5JKBdLxJD1PhFVU6XMYEHH1DNgspjUFrCtPaW7hzztpqRpYaN  (could not decode metadata)
+2026-10-15 10:46:50,052 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:50,239 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:50,412 INFO NEW TOKEN  sig=5UBLpuFsUJh7WZ1GUsSG2L6KcczyFePzhj8cCkkMVQzE4enR9BFt3dKQY2qLsXYAWUes6EwzuteusKnfsNnAok9A  (could not decode metadata)
+2026-10-15 10:46:50,515 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:50,743 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:50,760 INFO WON  Serval  +19.1%  in=0.2000 SOL  out=0.2304 SOL  mint=6tQRMHrVxQ3XdCVDhRVLDkPgYKyyW2662HGiAUK8pump  trade-event trailing-stop 19.1% (-32.3% from peak)
+2026-10-15 10:46:51,195 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:51,600 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:51,703 INFO NEW TOKEN  MOBX (MOBX)  mint=BxshEgQGcvAVqps9FcTSBy4MGARM1ATVBjiXVnBXpump  curve=EF31xDxS15kCbtEYz6Ak9f5rKcVVLohJEbCRC1St3WTN  sig=5GrotDJTTkvgXxtWToFtq6Y91hk85HKTVqDi5DhXMwU5RBUKH9j545Gv4tuh4AusHTXgudzEXD38VhNM3TwZSX8Q
+2026-10-15 10:46:51,703 INFO WATCH  MOBX  mint=BxshEgQGcvAVqps9FcTSBy4MGARM1ATVBjiXVnBXpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:51,966 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:52,344 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:52,449 INFO SKIP CONFIRM  MNKY  low-buy-sol 0.24 < 0.3  buyers=1  buy_sol=0.24  mc=$1279  mint=E5rnjzqxAWohLLXx6TDwtLkyKeEQ6Spwb5Kr7oBFpump
+2026-10-15 10:46:52,708 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:53,057 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:53,470 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:53,882 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:54,234 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:54,642 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:55,066 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:55,329 INFO NEW TOKEN  sig=3c5Tya3MHk7e8u49BApzax57m3BQffZCByF2A1Cb83GDuxQMHxJaj1TUd5ZabkirrtaSK8xzwNFMi6t69mXj1g1e  (could not decode metadata)
+2026-10-15 10:46:55,426 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:55,547 INFO NEW TOKEN  PUMP IS FUN (FUN)  mint=CSUposHYxD4MJ2MfFPmtjRxm1xD1RHDH5VTDN28cpump  curve=GMkcPYHNFDZqRJor482cXqVFCmGF961qEUAVvnvrQYDH  sig=kHCMSt8VfXKrjTd8AZiq5puPa1fi56KUse5C9yaJDUHZLuPzwMmogCSLq3515a66sPouPLk5zuTPjjvgXHvfRVM
+2026-10-15 10:46:55,547 INFO WATCH  FUN  mint=CSUposHYxD4MJ2MfFPmtjRxm1xD1RHDH5VTDN28cpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:46:55,831 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:56,186 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:56,617 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:56,706 INFO SKIP CONFIRM  MOBX  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2857  mint=BxshEgQGcvAVqps9FcTSBy4MGARM1ATVBjiXVnBXpump
+2026-10-15 10:46:57,057 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:57,436 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:57,797 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:58,297 INFO NEW TOKEN  sig=5tqzdnPdo6G8a4A64DMBV4vwGZWUbwdW3sH6vxgS8sLoQ9copx9Zj5Bw5znWA7asScVME73vCBDDmsfewchTsKQa  (could not decode metadata)
+2026-10-15 10:46:58,298 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:58,641 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:58,986 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:59,417 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:59,776 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:46:59,824 INFO NEW TOKEN  FN Pad (FNPAD)  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump  curve=5rqXvrg6sCPTRDvh7hAzzWaYZuozjekr8Y2XnXrJZqy4  sig=5fo4TsRYk5yEDWSQY97SEmUHoMVVAAMxFSpKzRxfz2W341WykDbyZzJccUXSjjjrzYBMGifCwq5ahwQ93VaG2pjr
+2026-10-15 10:46:59,824 INFO WATCH  FNPAD  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:00,193 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:00,583 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:00,800 INFO SKIP CONFIRM  FUN  low-buy-sol 0.00 < 0.3  buyers=1  buy_sol=0.00  mc=$0  mint=CSUposHYxD4MJ2MfFPmtjRxm1xD1RHDH5VTDN28cpump
+2026-10-15 10:47:00,992 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:01,122 INFO NEW TOKEN  sig=kN9RHmG2YX1XkzSEoo7761HCL6wY3Rxwa5aYHvYEgxzrTZdRR5h8ZpCLkFLc5H3N2AFGWFXYrzXWPBxJWXiXqVm  (could not decode metadata)
+2026-10-15 10:47:01,366 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:01,729 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:02,108 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:02,522 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:02,651 INFO NEW TOKEN  FRITZFROG (FRITZFROG)  mint=CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump  curve=EKUvCdEqhJYnM1wg21XS1aaxXX4rgVtoHmovuLBKTFvD  sig=ZZXwMjgzmDxDdDzLYMwcg3boKzq1CW4bPoiStXRqoMbTzu1UQryxZhnf6WyYRPUpMVAxt9ehggaHMSNs1KpK7n2
+2026-10-15 10:47:02,651 INFO WATCH  FRITZFROG  mint=CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:02,858 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:03,232 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:03,448 INFO NEW TOKEN  sig=4J7TBENBAs46bYU29LJpo6wh8GqdSfSicuYikCMAiCaXRhYkoZvxm7Tgu7tVXot9TMQE86dqTCyMrA16KsK3eTSB  (could not decode metadata)
+2026-10-15 10:47:03,648 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:03,989 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:04,416 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:04,769 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,028 INFO CONFIRM  FNPAD  buyers=4  buy_sol=2.86  mc=$3109  probe=0.20  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump
+2026-10-15 10:47:05,028 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:05,063 INFO NEW TOKEN  not larp CHECK EPISODE (WEENIECOIN)  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump  curve=Bii9EvYVXSpwtK82y2hx1WdVd4H556XjCi58TryhBGC6  sig=29LSqdpdWUayneWkCUFTcbrCstGCBbjxxWWoHLmstCmSMh2CJ4YpAiFNpjtfEP6mJcbGL8HchMqb9D5ew9QfybMx
+2026-10-15 10:47:05,063 INFO WATCH  WEENIECOIN  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:05,114 INFO NEW TOKEN  $PEPEVIBE ($PEPEVIBE)  mint=2951jxTiF6frrepHBsqCozn4FFqhRoGEur4QfZRDpump  curve=77wiW5RhqkgaDjbtACmAugBGZQrVa5qFctZ7MscYsdP7  sig=4EjT2tYCxVmdTrM9U7pt5AqfYvSWjzuyisPYWEJt3ZfJznN8yo6CVnnD3WtutfCVEUwkLP3scUdqbaAZtAq8CzEb
+2026-10-15 10:47:05,115 INFO WATCH  $PEPEVIBE  mint=2951jxTiF6frrepHBsqCozn4FFqhRoGEur4QfZRDpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:05,127 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,188 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,307 INFO NEW TOKEN  sig=5rdzPW4bbu2Sm3QtVdjvHwz5pyTzQ13GMURDCgx3HnPFZFNai7nPjB59cYBrjUnWYgzEeGtmQU89ERMrBnodYjEU  (could not decode metadata)
+2026-10-15 10:47:05,344 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,452 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,536 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,753 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,864 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:05,961 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:06,061 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:06,258 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:06,262 INFO DRY-RUN BUY  FNPAD (rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:47:06,263 INFO BUY FNPAD  11/600  invested=0.2000 SOL  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:47:06,337 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:06,556 INFO NEW TOKEN  not larp CHECK EPISODE (WEENIECOIN)  mint=AceNLXYvdWj6KbVA24g27Go2vfrM7CiGBN1Wq13qpump  curve=97gjn2F5TYs36BeDvb5vA7Lzf2pWyoKryCw3iJxbSa2W  sig=62PVaSoHDsw9XEadUn9xqAHDbTaDPZ99aPBo4G5nTvJaHeUKh3kwsc1iXWgsW62dubXucJEFXYiqF5DJFJZs4n9G
+2026-10-15 10:47:06,556 INFO WATCH  WEENIECOIN  mint=AceNLXYvdWj6KbVA24g27Go2vfrM7CiGBN1Wq13qpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:06,754 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:06,758 INFO SL TO BREAKEVEN  FNPAD  at +38.3%  floor=entry  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump
+2026-10-15 10:47:06,758 INFO TRAILING ON  FNPAD  armed at +38.3%  peak=3.8675293211e-05  callback=10%  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump
+2026-10-15 10:47:06,814 INFO NEW TOKEN  Spider Monkey (SMONKEY)  mint=877e6M9G3pK3Fx3oDbXEXPxhWsodPRDufjkKLucdpump  curve=CLAn1aCitXAqzBa4b1Qkg4gwwLv282KcV6mGNwP7Wi7z  sig=4251c4aCdBC8yqWqBDPrhYBPz4WXQfxwi27teoQB8U9qyX5jQz6VoBfxSktLGDGjbS3ABxTxpEUTt9hf9ZEcxjAf
+2026-10-15 10:47:06,814 INFO WATCH  SMONKEY  mint=877e6M9G3pK3Fx3oDbXEXPxhWsodPRDufjkKLucdpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:06,861 INFO WON  FNPAD  +6.2%  in=0.2000 SOL  out=0.2055 SOL  mint=rS1LbLoDUiVihNyh6vAM8UrQPJjYoBsTzdRn9Cwpump  trade-event trailing-stop 6.2% (-23.2% from peak)
+2026-10-15 10:47:06,929 INFO NEW TOKEN  SMASHR (SMASHR)  mint=AUENG1SzHj76cmwatzhQAk8VWxj13BKhMT5BAjWGpump  curve=woC627A7P9HGgDfa7VfttEiJe1JWAApwa8CRKTn741F  sig=3govopkDEAjrPKJSe9HT8Goiar8XfJ9hRj3VtnLhqxQSFCPW7gHNwhRkGa6Qg3ZwNZEXWhrGi9hgRFDDRWndaaxY
+2026-10-15 10:47:06,929 INFO WATCH  SMASHR  mint=AUENG1SzHj76cmwatzhQAk8VWxj13BKhMT5BAjWGpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:07,195 INFO NEW TOKEN  Spider Monkey (SMONKEY)  mint=46SkF8JenfZN2SyUJTWz2mJYmjAqks6b9YppRj5iVpC1  curve=3DQk9MAkENjq2zFr1KixBZt74XxT9DXbHJrHEauXLHjk  sig=5MNBdRnWMLV8byWGgmgL7fv2E3S54z5tqUwaf5K1GCeNcA4jkKxbsyVugA7gzmDaYs2peqCEp58PDHkqSFJ2PeWZ
+2026-10-15 10:47:07,195 INFO WATCH  SMONKEY  mint=46SkF8JenfZN2SyUJTWz2mJYmjAqks6b9YppRj5iVpC1  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:07,274 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:07,670 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:07,747 INFO CONFIRM  FRITZFROG  buyers=1  buy_sol=0.49  mc=$3146  probe=0.20  mint=CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump
+2026-10-15 10:47:07,747 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:07,859 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,012 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,028 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,126 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,450 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,450 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,622 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,787 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,819 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,905 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:08,908 INFO DRY-RUN BUY  FRITZFROG (CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:47:08,908 INFO BUY FRITZFROG  12/600  invested=0.2000 SOL  mint=CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:47:09,165 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:09,559 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:09,560 INFO SL TO BREAKEVEN  FRITZFROG  at +10.1%  floor=entry  mint=CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump
+2026-10-15 10:47:09,995 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,152 INFO CONFIRM  WEENIECOIN  buyers=10  buy_sol=3.50  mc=$3329  probe=0.20  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump
+2026-10-15 10:47:10,153 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:10,297 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,365 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,469 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,572 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,728 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,812 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:10,924 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:11,076 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:11,092 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:11,223 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:11,227 INFO DRY-RUN BUY  WEENIECOIN (7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:47:11,227 INFO BUY WEENIECOIN  13/600  invested=0.2000 SOL  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:47:11,227 INFO SKIP CONFIRM  $PEPEVIBE  low-buy-sol 0.05 < 0.3  buyers=2  buy_sol=0.05  mc=$2878  mint=2951jxTiF6frrepHBsqCozn4FFqhRoGEur4QfZRDpump
+2026-10-15 10:47:11,516 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:11,678 INFO SL TO BREAKEVEN  WEENIECOIN  at +15.5%  floor=entry  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump
+2026-10-15 10:47:11,678 INFO TRAILING ON  WEENIECOIN  armed at +15.5%  peak=3.2298635215e-05  callback=10%  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump
+2026-10-15 10:47:11,701 INFO CONFIRM  WEENIECOIN  buyers=1  buy_sol=0.49  mc=$2951  probe=0.20  mint=AceNLXYvdWj6KbVA24g27Go2vfrM7CiGBN1Wq13qpump
+2026-10-15 10:47:11,701 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:11,701 INFO Skip WEENIECOIN (AceNLXYvdWj6KbVA24g27Go2vfrM7CiGBN1Wq13qpump): max open positions (4)
+2026-10-15 10:47:11,916 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:11,955 INFO CONFIRM  SMONKEY  buyers=30  buy_sol=20.62  mc=$4805  probe=0.20  mint=877e6M9G3pK3Fx3oDbXEXPxhWsodPRDufjkKLucdpump
+2026-10-15 10:47:11,955 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:11,955 INFO Skip SMONKEY (877e6M9G3pK3Fx3oDbXEXPxhWsodPRDufjkKLucdpump): max open positions (4)
+2026-10-15 10:47:11,955 INFO CONFIRM  SMASHR  buyers=21  buy_sol=9.43  mc=$4932  probe=0.20  mint=AUENG1SzHj76cmwatzhQAk8VWxj13BKhMT5BAjWGpump
+2026-10-15 10:47:11,955 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:11,955 INFO Skip SMASHR (AUENG1SzHj76cmwatzhQAk8VWxj13BKhMT5BAjWGpump): max open positions (4)
+2026-10-15 10:47:12,107 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:12,211 INFO SKIP CONFIRM  SMONKEY  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$41  mint=46SkF8JenfZN2SyUJTWz2mJYmjAqks6b9YppRj5iVpC1
+2026-10-15 10:47:12,290 INFO NEW TOKEN  not larp CHECK EPISODE (WEENIECOIN)  mint=wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump  curve=4yvfka5g192GT9eKVn6g8sAvUr1whQjRL8RrWPZw2VZh  sig=51u7NpPE7ZVCHkN6Qwwv3J62ANCR3UmuU9uw2xVFmLZbxaYa6qq77CuJEQvLApzgU6R3LsMxPZQP86zhYcQwCi7r
+2026-10-15 10:47:12,290 INFO WATCH  WEENIECOIN  mint=wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:12,319 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:12,320 INFO WON  99  +9.4%  in=0.2000 SOL  out=0.2116 SOL  mint=BzM4ifyTPvhyx7NYsncibxzqcuaA1b7jhHBGhh8ppump  watchdog dead-coin 9.4% after 30s
+2026-10-15 10:47:12,560 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:12,676 INFO NEW TOKEN  sig=2xuL1FoGZ5uxbUyBDLSvUYBiPoNhFTBoC6ahxyjXsEP438Q3kSrGCa54TVjLKybHb4dxcJQaSYCis6h3xsG4Sx4g  (could not decode metadata)
+2026-10-15 10:47:12,756 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:12,949 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:13,202 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:13,452 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:13,644 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:13,881 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:14,093 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:14,350 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:14,543 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:14,809 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:15,012 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:15,260 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:15,462 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:15,779 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:15,873 INFO NEW TOKEN  Safe Cat (SAFECAT)  mint=EWzGvZXNngkSH29ch5RF28SAGfCYy4c9Gux41jpupump  curve=EWCFFntgbBqJQgg5dxLxWXeqLVC8JubkByvdFaVtng6b  sig=2HSUj96dyBqw8Uwm3PT5NA3YaidHxuggrSJZRUu2oT5g1f8u92hBgnpQ1i6bqGrWQgV9n4GxZQG9dAGRh2TQRVQn
+2026-10-15 10:47:15,873 INFO WATCH  SAFECAT  mint=EWzGvZXNngkSH29ch5RF28SAGfCYy4c9Gux41jpupump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:15,966 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:16,150 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:16,334 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:16,581 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:16,772 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:16,971 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,154 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,323 INFO CONFIRM  WEENIECOIN  buyers=1  buy_sol=0.49  mc=$2951  probe=0.20  mint=wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump
+2026-10-15 10:47:17,323 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:17,346 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,427 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,543 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,581 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,707 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,846 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:17,941 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,038 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,106 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,210 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,248 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,357 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,361 INFO DRY-RUN BUY  WEENIECOIN (wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:47:18,361 INFO BUY WEENIECOIN  14/600  invested=0.2000 SOL  mint=wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:47:18,440 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,621 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:18,834 INFO NEW TOKEN  sig=KEYJU3naPY362j1GMcFGL2WoTK1NM77zfek46BeDBdxV4Pjpk5eQ14bdEx6EqMCwDp18hJ6pUx3k3D3pWQRozn3  (could not decode metadata)
+2026-10-15 10:47:18,856 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:19,096 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:19,285 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:19,285 INFO SL TO BREAKEVEN  WEENIECOIN  at +6.8%  floor=entry  mint=wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump
+2026-10-15 10:47:19,536 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:19,734 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:19,957 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:20,159 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:20,369 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:20,571 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:20,772 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:20,975 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:21,126 INFO CONFIRM  SAFECAT  buyers=6  buy_sol=3.44  mc=$3550  probe=0.20  mint=EWzGvZXNngkSH29ch5RF28SAGfCYy4c9Gux41jpupump
+2026-10-15 10:47:21,126 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:21,126 INFO Skip SAFECAT (EWzGvZXNngkSH29ch5RF28SAGfCYy4c9Gux41jpupump): max open positions (4)
+2026-10-15 10:47:21,232 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:21,427 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:21,608 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:21,797 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:21,888 INFO NEW TOKEN  Robinhood Chain (HOOD)  mint=74Ya7QYJpRHTUNV66FcRqPwXBtVZgdkGLwDGqzhgpump  curve=72A9pepZoYFKtGNRhqBBhPGktosQdEQNujkAhqYL61Sa  sig=espjkMEjQ19saEspsiijGj9VwYSfxg2NrrLh5SxC2sT6am1ckDtVzrZNNu4EQko69qwhZX5z1fXWtVt5twrMGdK
+2026-10-15 10:47:21,888 INFO WATCH  HOOD  mint=74Ya7QYJpRHTUNV66FcRqPwXBtVZgdkGLwDGqzhgpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:21,969 INFO NEW TOKEN  STARGLOW (STARGLOW)  mint=DmN7cZf7HzmJcyA75xMu1AY6X1xcCCHLeRNUfzPpump  curve=GtLy8RaUs1w9mqYe5qUwhh7dkabWkm7DnmNeouqUmQ8a  sig=5mxmTychihWg7k9NuCjj7Z75oo5KkNQTNkYvEN8m9PqpuKjSjK7CCg79WAQjQ618oi44mJcFncRM4zBcLzMgY7xr
+2026-10-15 10:47:21,969 INFO WATCH  STARGLOW  mint=DmN7cZf7HzmJcyA75xMu1AY6X1xcCCHLeRNUfzPpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:22,055 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:22,459 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:22,460 INFO NEW TOKEN  sig=26YdsM9QvcTyfYCHZ3eWLdddp9AgcRNF99xqiAeRN5kGaYJDAGJxqrtKkABBzbX42ea8PdtTfkAszdUPvXN2vVjV  (could not decode metadata)
+2026-10-15 10:47:22,657 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:22,864 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:23,140 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:23,394 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:23,505 INFO NEW TOKEN  fomo (fomo)  mint=2qnWYAa6aAFjsqxzB37bCaTfmoXbc7MHeqqepaREpump  curve=CQbdpT1RwFmVctVq2RFZkjRFdGMHdWnCKBuWab4oHDgU  sig=wTUuiM9rqeQesyJnbhd7cHYhWU9KHQvajbBdUr2oGnXf1MfAVK3BYpKwbtWdD5kWPqwNLakuRv31qyezAPi5cBd
+2026-10-15 10:47:23,505 INFO WATCH  fomo  mint=2qnWYAa6aAFjsqxzB37bCaTfmoXbc7MHeqqepaREpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:23,672 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:23,911 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:24,186 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:24,420 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:24,617 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:24,858 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:25,045 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:25,240 INFO NEW TOKEN  sig=5R51S1F3BFEuGBLiGr9Uk842qBSq52xJMWgJ6M6R48gphhJjoYVqnHDobTMcDg9cSY9JwHHdnJFB2sGQUXNvcs5v  (could not decode metadata)
+2026-10-15 10:47:25,292 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:25,544 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:25,745 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:26,010 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:26,222 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:26,505 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:26,738 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:26,938 INFO SKIP CONFIRM  HOOD  low-buy-sol 0.04 < 0.3  buyers=1  buy_sol=0.04  mc=$3515  mint=74Ya7QYJpRHTUNV66FcRqPwXBtVZgdkGLwDGqzhgpump
+2026-10-15 10:47:26,984 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:27,182 INFO SKIP CONFIRM  STARGLOW  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$13  mint=DmN7cZf7HzmJcyA75xMu1AY6X1xcCCHLeRNUfzPpump
+2026-10-15 10:47:27,186 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:27,425 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:27,675 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:27,870 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:27,949 INFO NEW TOKEN  duocoin (duo)  mint=A4KXe7nyqx66BGGixioHme1p2V7MPR2b8GqvQahkpump  curve=3HU43622W7AcgtFNEhGvSuUVasrsMfvLhYc1ZLifXbxU  sig=5d8WZUWvq6ccHUmFhHjUNy4xciCxZU4BPAHFaCWrG6CRuYeyQNBGPAdNqY9cngZepRkNtnuatU1ZEbc4akrCcbQ6
+2026-10-15 10:47:27,949 INFO WATCH  duo  mint=A4KXe7nyqx66BGGixioHme1p2V7MPR2b8GqvQahkpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:28,109 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:28,299 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:28,389 INFO NEW TOKEN  sig=5pPLrCv7YMjfmUnQQZkEJN39jZugBWdEBiNP3SxSooaN9SnX6VcApHwXR1RQjfhhh28JHQausceDVSFKbCUeQNxJ  (could not decode metadata)
+2026-10-15 10:47:28,502 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:28,744 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:28,834 INFO SKIP CONFIRM  fomo  low-buy-sol 0.04 < 0.3  buyers=1  buy_sol=0.04  mc=$1674  mint=2qnWYAa6aAFjsqxzB37bCaTfmoXbc7MHeqqepaREpump
+2026-10-15 10:47:28,999 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:29,185 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:29,420 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:29,655 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:29,853 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:30,059 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:30,326 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:30,511 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:30,704 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:30,894 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:31,075 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:31,269 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:31,505 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:31,590 INFO NEW TOKEN  sig=5iqWWqDG3rBqaTmBJVavjXoaq8ij7wGkyEStA3ZDzj8u8jVzyzRgXeH9WgPje8Xaedb89NER1b5TmYBKzGxZypTd  (could not decode metadata)
+2026-10-15 10:47:31,742 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:31,941 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:32,035 INFO NEW TOKEN  sig=dZPuavm8GihZ6o6CqcuTxAj7eZfwEUYyVGg3aDhESuNvcUzkZiMeXJVKs293chyXumYTzhRZg3tx7SkWe589W9x  (could not decode metadata)
+2026-10-15 10:47:32,144 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:32,385 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:32,576 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:32,820 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:33,081 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:33,137 INFO SKIP CONFIRM  duo  low-buy-sol 0.20 < 0.3  buyers=1  buy_sol=0.20  mc=$2678  mint=A4KXe7nyqx66BGGixioHme1p2V7MPR2b8GqvQahkpump
+2026-10-15 10:47:33,272 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:33,536 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:33,726 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:33,941 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:34,144 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:34,346 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:34,567 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:34,818 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:35,000 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:35,201 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:35,400 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:35,624 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:35,866 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:36,049 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:36,269 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:36,510 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:36,694 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:36,943 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:37,148 INFO NEW TOKEN  sig=BBQRL2efUg4ciGWQBzCHCbcohc6NbTFhjMQKKKTGLpyfEJnMoZMQXFWNKQVvVakZBgsPdZmgTfpXjyMapQU25gh  (could not decode metadata)
+2026-10-15 10:47:37,167 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:37,370 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:37,607 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:37,802 INFO NEW TOKEN  Emo G Records (EMOG)  mint=6ExaSEDhNTmPT96veTft6RzZkv8fi7JiFsLbSUGmpump  curve=HpRRJu4nnzJN9yo9KR4ugVZX2sdbfQdauJic9FLmgUXo  sig=3rkoujsCB1TuDMdLb5Xm7MKCRzHFd3rcm5kiR6CmnngXVsVbcsuvLBHfq6n5Mb8yfHLYmH9V4vZtK4nc4tP6nVbG
+2026-10-15 10:47:37,804 INFO WATCH  EMOG  mint=6ExaSEDhNTmPT96veTft6RzZkv8fi7JiFsLbSUGmpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:37,870 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:38,057 INFO NEW TOKEN  sig=5tw2kab6XW5QS5zMuosMdVdcSbQHDjjSkXtJibLL3HmbWvVMdgnW52QZJu6Zjcj9ctWpK5yH9Gzdhfxyn9K8wDk2  (could not decode metadata)
+2026-10-15 10:47:38,144 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:38,409 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:38,562 INFO NEW TOKEN  AXEL (Axel)  mint=6RnDzatfuqAz79GVCEHm44TBj9t5P22qeTKd5aUWpump  curve=Dcv2dcT9ohtFFnUve7roHGp84JQzYqfs7H5TJfdKSgan  sig=3G26u32NemxngKCkTvcDd1fM68MQyKhMH9a5jtiznZubqNGSuGKUxF5STNTGAY2TZthbGsRHarQirmY2nKyffBQR
+2026-10-15 10:47:38,563 INFO WATCH  Axel  mint=6RnDzatfuqAz79GVCEHm44TBj9t5P22qeTKd5aUWpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:38,607 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:38,794 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:39,047 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:39,277 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:39,524 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:39,757 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:39,992 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:40,197 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:40,410 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:40,562 INFO NEW TOKEN  sig=kSLsuTfFgaBWUjti8gLbDYwJ7srrvKvEzQ1uzYDFQHA8nqCeZ5nk7GGBXf4FzExkgaZmcTxkYHYQncXDdPyicsV  (could not decode metadata)
+2026-10-15 10:47:40,640 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:40,877 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:40,996 INFO NEW TOKEN  sig=4BQo1WQ2E92CwsJXbA89H9eiwEU8R6bkkF6pXoi5PfDmEGYghyaFJUEASTbnUHFDwxZVCWC6pSTxzvyiuaRbGevN  (could not decode metadata)
+2026-10-15 10:47:41,069 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:41,275 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:41,531 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:41,731 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:41,772 INFO NEW TOKEN  base44 (BAS$44)  mint=BiM5XKrprJujDcsvdMfWepK3vAJTBQLfJ1xnbFJSpump  curve=6iqJRA7CHJyukvyUMfk4TFNwhqXLV5YkAdPg99FW2a3C  sig=62sWQJxSUxhpjXaKxSZmQnPNX1MLiXFbJFC52o9nLhRsDUv5FrKqdmwyL2iKWcVu1c2F5pbBkpVXTnHH3nyUtpoT
+2026-10-15 10:47:41,773 INFO WATCH  BAS$44  mint=BiM5XKrprJujDcsvdMfWepK3vAJTBQLfJ1xnbFJSpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:41,920 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:42,113 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:42,390 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:42,637 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:42,880 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:43,008 INFO SKIP CONFIRM  EMOG  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2858  mint=6ExaSEDhNTmPT96veTft6RzZkv8fi7JiFsLbSUGmpump
+2026-10-15 10:47:43,139 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:43,264 INFO NEW TOKEN  braedencarter (braeden)  mint=8LrvPWH9ygeSSekCCbYW7bjNoftdqxxScM41RQe5pump  curve=4ExLaqJrw5gSwAvdZtngehFC8mWyksuFKvpvcaio4imA  sig=ok7hJ9t472AXufGKGuqDP8se2L8G3F8vD8xAU45drjrpBk7zbevHrfqwLpM2Ea5FAbweyBF5wq1b9BADKkZ8gAC
+2026-10-15 10:47:43,265 INFO WATCH  braeden  mint=8LrvPWH9ygeSSekCCbYW7bjNoftdqxxScM41RQe5pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:43,321 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:43,329 INFO NEW TOKEN  Kairos (KAIROS)  mint=A7BEhthhhjLgDuwHBwEsqryHo7J5rPihkKFXqKzapump  curve=EPZgGbwAmSd68qpvqJbvHJVkfDn1VobcEjM4UNaNKLBL  sig=4rjkWGUAYkzQhijDqZCQAfjm9M3L2557xfns18TV9ECGoNEVid3dUDCA1Z5dNgYdbj3QTuhdh4iURpu7uqYMW19M
+2026-10-15 10:47:43,329 INFO WATCH  KAIROS  mint=A7BEhthhhjLgDuwHBwEsqryHo7J5rPihkKFXqKzapump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:43,359 INFO NEW TOKEN  Cat wif box (Bertie)  mint=EDEdCmzL4T9iqQ3HvaQRMpqZBdYTXccCf9LXW4Pqpump  curve=3SkP4JBt1ZDr2soTDcgg6XJAH24rpZLeAzYSCA7fEGKA  sig=LBWHTsh6JUtGZRX1AUDZga5wKHUeK2xGq9RaAfRCEXyEnYAGPo6z37otX6btoL8ZTBAaemK9wyBP6FS4LEwygzd
+2026-10-15 10:47:43,359 INFO WATCH  Bertie  mint=EDEdCmzL4T9iqQ3HvaQRMpqZBdYTXccCf9LXW4Pqpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:43,459 INFO NEW TOKEN  sig=2zjNmjx9y6CaspMR1NohWLnW5S9gYLtRbgQNnFmaFp2grGLEvGxsDSrMGZDbX2gKK2bHHFUxdicFF8cckzCeovoD  (could not decode metadata)
+2026-10-15 10:47:43,569 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:43,756 INFO SKIP CONFIRM  Axel  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2858  mint=6RnDzatfuqAz79GVCEHm44TBj9t5P22qeTKd5aUWpump
+2026-10-15 10:47:43,757 INFO NEW TOKEN  sig=4b8JnE7A1vwdhJW5ZnECz8TY3cfWS7v3ndx2HENDZMy6F4zhTP2Qr7y98wdNFD66WtuRbNYokA7YZJdt8ACJ5WWK  (could not decode metadata)
+2026-10-15 10:47:43,766 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:43,951 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:44,064 INFO NEW TOKEN  sig=3tFKWEhAVb3TPb5QuC7AZqS6YE8NJVtjhBjHbvkYkNDRHdoAUoFZuQ4yfeV38uyWNywxX3MRgt3awYiwxMQvisZe  (could not decode metadata)
+2026-10-15 10:47:44,134 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:44,367 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:44,559 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:44,791 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:45,038 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:45,223 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:45,449 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:45,639 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:45,833 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:45,909 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=HzQGASEuqp3HqNHVARBYSY7n9rwu5AvZGCvjtaMGpump  curve=FEyvxC4a43giMvQrd9iLcJVpE8k6mSoj4RR5H9EWCouj  sig=sttfxPhaRaxX6tXSQGAkNLQAhNHtZaw9XzPcHFkk3oNzrfveujUcHwa4UYrVYgoZEeWQCRfVWkJVu9G28TStLnh
+2026-10-15 10:47:45,909 INFO WATCH  MNKY  mint=HzQGASEuqp3HqNHVARBYSY7n9rwu5AvZGCvjtaMGpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:46,087 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:46,271 INFO NEW TOKEN  Cat wif box (Bertie)  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump  curve=AQHNUdrpMz7mQ8zdsRoFF7BVLuN7TKzqi8eHZADEGPng  sig=UDTB1AHexwEn4uYzMtQLp3BmNFAA3sMTukkzK8fft7xCV9TcDXLwpAA7VBXjfttJY6T238eaGE4B2kkmQV7YAwJ
+2026-10-15 10:47:46,272 INFO WATCH  Bertie  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:46,419 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:46,570 INFO NEW TOKEN  sig=3yuoR9QypnFx2Qz49upgVpZKmbXXYBhuFWb96r8UT2y4xHpGEm3LK9U8evBYxhet6QV5fPBeTb1avDg78bYxT53g  (could not decode metadata)
+2026-10-15 10:47:46,601 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:46,777 INFO SKIP CONFIRM  BAS$44  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2858  mint=BiM5XKrprJujDcsvdMfWepK3vAJTBQLfJ1xnbFJSpump
+2026-10-15 10:47:46,784 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:46,824 INFO NEW TOKEN  Cat wif box (Bertie)  mint=8fYh1bjR88uCEmKwi1bk2WxhkVMkNoXRRtkAW25xTXPs  curve=HK9M2bs9YxkZZkRqcnN5mAAYRArJb9LpfMNaFNdVQ5zo  sig=2XHCjt89tY2XAr8j8UHPZKjaFFN5qNH9EKt75wLNKw1LPV8C38CB5ig7pFkeFzWxzyxRvm1XwjpeFHWrV9Zuz4wy
+2026-10-15 10:47:46,824 INFO WATCH  Bertie  mint=8fYh1bjR88uCEmKwi1bk2WxhkVMkNoXRRtkAW25xTXPs  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:47,004 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:47,261 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:47,504 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:47,688 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:47,938 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:48,118 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:48,277 INFO SKIP CONFIRM  braeden  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2858  mint=8LrvPWH9ygeSSekCCbYW7bjNoftdqxxScM41RQe5pump
+2026-10-15 10:47:48,325 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:48,528 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:48,528 INFO SKIP CONFIRM  KAIROS  low-buy-sol 0.02 < 0.3  buyers=1  buy_sol=0.02  mc=$3053  mint=A7BEhthhhjLgDuwHBwEsqryHo7J5rPihkKFXqKzapump
+2026-10-15 10:47:48,528 INFO CONFIRM  Bertie  buyers=23  buy_sol=15.07  mc=$5585  probe=0.20  mint=EDEdCmzL4T9iqQ3HvaQRMpqZBdYTXccCf9LXW4Pqpump
+2026-10-15 10:47:48,528 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:48,528 INFO Skip Bertie (EDEdCmzL4T9iqQ3HvaQRMpqZBdYTXccCf9LXW4Pqpump): max open positions (4)
+2026-10-15 10:47:48,529 INFO WON  WEENIECOIN  +3.7%  in=0.2000 SOL  out=0.2005 SOL  mint=wghL9taMSwKjqkL8XigeXRQJis5LMYhdJkKPZhdpump  watchdog dead-coin 3.7% after 30s
+2026-10-15 10:47:48,769 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:48,975 INFO WON  FRITZFROG  +3.1%  in=0.2000 SOL  out=0.1995 SOL  mint=CFkYGjXjqGzikxzQdgocQ3fNtLXwknqBd823MSdpump  trade-event dead-coin 3.1% after 30s
+2026-10-15 10:47:48,979 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:49,424 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:49,842 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:50,234 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:50,580 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:51,013 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:51,090 INFO SKIP CONFIRM  MNKY  low-buy-sol 0.19 < 0.3  buyers=1  buy_sol=0.19  mc=$5734  mint=HzQGASEuqp3HqNHVARBYSY7n9rwu5AvZGCvjtaMGpump
+2026-10-15 10:47:51,322 INFO CONFIRM  Bertie  buyers=10  buy_sol=6.03  mc=$3693  probe=0.20  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump
+2026-10-15 10:47:51,322 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:51,374 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:51,474 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:51,630 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:51,708 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:51,737 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,035 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,045 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,147 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,183 INFO NEW TOKEN  economy (ECONOMY)  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump  curve=5X48zaHMZBP5gAJaxwBnx6V9vpVUqJCFNAY2tkMHr8pg  sig=29kgsFkvH5a9U939HH6tBBqr9gCV3qNX3e6mHN4Fa3ApHNC6qWMJENFmesZa9uGYVQLCzP2EyvGqbdgk6RTbHmoD
+2026-10-15 10:47:52,184 INFO WATCH  ECONOMY  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:52,339 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,451 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,452 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:52,452 INFO DRY-RUN BUY  Bertie (3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:47:52,453 INFO BUY Bertie  15/600  invested=0.2000 SOL  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:47:52,590 INFO SL TO BREAKEVEN  Bertie  at +27.8%  floor=entry  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump
+2026-10-15 10:47:52,590 INFO TRAILING ON  Bertie  armed at +27.8%  peak=3.5721244469e-05  callback=10%  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump
+2026-10-15 10:47:52,700 INFO SKIP CONFIRM  Bertie  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$41  mint=8fYh1bjR88uCEmKwi1bk2WxhkVMkNoXRRtkAW25xTXPs
+2026-10-15 10:47:52,792 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:53,044 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:53,266 INFO WON  WEENIECOIN  +0.3%  in=0.2000 SOL  out=0.1940 SOL  mint=7xprfCV5JM9Q3t6dunmajeRQ3tb1mwDyrXw56jDMpump  trade-event trailing-stop 0.3% (-14.3% from peak)
+2026-10-15 10:47:53,272 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:53,653 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:54,022 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:54,421 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:54,774 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:55,141 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:55,503 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:55,505 INFO WON  Bertie  +36.9%  in=0.2000 SOL  out=0.2645 SOL  mint=3re4PkEUXb1uD9ipkUAAm9n9EqbYeWhVkaZwT5UMpump  watchdog trailing-stop 36.9% (-14.9% from peak)
+2026-10-15 10:47:57,178 INFO NEW TOKEN  sig=48gyWrAwHffmLPVeB9M1xnvNghjkZ4FsYYRZMFaAjFGdZ77RZr5m8tJei1h9ioqGeYhqhzfgU3joPUpSQKAVdz9u  (could not decode metadata)
+2026-10-15 10:47:57,215 INFO CONFIRM  ECONOMY  buyers=22  buy_sol=14.89  mc=$4163  probe=0.20  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump
+2026-10-15 10:47:57,215 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:47:57,328 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:57,441 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:57,633 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:57,692 INFO NEW TOKEN  Sycamore core (SYCAMORE)  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump  curve=3FsWhsHD9WcHJ2fGV56TDYe32xxut6JXwapWyiXT3Nui  sig=67ST6BhQTAenWmzGr2kk7KnJyGmBv3UnNwhTqH69t6VhXBPfDdWyY9uWMe8mB9Dexi2fRqEJCZgEDWftxu7VjDHa
+2026-10-15 10:47:57,692 INFO WATCH  SYCAMORE  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:57,930 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:58,032 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:58,225 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:58,324 INFO NEW TOKEN  The Roakey agent (Roakey)  mint=6Gqd34jKPLrZt6L8z9XTzShD6Z83YY8ULvujryDfpump  curve=AFjQ54S1dKLkMCqT8erVyT6e15cEoddgm35j8QFLcPRX  sig=2mX9tvs3ruADxqiEeNnN8koeNBP5ecqZboD1VvHAWqByGD97CEFhutHEPbxDqWYsQyBRUHHVdCrB5pgC5g1wVewS
+2026-10-15 10:47:58,324 INFO WATCH  Roakey  mint=6Gqd34jKPLrZt6L8z9XTzShD6Z83YY8ULvujryDfpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:47:58,422 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:58,426 INFO DRY-RUN BUY  ECONOMY (F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:47:58,426 INFO BUY ECONOMY  16/600  invested=0.2000 SOL  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:47:58,733 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:59,048 INFO SL TO BREAKEVEN  ECONOMY  at +22.8%  floor=entry  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump
+2026-10-15 10:47:59,048 INFO TRAILING ON  ECONOMY  armed at +22.8%  peak=3.4324651171e-05  callback=10%  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump
+2026-10-15 10:47:59,109 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:47:59,323 INFO NEW TOKEN  sig=mRehfSXLnJLxusGJNdNKTju4UoiY9ha5bo7GTGAd5SRWoBn8NFSEGQ2P3QyC8iqCHuogQkQDbL9WGk3cSiLwMKa  (could not decode metadata)
+2026-10-15 10:48:00,361 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:00,366 INFO WON  ECONOMY  +64.1%  in=0.2000 SOL  out=0.3170 SOL  mint=F7gZiQm3YkmBKbNe3R6fEwtEgChbGuyvYZojZTNPpump  watchdog trailing-stop 64.1% (-14.8% from peak)
+2026-10-15 10:48:01,113 INFO NEW TOKEN  sig=wbCyyhe4HbeCpSKTL3PbVa6CBGcQBvC9E2w4x1K4UF26eu2cjJRWtT5wWDgQNzU9pTk69GHiz3B8kX74YvRqoUP  (could not decode metadata)
+2026-10-15 10:48:02,695 INFO CONFIRM  SYCAMORE  buyers=11  buy_sol=0.87  mc=$5220  probe=0.20  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump
+2026-10-15 10:48:02,695 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:02,803 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:02,911 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:03,103 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:03,412 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:03,515 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:03,635 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:03,828 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:03,831 INFO DRY-RUN BUY  SYCAMORE (368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:48:03,832 INFO BUY SYCAMORE  17/600  invested=0.2000 SOL  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:48:04,079 INFO SKIP CONFIRM  Roakey  low-buy-sol 0.00 < 0.3  buyers=2  buy_sol=0.00  mc=$0  mint=6Gqd34jKPLrZt6L8z9XTzShD6Z83YY8ULvujryDfpump
+2026-10-15 10:48:04,327 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:04,743 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:04,744 INFO SL TO BREAKEVEN  SYCAMORE  at +77.0%  floor=entry  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump
+2026-10-15 10:48:04,744 INFO TRAILING ON  SYCAMORE  armed at +77.0%  peak=4.9495478707e-05  callback=10%  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump
+2026-10-15 10:48:05,144 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:05,505 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:06,023 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:06,109 INFO NEW TOKEN  Puddle Frog (puddlefrog)  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump  curve=CWAfgY6JYMUBhTcQK38DiygGovdsYYbe3ZutDTRaP93v  sig=56YBQuqEcVChikr8vkxxs12hsxEPhdaS2A2PPdax8MQQ9LhXAxqhhiwY4TnSEN3eyEGnYdDJbbbjmKyMUN76k73v
+2026-10-15 10:48:06,109 INFO WATCH  puddlefrog  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:06,510 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:06,576 INFO NEW TOKEN  sig=2M2SZd4c6xTbfAfSkf3Fy28qiD68gueYv2QquKx1Y2szb4ShnxswE6YapGoktPLarTnxA9YEybkjGFshdHdWH2EU  (could not decode metadata)
+2026-10-15 10:48:06,886 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:07,252 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:07,610 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:07,823 INFO SCALE-IN  SYCAMORE  buyers=14  mc=$5256  add=0.80  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump
+2026-10-15 10:48:07,950 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:07,985 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:07,989 INFO ADD SYCAMORE  +0.8000 SOL  total=1.0000 SOL  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump
+2026-10-15 10:48:08,311 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:08,707 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:09,092 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:09,308 INFO NEW TOKEN  Ification (ify)  mint=ABYBQdM2VJRfxQoNgcJhgBJAvvuYDqXADKt84AXwpump  curve=3zNvebuN1nGGFnGBZewQHMLp9SBz5WM2z93C5VLCuGhr  sig=2Z52cqkJs4zK74phHZXGMrtQSvUCXK5TDEDTW33b5u6MmcYyyPdj4SLJeXpMdQxYtLv35mBqEsN9m5qA2Ha4Sh6C
+2026-10-15 10:48:09,308 INFO WATCH  ify  mint=ABYBQdM2VJRfxQoNgcJhgBJAvvuYDqXADKt84AXwpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:09,394 INFO NEW TOKEN  YERRR (KNICKS)  mint=J54Gx975e7nBpFLGWyvWgCBe74eAAaRtdWnZQJkGpump  curve=3B4ZnqJgx1DYJULgTteD6LG7HffRPuuLqiuij2cSYWDk  sig=3VRzvVZFjqw9TyYvCL8TUdbZu7t9pAmtfU6W7Q7v35gHAkknfFKo5fwqU8BocUtxCxPdcvRd3wMwY2XXbqz4yenE
+2026-10-15 10:48:09,394 INFO WATCH  KNICKS  mint=J54Gx975e7nBpFLGWyvWgCBe74eAAaRtdWnZQJkGpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:09,432 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:09,518 INFO NEW TOKEN  Trumpedo (Trumpedo)  mint=6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump  curve=F9mzP56setC2AkHU5De3gyL6JJ3XvwbadMdWzQaRRe7o  sig=2hmiZkmfyhqhbfUmUvdYCM7DRsRrHjAvgXQUHbWVBakWogniQvwxohDr9Q6GEaq6aSy6CoLDpyXHkJbSrxjoW9Jk
+2026-10-15 10:48:09,518 INFO WATCH  Trumpedo  mint=6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:09,643 INFO NEW TOKEN  sig=22yMhn1G1DEsn97f7RCynXttPpSUqpoPQZCw3u21nb21zKGvQroHhGji7MtsqftbfJ67JX1SATmsmdYTVNKokkXR  (could not decode metadata)
+2026-10-15 10:48:09,779 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:10,192 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:10,775 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:11,249 INFO CONFIRM  puddlefrog  buyers=51  buy_sol=30.28  mc=$6277  probe=0.20  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump
+2026-10-15 10:48:11,249 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:11,303 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:11,358 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:11,552 INFO WON  SYCAMORE  +0.5%  in=1.0000 SOL  out=0.9440 SOL  mint=368X4UbQxZXxqjyW4ZYnzJJ89FV4ann7raHbUANjpump  trade-event trailing-stop 0.5% (-17.0% from peak)
+2026-10-15 10:48:11,685 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:11,809 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:12,124 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:12,247 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:12,460 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:12,627 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:12,628 INFO DRY-RUN BUY  puddlefrog (APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:48:12,628 INFO BUY puddlefrog  18/600  invested=0.2000 SOL  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:48:12,973 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:13,183 INFO SL TO BREAKEVEN  puddlefrog  at +79.3%  floor=entry  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump
+2026-10-15 10:48:13,183 INFO TRAILING ON  puddlefrog  armed at +79.3%  peak=5.0131476752e-05  callback=10%  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump
+2026-10-15 10:48:13,734 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=9GZji37vJqoTz1AhVEn3vxNnczDxZekohN29tkfipump  curve=tsQrkoaw2ZCyLZQmHc61UuVVwMPRH1bG1NpkcXy4gsR  sig=xpcYRaGcTdRKKdqyAotFvYz5eGwtntnozehY6urrrGDCr7XJ3DB6uE5MsJsgxkPubcTh9CnTbcZxfsCK8NrqqDa
+2026-10-15 10:48:13,734 INFO WATCH  MNKY  mint=9GZji37vJqoTz1AhVEn3vxNnczDxZekohN29tkfipump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:13,785 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:14,091 INFO WON  puddlefrog  +101.2%  in=0.2000 SOL  out=0.3882 SOL  mint=APhTzUa1TeNN7s4fWvXh9cJUwKiENQQNXQcfw6ktpump  trade-event trailing-stop 101.2% (-31.0% from peak)
+2026-10-15 10:48:14,211 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:14,367 INFO SKIP CONFIRM  ify  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2  mint=ABYBQdM2VJRfxQoNgcJhgBJAvvuYDqXADKt84AXwpump
+2026-10-15 10:48:14,636 INFO SKIP CONFIRM  KNICKS  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2774  mint=J54Gx975e7nBpFLGWyvWgCBe74eAAaRtdWnZQJkGpump
+2026-10-15 10:48:14,636 INFO CONFIRM  Trumpedo  buyers=8  buy_sol=0.40  mc=$3188  probe=0.20  mint=6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump
+2026-10-15 10:48:14,636 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:14,750 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:14,908 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:15,091 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:15,345 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:15,402 INFO NEW TOKEN  BetOnBlack (BetOnBlak)  mint=2puVCatDgczGu5LDk6aTLTPFUto1WttjyrwvSY2qpump  curve=Gh4ECenaz9MqQNcNy73yymiGBsqnwHD2t8eyx5jyunGj  sig=2xR1kc8x1XoHJ3SGHjgaMgV2CAdtLjhiEEUhjZYSwHENP9WSKUPwt2B4iKF49gBUSwx9tf2Zo4dHkmmgC3PXpcTy
+2026-10-15 10:48:15,403 INFO WATCH  BetOnBlak  mint=2puVCatDgczGu5LDk6aTLTPFUto1WttjyrwvSY2qpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:15,445 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:15,654 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:15,764 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:15,768 INFO DRY-RUN BUY  Trumpedo (6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:48:15,768 INFO BUY Trumpedo  19/600  invested=0.2000 SOL  mint=6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:48:16,333 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:16,754 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:16,757 INFO SL TO BREAKEVEN  Trumpedo  at +10.3%  floor=entry  mint=6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump
+2026-10-15 10:48:17,159 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:17,525 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:17,937 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:18,353 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:18,707 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:18,747 INFO SKIP CONFIRM  MNKY  low-buy-sol 0.16 < 0.3  buyers=2  buy_sol=0.16  mc=$1809  mint=9GZji37vJqoTz1AhVEn3vxNnczDxZekohN29tkfipump
+2026-10-15 10:48:19,089 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:19,441 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:19,783 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:20,146 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:20,515 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:20,516 INFO SKIP CONFIRM  BetOnBlak  low-buy-sol 0.09 < 0.3  buyers=1  buy_sol=0.09  mc=$1334  mint=2puVCatDgczGu5LDk6aTLTPFUto1WttjyrwvSY2qpump
+2026-10-15 10:48:20,882 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:21,088 INFO NEW TOKEN  Reverse Engineer Anything (REA)  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump  curve=7c2idnHWgYh69xxpVdLp3Nz4mFgoPYUrP1L5DRf7uurT  sig=JQXtYHfygyZJovT29n37RChxb12bvrJmudWLynRGEuCHJFk88FUNJsNrkq9buidkTbp4DFQmdDPCb19qeJjL97T
+2026-10-15 10:48:21,088 INFO WATCH  REA  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:21,090 INFO NEW TOKEN  AURACOIN ($AURA)  mint=9SnDoHja4rTqw2tX4LRCksWCfSfSQDzLS2QQVmuQpump  curve=BKG9MpDkAKHk7xUCGyoYF5KZJehw9Vct8yG5N8e4MAZZ  sig=1qmHfWnHhbukD6wGyDTgf2437sfdcWJud7Cs9HKP6AGWz3ChsHhkMAFekmVzNRuZDtrFCRFtejvCvxh97V5CUdY
+2026-10-15 10:48:21,090 INFO WATCH  $AURA  mint=9SnDoHja4rTqw2tX4LRCksWCfSfSQDzLS2QQVmuQpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:21,297 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:21,539 INFO NEW TOKEN  The Black Serval (Serval)  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump  curve=5pciK27mKcHkJbxNmmQ2d6JaiZqZW1MhQUUbecUAxHW3  sig=58Ss3zyur7174ukkKc5ya2BLvVhmCTWvBdvfnRyZGZyF4bE68JrWfiTTh55Yf68jtZBpbuioi6LmsYtvQwcgeawF
+2026-10-15 10:48:21,539 INFO WATCH  Serval  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:21,643 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:21,680 INFO NEW TOKEN  Reverse Engineer Anything (REA)  mint=DHpNB7T4c3L29iR4MEGXTyFX8Dp2gEQHaMeFUtmu3Kex  curve=FUsEUbdedwyqUi9cbphyumJuTGFbXB37Q7ARMe1JwowL  sig=5sa1ktVYpLt2qasrz2EKbsdc3GiG6mRinWUWAM19jXqQByNiLKCmHeggo2cepERCYS8ZJfjFfs7GSqXBK64XwjpC
+2026-10-15 10:48:21,680 INFO WATCH  REA  mint=DHpNB7T4c3L29iR4MEGXTyFX8Dp2gEQHaMeFUtmu3Kex  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:21,917 INFO NEW TOKEN  sig=3MeX4BnZrCScuqCb6JnSS8m9rxBwjGfzZ82Ba6zuvkvLmyGwTP9FFGzjjVhQAvnX64gNY7wxmyu87yEqHmf3WwEK  (could not decode metadata)
+2026-10-15 10:48:21,989 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:22,173 INFO NEW TOKEN  sig=4nYi5HCEAp7HaMx77a4TaR1axFW6f4sCw3ZxfGB87HTYhBfFni1FfMQEGvVzdHQGLBpN8bcYNLyBdjxqcR7McoGw  (could not decode metadata)
+2026-10-15 10:48:22,402 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:22,523 INFO NEW TOKEN  sig=3JizmQxLPk8VgGtRswTnJcYT3i8bcAGieLDUkwSwaqm1mTNL8b7YWLdo4jFMaJebUcpj8SJ3cDMRHP9q4VHbvpGR  (could not decode metadata)
+2026-10-15 10:48:22,773 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:23,209 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:23,604 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:24,042 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:24,086 INFO NEW TOKEN  DEAD INTERNET ($DEAD)  mint=4Lt1cCaohHX1vut4ASicM2ZCVRPZHQPSuyBoKPa8pump  curve=63bswBng9RG6BjFJrHcULNheCEBPqDY13GGRrb5xpzHW  sig=66aQ3Mr3MmabZwFHTBvQ7TWHpvatgYkPvQLH7WyqrhSQyBppiE7WNKs7m8GtWr85zwupKc2ZtbfVZ3x5R2dLrVBu
+2026-10-15 10:48:24,086 INFO WATCH  $DEAD  mint=4Lt1cCaohHX1vut4ASicM2ZCVRPZHQPSuyBoKPa8pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:24,411 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:24,807 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:25,068 INFO NEW TOKEN  QUEEFINU (QUEEF)  mint=AR1VbwKtztwbUSp7aC64M3UG5AhpU23c7k2TJk8Lpump  curve=5ur5Q4gRf9jCdiYRBu9oSXKXqibv8AM9ec6x48kgdGVj  sig=4PDuzr1AQCJt3U22VhXSNQokV18wATSwtn3JFm9ctAVMWofX56PkfYU1Y84BJLMWwp6SEpYYpXNPSowwLkvEmP4t
+2026-10-15 10:48:25,068 INFO WATCH  QUEEF  mint=AR1VbwKtztwbUSp7aC64M3UG5AhpU23c7k2TJk8Lpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:25,168 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:25,341 INFO NEW TOKEN  sig=2bw5Y2DpQ4cKuK9oVxVaoy2Z8yDaMbn6T2ahZaLKb9MNF1nnvJuVTZGfM69LWzMbdK4SzBUY8WUAcKGkRszNUq8F  (could not decode metadata)
+2026-10-15 10:48:25,534 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:25,934 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:26,284 INFO CONFIRM  REA  buyers=26  buy_sol=23.77  mc=$8996  probe=0.20  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump
+2026-10-15 10:48:26,284 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:26,302 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:26,428 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:26,551 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:26,656 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:26,666 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:26,970 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,056 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,119 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,314 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,438 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,463 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,465 INFO DRY-RUN BUY  REA (5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:48:27,466 INFO BUY REA  20/600  invested=0.2000 SOL  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:48:27,466 INFO SKIP CONFIRM  $AURA  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2858  mint=9SnDoHja4rTqw2tX4LRCksWCfSfSQDzLS2QQVmuQpump
+2026-10-15 10:48:27,588 INFO SL TO BREAKEVEN  REA  at +232.3%  floor=entry  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump
+2026-10-15 10:48:27,588 INFO TRAILING ON  REA  armed at +232.3%  peak=9.2906959611e-05  callback=10%  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump
+2026-10-15 10:48:27,704 INFO CONFIRM  Serval  buyers=17  buy_sol=8.77  mc=$4048  probe=0.20  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump
+2026-10-15 10:48:27,704 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:27,814 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,821 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:27,953 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,065 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,220 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,306 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,421 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,568 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,625 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,688 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:28,689 INFO DRY-RUN BUY  Serval (4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:48:28,689 INFO BUY Serval  21/600  invested=0.2000 SOL  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:48:28,689 INFO SKIP CONFIRM  REA  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$41  mint=DHpNB7T4c3L29iR4MEGXTyFX8Dp2gEQHaMeFUtmu3Kex
+2026-10-15 10:48:29,014 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:29,267 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:29,452 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:29,565 INFO CONFIRM  $DEAD  buyers=1  buy_sol=0.44  mc=$9448  probe=0.20  mint=4Lt1cCaohHX1vut4ASicM2ZCVRPZHQPSuyBoKPa8pump
+2026-10-15 10:48:29,565 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:29,565 INFO Skip $DEAD (4Lt1cCaohHX1vut4ASicM2ZCVRPZHQPSuyBoKPa8pump): max open positions (4)
+2026-10-15 10:48:29,658 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:29,850 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:29,851 INFO SL TO BREAKEVEN  Serval  at +25.8%  floor=entry  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump
+2026-10-15 10:48:29,851 INFO TRAILING ON  Serval  armed at +25.8%  peak=3.5185253838e-05  callback=10%  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump
+2026-10-15 10:48:30,090 INFO CONFIRM  QUEEF  buyers=6  buy_sol=3.82  mc=$2913  probe=0.20  mint=AR1VbwKtztwbUSp7aC64M3UG5AhpU23c7k2TJk8Lpump
+2026-10-15 10:48:30,090 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:30,090 INFO Skip QUEEF (AR1VbwKtztwbUSp7aC64M3UG5AhpU23c7k2TJk8Lpump): max open positions (4)
+2026-10-15 10:48:30,448 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:30,737 INFO NEW TOKEN  Paperclip (PAPERCLIP)  mint=52NaH73ghE8v6DiZXD2oZYwpcYUv5fhX3ooqdkhopump  curve=7akfkKJDty5syfhGmtmZUny2zsdnTKDF82AQZbrodwB3  sig=5Knn3dSRtf87iU6ejz8PtSQE7WAnajcceYDYaPSaJywhfoHfjG7jJgDyxZqUKBAGLQowzL5BXFnRpq8qSoQPK2BG
+2026-10-15 10:48:30,737 INFO WATCH  PAPERCLIP  mint=52NaH73ghE8v6DiZXD2oZYwpcYUv5fhX3ooqdkhopump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:30,851 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:30,855 INFO WON  Serval  +16.4%  in=0.2000 SOL  out=0.2251 SOL  mint=4YMBNYnFAHAjuWw7EvHRjr6kYg2bZpzt9Jhay3DCpump  watchdog trailing-stop 16.4% (-16.4% from peak)
+2026-10-15 10:48:31,259 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:31,327 INFO SCALE-IN  REA  buyers=66  mc=$17912  add=0.80  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump
+2026-10-15 10:48:31,437 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:31,439 INFO ADD REA  +0.8000 SOL  total=1.0000 SOL  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump
+2026-10-15 10:48:31,439 INFO NEW TOKEN  sig=5DBaPa1HZ73mCyr44ZrxnM685UgrpaQYhbtrZEceXtVqShWGzoW6YjQvoyVUyDC2AZBDy3No2L2xybzCURyrSQi6  (could not decode metadata)
+2026-10-15 10:48:31,537 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:31,538 INFO WON  REA  +30.9%  in=1.0000 SOL  out=1.2320 SOL  mint=5fnw2BiYU8cpWrRC62kpoYJcxA9nvR1MKJaHhzkypump  watchdog trailing-stop 30.9% (-62.3% from peak)
+2026-10-15 10:48:31,994 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:32,399 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:32,766 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:33,118 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:33,505 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:33,860 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:34,257 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:34,652 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:35,008 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:35,402 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:35,750 INFO CONFIRM  PAPERCLIP  buyers=2  buy_sol=0.50  mc=$3144  probe=0.20  mint=52NaH73ghE8v6DiZXD2oZYwpcYUv5fhX3ooqdkhopump
+2026-10-15 10:48:35,750 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:48:35,765 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:35,909 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,064 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,134 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,221 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,535 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,542 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,662 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,858 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:36,952 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:37,053 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:37,057 INFO DRY-RUN BUY  PAPERCLIP (52NaH73ghE8v6DiZXD2oZYwpcYUv5fhX3ooqdkhopump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:48:37,059 INFO BUY PAPERCLIP  22/600  invested=0.2000 SOL  mint=52NaH73ghE8v6DiZXD2oZYwpcYUv5fhX3ooqdkhopump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:48:37,372 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:37,811 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:37,813 INFO SL TO BREAKEVEN  PAPERCLIP  at +6.7%  floor=entry  mint=52NaH73ghE8v6DiZXD2oZYwpcYUv5fhX3ooqdkhopump
+2026-10-15 10:48:38,161 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:38,521 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:38,884 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:39,283 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:39,644 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:40,024 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:40,399 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:40,818 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:41,237 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:41,651 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:41,904 INFO NEW TOKEN  sig=4vKc9VsDjadZ6RdXtJubrTCoXCBe5uW8vMWSXMTsg4Jk7rMWT4tjrSEPe6s6rEXBhyQe8u7MeVBWZtSYB3qSida8  (could not decode metadata)
+2026-10-15 10:48:42,055 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:42,469 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:42,826 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:43,248 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:43,610 INFO NEW TOKEN  sig=j11z9e9JPNafG8kQso3Mgh9HfdcPThShMpTnygcvqxvncvZs7bZFxZU2VNeDP6LSGxM2mHWvrcpBDzdCNX82G94  (could not decode metadata)
+2026-10-15 10:48:43,630 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:44,003 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:44,434 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:44,686 INFO NEW TOKEN  sig=Fju7AH3GUEhP6PUKHBcEEaahVxWjyxc3Po5LBerxcBcnkGjhsv4q7WivsAGq8gvwiWW3DWfQSHTrtLywYorw8EQ  (could not decode metadata)
+2026-10-15 10:48:44,866 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:45,314 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:45,737 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:46,146 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:46,577 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:46,769 INFO NEW TOKEN  x coin (x)  mint=Dwsj6KZKpM8FjFMX6pGADq4z9asUof6yqm4MuozLpump  curve=8YfQhdCMZhQV6zn51sa2styejRD9H8344EfB8SufoaWx  sig=3aCTWr7xNUYnN4Y2n19F7EdouLCRVhsNYV7swm7tEzxUEwNEPtRtbiGYuV2dZKWaX3iQckjFJoH1JEzotmKMGW81
+2026-10-15 10:48:46,769 INFO WATCH  x  mint=Dwsj6KZKpM8FjFMX6pGADq4z9asUof6yqm4MuozLpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:46,999 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:47,412 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:47,801 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:48,170 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:48,509 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:48,519 INFO NEW TOKEN  Robinhood Chain (HOOD)  mint=4HwUYnXUD93QAJqa5qvbrAgiTUhbBw3jvdQjyghcpump  curve=6hHQcJeihppZqqsVdvR4SyK9y5MW6GG7qRxMHCNZSdWf  sig=2dT7s1F5FPpMS5pra6w5fPVpSMQb3R8q86u7Fc574GYVM5PH4pWFcHS8p81vUzR3U1JfTYozp99cHL5ttg6Sfs1V
+2026-10-15 10:48:48,519 INFO WATCH  HOOD  mint=4HwUYnXUD93QAJqa5qvbrAgiTUhbBw3jvdQjyghcpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:48,902 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:48,966 INFO NEW TOKEN  sig=3LMDN1r5JnPq1yT9vHuvRETexnvc8RjB5gnF69eqx44FVzENbpagPGfhgWcmD8BjxLbV8CA42pXJJXw6hhgq2p52  (could not decode metadata)
+2026-10-15 10:48:49,322 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:49,687 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:50,098 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:50,513 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:50,876 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:51,225 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:51,631 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:51,918 INFO SKIP CONFIRM  x  low-buy-sol 0.06 < 0.3  buyers=1  buy_sol=0.06  mc=$1992  mint=Dwsj6KZKpM8FjFMX6pGADq4z9asUof6yqm4MuozLpump
+2026-10-15 10:48:52,027 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:52,390 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:52,774 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:53,142 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:53,534 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:53,718 INFO SKIP CONFIRM  HOOD  low-buy-sol 0.05 < 0.3  buyers=1  buy_sol=0.05  mc=$4533  mint=4HwUYnXUD93QAJqa5qvbrAgiTUhbBw3jvdQjyghcpump
+2026-10-15 10:48:53,907 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:54,272 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:54,425 INFO NEW TOKEN  POW  (POW )  mint=GMeWSbfghoQHzReGqu1374A33RtTGNarBf4fbA6jpump  curve=H7ZzgDkV9x1NBNnTvLQFygShtoifph2xY5Rmpgt8VsZY  sig=4FzXmsfAVhptT1stkZ8ct8FAH1QCFR7ZMDz2RuQ3LF19i5eUFF5NjtH1Yynv5ha9CCLF6Hzu42oiYTT1LMSTs8Vf
+2026-10-15 10:48:54,425 INFO WATCH  POW   mint=GMeWSbfghoQHzReGqu1374A33RtTGNarBf4fbA6jpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:54,646 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:55,068 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:55,095 INFO NEW TOKEN  sig=2thbuNgrjqsyX7ajGnQUWcLhK5rUvBVCANnQCiPL17UdepJyDD3yS3AYQBUJ3ddRLZPznTLrF9jyYCrAfncVxp9Y  (could not decode metadata)
+2026-10-15 10:48:55,489 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:55,865 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:56,250 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:56,596 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:57,019 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:57,390 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:57,740 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:57,937 INFO NEW TOKEN  sig=3C8eNZd4kk5tsa78N4a4fXDysDBbzYWtJaWtxSEbKWER5xTvLz56kMBvKrnqQSRSngBKHM8qP3DuQZsPCPGX6qvy  (could not decode metadata)
+2026-10-15 10:48:58,101 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:58,515 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:58,886 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:59,027 INFO NEW TOKEN  $HAMMY ($HAMMY)  mint=3pJZx86ZwkMBULmhbArG3W2ujtt3HyzGdQAxQTijpump  curve=3gxuC8CHHvqmUhP3QhQU7gj7oU5sWcLscjSBGcvggykS  sig=4UBvPsZKqZsSrZ2ghaKFyDwz8ZqGCf837GejYf4J1wnCJQXQZAiecYo96EJgRm1XiqcKmjUSwffD8ASguuHJZ1z7
+2026-10-15 10:48:59,028 INFO WATCH  $HAMMY  mint=3pJZx86ZwkMBULmhbArG3W2ujtt3HyzGdQAxQTijpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:48:59,248 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:48:59,503 INFO SKIP CONFIRM  POW   low-buy-sol 0.02 < 0.3  buyers=1  buy_sol=0.02  mc=$2914  mint=GMeWSbfghoQHzReGqu1374A33RtTGNarBf4fbA6jpump
+2026-10-15 10:48:59,606 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:00,003 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:00,395 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:00,756 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:01,169 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:01,524 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:01,961 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:02,059 INFO NEW TOKEN  Red Pepe (RpEpE)  mint=8WZrhgu9WmEgBYXMqmYF93QhJ9MYDoejDdcrDqqApump  curve=5nKGHN2p77ZqLU5HhZegjg7qU94StH9MUeuFHhE86u32  sig=2aa6GZACdutkUEjDGTbkeZ81RRkzSuySTQESWKypf2EEALNzcQmb6XunArVScoQBrKs5HmcRX4SnjQQj7ybPr4iB
+2026-10-15 10:49:02,059 INFO WATCH  RpEpE  mint=8WZrhgu9WmEgBYXMqmYF93QhJ9MYDoejDdcrDqqApump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:02,121 INFO NEW TOKEN  Doomed Yeti (DOOYET)  mint=6VEFGDyLK55UxNxv6xuCKVD7qeG5eVFTwNL3KbmCpump  curve=H3WqQ1kX2c2JsEn9FkqQRACp4QSBxCNenaDAwxzuaJfe  sig=2f5yyJTdYrkaaUTPpSwpFwLY4PEjn2True3oyxaN4PvAxkK6ZbWZEU7yuQnTU13KD1gufJ3YcKYBVbTNLbh7H1YV
+2026-10-15 10:49:02,121 INFO WATCH  DOOYET  mint=6VEFGDyLK55UxNxv6xuCKVD7qeG5eVFTwNL3KbmCpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:02,328 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:02,742 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:03,027 INFO NEW TOKEN  sig=5iVE5BR9nBy5XxTe2Qrr4FR7edbyxaRnsb6Mad6MMWDRD6pEb8dJ5LS4zUb8HPZBo57Ux7e31TjoHZtZR9hSdwUh  (could not decode metadata)
+2026-10-15 10:49:03,167 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:03,584 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:03,746 INFO NEW TOKEN  Reverse Engineer Anything (REA)  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump  curve=DMAuiAWCfXtugkHxpMhgHhAErVQ1swJ78DXudPEtXsMx  sig=4tGX8XMxvHC1TZkBLJSsZiGwDbCk6JyrW5pwS9aymTAW1fdxG6RMRtg13ySRaqFnmyZi12EwQdVgWBopp2omFhuu
+2026-10-15 10:49:03,746 INFO WATCH  REA  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:03,906 INFO NEW TOKEN  sig=5eyfbRzyg1odzvpiWn8KBjzxZrK4nurbcrXyJv7CNFU7LqkD6VCWH2taAiM9bxMki8LuyLz1fydksCUEbpzTMDKX  (could not decode metadata)
+2026-10-15 10:49:04,003 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:04,246 INFO SKIP CONFIRM  $HAMMY  low-buy-sol 0.03 < 0.3  buyers=1  buy_sol=0.03  mc=$1794  mint=3pJZx86ZwkMBULmhbArG3W2ujtt3HyzGdQAxQTijpump
+2026-10-15 10:49:04,356 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:04,770 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:05,140 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:05,512 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:05,904 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:06,311 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:06,678 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:07,097 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:07,254 INFO SKIP CONFIRM  RpEpE  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2854  mint=8WZrhgu9WmEgBYXMqmYF93QhJ9MYDoejDdcrDqqApump
+2026-10-15 10:49:07,254 INFO SKIP CONFIRM  DOOYET  low-buy-sol 0.02 < 0.3  buyers=1  buy_sol=0.02  mc=$2335  mint=6VEFGDyLK55UxNxv6xuCKVD7qeG5eVFTwNL3KbmCpump
+2026-10-15 10:49:07,440 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:07,858 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:08,236 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:08,586 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:08,752 INFO CONFIRM  REA  buyers=40  buy_sol=32.08  mc=$5766  probe=0.20  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump
+2026-10-15 10:49:08,752 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:49:08,864 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:08,980 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,040 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,185 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,366 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,495 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,657 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,770 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,803 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,910 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:09,911 INFO DRY-RUN BUY  REA (64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:49:09,911 INFO BUY REA  23/600  invested=0.2000 SOL  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:49:10,187 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:10,401 INFO SL TO BREAKEVEN  REA  at +95.4%  floor=entry  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump
+2026-10-15 10:49:10,401 INFO TRAILING ON  REA  armed at +95.4%  peak=5.4617997394e-05  callback=10%  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump
+2026-10-15 10:49:10,540 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:10,835 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:10,959 INFO WON  REA  +73.5%  in=0.2000 SOL  out=0.3350 SOL  mint=64avH2itJgCszr8qB59SZDZpqHU79Y9FKEKB2mr3pump  trade-event trailing-stop 73.5% (-11.8% from peak)
+2026-10-15 10:49:11,020 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:11,337 INFO NEW TOKEN  Reverse Engineer Anything (REA)  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump  curve=G7bsgpr8mWbLueWzC7ZzqLncynK19xk56iDbxnH4nXwv  sig=3socFMzanh5wScavWtAeATcf5fEvLRZHtfJZAxSNoxpErDNGAYS6YsSRdk6LGJ7NkXjUhPaDmA5e2JJexwGqknMG
+2026-10-15 10:49:11,337 INFO WATCH  REA  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:11,388 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:11,525 INFO NEW TOKEN  sig=4VeoTH1jxSGggmtgt1mfkJxUn7MksvBNBFtB6cg85Bk5ZBnWykCKqqUu4YmNbYp1wvfYMpSeMY1A5worvdZDireL  (could not decode metadata)
+2026-10-15 10:49:11,754 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:12,015 INFO NEW TOKEN  kms (kms)  mint=G3vUFXBawA2zdfDjDjXy7yREfDSoDkRKyHmkH2F7pump  curve=4kA4RRSHyefqoT8TGZieXB4Zg4sZMm7SGnN7FAHks9h7  sig=5GND6zSUhNLViwMo6MzxCubygxoZYSNXw2kg5oVdyagfotb6cciZRL73tY3kiMPWcGH7PZzUpTM5yfDBxkj925dc
+2026-10-15 10:49:12,015 INFO WATCH  kms  mint=G3vUFXBawA2zdfDjDjXy7yREfDSoDkRKyHmkH2F7pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:12,154 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:12,330 INFO NEW TOKEN  Reverse Engineer Anything (REA)  mint=DaNdyqFQgcq9DBr5S7Q4yZyEbgDcRq2dGQJ2aSaEWY3t  curve=Bbdix7oUHqtTczGemuDsGv9Ca3AUotxdGF9qtx7Vqeea  sig=2kV4Cs8oJsp1pgeMKT4fCr6FbGDGCuW7CcYWAtRg69peDh5wsWpt47uD2G4wRBw12fqJUmUCKExNzhNLPjx46qsN
+2026-10-15 10:49:12,330 INFO WATCH  REA  mint=DaNdyqFQgcq9DBr5S7Q4yZyEbgDcRq2dGQJ2aSaEWY3t  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:12,543 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:12,837 INFO NEW TOKEN  sig=2KsvcGHkRfFuhSDikKT6s47F4VvZc3sSxYYyEUUSAAoccPEK2r2JgF2KwU5VC4HabzgBDuzWdjhFYZKqmM5RVdf2  (could not decode metadata)
+2026-10-15 10:49:12,904 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:13,264 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:13,578 INFO NEW TOKEN  Robinhood Chain (HOOD)  mint=GmUJqaqMzU6XneUDiJ2Lb1m7eY68Zhg5CVXsvxf8pump  curve=AUceMkuqKHBs71XoXRWrFMifd6aHKJGMprnTpv9UEHGX  sig=257scU2MP28DvbYCRMqA1SBECxcJwgpLvNd6Mx8JD4X5y56GF3Wdm1mScWeVNHdmJyy1L6X3oDgEdZZ9SncEJKdz
+2026-10-15 10:49:13,578 INFO WATCH  HOOD  mint=GmUJqaqMzU6XneUDiJ2Lb1m7eY68Zhg5CVXsvxf8pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:13,653 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:14,061 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:14,433 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:14,450 INFO NEW TOKEN  sig=5K4rjp4K7yvtBnbKyqeaVPGB4JPGFXvmxxzP5sFPfnb4MFW4rnUXWzGF2wj5MdCYbPK9Q9my1apnKYj2LKZTKRhh  (could not decode metadata)
+2026-10-15 10:49:14,778 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:15,174 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:15,602 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:15,961 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:16,300 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:16,452 INFO CONFIRM  REA  buyers=10  buy_sol=15.78  mc=$5660  probe=0.20  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump
+2026-10-15 10:49:16,453 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:49:16,607 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:16,701 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:16,767 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:16,958 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,054 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,191 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,362 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,421 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,516 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,621 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,624 INFO DRY-RUN BUY  REA (hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:49:17,625 INFO BUY REA  24/600  invested=0.2000 SOL  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:49:17,626 INFO SL TO BREAKEVEN  REA  at +133.1%  floor=entry  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump
+2026-10-15 10:49:17,626 INFO TRAILING ON  REA  armed at +133.1%  peak=6.5163955806e-05  callback=10%  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump
+2026-10-15 10:49:17,813 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:17,886 INFO SKIP CONFIRM  kms  low-buy-sol 0.28 < 0.3  buyers=2  buy_sol=0.28  mc=$2325  mint=G3vUFXBawA2zdfDjDjXy7yREfDSoDkRKyHmkH2F7pump
+2026-10-15 10:49:17,886 INFO SKIP CONFIRM  REA  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$41  mint=DaNdyqFQgcq9DBr5S7Q4yZyEbgDcRq2dGQJ2aSaEWY3t
+2026-10-15 10:49:18,053 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:18,059 INFO WON  REA  +105.6%  in=0.2000 SOL  out=0.3966 SOL  mint=hZgMNtv8LsWFCAYcCmhDegpA9qzReqQ8u8edmmvpump  watchdog trailing-stop 105.6% (-13.2% from peak)
+2026-10-15 10:49:18,247 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:18,619 INFO SKIP CONFIRM  HOOD  low-buy-sol 0.07 < 0.3  buyers=1  buy_sol=0.07  mc=$4237  mint=GmUJqaqMzU6XneUDiJ2Lb1m7eY68Zhg5CVXsvxf8pump
+2026-10-15 10:49:18,662 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:19,026 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:19,397 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:19,808 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:20,166 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:20,509 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:20,790 INFO NEW TOKEN  sig=2UexiPo11HjnaB77DtZHXhcPduUhT3iW9aFsSmdkfGYKG6V14ePokKSDH4Ev6pMVEyfofEtNikPDDj5JmmzNESC7  (could not decode metadata)
+2026-10-15 10:49:20,846 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:21,254 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:21,605 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:21,975 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:22,349 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:22,638 INFO NEW TOKEN  GainBro (GNB)  mint=FiwgW91YiUeyz7ukLrMk5wZTpsfso5yFGDvRPmJEpump  curve=4zRiWDmnjxfk8wokXrwBHuCKV4phjuYKSER5azdKjDvQ  sig=vgpHH4VNTFJjAu25ugCjAL853jfTsEBnctfnNLA5UXvvavYuZjSQNFt2A9QSw2GtRca5edMYk7YpLkfRtKKvFWN
+2026-10-15 10:49:22,638 INFO WATCH  GNB  mint=FiwgW91YiUeyz7ukLrMk5wZTpsfso5yFGDvRPmJEpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:22,718 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:23,062 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:23,422 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:23,771 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:23,927 INFO NEW TOKEN  base44 (BAS$44)  mint=65JJ3ZaBYUQDyk9EQNE4rJxpkwsfgfarVTeZNQT4pump  curve=2L15ACRka88C743HMN2v5i8S9N8CZj11RkhViQQeRBDY  sig=4JjdtzEUZPq12YV3i3XWxHbQNoAoRrcEbrg3yxv8N1k7YVwvqgUCLm5pacnXBYSsHC16X5ruVKocMxqz4cVKXB5p
+2026-10-15 10:49:23,927 INFO WATCH  BAS$44  mint=65JJ3ZaBYUQDyk9EQNE4rJxpkwsfgfarVTeZNQT4pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:24,137 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:24,507 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:24,846 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:25,219 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:25,583 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:25,789 INFO NEW TOKEN  Red Pepe (RpEpE)  mint=GceWSqijKgwan1Sz1GAr9X4fP9xS2XRXsDHQADFFpump  curve=EgSMX78qTgYHLA6198Jwtg491UVtTQxaDPiCHGn7v9nr  sig=2gZCJA1HyLiRyTFnjb5B4iWQzK9qBkscmDxcayTERheF3tTuLpDUQ6B4moy1XjHZrnBYxwoDvzF1LZoRnoaMcsCf
+2026-10-15 10:49:25,789 INFO WATCH  RpEpE  mint=GceWSqijKgwan1Sz1GAr9X4fP9xS2XRXsDHQADFFpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:25,960 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:26,369 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:26,725 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:27,110 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:27,521 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:27,647 INFO SKIP CONFIRM  GNB  low-buy-sol 0.13 < 0.3  buyers=1  buy_sol=0.13  mc=$3478  mint=FiwgW91YiUeyz7ukLrMk5wZTpsfso5yFGDvRPmJEpump
+2026-10-15 10:49:27,897 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:28,167 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=DTSFrSA7C9EoGqf86DnrkeBmya37VjkM93Qjtspfpump  curve=CMCqnZk3BY2W3QqMYpgac8rWsbDvkVXWNmem981tQmB4  sig=3uRXdZzDuXGzhgzhYEcro6Whqjs4up3TAUBcawzwhC2Ho8ErQu1bxuRhJMVfRErN46xyXMDyBGiY9ZGZkkGJBwF4
+2026-10-15 10:49:28,167 INFO WATCH  MNKY  mint=DTSFrSA7C9EoGqf86DnrkeBmya37VjkM93Qjtspfpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:28,306 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:28,680 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:29,038 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:29,078 INFO NEW TOKEN  Without them (Separate )  mint=BcVvUAexuCtMZNpAf8qHqyrKoHJ7KjhCZeGKcn8ipump  curve=9e7HevbkRk2ji7yB2NjPzTC44WQNZ6m32NsQ1LTz5tyE  sig=49hhV6jNNqm8ZdpFed4Zo5gmNUJZbYsScMtRrNCdhP2pVK5ckTYC6ifcmLzttXriv42rG8BjNEpFoWe94HE6BrjS
+2026-10-15 10:49:29,078 INFO WATCH  Separate   mint=BcVvUAexuCtMZNpAf8qHqyrKoHJ7KjhCZeGKcn8ipump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:29,420 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:29,524 INFO SKIP CONFIRM  BAS$44  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=65JJ3ZaBYUQDyk9EQNE4rJxpkwsfgfarVTeZNQT4pump
+2026-10-15 10:49:29,766 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:30,096 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:30,185 INFO NEW TOKEN  holder coin (holder )  mint=FPfPoyrtUKqKdf5LrvhukHBwT7o1aJmJrKkr8RQqpump  curve=695eXGK6yhwFY7a5FWDzERjhRuPPDmnkMi3rYiWfpR8g  sig=2j52yA3ksi2jMSgBfZDMKkcBF9fsgrcdHLyw1FiqtLMUxAnHNHUrjFMNzGtNv7JxdopaePzzARY6DN6zEwCWVwQb
+2026-10-15 10:49:30,185 INFO WATCH  holder   mint=FPfPoyrtUKqKdf5LrvhukHBwT7o1aJmJrKkr8RQqpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:30,472 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:30,880 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:31,039 INFO SKIP CONFIRM  RpEpE  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2707  mint=GceWSqijKgwan1Sz1GAr9X4fP9xS2XRXsDHQADFFpump
+2026-10-15 10:49:31,239 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:31,537 INFO NEW TOKEN  Player One (P1)  mint=4eSMsZALHAwMx8K5tHvfsaA7oCSQxk7w74SDSaaMMM8k  curve=7fgRSGg7ectZ9zAyhTWftcndWKcGiSUX82QRMQhqDi1S  sig=5FBLwkbm5TMuSFfjzFBHAZnPMdMYcuuQ1X5U5aFHAoV9dRxP2iYSHLHLuVVHSNgWoTP6ndHV9pVuWxQZSuhjS3pN
+2026-10-15 10:49:31,537 INFO WATCH  P1  mint=4eSMsZALHAwMx8K5tHvfsaA7oCSQxk7w74SDSaaMMM8k  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:31,606 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:32,002 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:32,397 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:32,755 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:33,148 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:33,276 INFO SKIP CONFIRM  MNKY  low-buy-sol 0.10 < 0.3  buyers=1  buy_sol=0.10  mc=$2542  mint=DTSFrSA7C9EoGqf86DnrkeBmya37VjkM93Qjtspfpump
+2026-10-15 10:49:33,561 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:33,938 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:34,283 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:34,284 INFO SKIP CONFIRM  Separate   low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=BcVvUAexuCtMZNpAf8qHqyrKoHJ7KjhCZeGKcn8ipump
+2026-10-15 10:49:34,633 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:35,014 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:35,286 INFO SKIP CONFIRM  holder   low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=FPfPoyrtUKqKdf5LrvhukHBwT7o1aJmJrKkr8RQqpump
+2026-10-15 10:49:35,392 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:35,764 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:36,190 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:36,622 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:36,778 INFO SKIP CONFIRM  P1  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$1125  mint=4eSMsZALHAwMx8K5tHvfsaA7oCSQxk7w74SDSaaMMM8k
+2026-10-15 10:49:36,978 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:37,353 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:37,706 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:38,073 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:38,581 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:38,950 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:39,317 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:39,693 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:39,771 INFO NEW TOKEN  The Hidden Button (BUTTON)  mint=Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump  curve=GD35TF5wFDKw5jCK9QAyysFfqby5TtHGXPKofsHzn3fa  sig=4Wjwr5PPMv5EoAx37qY7Gy7dQUgt2a1YRBGJGMb9iaZTstZvqS4twdbBviKChjPRB9PMF2LjeYLdmyWASdrwa1Fv
+2026-10-15 10:49:39,771 INFO WATCH  BUTTON  mint=Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:40,064 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:40,460 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:40,828 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:41,189 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:41,582 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:41,985 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:42,350 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:42,722 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:43,125 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:43,214 INFO NEW TOKEN  Detective Beans (Detective )  mint=GPxjBPBEdwctNLZ6tJxyUFUcKGbDdkAoG2Qov8UNpump  curve=2SdJQTLrW5A2Y4WuaUymrfcBu8Mm6JAYjKWeTXZRNoZB  sig=2pqvgAbfeTwXifSjExLDsAaiosTYfqhLgujukjQ3DZCxWvaMVsvb9iG6Z9vSYdFSHCt9LozBtDah27PiC8HgvQuB
+2026-10-15 10:49:43,214 INFO WATCH  Detective   mint=GPxjBPBEdwctNLZ6tJxyUFUcKGbDdkAoG2Qov8UNpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:43,256 INFO NEW TOKEN  BAJI THE PRODUCER (BAJI)  mint=A95p6zD8iiC2sizmPap5QEkxHEeGVWzrjjXXo95ipump  curve=9kTH2FwD7dqzznvw2Cv1dCRdnWX4tY8xuHCfZkJpG6qt  sig=MEQavhaz5UhJ5CxsUXmq2HWtEbJvdgBco7X5rYQwcvk1Cu5EcSbQU4qkoMjW628vBw4zQvvSQRnLiJFJv7fYajj
+2026-10-15 10:49:43,256 INFO WATCH  BAJI  mint=A95p6zD8iiC2sizmPap5QEkxHEeGVWzrjjXXo95ipump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:43,261 INFO NEW TOKEN  Quantuneum (QNT)  mint=HFkAYgVXJeaGJagXqpGMPzztjpJRasxxynRtQxJpump  curve=3MoKuZWm7ofzAYnsadbbQX477cShtYsbs39kCPKCGKot  sig=5CNpHHAxA8ZmfV22xL2oTujmshsrJWJ572JGQGTSTEiLQRbFW6C6ip14BL9y3AN3QYGSkzjw8xJWpBiUUwk2SPJx
+2026-10-15 10:49:43,261 INFO WATCH  QNT  mint=HFkAYgVXJeaGJagXqpGMPzztjpJRasxxynRtQxJpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:43,533 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:43,710 INFO NEW TOKEN  DICE (DICE)  mint=5SjWRMwrwnT2mqwLr195UMJmirtmgNQytCUydnnZpump  curve=6TczmNeZP7sRotvRFn3kiQZaz6ckfMXiRaCtddqoUeh  sig=63LoivjTs6eX7FZV1WQVZQ8AoGXGYn6g3f254SXvp1iVaEguC2nApn5JsyXfK2ieLLpjfyXR7Rt3RcycKvX7585k
+2026-10-15 10:49:43,710 INFO WATCH  DICE  mint=5SjWRMwrwnT2mqwLr195UMJmirtmgNQytCUydnnZpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:43,913 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:44,275 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:44,701 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:44,881 INFO CONFIRM  BUTTON  buyers=2  buy_sol=0.58  mc=$3011  probe=0.20  mint=Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump
+2026-10-15 10:49:44,881 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:49:44,984 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,080 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,156 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,304 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,448 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,614 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,763 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,814 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,881 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,988 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:45,990 INFO DRY-RUN BUY  BUTTON (Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:49:45,991 INFO BUY BUTTON  25/600  invested=0.2000 SOL  mint=Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:49:46,190 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:46,585 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:46,588 INFO SL TO BREAKEVEN  BUTTON  at +5.6%  floor=entry  mint=Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump
+2026-10-15 10:49:46,698 INFO NEW TOKEN  sig=E1EajH62EYne3NQTCoS4ZHFubzEB6GXDf1qmBRgG1gNyx4oSCbNGX4LquYbyBVF7DC6mXLuLEwdLasdTsQ11Cxf  (could not decode metadata)
+2026-10-15 10:49:46,937 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:47,296 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:47,317 INFO NEW TOKEN  sig=2DfR4G2r22mostko1cis9zrR8T2ctLr2jbzfSD8ogghstfNF28gPRiqXT95htMXHwR2Le9L1YgPsHte5goXNPMCz  (could not decode metadata)
+2026-10-15 10:49:47,664 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:47,820 INFO TRAILING ON  Trumpedo  armed at +17.8%  peak=3.2943678541e-05  callback=10%  mint=6E6K4FupmYBNcLbUYhxWiDFkUFs8wdQpMHUQ5cd8pump
+2026-10-15 10:49:47,975 INFO NEW TOKEN  sig=2N1ZAamC5wKpxXwH3cE5dah6bHhXjiCb9WzdK37jEhQb3RqmXZHLopB6hK7eEHDPsHkSwxJzXzPCsr4jZqTQFn8x  (could not decode metadata)
+2026-10-15 10:49:48,018 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:48,245 INFO SKIP CONFIRM  Detective   low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=GPxjBPBEdwctNLZ6tJxyUFUcKGbDdkAoG2Qov8UNpump
+2026-10-15 10:49:48,282 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:48,504 INFO CONFIRM  BAJI  buyers=8  buy_sol=3.89  mc=$3432  probe=0.20  mint=A95p6zD8iiC2sizmPap5QEkxHEeGVWzrjjXXo95ipump
+2026-10-15 10:49:48,504 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:49:48,504 INFO Skip BAJI (A95p6zD8iiC2sizmPap5QEkxHEeGVWzrjjXXo95ipump): max open positions (4)
+2026-10-15 10:49:48,504 INFO CONFIRM  QNT  buyers=2  buy_sol=2.27  mc=$3089  probe=0.20  mint=HFkAYgVXJeaGJagXqpGMPzztjpJRasxxynRtQxJpump
+2026-10-15 10:49:48,504 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:49:48,504 INFO Skip QNT (HFkAYgVXJeaGJagXqpGMPzztjpJRasxxynRtQxJpump): max open positions (4)
+2026-10-15 10:49:48,526 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:48,765 INFO SKIP CONFIRM  DICE  low-buy-sol 0.03 < 0.3  buyers=1  buy_sol=0.03  mc=$3215  mint=5SjWRMwrwnT2mqwLr195UMJmirtmgNQytCUydnnZpump
+2026-10-15 10:49:48,782 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:49,001 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:49,188 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:49,450 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:49,665 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:49,867 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:50,102 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:50,305 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:50,529 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:50,576 INFO NEW TOKEN  sig=NsUhLFtYpF3dcssvq6oAXWkJVsZvQRS5Ktmrrt51dQs91jsxMH1GfuShA97fwmT4drs5UjYBJ1W74A2sE4bHgbQ  (could not decode metadata)
+2026-10-15 10:49:50,727 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:50,934 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:51,170 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:51,367 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:51,577 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:51,766 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:51,951 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:52,005 INFO NEW TOKEN  sig=5s6zxsee2M64Xc4Q5NvFhAMVA1Ku3LwWUN1JwEfzqcBbkkwhsjJYdTaZW2cQD4VQtNURDupxt7bYa7H1DRpAJogU  (could not decode metadata)
+2026-10-15 10:49:52,132 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:52,329 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:52,529 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:52,656 INFO NEW TOKEN  fomo (fomo)  mint=EhSpeadBFvHDMNpcNdLKyPEkLMnNsL6Sy19CoYXrpump  curve=4h4kNe5XRK9gzLGUfBkoNNGGzuWPHkmjtshPsR75menR  sig=5omTf4AxAj8Bo5837WS4uWHtCwTP8LbSoU5JU6SGXNy8Bjp684jpRKrZLLWrznEoTSJ9fqJziooGF5DoKhGr3FFi
+2026-10-15 10:49:52,656 INFO WATCH  fomo  mint=EhSpeadBFvHDMNpcNdLKyPEkLMnNsL6Sy19CoYXrpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:52,724 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:52,919 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:53,113 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:53,309 INFO NEW TOKEN  DEAD INTERNET ($DEAD)  mint=coa9JbtN2ba5GSCXE6MeePXUurQrWYSkS6RmQN1pump  curve=GU35zBTN2gc4vibYaV1sesskx6e85VuLgWeQttFp6qxw  sig=2bdwwYuQuMfR2yYdapz6dpvv8NM9iMFzZKqEsKsZUdG5ieD4HZ1dpTh8MaRu8cNNGgpdjBrchPVZ5oDu1GEjtgcc
+2026-10-15 10:49:53,309 INFO WATCH  $DEAD  mint=coa9JbtN2ba5GSCXE6MeePXUurQrWYSkS6RmQN1pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:53,311 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:53,567 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:53,752 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:53,938 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:54,140 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:54,330 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:54,523 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:54,725 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:54,962 INFO NEW TOKEN  sig=2ffpjyotwUArhh3cBoUKsj165m28ByBig4GK97iyyarTxDBZWVQWwvBSjgRGTAnKhZ693Bebr1yzc5zRr435awed  (could not decode metadata)
+2026-10-15 10:49:55,106 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:55,248 INFO NEW TOKEN  sig=2FqYnrBnJanq8e22CVm3wycax2rwVToJEfHZCZyssdkzXS1v3QEmR6Vsc1pdsfv8xAYjTseMi5t6vNXZgc1GkQbm  (could not decode metadata)
+2026-10-15 10:49:55,308 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:55,557 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:55,744 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:55,994 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:56,196 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:56,233 INFO NEW TOKEN  MONKEY IN THE MACHINE (MNKY)  mint=3vpYrppLCWX2rJaa97LFG4wPNzXk8ubphUJTsM3Npump  curve=6DVy9fQbrvcfNpifpJvH6bv3e93sN6Tf6oYRus3vYixa  sig=wX5gFCRrKzfMhFrncF1bqbKwrHAKu5Jq7DaDUmaGeKLRqgT8ansgmeogfvYc7t1A4q9NXy54BHVC3jkmP1WbjeR
+2026-10-15 10:49:56,233 INFO WATCH  MNKY  mint=3vpYrppLCWX2rJaa97LFG4wPNzXk8ubphUJTsM3Npump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:49:56,383 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:56,575 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:56,770 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:56,985 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:57,215 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:57,445 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:57,694 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:57,876 INFO SKIP CONFIRM  fomo  low-buy-sol 0.02 < 0.3  buyers=1  buy_sol=0.02  mc=$2867  mint=EhSpeadBFvHDMNpcNdLKyPEkLMnNsL6Sy19CoYXrpump
+2026-10-15 10:49:57,904 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:58,085 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:58,365 INFO SKIP CONFIRM  $DEAD  low-buy-sol 0.04 < 0.3  buyers=1  buy_sol=0.04  mc=$2021  mint=coa9JbtN2ba5GSCXE6MeePXUurQrWYSkS6RmQN1pump
+2026-10-15 10:49:58,500 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:58,703 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:58,911 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:58,989 INFO NEW TOKEN  sig=2JtDTo5Zd2cGVneDQE2jWwSLKS5Vsz55vMhjHhQU2ojhLn96dumwuRShc7dxYiujjVqXnhyNvJrLEBMsxRwhzWi5  (could not decode metadata)
+2026-10-15 10:49:59,164 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:59,391 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:59,650 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:49:59,838 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:00,042 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:00,280 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:00,505 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:00,713 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:00,908 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:01,137 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:01,331 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:01,374 INFO CONFIRM  MNKY  buyers=1  buy_sol=0.79  mc=$6532  probe=0.20  mint=3vpYrppLCWX2rJaa97LFG4wPNzXk8ubphUJTsM3Npump
+2026-10-15 10:50:01,374 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:50:01,374 INFO Skip MNKY (3vpYrppLCWX2rJaa97LFG4wPNzXk8ubphUJTsM3Npump): max open positions (4)
+2026-10-15 10:50:01,573 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:01,678 INFO NEW TOKEN  sig=32r6HjbCuPeQxV4A8DWzPXCbVJ7DbY1XPXrxFbs3RQt4sH4zTriCx6zAWXL4QdNhZM7Xy9Hjz6J6Mj2GGe3Vs31r  (could not decode metadata)
+2026-10-15 10:50:01,762 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:01,966 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:02,159 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:02,419 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:02,680 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:02,882 INFO NEW TOKEN  POW  (POW )  mint=DaTQTHCsQ4FSS4yR1HXgwQYvidkLKTMtuoXypVs3pump  curve=EBCuA2RcQAwnyM1JAwjPqjJ1Ca7rayjRYw2wuARTH2rm  sig=3RjVh93MbgAR97WsZpZQktpk7sqLfMGkkuemCKpWYUf8DvTfXXShuz8z5YSEfNEtQy7azyZC4RXjb9ydtBVGFDHS
+2026-10-15 10:50:02,882 INFO WATCH  POW   mint=DaTQTHCsQ4FSS4yR1HXgwQYvidkLKTMtuoXypVs3pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:02,928 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:03,158 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:03,386 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:03,596 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:04,101 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:04,352 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:04,582 INFO NEW TOKEN  DICE (DICE)  mint=6BcsvPxQNLzBgHG12WnrFQ9b78DRt1s8boE9pTkppump  curve=GyDVbggmQsqKwkqvDQCTjiDjdkRhJHikuv9tmFoUyA5u  sig=39y4JR7MVDMTg9f4ebN5Frf6s836GaVW2MGoCQRkFK6hW2KnnJckdaz9Y1xX8oGoVf2qufqLqjuitWWxEEwNYafg
+2026-10-15 10:50:04,582 INFO WATCH  DICE  mint=6BcsvPxQNLzBgHG12WnrFQ9b78DRt1s8boE9pTkppump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:04,608 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:04,878 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:05,090 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:05,175 INFO NEW TOKEN  sig=8GpaGFcscWEs1kRKvC68KcBxnUp2ihaedduP875E14sSCcJHtQmc5U8k5dRBz4L1pJ3KVfNC6QJv3VCptWwbY7y  (could not decode metadata)
+2026-10-15 10:50:05,314 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:05,399 INFO NEW TOKEN  Anthropic (Anthropic)  mint=87YEqcHzdtUvupQxBR9vdFUA8hRw7bkoMeBc7Bs9LfJ1  curve=9q528wNe6UKUatUdzfe6XKL4R1cMzHeRCjXcZmwQdxY9  sig=5uUfKpcnPPhnjSckL5NvytTGuRETxPegHoy8qWktmk3t6rYv73bYVuEQaUiFc7g3cndJHfgR7Xvtef4uyMbTFtu8
+2026-10-15 10:50:05,399 INFO WATCH  Anthropic  mint=87YEqcHzdtUvupQxBR9vdFUA8hRw7bkoMeBc7Bs9LfJ1  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:05,399 INFO NEW TOKEN  sig=3dC5TVByC1x6iUF8D13pBZ2cwwF4rXyQRfYwQG6HagdMpURSmiVu6GEbyW833kDaRw3HZHX43B6r9s6wvxvaMQ24  (could not decode metadata)
+2026-10-15 10:50:05,550 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:05,803 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:06,036 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:06,279 INFO NEW TOKEN  sig=Z3pMq96NB9ZGzgahdDDU6gSCneBNjYWyXyPwPvHtVK7WYgiMu7ECUGdvXvBV684aKZSNDY5n7yiLH2CQujTTzt9  (could not decode metadata)
+2026-10-15 10:50:06,296 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:06,548 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:06,799 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:07,037 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:07,265 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:07,523 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:07,763 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:07,982 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:08,000 INFO SKIP CONFIRM  POW   low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=DaTQTHCsQ4FSS4yR1HXgwQYvidkLKTMtuoXypVs3pump
+2026-10-15 10:50:08,208 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:08,425 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:08,609 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:08,837 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:09,069 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:09,288 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:09,525 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:09,765 INFO SKIP CONFIRM  DICE  low-buy-sol 0.09 < 0.3  buyers=2  buy_sol=0.09  mc=$4957  mint=6BcsvPxQNLzBgHG12WnrFQ9b78DRt1s8boE9pTkppump
+2026-10-15 10:50:09,914 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:10,123 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:10,329 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:10,501 INFO SKIP CONFIRM  Anthropic  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=87YEqcHzdtUvupQxBR9vdFUA8hRw7bkoMeBc7Bs9LfJ1
+2026-10-15 10:50:10,568 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:10,770 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:11,013 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:11,259 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:11,531 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:11,758 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:12,000 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:12,215 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:12,463 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:12,655 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:12,882 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:13,095 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:13,350 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:13,587 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:13,788 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:14,018 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:14,248 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:14,453 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:14,694 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:14,880 INFO NEW TOKEN  The Dude (DUDE)  mint=B1oktNNAWa47xXZAhYiZccsrCpExutsWBxF6u5jwpump  curve=4HPBHsneKvomwBKMx3UKPiJXHYPYBBVfHzz5dEA1y4Nz  sig=4D1igsf5c7GprsCrS75ZVRhub3S9WnHyGrRx4sh41a6dqAB7L51LnagoWnVMEKCR6EuVEesgf4953BBPEDFrPMC1
+2026-10-15 10:50:14,880 INFO WATCH  DUDE  mint=B1oktNNAWa47xXZAhYiZccsrCpExutsWBxF6u5jwpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:14,901 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:15,133 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:15,341 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:15,544 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:15,792 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:15,984 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:16,083 INFO WON  BUTTON  +5.6%  in=0.2000 SOL  out=0.2043 SOL  mint=Hn4MNPzGjUwo768sh5CDAg8UvwYeqbMmjRSkYqrhpump  watchdog dead-coin 5.6% after 30s
+2026-10-15 10:50:16,279 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:16,305 INFO NEW TOKEN  sig=63GeFjukmLB2dKr8PGSfZ8A7BXj4kmysXCQ7idPJrzcnryfzaMpR1XhQopwaPSE2XRo8Lc4aHvpAXvShxLayGJXe  (could not decode metadata)
+2026-10-15 10:50:16,532 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:16,741 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:16,965 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:17,155 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:17,393 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:17,527 INFO NEW TOKEN  sig=3N16J3M3r5z2nsGLLCEFtfZJJtjYyRaieULK7WtrrcjsLHe5fMkGxgrJ55pdmTLodrVae998ecif9NNHpaq12aLt  (could not decode metadata)
+2026-10-15 10:50:17,689 INFO NEW TOKEN  Clawd Mochi (MOCHI)  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump  curve=FqyfWCPGb2TDmTcu27mMe1awJ9PsbbsrVWSugXYZqY2T  sig=5WQsZjgEhj2JMx3BiswsRQqvkQjaubZPz5cbN4tQZkKQQpRN3bgo9bb9fL1gK18PFJQA32RoESQNwz31RW8bTGYT
+2026-10-15 10:50:17,689 INFO WATCH  MOCHI  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:17,783 INFO NEW TOKEN  sig=4cZBzk7icr15FRMfJipdqpCArqkKDq1PUAXshRttXX5Ke1eLuGieH51BTpYaZvbed23skdq4xaDoMpJSyM73yL8m  (could not decode metadata)
+2026-10-15 10:50:17,841 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:18,078 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:18,279 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:18,372 INFO NEW TOKEN  sig=2znaY1SjKE2NV8WLRko6aLHqm7XRY9r3T7SgHqe9Sh9excA1ho7RednH4STb1zMQUjt99xVNSsHrNsKe3e8Mc3Fz  (could not decode metadata)
+2026-10-15 10:50:18,534 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:18,782 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:19,037 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:19,284 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:19,507 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:19,701 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:19,912 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:20,129 INFO SKIP CONFIRM  DUDE  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=B1oktNNAWa47xXZAhYiZccsrCpExutsWBxF6u5jwpump
+2026-10-15 10:50:20,133 INFO NEW TOKEN  sig=5v33B64dogd1VPNLmEG98YwE3A5j3MM2qxnSBUPYKh8VdP3JUbU5YttkR3Xm4CjZKKrGiSjB9ELdDT8qcEprkbUz  (could not decode metadata)
+2026-10-15 10:50:20,153 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:20,407 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:20,439 INFO NEW TOKEN  pump.fun top holders  (top )  mint=4NuxqvYPjNyQFuKLdyDFKMfoTSrmEayQb1VBWWbqpump  curve=9tY6y2sRadjT7VDpTj3URPCdBAWJ8jX9PDsqD8qKwvQG  sig=o6PNf48y9nRNbkL4BoAiwuTQG6McyukTa7HKrUnybPWfEWudoeEMiqMDdVNXnATR8p4cX35e5UGgEoZjL212uAX
+2026-10-15 10:50:20,440 INFO WATCH  top   mint=4NuxqvYPjNyQFuKLdyDFKMfoTSrmEayQb1VBWWbqpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:20,650 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:20,834 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:21,027 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:21,229 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:21,456 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:21,656 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:21,913 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:22,116 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:22,471 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:22,679 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:22,883 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:22,940 INFO CONFIRM  MOCHI  buyers=6  buy_sol=3.55  mc=$3092  probe=0.20  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump
+2026-10-15 10:50:22,940 INFO Clamped buy from 1.0000 to 0.2000 SOL (MAX_SOL_PER_TRADE)
+2026-10-15 10:50:23,050 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,083 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,217 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,314 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,351 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,524 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,593 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,756 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,787 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:23,955 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:24,001 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:24,125 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:24,131 INFO DRY-RUN BUY  MOCHI (9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump)  spend=0.2000 SOL  tokens=7035366580569  entry_price=2.7958993476e-05  create_sig=probe
+2026-10-15 10:50:24,132 INFO BUY MOCHI  26/600  invested=0.2000 SOL  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
+2026-10-15 10:50:24,254 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:24,425 ERROR Background Excel save failed
+Traceback (most recent call last):
+  File "D:\AI\solana-trading-bot\report.py", line 316, in _writer_loop
+    self._save(rows, blocked)
+  File "D:\AI\solana-trading-bot\report.py", line 328, in _save
+    wb.save(self._path)
+  File "D:\AI\solana-trading-bot\.venv\Lib\site-packages\openpyxl\workbook\workbook.py", line 386, in save
+    save_workbook(self, filename)
+  File "D:\AI\solana-trading-bot\.venv\Lib\site-packages\openpyxl\writer\excel.py", line 291, in save_workbook
+    archive = ZipFile(filename, 'w', ZIP_DEFLATED, allowZip64=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\AI\Python\Lib\zipfile\__init__.py", line 1336, in __init__
+    self.fp = io.open(file, filemode)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 22] Invalid argument: 'D:\\AI\\solana-trading-bot\\reports\\pumpfun_trades.xlsx'
+2026-10-15 10:50:24,604 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:24,863 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:24,870 INFO SL TO BREAKEVEN  MOCHI  at +17.9%  floor=entry  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump
+2026-10-15 10:50:24,870 INFO TRAILING ON  MOCHI  armed at +17.9%  peak=3.2950238914e-05  callback=10%  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump
+2026-10-15 10:50:25,122 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:25,160 INFO NEW TOKEN  sig=3k1H6mynDHWZjqDFabeidideJWmKLTKuEjXE2S5RRF97S2sjS2fnSWD5LM1VcBd24K688TBmfgJFLgU28VzDbe3r  (could not decode metadata)
+2026-10-15 10:50:25,377 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:25,584 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:25,634 INFO SKIP CONFIRM  top   low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=4NuxqvYPjNyQFuKLdyDFKMfoTSrmEayQb1VBWWbqpump
+2026-10-15 10:50:25,834 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:26,030 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:26,266 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:26,479 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:26,683 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:26,926 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:27,146 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:27,376 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:27,623 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:27,854 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:28,009 INFO NEW TOKEN  DICE (DICE)  mint=3D8sjXoqov4jLUf9ci4D4Ly3wKmeQGe2gZNXmYptpump  curve=ExqDqiX3h35D1UvMkVuruHB2hYvnruJREiKSQVYoYzjw  sig=2tKVA9kNRoiBGSRq2Azi3tWUNV8oNKvdX1xCTeoSSkHJDJCrE55EbgBa9qXYdnXHnDi1RSB5UuP3NunBrJuqL7Xr
+2026-10-15 10:50:28,009 INFO WATCH  DICE  mint=3D8sjXoqov4jLUf9ci4D4Ly3wKmeQGe2gZNXmYptpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:28,067 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:28,281 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:28,514 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:28,709 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:28,939 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:29,158 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:29,364 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:29,591 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:29,852 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:30,050 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:30,284 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:30,286 INFO WON  MOCHI  +8.5%  in=0.2000 SOL  out=0.2098 SOL  mint=9VkEfW6E9JmkDuzFXm4uZDQZQvxbx8zef3RCYLA7pump  watchdog trailing-stop 8.5% (-28.9% from peak)
+2026-10-15 10:50:30,531 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:30,750 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:31,003 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:31,247 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:31,452 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:31,646 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:31,849 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:31,938 INFO NEW TOKEN  PUMP IS FUN (FUN)  mint=2tp8wwS1Hm5qzQj1hh3cgErftDn6a2xZcX2kSzyJpump  curve=3DzWrn1u7DEARu8bcKYJUKt3ufwq3RqWtPwXyxYAWAPY  sig=Src94D5Mhjx7peXRccKMbuZK2hHLFzAMppAFit7G8L6crzE6gJKaCmxHCdHY33dyq3xXqJAFhGhrPoszv94yBE3
+2026-10-15 10:50:31,939 INFO WATCH  FUN  mint=2tp8wwS1Hm5qzQj1hh3cgErftDn6a2xZcX2kSzyJpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:32,049 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:32,261 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:32,510 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:32,758 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:32,963 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:33,193 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:33,254 INFO SKIP CONFIRM  DICE  low-buy-sol 0.05 < 0.3  buyers=1  buy_sol=0.05  mc=$3831  mint=3D8sjXoqov4jLUf9ci4D4Ly3wKmeQGe2gZNXmYptpump
+2026-10-15 10:50:33,408 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:33,641 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:33,875 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:34,084 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:34,327 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:34,568 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:34,577 INFO NEW TOKEN  Anthropic (Anthropic)  mint=1t6oBXs72ZwcUp1Rf3oUFAiWisVwnC6oEfTNaJgpump  curve=GKqd4RSAPiQJYocgsPxzxrjtMrufufXgkWdxtBmj7iNe  sig=2bg1g8xQAG3bXDVnVfAbkPF58MYbFDLwPuhKKRn8ELaDgZkWqqbCQz4TNmEbBPcYKi1d8SFBnXfGUQZaFZYTTX8m
+2026-10-15 10:50:34,577 INFO WATCH  Anthropic  mint=1t6oBXs72ZwcUp1Rf3oUFAiWisVwnC6oEfTNaJgpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:34,579 INFO NEW TOKEN  sig=3j7gjHDEYmPpZTnQPC81FBBv1DQ4YFVU6vPFbZaP7r3Zypef1BMKJcJ6nQDNzoEB7XYy7rFiCSrqHfNf7vXHPJ6K  (could not decode metadata)
+2026-10-15 10:50:34,801 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:35,043 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:35,288 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:35,532 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:35,755 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:36,010 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:36,190 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:36,407 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:36,650 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:36,861 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:36,986 INFO SKIP CONFIRM  FUN  low-buy-sol 0.00 < 0.3  buyers=2  buy_sol=0.00  mc=$0  mint=2tp8wwS1Hm5qzQj1hh3cgErftDn6a2xZcX2kSzyJpump
+2026-10-15 10:50:37,059 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:37,327 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:37,556 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:37,745 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:37,936 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:38,194 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:38,434 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:38,667 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:38,889 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:39,090 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:39,319 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:39,521 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:39,722 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:39,725 INFO NEW TOKEN  sig=5U3VaCc5odFGXsJ5xwQ2D8iKhrw8dnepVXhnHpF9yqSHonc1v2sPnKc8ehxi86UAiqYbLc4wbsKeHzwEZvhwdyJ7  (could not decode metadata)
+2026-10-15 10:50:39,765 INFO SKIP CONFIRM  Anthropic  low-buy-sol 0.00 < 0.3  buyers=0  buy_sol=0.00  mc=$2850  mint=1t6oBXs72ZwcUp1Rf3oUFAiWisVwnC6oEfTNaJgpump
+2026-10-15 10:50:39,947 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:40,184 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:40,421 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:40,677 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:40,879 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:41,118 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:41,326 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:41,428 INFO NEW TOKEN  kitgg.net (KITGG)  mint=Cgz3aQfYQadcz941XtUVS95dDKebasMYmzdVxSBopump  curve=4jEfChwrMCU6Pr6uhzo79ioWkSogedGiNqyaTVuL5Z29  sig=5XPpekrrDL9YNmo2cKajqz2PNmV3rDfTavqbMfnYgFxbLexJaDa2vyFnxZQamMgxopCLsdwpgVfFtLGd3TA6wWmT
+2026-10-15 10:50:41,428 INFO WATCH  KITGG  mint=Cgz3aQfYQadcz941XtUVS95dDKebasMYmzdVxSBopump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:41,559 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:41,754 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:41,963 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:42,211 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:42,538 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:42,731 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:42,992 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:43,178 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:43,369 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:43,559 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:43,656 INFO NEW TOKEN  1154 (1154)  mint=85yJgnEsciTundnFMDKHLPgfhQvLcgwQfNEzGCpxpump  curve=Cm4HjV3LvBbxwzefiMoYNAWEmD5M3ADxcngjMqNKqM3E  sig=2tReHuCRWjrpZeGGTHUJ79XRutZA514GeG3u8bmq1TkxdJvq4G55RnZja118hBYY3bCLZfoDnoaxB5rr6nXwwMXX
+2026-10-15 10:50:43,656 INFO WATCH  1154  mint=85yJgnEsciTundnFMDKHLPgfhQvLcgwQfNEzGCpxpump  probe=0.20 after 5s  add=0.80 after 10s if mc>=$5000
+2026-10-15 10:50:43,747 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:43,939 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:44,160 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:44,536 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:44,907 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+
+thread '<unnamed>' (20500) panicked at crates\pubkey\src\lib.rs:266:42:
+called `Result::unwrap()` on an `Err` value: TryFromSliceError(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-10-15 10:50:45,311 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-15 10:50:45,505 INFO Confirm window stopped
+2026-10-15 10:50:45,506 INFO Trailing TP/SL watchdog stopped

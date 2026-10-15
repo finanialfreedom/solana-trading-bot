@@ -21,9 +21,9 @@ REPO = Path(__file__).resolve().parent.parent
 PYTHON = REPO / ".venv" / "Scripts" / "python.exe"
 RESULTS = REPO / "reports" / "experiments.jsonl"
 MIN_SAMPLE = 200
-MAX_TRADES = "600"  # keep the session cap well above the sample requirement
+MAX_TRADES = "1500"  # keep the session cap well above the sample requirement
 
-DURATION = int(sys.argv[1]) if len(sys.argv) > 1 else 2400
+DURATION = int(sys.argv[1]) if len(sys.argv) > 1 else 3300
 
 # (label, env overrides). Order matters: most promising first.
 LADDER: list[tuple[str, dict[str, str]]] = [
