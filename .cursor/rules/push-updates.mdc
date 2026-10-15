@@ -1,0 +1,15 @@
+---
+description: Commit and push bot updates to GitHub, never secrets
+alwaysApply: true
+---
+
+# Save updates on GitHub
+
+After you change project files, commit and push to `origin` on the current branch without waiting to be asked.
+
+- Include code, docs, and report updates.
+- Never stage or commit `.env`, private keys, API keys, or any file that contains `PRIVATE_KEY` or `HELIUS_API_KEY` values. `.env.example` may only contain empty or placeholder secrets.
+- Do not print secret values in the commit message, the terminal, or the chat.
+- Do not update git config. If commit identity is missing, pass the existing repo author with `git -c user.name` and `git -c user.email` for that one command.
+- Do not force-push. If the push needs a GitHub sign-in, say so.
+- Skip the commit when there is nothing new to save.
