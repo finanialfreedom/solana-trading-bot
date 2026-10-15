@@ -509,6 +509,15 @@ class Trader:
             # Post-graduation the bonding curve is closed; value against the AMM mark.
             gross = int(token_amount * position.amm_price)
             return max(0, apply_fee(gross, self._fee_bps()))
+        if position.virtual_token_reserves <= 0 or position.virtual_quote_reserves <= 0:
+            # Closed or unreadable curve. Price the exit at the last mark we actually
+            # observed instead of on a zeroed curve: quoting 0 here is what turned a
+            # missed price read into a -100% write-off and sold good tokens for nothing.
+            mark = position.mark_price
+            if mark > 0:
+                gross = int(token_amount * mark)
+                return max(0, apply_fee(gross, self._fee_bps()))
+            return 0
         curve = BondingCurve(
             virtual_token_reserves=position.virtual_token_reserves,
             virtual_quote_reserves=position.virtual_quote_reserves,
@@ -541,6 +550,16 @@ class Trader:
         if token_amount <= 0:
             return
         sol_out = self._quote_exit(position, token_amount)
+        if sol_out <= 0 and int(token_amount * position.mark_price) > 0:
+            # Banked at 0 would silently destroy value that the position still marks
+            # at. Hand the reserved tokens back and let the next tick re-price.
+            if position.remaining_tokens >= 0:
+                position.remaining_tokens += token_amount
+            logger.warning(
+                "Skip scale-out of %s (%s): quote 0 SOL but mark %.3e",
+                position.symbol, reason, position.mark_price,
+            )
+            return
         live = live_trading_enabled() and not position.dry_run
         if live:
             sent = await self._send_sell(position, sol_out, token_amount=token_amount)
@@ -599,6 +618,15 @@ class Trader:
                 return
         held = position.tokens_held
         sol_out = self._quote_exit(position, held)
+        if sol_out <= 0 and int(held * position.mark_price) > 0:
+            # Booking this would write off a position that still has positive value
+            # for zero SOL -- the failure mode that produced the -100% outliers.
+            # (`int(...) == 0` means genuine dust, where closing at ~0 is truthful.)
+            logger.warning(
+                "Refusing to exit %s (%s): quote 0 SOL but mark %.3e",
+                position.symbol, reason, position.mark_price,
+            )
+            return
         total_out = sol_out + position.realized_sol
         pnl = (
             (total_out - position.sol_spent) / position.sol_spent * 100.0

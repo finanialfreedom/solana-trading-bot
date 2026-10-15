@@ -112,11 +112,30 @@ GATE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("C-gate-30", {"REGIME_FILTER_ENABLED": "true", "REGIME_MIN_UP10_PCT": "30"}),
 ]
 
+# Dead-coin patience. The rule currently gives up on a position if it is still flat
+# (< +10%, trailing not yet armed) 30 seconds after entry. It fires ~800 times in the
+# log and every firing exited at roughly 0% MFE -- so on the trades it touches it is
+# not throwing away gains that had already appeared. What it cannot show is the trade
+# it never allowed to develop: the counterfactual price path after 30s is not in the
+# log. So test patience directly.
+#   A-dead30   current behaviour (control)
+#   B-dead60   twice the patience
+#   C-dead90   three times
+#   D-dead-off rule disabled -- the strict upper bound on the opportunity cost, but
+#              flat positions then occupy slots until another rule fires
+DEADCOIN_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-dead30", {"DEAD_COIN_SECONDS": "30"}),
+    ("B-dead60", {"DEAD_COIN_SECONDS": "60"}),
+    ("C-dead90", {"DEAD_COIN_SECONDS": "90"}),
+    ("D-dead-off", {"DEAD_COIN_SECONDS": "0"}),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
     "entry": ENTRY_SCHEDULE,
     "gate": GATE_SCHEDULE,
+    "deadcoin": DEADCOIN_SCHEDULE,
 }
 
 

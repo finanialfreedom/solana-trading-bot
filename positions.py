@@ -63,8 +63,10 @@ class Position:
             return self.amm_price
         if self.virtual_token_reserves <= 0 or self.virtual_quote_reserves <= 0:
             # Never fall back to zero: a closed/graduated curve must not mark the
-            # position to -100%. Retain the last price we actually observed.
-            return self.last_good_price
+            # position to -100%. Retain the last price we actually observed; if we
+            # have not observed one yet, use the price we paid to enter, because we
+            # always observed that one.
+            return self.last_good_price or self.entry_price
         return self.virtual_quote_reserves / self.virtual_token_reserves
 
     @property

@@ -63,6 +63,34 @@ def test_zero_reserves_do_not_liquidate() -> None:
     check("pnl unchanged by the zero read", abs(pos.pnl_pct - before) < 1e-6)
 
 
+def test_curve_closing_before_first_mark_is_not_a_writeoff() -> None:
+    """The -100% outliers: a curve that closes before the position's first successful
+    mark left last_good_price at 0, so the position marked to zero and was dumped for
+    0 SOL. 49 such trades wrote off 16.2 SOL against a net of +1.28."""
+    print("\n1b. A curve closing before the first mark must not write the position off")
+    from trailing import TrailingGuard
+
+    pos = make_position(2.7958993476e-05)
+    # Never marked: reserves are already zero and last_good_price was never set.
+    pos.virtual_token_reserves = 0
+    pos.virtual_quote_reserves = 0
+    pos.last_good_price = 0.0
+
+    check("mark falls back to the entry price", pos.mark_price == pos.entry_price,
+          f"mark={pos.mark_price:.3e}")
+    check("not marked as a -100% loss", pos.pnl_pct > -99.0, f"pnl={pos.pnl_pct:+.1f}%")
+
+    reason = TrailingGuard.decide_exit(pos, "test")
+    check("no emergency-flat write-off", "emergency-flat" not in (reason or ""),
+          f"reason={reason}")
+
+    # And the exit quote must price it at the known mark, not on the zeroed curve.
+    trader = Trader.__new__(Trader)
+    trader.global_cfg = None
+    quote = Trader._quote_exit(trader, pos, pos.tokens_held)
+    check("exit quote is not zero", quote > 0, f"{quote} lamports")
+
+
 def test_graduation_is_priced_from_amm() -> None:
     print("\n2. After graduation the position is priced from the AMM, not zero")
     entry = 2.7958993476e-05
@@ -307,6 +335,7 @@ def test_regime_gate_blocks_cold_market() -> None:
 
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
+    test_curve_closing_before_first_mark_is_not_a_writeoff()
     test_graduation_is_priced_from_amm()
     test_scale_out_accounting()
     test_scale_out_actually_runs_from_watchdog()
