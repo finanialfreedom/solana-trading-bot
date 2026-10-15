@@ -145,6 +145,19 @@ PRESSURE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("D-press-both", {"MIN_CONFIRM_NET_SOL": "1", "MAX_CONFIRM_SELL_RATIO": "0.5"}),
 ]
 
+# Trailing callback width. This is the biggest measured leak on the exit side: with
+# the current 10% callback, positions that peaked in [+10%,+30%) booked -2.9% on
+# average -- about ten points worse than the callback should imply, because the mark
+# jumps past the trigger between ticks. The exit lands wherever the overshoot stops,
+# so a tighter callback should land higher. Four settings, both directions, so the
+# sweep can also tell us if we are already cutting runners too early.
+PROTECT_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-trail10", {"TRAILING_STOP_PCT": "10"}),
+    ("B-trail7", {"TRAILING_STOP_PCT": "7"}),
+    ("C-trail5", {"TRAILING_STOP_PCT": "5"}),
+    ("D-trail13", {"TRAILING_STOP_PCT": "13"}),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
@@ -152,6 +165,7 @@ SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "gate": GATE_SCHEDULE,
     "deadcoin": DEADCOIN_SCHEDULE,
     "pressure": PRESSURE_SCHEDULE,
+    "protect": PROTECT_SCHEDULE,
 }
 
 
