@@ -58,6 +58,13 @@ The trailing/SL values above assume a Helius paid plan (50 req/s). On the free t
 
 The live Excel report is `reports/pumpfun_trades.xlsx` (Trades + Blocked + Summary). Each trade row is WON or LOST with the percentage. Security rejects are listed on the **Blocked** sheet and in `reports/blocked.csv`.
 
+Each closed trade also records how far it moved in your favour and against you while open:
+
+- **MFE %** — the best PnL the position reached (max favorable excursion). Use it to see whether winners were cut too early: a big MFE with a small final PnL means the trailing stop or profit target is too tight.
+- **MAE %** — the worst PnL it reached (max adverse excursion). A small MAE with a losing exit means the stop-loss triggers before the coin gets a chance.
+
+The Summary sheet shows `Avg peak (MFE)` and `Avg drawdown (MAE)` across closed trades.
+
 ## Security filters
 
 These run even in dry-run. A coin is skipped if any check fails:

@@ -35,6 +35,8 @@ TRADE_CSV_FIELDS = [
     "symbol",
     "result",
     "pnl_pct",
+    "mfe_pct",
+    "mae_pct",
     "invested",
     "exit_sol",
     "pnl_sol",
@@ -61,6 +63,8 @@ HEADERS = [
     "Symbol",
     "Result",
     "PnL %",
+    "MFE %",
+    "MAE %",
     "Invested SOL",
     "Exit SOL",
     "Profit/Loss SOL",
@@ -94,6 +98,46 @@ def _pct(value: float | None) -> str:
     if value is None:
         return ""
     return f"{value:+.1f}%"
+
+
+_CSV_HEADER_CHECKED = False
+
+
+def _migrate_trade_csv() -> None:
+    """Bring an older trades.csv up to the current columns without dropping rows."""
+    global _CSV_HEADER_CHECKED
+    if _CSV_HEADER_CHECKED:
+        return
+    _CSV_HEADER_CHECKED = True
+    if not TRADES_CSV.exists():
+        return
+    try:
+        with TRADES_CSV.open("r", encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            header = reader.fieldnames or []
+            rows = list(reader)
+    except Exception:
+        return
+    if header == TRADE_CSV_FIELDS:
+        return
+    if not set(header) <= set(TRADE_CSV_FIELDS):
+        # Unknown columns: keep the old file beside the new one instead of guessing.
+        backup = REPORT_DIR / f"trades_{datetime.now():%Y%m%d_%H%M%S}.csv"
+        try:
+            TRADES_CSV.rename(backup)
+            _LOG.info("Unknown trade CSV columns; previous file kept at %s", backup.name)
+        except Exception:
+            _LOG.exception("Could not rotate the outdated trade CSV")
+        return
+    try:
+        with TRADES_CSV.open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.DictWriter(handle, fieldnames=TRADE_CSV_FIELDS)
+            writer.writeheader()
+            for row in rows:
+                writer.writerow({key: row.get(key, "") or "" for key in TRADE_CSV_FIELDS})
+        _LOG.info("Migrated trade CSV to %s columns (%s rows kept)", len(TRADE_CSV_FIELDS), len(rows))
+    except Exception:
+        _LOG.exception("Trade CSV migration failed")
 
 
 class TradeReport:
@@ -132,6 +176,8 @@ class TradeReport:
                     "symbol": symbol,
                     "result": "OPEN",
                     "pnl_pct": None,
+                    "mfe_pct": None,
+                    "mae_pct": None,
                     "invested": invested_sol,
                     "exit_sol": None,
                     "pnl_sol": None,
@@ -152,6 +198,8 @@ class TradeReport:
         pnl_pct: float,
         exit_sol: float,
         reason: str,
+        mfe_pct: float | None = None,
+        mae_pct: float | None = None,
     ) -> str:
         result = "WON" if pnl_pct >= 0 else "LOST"
         snapshot: dict[str, object] | None = None
@@ -161,6 +209,8 @@ class TradeReport:
                     invested = float(row["invested"] or 0)
                     row["result"] = result
                     row["pnl_pct"] = pnl_pct
+                    row["mfe_pct"] = mfe_pct
+                    row["mae_pct"] = mae_pct
                     row["exit_sol"] = exit_sol
                     row["pnl_sol"] = exit_sol - invested
                     row["reason"] = reason
@@ -227,6 +277,7 @@ class TradeReport:
 
     def _append_trade_csv(self, row: dict[str, object]) -> None:
         try:
+            _migrate_trade_csv()
             new_file = not TRADES_CSV.exists()
             with TRADES_CSV.open("a", encoding="utf-8", newline="") as handle:
                 writer = csv.DictWriter(handle, fieldnames=TRADE_CSV_FIELDS)
@@ -312,7 +363,8 @@ class TradeReport:
 
     def _write_trades(self, ws, rows: list[dict[str, object]]) -> None:
         ws.freeze_panes = "A2"
-        ws.auto_filter.ref = f"A1:L{max(len(rows) + 1, 2)}"
+        last_col = get_column_letter(len(HEADERS))
+        ws.auto_filter.ref = f"A1:{last_col}{max(len(rows) + 1, 2)}"
         for col, header in enumerate(HEADERS, 1):
             cell = ws.cell(1, col, header)
             cell.fill = FILL_HEADER
@@ -336,6 +388,8 @@ class TradeReport:
                 row["symbol"],
                 result,
                 _pct(row["pnl_pct"] if isinstance(row["pnl_pct"], float) else None),
+                _pct(row["mfe_pct"] if isinstance(row["mfe_pct"], float) else None),
+                _pct(row["mae_pct"] if isinstance(row["mae_pct"], float) else None),
                 float(row["invested"] or 0),
                 "" if row["exit_sol"] is None else float(row["exit_sol"]),
                 "" if pnl_sol is None else float(pnl_sol),
@@ -348,15 +402,15 @@ class TradeReport:
                 cell = ws.cell(idx + 1, col, value)
                 cell.border = THIN
                 cell.alignment = Alignment(vertical="center")
-                if col in {1, 4, 5}:
+                if col in {1, 4, 5, 6, 7}:
                     cell.alignment = Alignment(horizontal="center", vertical="center")
                 if col in {4, 5}:
                     cell.fill = fill
                     cell.font = font
-                if col in {6, 7, 8} and value != "":
+                if col in {8, 9, 10} and value != "":
                     cell.number_format = "0.0000"
 
-        widths = [6, 28, 14, 12, 12, 14, 12, 16, 36, 48, 20, 20]
+        widths = [6, 28, 14, 12, 12, 10, 10, 14, 12, 16, 36, 48, 20, 20]
         for i, width in enumerate(widths, 1):
             ws.column_dimensions[get_column_letter(i)].width = width
 
@@ -368,6 +422,10 @@ class TradeReport:
         returned = sum(float(r["exit_sol"] or 0) for r in closed)
         pnl = returned - invested
         win_rate = (len(wins) / len(closed) * 100) if closed else 0.0
+        mfes = [float(r["mfe_pct"]) for r in closed if isinstance(r.get("mfe_pct"), float)]
+        maes = [float(r["mae_pct"]) for r in closed if isinstance(r.get("mae_pct"), float)]
+        avg_mfe = sum(mfes) / len(mfes) if mfes else 0.0
+        avg_mae = sum(maes) / len(maes) if maes else 0.0
 
         ws["A1"] = "Pump.fun paper-trade report"
         ws["A1"].font = Font(bold=True, size=16, color="1F4E79")
@@ -387,6 +445,8 @@ class TradeReport:
             ("WON", len(wins)),
             ("LOST", len(losses)),
             ("Win rate", f"{win_rate:.1f}%"),
+            ("Avg peak (MFE)", f"{avg_mfe:+.1f}%"),
+            ("Avg drawdown (MAE)", f"{avg_mae:+.1f}%"),
             ("Total invested (SOL)", invested),
             ("Total back (SOL)", returned),
             ("Net P&L (SOL)", pnl),

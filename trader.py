@@ -526,6 +526,8 @@ class Trader:
                 pnl_pct=pnl,
                 exit_sol=exit_sol,
                 reason=reason,
+                mfe_pct=position.mfe_pct,
+                mae_pct=position.mae_pct,
             )
             self.book.close(position.mint)
         if pnl <= -80:

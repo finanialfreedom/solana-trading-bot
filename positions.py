@@ -30,6 +30,9 @@ class Position:
     peak_price: float = 0.0
     last_mark_at: float = field(default_factory=time)
     scaled: bool = False
+    # Best/worst PnL seen while the position was open (max favorable / adverse excursion).
+    mfe_pct: float = 0.0
+    mae_pct: float = 0.0
 
     @property
     def mark_price(self) -> float:
@@ -53,6 +56,11 @@ class Position:
         self.virtual_quote_reserves = virtual_quote
         self.virtual_token_reserves = virtual_token
         self.last_mark_at = time()
+        pnl = self.pnl_pct
+        if pnl > self.mfe_pct:
+            self.mfe_pct = pnl
+        if pnl < self.mae_pct:
+            self.mae_pct = pnl
 
     def lock_breakeven(self) -> bool:
         """Move the stop to entry once price has risen BREAKEVEN_ARM_PCT."""
