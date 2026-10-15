@@ -40,27 +40,53 @@ MAX_TRADES = "1500"
 
 PURE_RIDE = {"MC_SCALE_OUT_LADDER": "off"}
 
-# Middle + tail of the agreed schedule: taper the remainder out and close fully at
-# $1M. Only the size of the *first* rung ($50k) is varied between arms, because that
-# is the one real decision left -- how much of a ~17x to bank versus how much to keep
-# riding. Every arm shares the same entry (~$3k) and the same full exit at $1M.
-TAIL = "100000:30,175000:30,300000:30,500000:40,750000:40,1000000:100"
-
-
-def ladder_with(first_rung_pct: float) -> str:
-    return f"50000:{first_rung_pct},{TAIL}"
-
+# Diagnostic A/B/C: is the recent collapse from our own changes, or the market?
+# The two prime suspects land at the same hour as the flip:
+#   - MAX_OPEN_POSITIONS raised 4 -> 16 at 17:01 (trade volume tripled: 687 in 17h
+#     vs ~150-300/hour all morning)
+#   - trailing tolerance started widening, and exits went pure-ride, at 16:04-16:15
+# All three arms share the same entry and the same code; only these knobs differ.
+#
+# A-legacy reproduces the morning's shape: few slots, no ladder, flat trailing
+# tolerance (every tier callback = TRAILING_STOP_PCT = 15).
+#   A vs B  -> isolates the slot cap + trailing widening
+#   B vs C  -> isolates the take-profit ladder
+FLAT_TRAIL = {
+    "TRAIL_TIER_1_CALLBACK": "15",
+    "TRAIL_TIER_2_CALLBACK": "15",
+    "TRAIL_TIER_3_CALLBACK": "15",
+    "TRAIL_TIER_4_CALLBACK": "15",
+}
 
 SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    # A is the control that must be beaten: no profit taking at all, pure ride.
-    ("A-control-pure-ride", dict(PURE_RIDE)),
-    # B banks less at the first rung and keeps more riding.
-    ("B-bank30", {"MC_SCALE_OUT_LADDER": ladder_with(30)}),
-    # C is the agreed default (50% banked at $50k) straight from .env.
-    ("C-bank50", {}),
-    # D banks most of the position at the first rung.
-    ("D-bank70", {"MC_SCALE_OUT_LADDER": ladder_with(70)}),
+    ("A-legacy", {"MAX_OPEN_POSITIONS": "4", **PURE_RIDE, **FLAT_TRAIL}),
+    ("B-cap16", {"MAX_OPEN_POSITIONS": "16", **PURE_RIDE}),
+    ("C-ladder", {"MAX_OPEN_POSITIONS": "16"}),
 ]
+
+# Did the anti-rug filters we enabled at 18:00 block the coins that would have run?
+# The runner count collapsed to zero at exactly that hour, so this is unresolved.
+# C-sec-morning restores the pre-change threshold values (looser insider cap and
+# bundle count, no liquidity floor, transfer tax tolerated), which separates "the new
+# thresholds are too tight" from "any security filtering at all hurts".
+SECURITY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-sec-on", {}),
+    ("B-sec-off", {"SECURITY_FILTERS_ENABLED": "false"}),
+    (
+        "C-sec-morning",
+        {
+            "MIN_LIQUIDITY_USD": "0",
+            "MAX_INSIDER_TOKENS": "10000000",
+            "BUNDLE_WALLET_COUNT": "5",
+            "REJECT_TRANSFER_FEE": "false",
+        },
+    ),
+]
+
+SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
+    "regime": SCHEDULE,
+    "security": SECURITY_SCHEDULE,
+}
 
 
 def base_label(label: str) -> str:
@@ -114,10 +140,15 @@ def report(agg: dict[str, dict]) -> None:
 def main() -> None:
     if len(sys.argv) < 3:
         sys.exit(__doc__)
+    global SCHEDULE
     block_seconds = int(sys.argv[1])
     reps = int(sys.argv[2])
+    schedule_name = sys.argv[3] if len(sys.argv) > 3 else "regime"
+    if schedule_name not in SCHEDULES:
+        sys.exit(f"unknown schedule {schedule_name!r}; pick one of {sorted(SCHEDULES)}")
+    SCHEDULE = SCHEDULES[schedule_name]
 
-    print(f"interleaved sweep: {len(SCHEDULE)} configs x {reps} reps x "
+    print(f"interleaved sweep [{schedule_name}]: {len(SCHEDULE)} configs x {reps} reps x "
           f"{block_seconds}s = {len(SCHEDULE) * reps * block_seconds / 3600:.1f}h max", flush=True)
 
     for rep in range(reps):
