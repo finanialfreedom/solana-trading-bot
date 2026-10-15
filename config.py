@@ -140,25 +140,60 @@ HOLD_THROUGH_GRADUATION = _env_bool("HOLD_THROUGH_GRADUATION", True)
 # How long to keep retrying for an AMM price before giving up on a position.
 GRADUATION_PRICE_TIMEOUT_SECONDS = _env_float("GRADUATION_PRICE_TIMEOUT_SECONDS", 120.0)
 
-# Hybrid scale-out: bank partial profit at market-cap milestones, let the rest ride
-# on the trailing stop. This is the only defence against a one-candle gap-down, which
-# no exit threshold can catch. Set a milestone to 0 to disable it.
-MC_MILESTONE_1_USD = _env_float("MC_MILESTONE_1_USD", 250_000.0)
-MC_MILESTONE_1_SELL_PCT = _env_float("MC_MILESTONE_1_SELL_PCT", 25.0)
-MC_MILESTONE_2_USD = _env_float("MC_MILESTONE_2_USD", 1_000_000.0)
-MC_MILESTONE_2_SELL_PCT = _env_float("MC_MILESTONE_2_SELL_PCT", 25.0)
-MC_MILESTONE_3_USD = _env_float("MC_MILESTONE_3_USD", 0.0)
-MC_MILESTONE_3_SELL_PCT = _env_float("MC_MILESTONE_3_SELL_PCT", 50.0)
+# Hybrid scale-out: bank partial profit as the market cap climbs, and let the rest
+# ride on the trailing stop. This is the only defence against a one-candle gap-down,
+# which no exit threshold can catch. Selling gradually (small slices at closely
+# spaced levels) tracks the coin's growth, so whatever level a coin actually reaches
+# it has banked proportionally -- rather than one big sale at a far-off target.
+#
+# The ladder is a flat, ordered list of (market-cap USD, % of *remaining* tokens to
+# sell). The default uses coarse, round milestones -- $100k, $250k, $500k, $1M, then
+# $4M/$5M and continuing upward -- selling a quarter of what is left at each step.
+# Coarse steps mean fewer, larger sales at levels a coin is likely to print, rather
+# than many tiny sales at levels it may never reach.
+#
+# Override with MC_SCALE_OUT_LADDER="100000:25,250000:25,..." (ascending).
+# Set MC_SCALE_OUT_LADDER=off to disable banking entirely (pure ride).
+_DEFAULT_SCALE_OUT_LADDER: tuple[tuple[float, float], ...] = (
+    (100_000.0, 25.0),
+    (250_000.0, 25.0),
+    (500_000.0, 25.0),
+    (1_000_000.0, 25.0),
+    (4_000_000.0, 25.0),
+    (5_000_000.0, 25.0),
+    (10_000_000.0, 25.0),
+    (20_000_000.0, 25.0),
+)
 
-# (market-cap USD, percent of remaining tokens to sell) in ascending order.
-MC_SCALE_OUT: tuple[tuple[float, float], ...] = tuple(
-    (target, pct)
-    for target, pct in (
-        (MC_MILESTONE_1_USD, MC_MILESTONE_1_SELL_PCT),
-        (MC_MILESTONE_2_USD, MC_MILESTONE_2_SELL_PCT),
-        (MC_MILESTONE_3_USD, MC_MILESTONE_3_SELL_PCT),
-    )
-    if target > 0 and pct > 0
+
+def _parse_scale_out(raw: str) -> tuple[tuple[float, float], ...]:
+    """Parse "mc:pct,mc:pct" into an ascending ladder; 'off' disables banking."""
+    text = raw.strip().lower()
+    if text in {"off", "none", "0", "false", "no"}:
+        return ()
+    if not text:
+        return _DEFAULT_SCALE_OUT_LADDER
+    levels: list[tuple[float, float]] = []
+    for chunk in text.split(","):
+        chunk = chunk.strip()
+        if not chunk:
+            continue
+        if ":" not in chunk:
+            continue
+        target_raw, pct_raw = chunk.split(":", 1)
+        try:
+            target = float(target_raw.strip())
+            pct = float(pct_raw.strip())
+        except ValueError:
+            continue
+        if target > 0 and pct > 0:
+            levels.append((target, pct))
+    levels.sort(key=lambda pair: pair[0])
+    return tuple(levels)
+
+
+MC_SCALE_OUT: tuple[tuple[float, float], ...] = _parse_scale_out(
+    os.getenv("MC_SCALE_OUT_LADDER", "")
 )
 
 # Tiered trailing tolerance. A fixed callback arms early and cuts a runner on an

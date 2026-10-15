@@ -38,25 +38,22 @@ MIN_SAMPLE = 200
 TARGET_EXPECTANCY = 0.0
 MAX_TRADES = "1500"
 
-PURE_RIDE = {"MC_MILESTONE_1_USD": "0", "MC_MILESTONE_2_USD": "0", "MC_MILESTONE_3_USD": "0"}
+PURE_RIDE = {"MC_SCALE_OUT_LADDER": "off"}
+COARSE_LEVELS = "100000,250000,500000,1000000,4000000,5000000,10000000,20000000"
+
+
+def _ladder(pct: float) -> str:
+    return ",".join(f"{float(mc)}:{pct}" for mc in COARSE_LEVELS.split(","))
+
 
 SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    # Pure-ride arms must zero the milestones explicitly: the shipped default now
-    # banks partial profit at $250k/$1M, so relying on defaults would make these
-    # arms identical to D.
+    # Same coarse levels in every banking arm, so this isolates one variable: how
+    # much of the remaining position to sell at each step. Entries are ~$3k, so the
+    # first rung ($100k) is roughly a 33x.
     ("A-pure-ride", dict(PURE_RIDE)),
-    ("B-wide-tiers", {**PURE_RIDE,
-                      "TRAIL_TIER_1_PEAK": "50", "TRAIL_TIER_1_CALLBACK": "25",
-                      "TRAIL_TIER_2_PEAK": "150", "TRAIL_TIER_2_CALLBACK": "40",
-                      "TRAIL_TIER_3_PEAK": "500", "TRAIL_TIER_3_CALLBACK": "55"}),
-    ("C-tight-tiers", {**PURE_RIDE,
-                       "TRAIL_TIER_1_PEAK": "30", "TRAIL_TIER_1_CALLBACK": "14",
-                       "TRAIL_TIER_2_PEAK": "120", "TRAIL_TIER_2_CALLBACK": "22",
-                       "TRAIL_TIER_3_PEAK": "400", "TRAIL_TIER_3_CALLBACK": "30"}),
-    ("D-light-bank", {
-        "MC_MILESTONE_1_USD": "250000", "MC_MILESTONE_1_SELL_PCT": "25",
-        "MC_MILESTONE_2_USD": "1000000", "MC_MILESTONE_2_SELL_PCT": "25",
-    }),
+    ("B-coarse-15", {"MC_SCALE_OUT_LADDER": _ladder(15)}),
+    ("C-coarse-25", {"MC_SCALE_OUT_LADDER": _ladder(25)}),
+    ("D-coarse-40", {"MC_SCALE_OUT_LADDER": _ladder(40)}),
 ]
 
 

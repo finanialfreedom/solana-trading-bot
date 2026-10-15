@@ -204,6 +204,54 @@ def test_ratchet_floor_blocks_round_trip() -> None:
     check("a collapsed winner still reports a locked floor", reason is not None, f"{reason}")
 
 
+def test_gradual_ladder_banks_proportionally() -> None:
+    print("\n7. A gradual ladder banks at each level and still leaves a tail riding")
+    import config as config_mod
+    import trailing as trailing_mod
+    from trailing import TrailingGuard
+
+    original = trailing_mod.MC_SCALE_OUT
+    try:
+        ladder = config_mod._parse_scale_out(config_mod.os.getenv("MC_SCALE_OUT_LADDER", ""))
+        trailing_mod.MC_SCALE_OUT = ladder
+        check("default ladder has the coarse levels", len(ladder) >= 6, f"{len(ladder)} levels")
+        check("ladder is ascending",
+              all(ladder[i][0] < ladder[i + 1][0] for i in range(len(ladder) - 1)))
+
+        entry = 2.7958993476e-05
+        pos = make_position(entry)
+        pos.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+        trader = Trader(AsyncClient("http://127.0.0.1:8899"), Keypair())
+        trader.book.add(pos)
+        trader.trailing._sol_usd = 102.0
+        held = pos.tokens_held
+        # mc_usd = price * PUMP_TOKEN_SUPPLY / LAMPORTS_PER_SOL * sol_usd, i.e. ×1e6×102.
+        divisor = 102.0 * 1_000_000.0
+        retained_after: dict[int, float] = {}
+
+        async def ride_all() -> None:
+            for level, (level_mc, _pct) in enumerate(ladder, start=1):
+                pos.mark_graduated(level_mc / divisor)
+                trader.trailing._after_mark(pos, source="test")
+                if trader.trailing._scale_tasks:
+                    await asyncio.gather(*list(trader.trailing._scale_tasks),
+                                         return_exceptions=True)
+                retained_after[level] = pos.tokens_held / held
+
+        asyncio.run(ride_all())
+        check("banked once per level", pos.milestones_taken == len(ladder),
+              f"{pos.milestones_taken}/{len(ladder)}")
+        check("proceeds banked", pos.realized_sol > 0, f"{pos.realized_sol} lamports")
+        check("still holding a substantial tail after 3 sales",
+              retained_after.get(3, 0) > 0.35,
+              f"{retained_after.get(3, 0) * 100:.0f}% retained")
+        final = pos.tokens_held / held
+        check("a tail is still riding at the top level", final > 0.05,
+              f"{final * 100:.0f}% retained after all levels")
+    finally:
+        trailing_mod.MC_SCALE_OUT = original
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_graduation_is_priced_from_amm()
@@ -211,6 +259,7 @@ def main() -> None:
     test_scale_out_actually_runs_from_watchdog()
     test_trailing_tolerance_widens()
     test_ratchet_floor_blocks_round_trip()
+    test_gradual_ladder_banks_proportionally()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")
