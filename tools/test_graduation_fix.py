@@ -101,31 +101,40 @@ def test_scale_out_accounting() -> None:
 
 def test_scale_out_actually_runs_from_watchdog() -> None:
     print("\n4. Milestones crossed at once must both sell, sizing off the remainder")
-    entry = 2.7958993476e-05
-    pos = make_position(entry)
-    pos.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
-    pos.mark_graduated(entry * 200)  # deep past both configured milestones
+    import trailing as trailing_mod
 
-    trader = Trader(AsyncClient("http://127.0.0.1:8899"), Keypair())
-    trader.book.add(pos)
-    trader.trailing._sol_usd = 102.0
-    held_before = pos.tokens_held
+    # Milestones are disabled in the pure-ride default, so enable them just for this
+    # test rather than depending on whatever .env happens to contain.
+    original = trailing_mod.MC_SCALE_OUT
+    trailing_mod.MC_SCALE_OUT = ((250_000.0, 50.0), (500_000.0, 50.0))
+    try:
+        entry = 2.7958993476e-05
+        pos = make_position(entry)
+        pos.update_reserves(int(30 * LAMPORTS_PER_SOL), int(1.073e15))
+        pos.mark_graduated(entry * 200)  # deep past both configured milestones
 
-    async def run() -> None:
-        pos.mark_graduated(entry * 200)
-        trader.trailing._after_mark(pos, source="test")
-        if trader.trailing._scale_tasks:
-            await asyncio.gather(*list(trader.trailing._scale_tasks), return_exceptions=True)
+        trader = Trader(AsyncClient("http://127.0.0.1:8899"), Keypair())
+        trader.book.add(pos)
+        trader.trailing._sol_usd = 102.0
+        held_before = pos.tokens_held
 
-    asyncio.run(run())
-    check("both milestones taken", pos.milestones_taken == 2, f"{pos.milestones_taken}")
-    check("proceeds banked by the scheduled task", pos.realized_sol > 0, f"{pos.realized_sol}")
-    # 50% then 50% of the remainder leaves a quarter of the position open.
-    check(
-        "remainder is a quarter of the original",
-        abs(pos.tokens_held - held_before // 4) <= 1,
-        f"held={pos.tokens_held} of {held_before}",
-    )
+        async def run() -> None:
+            pos.mark_graduated(entry * 200)
+            trader.trailing._after_mark(pos, source="test")
+            if trader.trailing._scale_tasks:
+                await asyncio.gather(*list(trader.trailing._scale_tasks), return_exceptions=True)
+
+        asyncio.run(run())
+        check("both milestones taken", pos.milestones_taken == 2, f"{pos.milestones_taken}")
+        check("proceeds banked by the scheduled task", pos.realized_sol > 0, f"{pos.realized_sol}")
+        # 50% then 50% of the remainder leaves a quarter of the position open.
+        check(
+            "remainder is a quarter of the original",
+            abs(pos.tokens_held - held_before // 4) <= 1,
+            f"held={pos.tokens_held} of {held_before}",
+        )
+    finally:
+        trailing_mod.MC_SCALE_OUT = original
 
 
 def test_trailing_tolerance_widens() -> None:

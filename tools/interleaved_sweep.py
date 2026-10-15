@@ -39,11 +39,21 @@ TARGET_EXPECTANCY = 0.0
 MAX_TRADES = "1500"
 
 SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    ("A-control", {}),
-    ("B-buysol-0.3", {"MIN_CONFIRM_BUY_SOL": "0.3"}),
-    ("C-buysol-0.5", {"MIN_CONFIRM_BUY_SOL": "0.5"}),
-    ("E-buysol0.3-tight", {"MIN_CONFIRM_BUY_SOL": "0.3",
-                           "TAKE_PROFIT_TRIGGER_PCT": "10", "TRAILING_STOP_PCT": "8"}),
+    ("A-pure-ride", {}),
+    ("B-wide-tiers", {
+        "TRAIL_TIER_1_PEAK": "50", "TRAIL_TIER_1_CALLBACK": "25",
+        "TRAIL_TIER_2_PEAK": "150", "TRAIL_TIER_2_CALLBACK": "40",
+        "TRAIL_TIER_3_PEAK": "500", "TRAIL_TIER_3_CALLBACK": "55",
+    }),
+    ("C-tight-tiers", {
+        "TRAIL_TIER_1_PEAK": "30", "TRAIL_TIER_1_CALLBACK": "14",
+        "TRAIL_TIER_2_PEAK": "120", "TRAIL_TIER_2_CALLBACK": "22",
+        "TRAIL_TIER_3_PEAK": "400", "TRAIL_TIER_3_CALLBACK": "30",
+    }),
+    ("D-light-bank", {
+        "MC_MILESTONE_1_USD": "250000", "MC_MILESTONE_1_SELL_PCT": "25",
+        "MC_MILESTONE_2_USD": "1000000", "MC_MILESTONE_2_SELL_PCT": "25",
+    }),
 ]
 
 
