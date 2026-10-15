@@ -158,6 +158,48 @@ PROTECT_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("D-trail13", {"TRAILING_STOP_PCT": "13"}),
 ]
 
+# The overnight validation. Every arm above ran 8-minute blocks, which yields 10-40
+# trades -- far too few to judge fat-tailed memecoin returns, where a single 1000%
+# trade can swing a small sample's mean by hundreds of points. Measured trade rate is
+# 2 trades per minute of arm-time for a filtered arm, so 30-minute blocks x 3 reps
+# gives each arm roughly 180 trades and three independent blocks for variance.
+#
+#   A-stack-off  the settings that are live today (entry 2 SOL, no sell pressure)
+#   B-stack-press  A plus the sell-pressure guards
+#   C-stack-full   B plus the regime gate at its live-tested threshold
+#
+# B isolates the pressure filter; C isolates the gate on top of it.
+FINAL_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    (
+        "A-stack-off",
+        {
+            "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_NET_SOL": "0",
+            "MAX_CONFIRM_SELL_RATIO": "0",
+            "REGIME_FILTER_ENABLED": "false",
+        },
+    ),
+    (
+        "B-stack-press",
+        {
+            "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_NET_SOL": "1",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "false",
+        },
+    ),
+    (
+        "C-stack-full",
+        {
+            "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_NET_SOL": "1",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "true",
+            "REGIME_MIN_UP10_PCT": "30",
+        },
+    ),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
@@ -166,6 +208,7 @@ SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "deadcoin": DEADCOIN_SCHEDULE,
     "pressure": PRESSURE_SCHEDULE,
     "protect": PROTECT_SCHEDULE,
+    "final": FINAL_SCHEDULE,
 }
 
 
@@ -195,13 +238,27 @@ def pooled_by_label() -> dict[str, dict]:
         label = base_label(row.get("label", ""))
         if label not in known or not row.get("n"):
             continue
-        bucket = agg.setdefault(label, {"n": 0, "weighted_exp": 0.0, "blocks": [], "net": 0.0})
+        bucket = agg.setdefault(
+            label,
+            {"n": 0, "weighted_exp": 0.0, "blocks": [], "net": 0.0,
+             "weighted_med": 0.0, "weighted_wr": 0.0, "weighted_mfe10": 0.0},
+        )
         bucket["n"] += row["n"]
         bucket["weighted_exp"] += row["expectancy_pct"] * row["n"]
         bucket["net"] += row.get("net_sol", 0.0)
         bucket["blocks"].append(row["expectancy_pct"])
+        # Robust companions to the mean. Memecoin returns are fat-tailed: a single
+        # 1000% trade can carry a small block, so the median and the win rate must
+        # agree with the mean before a result is believed.
+        bucket["weighted_med"] += (row.get("median_pct") or 0.0) * row["n"]
+        bucket["weighted_wr"] += (row.get("win_rate_pct") or 0.0) * row["n"]
+        bucket["weighted_mfe10"] += (row.get("mfe_ge_10_pct") or 0.0) * row["n"]
     for bucket in agg.values():
-        bucket["pooled_exp"] = bucket["weighted_exp"] / bucket["n"] if bucket["n"] else 0.0
+        n = bucket["n"]
+        bucket["pooled_exp"] = bucket["weighted_exp"] / n if n else 0.0
+        bucket["pooled_med"] = bucket["weighted_med"] / n if n else 0.0
+        bucket["pooled_wr"] = bucket["weighted_wr"] / n if n else 0.0
+        bucket["pooled_mfe10"] = bucket["weighted_mfe10"] / n if n else 0.0
         bucket["block_std"] = st.pstdev(bucket["blocks"]) if len(bucket["blocks"]) > 1 else 0.0
     return agg
 
@@ -210,11 +267,15 @@ def report(agg: dict[str, dict]) -> None:
     if not agg:
         return
     print("\n=== pooled results (trade-weighted across interleaved blocks) ===")
-    print(f"{'config':<22} {'blocks':>6} {'n':>6} {'pooledExp':>10} {'blockStd':>9} {'netSOL':>9}")
+    print(f"{'config':<18} {'blk':>4} {'n':>6} {'mean%':>9} {'med%':>8} {'win%':>7} "
+          f"{'mfe10%':>7} {'std':>8} {'netSOL':>9}")
+    print("-" * 84)
     for label in sorted(agg, key=lambda k: -agg[k]["pooled_exp"]):
         b = agg[label]
-        print(f"{label:<22} {len(b['blocks']):>6} {b['n']:>6} {b['pooled_exp']:>+10.2f} "
-              f"{b['block_std']:>9.2f} {b['net']:>+9.3f}")
+        print(f"{label:<18} {len(b['blocks']):>4} {b['n']:>6} {b['pooled_exp']:>+9.2f} "
+              f"{b['pooled_med']:>+8.2f} {b['pooled_wr']:>7.1f} "
+              f"{b['pooled_mfe10']:>7.1f} {b['block_std']:>8.2f} {b['net']:>+9.3f}")
+    print("  read: mean is what we earn; med/win%/mfe10% must agree before trusting it")
 
 
 def main() -> None:

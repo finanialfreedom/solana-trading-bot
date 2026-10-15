@@ -74,3 +74,136 @@ C-entry-2                   1     15     +47.36      0.00    +7.104
 B-entry-1                   1     27     +27.36      0.00    +7.386
 A-entry-none                2    193      -6.89      2.32   -11.656
 >>> D-entry-3-r1
+=== experiment D-entry-3-r1 | 480s | overrides={'MAX_TRADES': '1500', 'MIN_CONFIRM_BUY_SOL': '3'} ===
+started 2026-10-15 22:00:19
+bot pid=17980; waiting 480s
+finished at 2026-10-15 22:08:33; log=exp_D-entry-3-r1.log
+
+== result ==
+  n                  11
+  expectancy_pct     54.707
+  median_pct         48.08
+  net_sol            6.0178
+  win_rate_pct       90.9
+  avg_win_pct        60.2
+  avg_loss_pct       -0.17
+  mean_mfe_pct       145.06
+  mean_mae_pct       0.0
+  mfe_ge_10_pct      90.9
+  top_decile_mfe     444.6
+  sample too small (11 < 200); extend the run
+
+=== pooled results (trade-weighted across interleaved blocks) ===
+config                 blocks      n  pooledExp  blockStd    netSOL
+D-entry-3                   1     11     +54.71      0.00    +6.018
+C-entry-2                   1     15     +47.36      0.00    +7.104
+B-entry-1                   1     27     +27.36      0.00    +7.386
+A-entry-none                2    193      -6.89      2.32   -11.656
+
+--- rep 2/2 order: ['B-entry-1', 'C-entry-2', 'D-entry-3', 'A-entry-none'] ---
+>>> B-entry-1-r2
+=== experiment B-entry-1-r2 | 480s | overrides={'MAX_TRADES': '1500', 'MIN_CONFIRM_BUY_SOL': '1'} ===
+started 2026-10-15 22:08:33
+bot pid=10168; waiting 480s
+finished at 2026-10-15 22:16:46; log=exp_B-entry-1-r2.log
+
+== result ==
+  n                  16
+  expectancy_pct     32.606
+  median_pct         12.807
+  net_sol            5.217
+  win_rate_pct       62.5
+  avg_win_pct        55.18
+  avg_loss_pct       -5.01
+  mean_mfe_pct       92.44
+  mean_mae_pct       0.0
+  mfe_ge_10_pct      81.2
+  top_decile_mfe     290.2
+  sample too small (16 < 200); extend the run
+
+=== pooled results (trade-weighted across interleaved blocks) ===
+config                 blocks      n  pooledExp  blockStd    netSOL
+D-entry-3                   1     11     +54.71      0.00    +6.018
+C-entry-2                   1     15     +47.36      0.00    +7.104
+B-entry-1                   2     43     +29.31      2.62   +12.603
+A-entry-none                2    193      -6.89      2.32   -11.656
+>>> C-entry-2-r2
+=== experiment C-entry-2-r2 | 480s | overrides={'MAX_TRADES': '1500', 'MIN_CONFIRM_BUY_SOL': '2'} ===
+started 2026-10-15 22:16:46
+bot pid=3280; waiting 480s
+finished at 2026-10-15 22:24:58; log=exp_C-entry-2-r2.log
+
+== result ==
+  n                  24
+  expectancy_pct     41.193
+  median_pct         34.283
+  net_sol            9.8864
+  win_rate_pct       62.5
+  avg_win_pct        69.72
+  avg_loss_pct       -6.36
+  mean_mfe_pct       115.53
+  mean_mae_pct       -0.57
+  mfe_ge_10_pct      91.7
+  top_decile_mfe     353.9
+  sample too small (24 < 200); extend the run
+
+=== pooled results (trade-weighted across interleaved blocks) ===
+config                 blocks      n  pooledExp  blockStd    netSOL
+D-entry-3                   1     11     +54.71      0.00    +6.018
+C-entry-2                   2     39     +43.56      3.08   +16.990
+B-entry-1                   2     43     +29.31      2.62   +12.603
+A-entry-none                2    193      -6.89      2.32   -11.656
+>>> D-entry-3-r2
+=== experiment D-entry-3-r2 | 480s | overrides={'MAX_TRADES': '1500', 'MIN_CONFIRM_BUY_SOL': '3'} ===
+started 2026-10-15 22:24:58
+bot pid=16260; waiting 480s
+finished at 2026-10-15 22:33:11; log=exp_D-entry-3-r2.log
+
+== result ==
+  n                  25
+  expectancy_pct     38.849
+  median_pct         13.58
+  net_sol            9.7122
+  win_rate_pct       72.0
+  avg_win_pct        57.16
+  avg_loss_pct       -8.23
+  mean_mfe_pct       129.02
+  mean_mae_pct       -1.16
+  mfe_ge_10_pct      88.0
+  top_decile_mfe     575.3
+  sample too small (25 < 200); extend the run
+
+=== pooled results (trade-weighted across interleaved blocks) ===
+config                 blocks      n  pooledExp  blockStd    netSOL
+D-entry-3                   2     36     +43.69      7.93   +15.730
+C-entry-2                   2     39     +43.56      3.08   +16.990
+B-entry-1                   2     43     +29.31      2.62   +12.603
+A-entry-none                2    193      -6.89      2.32   -11.656
+>>> A-entry-none-r2
+=== experiment A-entry-none-r2 | 480s | overrides={'MAX_TRADES': '1500', 'MIN_CONFIRM_BUY_SOL': '0', 'MIN_UNIQUE_BUYERS': '0'} ===
+started 2026-10-15 22:33:11
+bot pid=14652; waiting 480s
+finished at 2026-10-15 22:41:24; log=exp_A-entry-none-r2.log
+
+== result ==
+  n                  61
+  expectancy_pct     -24.639
+  median_pct         -8.055
+  net_sol            -15.0295
+  win_rate_pct       13.1
+  avg_win_pct        21.92
+  avg_loss_pct       -31.67
+  mean_mfe_pct       12.76
+  mean_mae_pct       -4.54
+  mfe_ge_10_pct      18.0
+  top_decile_mfe     89.1
+  sample too small (61 < 200); extend the run
+
+=== pooled results (trade-weighted across interleaved blocks) ===
+config                 blocks      n  pooledExp  blockStd    netSOL
+D-entry-3                   2     36     +43.69      7.93   +15.730
+C-entry-2                   2     39     +43.56      3.08   +16.990
+B-entry-1                   2     43     +29.31      2.62   +12.603
+A-entry-none                3    254     -11.16      8.54   -26.685
+
+*** sweep finished; see pooled results above ***
