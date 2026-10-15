@@ -261,6 +261,50 @@ def test_gradual_ladder_banks_proportionally() -> None:
         trailing_mod.MC_SCALE_OUT = original
 
 
+def test_regime_gate_blocks_cold_market() -> None:
+    """The gate must permit a hot market, refuse a cold one, and never look ahead."""
+    from regime import RegimeGate
+
+    print("\n[regime gate]")
+    try:
+        disabled = RegimeGate(enabled=False, seed=False)
+        check("disabled gate never blocks", disabled.allows_entry())
+
+        gate = RegimeGate(
+            enabled=True, seed=False, window=20, min_up10_pct=45.0, min_samples=10
+        )
+        check("warmup does not stall trading", gate.allows_entry())
+
+        for _ in range(15):
+            gate.observe(14.0)
+        check("hot regime is allowed", gate.allows_entry(), f"health={gate.health:.2f}")
+
+        for _ in range(15):
+            gate.observe(-4.0)
+        check("cold regime blocks entries", not gate.allows_entry(),
+              f"health={gate.health:.2f}")
+        check("block reason names the health", "cold-regime" in (gate.block_reason() or ""))
+
+        # A trade that only barely rose must not count as follow-through.
+        edge = RegimeGate(
+            enabled=True, seed=False, window=10, min_up10_pct=50.0, min_samples=5
+        )
+        for _ in range(10):
+            edge.observe(9.9)
+        check("+9.9% MFE does not count as follow-through", not edge.allows_entry(),
+              f"health={edge.health:.2f}")
+
+        # The window must stay bounded so the gate tracks the market, not all history.
+        rolling = RegimeGate(
+            enabled=True, seed=False, window=10, min_up10_pct=50.0, min_samples=5
+        )
+        for _ in range(50):
+            rolling.observe(-1.0)
+        check("window stays bounded", rolling.samples == 10, f"{rolling.samples} kept")
+    finally:
+        pass
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_graduation_is_priced_from_amm()
@@ -269,6 +313,7 @@ def main() -> None:
     test_trailing_tolerance_widens()
     test_ratchet_floor_blocks_round_trip()
     test_gradual_ladder_banks_proportionally()
+    test_regime_gate_blocks_cold_market()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")

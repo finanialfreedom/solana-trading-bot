@@ -98,10 +98,25 @@ ENTRY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("D-entry-3", {"MIN_CONFIRM_BUY_SOL": "3"}),
 ]
 
+# Regime gate. Walk-forward replay over 2,946 closed trades said gating entries on
+# "share of the last 50 closed trades that reached +10% MFE" would have lifted total
+# PnL from +12,466 to +29,974 pnl-points, by shutting off completely from 16h onward
+# (health 0.42 -> 0.07) while allowing 100% of the two best hours. That replay has no
+# lookahead, but it is one day of one regime, so this sweep tests it live:
+#   A-gate-off   control
+#   B-gate-40    the replay's optimum (threshold 45% is the peak; 40% is one step safer)
+#   C-gate-30    looser, trades more of the shoulder hours
+GATE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    ("A-gate-off", {"REGIME_FILTER_ENABLED": "false"}),
+    ("B-gate-40", {"REGIME_FILTER_ENABLED": "true", "REGIME_MIN_UP10_PCT": "40"}),
+    ("C-gate-30", {"REGIME_FILTER_ENABLED": "true", "REGIME_MIN_UP10_PCT": "30"}),
+]
+
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "regime": SCHEDULE,
     "security": SECURITY_SCHEDULE,
     "entry": ENTRY_SCHEDULE,
+    "gate": GATE_SCHEDULE,
 }
 
 

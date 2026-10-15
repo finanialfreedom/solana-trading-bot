@@ -237,6 +237,26 @@ RATCHET_LEVELS: tuple[tuple[float, float], ...] = tuple(
     if peak > 0 and floor > 0
 )
 
+# Regime gate. Measures whether recent launches actually have follow-through, and
+# stops opening new positions when they do not -- rather than paying to find out.
+#
+# Walk-forward replay over 2,946 closed trades (no lookahead; each decision uses only
+# trades that had already closed):
+#   gate = "share of the last 50 trades that reached +10% MFE, threshold 45%"
+#   baseline      +12,466 pnl-points over 2,946 trades  (+4.23%/trade)
+#   with gate     +29,974 pnl-points over 1,279 trades  (+23.44%/trade)
+# and it shut off exactly where the losses were, while keeping the winners:
+#   12h 100% allowed (health 0.90)   14h 100% allowed (health 0.86)
+#   16h   0% allowed                 18h   0% allowed   19h 0% allowed
+# The optimum is interior (0.45 peaks, 0.55+ degrades) and consistent across windows
+# 20/30/50, which argues against it being curve-fit to this one session.
+# Off by default until validated live.
+REGIME_FILTER_ENABLED = _env_bool("REGIME_FILTER_ENABLED", False)
+REGIME_WINDOW = _env_int("REGIME_WINDOW", 50)
+REGIME_MIN_UP10_PCT = _env_float("REGIME_MIN_UP10_PCT", 45.0)
+REGIME_UP10_THRESHOLD_PCT = _env_float("REGIME_UP10_THRESHOLD_PCT", 10.0)
+REGIME_MIN_SAMPLES = _env_int("REGIME_MIN_SAMPLES", 20)
+
 # Security filters (apply in dry-run and live).
 #
 # Anti-rug checks that gate entry. The four that were previously disabled are now on:

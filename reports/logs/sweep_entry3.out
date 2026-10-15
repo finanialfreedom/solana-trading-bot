@@ -1,0 +1,27 @@
+interleaved sweep [entry]: 4 configs x 2 reps x 480s = 1.1h max
+
+--- rep 1/2 order: ['A-entry-none', 'B-entry-1', 'C-entry-2', 'D-entry-3'] ---
+>>> A-entry-none-r1
+=== experiment A-entry-none-r1 | 480s | overrides={'MAX_TRADES': '1500', 'MIN_CONFIRM_BUY_SOL': '0', 'MIN_UNIQUE_BUYERS': '0'} ===
+started 2026-10-15 21:35:39
+bot pid=18564; waiting 480s
+finished at 2026-10-15 21:43:52; log=exp_A-entry-none-r1.log
+
+== result ==
+  n                  93
+  expectancy_pct     -9.3
+  median_pct         -8.056
+  net_sol            -8.6486
+  win_rate_pct       14.0
+  avg_win_pct        27.54
+  avg_loss_pct       -15.29
+  mean_mfe_pct       15.86
+  mean_mae_pct       -1.13
+  mfe_ge_10_pct      21.5
+  top_decile_mfe     114.3
+  sample too small (93 < 200); extend the run
+
+=== pooled results (trade-weighted across interleaved blocks) ===
+config                 blocks      n  pooledExp  blockStd    netSOL
+A-entry-none                2    193      -6.89      2.32   -11.656
+>>> B-entry-1-r1

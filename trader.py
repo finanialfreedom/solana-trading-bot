@@ -47,6 +47,7 @@ from security import SecurityScanner
 from positions import Position, PositionBook
 from trailing import TrailingGuard
 from confirm import Confirmer
+from regime import RegimeGate
 from pumpfun import (
     BondingCurve,
     CreateInfo,
@@ -100,6 +101,7 @@ class Trader:
         self.security = SecurityScanner(client)
         self.trailing = TrailingGuard(self)
         self.confirm = Confirmer(self)
+        self.regime = RegimeGate()
 
     async def initialize(self) -> None:
         self.global_cfg = await self._load_global()
@@ -336,6 +338,11 @@ class Trader:
             logger.info("Skip %s (%s): %s", info.symbol, info.mint, blocked)
             return
 
+        regime_reason = self.regime.block_reason()
+        if regime_reason:
+            logger.info("Skip %s (%s): %s", info.symbol, info.mint, regime_reason)
+            return
+
         curve = await self.load_curve(info.bonding_curve)
         if curve is None:
             curve = self._curve_from_create(info)
@@ -563,6 +570,7 @@ class Trader:
                     mfe_pct=position.mfe_pct,
                     mae_pct=position.mae_pct,
                 )
+                self.regime.observe(position.mfe_pct)
                 self.book.close(position.mint)
                 logger.info(
                     "%s  %s  %+0.1f%% (fully scaled out)  in=%.4f SOL  out=%.4f SOL  mint=%s",
@@ -614,6 +622,7 @@ class Trader:
                 mfe_pct=position.mfe_pct,
                 mae_pct=position.mae_pct,
             )
+            self.regime.observe(position.mfe_pct)
             self.book.close(position.mint)
         if pnl <= -80:
             self.security.note_rug(position.creator)
