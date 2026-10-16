@@ -4,3 +4,6 @@
 [2026-10-16 04:49:54] start slippage attempt 1 (2 x 1800s)
 [2026-10-16 04:57:22] resume: already done -> none
 [2026-10-16 04:57:22] start slippage attempt 1 (2 x 1800s)
+[2026-10-16 05:22:32] net: 2026-10-16 05:22:32  OK   RPC + WebSocket reachable
+[2026-10-16 05:22:32] resume: already done -> none
+[2026-10-16 05:22:32] start slippage attempt 1 (2 x 1800s)
