@@ -1,12 +1,24 @@
-"""Is Norton actually blocking us? Test both connections the bot needs.
+"""Can the bot actually reach Solana right now -- and fix it if not.
 
-HTTP RPC carries the buys and sells; the WebSocket carries the live trade stream the
-confirm window and the trailing stop depend on. If either is blocked the bot is blind.
+Two connections matter:
+
+  HTTP RPC   carries the buys and the sells
+  WebSocket  carries the live trade stream the confirm window and trailing stop need
+
+If either is blocked the bot keeps "running" but is blind: no trades, no errors, no
+clue. That happened twice via Norton, so this script does not just report the problem.
+
+  --log    one silent probe, one timestamped line, exit 0/1
+  --watch  probe; if the connection is down, repair it and carry on unattended
+           (flush the DNS cache, retry with escalating waits, and if a sweep arm has
+           wedged against the dead network, restart the sweep so it picks up again)
+
 Prints no secrets.
 """
 from __future__ import annotations
 
 import asyncio
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -17,6 +29,46 @@ import websockets
 from solana.rpc.async_api import AsyncClient
 
 from config import RPC_URL, RPC_URL_LOG, WSS_URL, WSS_URL_LOG
+
+REPO = Path(__file__).resolve().parent.parent
+LOG_DIR = REPO / "reports" / "logs"
+CONN_LOG = LOG_DIR / "connectivity.log"
+PROGRAM_LOG = LOG_DIR / "program.log"
+COMPLETE_FLAG = LOG_DIR / "program_complete.flag"
+
+SWEEP_TASK = "SolanaBotSweepProgram"
+
+# How long a running arm may go without touching its log before the connection watcher
+# treats it as wedged and restarts the sweep. A 30-minute block logs trades constantly,
+# so five quiet minutes means it is stuck.
+ARM_STALL_SECONDS = 300
+
+
+def emit(line: str) -> None:
+    """Print for the task log and append to connectivity.log."""
+    print(line, flush=True)
+    try:
+        LOG_DIR.mkdir(parents=True, exist_ok=True)
+        with CONN_LOG.open("a", encoding="utf-8") as fh:
+            fh.write(line + "\n")
+    except OSError:
+        pass
+
+
+def stamp(msg: str) -> str:
+    return f"{time.strftime('%Y-%m-%d %H:%M:%S')}  {msg}"
+
+
+def run_cmd(args: list[str], timeout: int = 60) -> str:
+    """Run a helper command, never raise, return whatever it said."""
+    try:
+        done = subprocess.run(
+            args, capture_output=True, text=True, timeout=timeout,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+        return (done.stdout or "") + (done.stderr or "")
+    except Exception as exc:  # noqa: BLE001 - a failed repair must not crash the watcher
+        return f"<{type(exc).__name__}: {exc}>"
 
 
 async def http_test() -> bool:
@@ -71,27 +123,116 @@ async def probe() -> bool:
     return http_ok and ws_ok
 
 
-async def log_mode() -> int:
-    """One silent probe, appended to reports/logs/connectivity.log.
+# ---------------------------------------------------------------------------
+# Repair tools. All best-effort: this watcher must never be the thing that fails.
+# ---------------------------------------------------------------------------
 
-    Run every 15 minutes by Task Scheduler while an unattended test run is going, so
-    that in the morning there is a timestamped record of whether the network was up the
-    whole night. If Norton blocks the connection mid-run this is how we find out.
-    """
-    log_path = Path(__file__).resolve().parent.parent / "reports" / "logs" / "connectivity.log"
-    log_path.parent.mkdir(parents=True, exist_ok=True)
-    ok = await probe()
-    line = "{0}  {1}".format(
-        time.strftime("%Y-%m-%d %H:%M:%S"),
-        "OK   RPC + WebSocket reachable" if ok else "FAIL RPC or WebSocket blocked",
+def flush_dns() -> None:
+    """A stale resolver entry is the cheapest thing to rule out, and needs no admin."""
+    out = run_cmd(["ipconfig", "/flushdns"])
+    ok = "successfully" in out.lower() or "flushed" in out.lower()
+    emit(stamp(f"heal: dns cache flush {'ok' if ok else 'no-op'}"))
+
+
+def sweep_alive() -> bool:
+    """Is a sweep or an experiment arm running?"""
+    ps = (
+        "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "
+        "'run_experiment|interleaved_sweep' } | Measure-Object | "
+        "Select-Object -ExpandProperty Count"
     )
-    print(line)
-    with log_path.open("a", encoding="utf-8") as fh:
-        fh.write(line + "\n")
+    out = run_cmd(["powershell", "-NoProfile", "-Command", ps]).strip()
+    try:
+        return int(out) > 0
+    except ValueError:
+        return False
+
+
+def arm_log_stall_seconds() -> float | None:
+    """Seconds since the newest experiment log was written, or None if there is none."""
+    logs = sorted(LOG_DIR.glob("exp_*.log"), key=lambda p: p.stat().st_mtime)
+    if not logs:
+        return None
+    return time.time() - logs[-1].stat().st_mtime
+
+
+def start_sweep(note: str) -> None:
+    out = run_cmd(["schtasks", "/Run", "/TN", SWEEP_TASK])
+    ok = "success" in out.lower()
+    emit(stamp(f"heal: sweep restart ({note}) {'ok' if ok else 'failed'}"))
+
+
+def restart_wedged_arm() -> None:
+    """Kill a sweep arm that is holding a dead connection, so the supervisor retries.
+
+    Only called when the network was down and the newest arm log has been silent well
+    past a normal logging gap, which is the signature of an arm blocked on the socket.
+    The supervisor treats a short run as unfinished and retries it, so this is safe.
+    """
+    ps = (
+        "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "
+        "'run_experiment|interleaved_sweep' } | ForEach-Object { "
+        "Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"
+    )
+    run_cmd(["powershell", "-NoProfile", "-Command", ps])
+    emit(stamp("heal: wedged arm killed; supervisor will retry"))
+
+
+def keep_job_alive() -> None:
+    """The sweep is the thing we are protecting, so make sure it is actually running."""
+    if COMPLETE_FLAG.exists():
+        return
+    if sweep_alive():
+        return
+    start_sweep("not running")
+
+
+# ---------------------------------------------------------------------------
+# Modes
+# ---------------------------------------------------------------------------
+
+async def log_mode() -> int:
+    """One silent probe, appended to connectivity.log."""
+    ok = await probe()
+    emit(stamp("OK   RPC + WebSocket reachable" if ok else "FAIL RPC or WebSocket blocked"))
     return 0 if ok else 1
 
 
+async def watch_mode() -> int:
+    """Probe, repair if needed, make sure the job is still moving. No user involvement."""
+    if await probe():
+        emit(stamp("OK   RPC + WebSocket reachable"))
+        keep_job_alive()
+        return 0
+
+    emit(stamp("FAIL RPC or WebSocket blocked - attempting self-repair"))
+
+    # Escalating repairs: clear the resolver cache, then wait progressively longer for
+    # the block to lift. Nothing here needs the user, a password, or a dialog.
+    for round_no, wait_s in enumerate((5, 20, 60, 120), start=1):
+        flush_dns()
+        await asyncio.sleep(wait_s)
+        if await probe():
+            emit(stamp(f"HEALED after round {round_no} (~{wait_s}s wait)"))
+            stall = arm_log_stall_seconds()
+            if stall is not None and stall > ARM_STALL_SECONDS:
+                restart_wedged_arm()
+            keep_job_alive()
+            return 0
+
+    emit(stamp("STILL DOWN after 4 repair rounds (~205s)"))
+
+    # The network stayed dead long enough that any arm holding it is now useless.
+    stall = arm_log_stall_seconds()
+    if stall is not None and stall > ARM_STALL_SECONDS:
+        restart_wedged_arm()
+    keep_job_alive()
+    return 1
+
+
 async def main() -> None:
+    if "--watch" in sys.argv:
+        raise SystemExit(await watch_mode())
     if "--log" in sys.argv:
         raise SystemExit(await log_mode())
     http_ok = await http_test()

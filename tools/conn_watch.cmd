@@ -1,6 +1,10 @@
 @echo off
-REM One silent connectivity probe, appended to reports\logs\connectivity.log.
-REM Run every 15 minutes by Task Scheduler so an unattended overnight test leaves a
-REM timestamped record of whether Norton ever blocked the RPC or the trade stream.
+REM Self-healing connectivity watch, run every 15 minutes by Task Scheduler.
+REM
+REM Probes the HTTP RPC and the WebSocket trade stream. If either is down it repairs
+REM the connection by itself (DNS cache flush, then escalating retries) and, if a sweep
+REM arm has wedged against the dead socket, restarts the sweep so the run continues.
+REM No popups, no alerts, no user involvement. Results append to
+REM reports\logs\connectivity.log.
 cd /d D:\AI\solana-trading-bot
-.venv\Scripts\python.exe tools\check_connectivity.py --log >> reports\logs\conn_watch_stdout.log 2>&1
+.venv\Scripts\python.exe tools\check_connectivity.py --watch >> reports\logs\conn_watch_stdout.log 2>&1

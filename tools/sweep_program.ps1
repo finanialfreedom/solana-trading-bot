@@ -13,6 +13,7 @@ $stateFile = Join-Path $root 'reports\logs\program_state.txt'
 $logFile = Join-Path $root 'reports\logs\program.log'
 $lockFile = Join-Path $root 'reports\logs\program.lock'
 $doneFlag = Join-Path $root 'reports\logs\program_complete.flag'
+$startFile = Join-Path $root 'reports\logs\program_started.txt'
 
 function Log([string]$msg) {
     $line = "[{0}] {1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $msg
@@ -47,6 +48,15 @@ $plan = @(
 
 if (Test-Path $doneFlag) { Log 'already complete; nothing to do'; exit 0 }
 if (-not (Test-Path $stateFile)) { New-Item -ItemType File -Path $stateFile -Force | Out-Null }
+
+# Record when this program's run began, once. The final scoreboard uses it to ignore
+# experiments from earlier runs, which were scored with the old, flattering execution
+# math and are not comparable.
+if (-not (Test-Path $startFile)) {
+    Set-Content -Path $startFile -Value (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+}
+$programStart = (Get-Content $startFile -ErrorAction SilentlyContinue | Select-Object -First 1)
+
 $done = @(Get-Content $stateFile -ErrorAction SilentlyContinue | Where-Object { $_ })
 
 Log ("resume: already done -> " + ($(if ($done) { $done -join ', ' } else { 'none' })))
@@ -85,3 +95,9 @@ foreach ($step in $plan) {
 Set-Content -Path $doneFlag -Value (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
 Remove-Item $lockFile -ErrorAction SilentlyContinue
 Log "PROGRAM COMPLETE"
+
+# The two numbers that decide go-live: the best success rate reached, and the most
+# aggressive take-profit setting that still finished ahead at the fixed 3% stop loss.
+Log "writing final scoreboard"
+& "$root\.venv\Scripts\python.exe" tools\final_report.py "--since=$programStart" > (Join-Path $root 'reports\logs\final_report.out') 2>&1
+Log "final scoreboard -> reports\final_report.txt"
