@@ -7285,3 +7285,43 @@ MoonFrogCat,MOGCAT,WON,34.8214266,85.13641184877224,0.0,1.0,1.348214266,0.348214
 MoonFrogCat,MFC,OPEN,,,,1.0,,,holding,GoHmDyg1tHL3z9j22f372jd6RdBE5D9yyGUEFfuRpump,2026-10-16 01:55:45,
 SATINU,SATINU,OPEN,,,,1.0,,,holding,Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump,2026-10-16 03:18:45,
 SATINU,SATINU,LOST,-2.0680618,108.93032902602798,-2.068061860597894,1.0,0.979319382,-0.020680617999999984,watchdog breakeven -2.1%,Cw3TfKqnvnsMGdYVm4kMFiowb2K5XXmR2vXYTxudpump,2026-10-16 03:18:45,2026-10-16 03:18:46
+do not wake it,w∅,OPEN,,,,1.0,,,holding,32HoFP6Ne6RBkc635ZRVhSfx9YGWQomymATcdrGypump,2026-10-16 03:19:24,
+do not wake it,w∅,WON,41.1799979,72.57669442120297,0.0,1.0,1.411799979,0.411799979,"trade-event trailing-stop 41.2% (-18.2% from peak, tol=18%)",32HoFP6Ne6RBkc635ZRVhSfx9YGWQomymATcdrGypump,2026-10-16 03:19:24,2026-10-16 03:19:28
+VICEPAD VI,VP6,OPEN,,,,1.0,,,holding,FeYUHhfDoYzQ9kTvHxvSVTJkbnUKH6KcoWMTgERCpump,2026-10-16 03:19:29,
+VICEPAD VI,VP6,WON,34.4337891,86.189378451945,0.0,1.0,1.344337891,0.3443378909999999,"trade-event trailing-stop 34.4% (-27.8% from peak, tol=18%)",FeYUHhfDoYzQ9kTvHxvSVTJkbnUKH6KcoWMTgERCpump,2026-10-16 03:19:29,2026-10-16 03:19:30
+dx,dx,OPEN,,,,1.0,,,holding,GZm9LXnjJE9zDjdfzSPvWoLKuGnQm3W9LvFiaofqpump,2026-10-16 03:19:56,
+Business Cat,BCAT,OPEN,,,,1.0,,,holding,4Gmj6FAZ8gLxReGHr3VqcnDL5qHqv7JjLDHR5B2gpump,2026-10-16 03:20:16,
+dx,dx,WON,6.8372408,7.916404933639439,0.0,1.0,1.068372408,0.0683724080000001,watchdog dead-coin 7.9% after 30s,GZm9LXnjJE9zDjdfzSPvWoLKuGnQm3W9LvFiaofqpump,2026-10-16 03:19:56,2026-10-16 03:20:27
+Business Cat,BCAT,OPEN,,,,1.0,,,holding,68CiLfn5w7FNtBvkbDVA8uDymKFfDE8fU6C2fMBjpump,2026-10-16 03:20:37,
+Neural Networks Are Already,CLEAN,OPEN,,,,1.0,,,holding,3ttRNLsnk7CJwScgZbLLEuzSJ4GzmUHyLjvHYvztpump,2026-10-16 03:20:38,
+Neural Networks Are Already,CLEAN,WON,64.544208,101.7987735801868,0.0,1.0,1.64544208,0.64544208,"watchdog trailing-stop 64.5% (-18.5% from peak, tol=18%)",3ttRNLsnk7CJwScgZbLLEuzSJ4GzmUHyLjvHYvztpump,2026-10-16 03:20:38,2026-10-16 03:20:46
+Browbera Thornhill,BROWBERA,OPEN,,,,1.0,,,holding,7n1wrPswmFRmzbktqdcjTPo917SDjUCdEoeU2Q8Qpump,2026-10-16 03:20:49,
+farta,farta,OPEN,,,,1.0,,,holding,26vQuXrp4EwsCfpfDKhea9a3aSYcDFfLqEroQKUPpump,2026-10-16 03:20:52,
+farta,farta,LOST,-13.9956946,0.0,-13.995694643762457,1.0,0.860043054,-0.13995694599999997,watchdog stop-loss -14.0%,26vQuXrp4EwsCfpfDKhea9a3aSYcDFfLqEroQKUPpump,2026-10-16 03:20:52,2026-10-16 03:20:52
+Browbera Thornhill,BROWBERA,LOST,-6.0517331,63.47169500416982,-6.051733172329069,1.0,0.939482669,-0.06051733100000001,trade-event breakeven -6.1%,7n1wrPswmFRmzbktqdcjTPo917SDjUCdEoeU2Q8Qpump,2026-10-16 03:20:49,2026-10-16 03:20:52
+yore,YORE,OPEN,,,,1.0,,,holding,2PSZFJhvftrKb6SAyBtEUUpFHXNnWZP4WQMeGW3Ryore,2026-10-16 03:20:56,
+yore,YORE,LOST,-7.3185734,0.0,-7.31857335633308,1.0,0.926814266,-0.07318573399999995,watchdog stop-loss -7.3%,2PSZFJhvftrKb6SAyBtEUUpFHXNnWZP4WQMeGW3Ryore,2026-10-16 03:20:56,2026-10-16 03:20:57
+The Police Dog,Hermès,OPEN,,,,1.0,,,holding,tQn3jYX8xevg1frzbgCiSGNCLrdQZyL7QdpR1jqpump,2026-10-16 03:20:59,
+mine-it,MINE,OPEN,,,,1.0,,,holding,hX6AGedY845Cp87RiC2uw7ksLdbgcEwXe8yEiV6pump,2026-10-16 03:21:01,
+mine-it,MINE,WON,191.09854710000002,307.0854454759816,0.0,1.0,2.910985471,1.910985471,"trade-event trailing-stop 191.1% (-28.5% from peak, tol=28%)",hX6AGedY845Cp87RiC2uw7ksLdbgcEwXe8yEiV6pump,2026-10-16 03:21:01,2026-10-16 03:21:05
+Afia Birago Frog,Afia,OPEN,,,,1.0,,,holding,4kf2jNVQegciC2zME8ayMnAHVtS26jsxKKNjCqZmpump,2026-10-16 03:21:13,
+rainforest,rainforest,OPEN,,,,1.0,,,holding,FVo6sJvTv7LfPiNrAExvHgke4cnKsnrzoKPyCujApump,2026-10-16 03:21:53,
+Clawd,CLAWD,OPEN,,,,1.0,,,holding,BrxxteLyAfj29VcGWLchZJbtoVF6TWGL3NgSpLZapump,2026-10-16 03:21:56,
+rainforest,rainforest,WON,22.5302903,39.37197701509827,0.0,1.0,1.225302903,0.225302903,"watchdog trailing-stop 22.5% (-12.1% from peak, tol=10%)",FVo6sJvTv7LfPiNrAExvHgke4cnKsnrzoKPyCujApump,2026-10-16 03:21:53,2026-10-16 03:21:56
+Catto,CATTO,OPEN,,,,1.0,,,holding,72C7jmPzsYhd8fuZjSaf2e18joWpngQwo1WGu64Npump,2026-10-16 03:21:57,
+Clawd,CLAWD,WON,17.0745033,53.08523894693287,0.0,1.0,1.170745033,0.170745033,"trade-event ratchet-floor 17.1% (locked +25%, peak +53%)",BrxxteLyAfj29VcGWLchZJbtoVF6TWGL3NgSpLZapump,2026-10-16 03:21:56,2026-10-16 03:21:57
+aura dog,auradog,OPEN,,,,1.0,,,holding,BocjhvTbZ4PVmu584mqfnFtbn9CkvTDNFjeRYio6pump,2026-10-16 03:21:58,
+aura dog,auradog,WON,27.0571733,60.74092187173331,0.0,1.0,1.270571733,0.2705717329999999,"trade-event trailing-stop 27.1% (-21.0% from peak, tol=18%)",BocjhvTbZ4PVmu584mqfnFtbn9CkvTDNFjeRYio6pump,2026-10-16 03:21:58,2026-10-16 03:21:59
+Justice for Hermès,Hermès,OPEN,,,,1.0,,,holding,F7BibTme4rmvHrJbvw8ikTjkFBexjvEM3tczyDBGpump,2026-10-16 03:22:09,
+<Privacy Pump>,<P>,OPEN,,,,1.0,,,holding,6SyqC3EzudtZeAMx7eoHFxTMfyQkkzoT8kyjitkopump,2026-10-16 03:22:14,
+PerpTide,PT,OPEN,,,,1.0,,,holding,Dm9G7f6HtrtWX2SzCtWTkCLHpfP9phSpe4BVvDR9pump,2026-10-16 03:22:19,
+PerpTide,PT,WON,48.2309796,81.25501519434785,0.0,1.0,1.482309796,0.482309796,"trade-event trailing-stop 48.2% (-18.2% from peak, tol=18%)",Dm9G7f6HtrtWX2SzCtWTkCLHpfP9phSpe4BVvDR9pump,2026-10-16 03:22:19,2026-10-16 03:22:20
+Big Ugly Cucks,BUC,OPEN,,,,1.0,,,holding,JANiakLq3CbkQmmkVsnwrExwEvonYN2x1tZySUtzpump,2026-10-16 03:22:23,
+Catto,CATTO,LOST,-0.6882066,0.31494294061903616,0.0,1.0,0.993117934,-0.0068820659999999645,watchdog dead-coin 0.3% after 30s,72C7jmPzsYhd8fuZjSaf2e18joWpngQwo1WGu64Npump,2026-10-16 03:21:57,2026-10-16 03:22:27
+Big Ugly Cucks,BUC,WON,3.090547,19.021110035639886,0.0,1.0,1.03090547,0.03090546999999999,"trade-event trailing-stop 3.1% (-13.4% from peak, tol=10%)",JANiakLq3CbkQmmkVsnwrExwEvonYN2x1tZySUtzpump,2026-10-16 03:22:23,2026-10-16 03:22:47
+Big Ugly Cucks,BUC,OPEN,,,,1.0,,,holding,J77Z9ACmdmKdNJ63LpufGqW8RpZyxh9jybPN5W9ypump,2026-10-16 03:23:09,
+Big Ugly Cucks,BUC,WON,99.1922249,157.86541497703487,0.0,1.0,1.991922249,0.9919222489999999,"trade-event ratchet-floor 99.2% (locked +100%, peak +158%)",J77Z9ACmdmKdNJ63LpufGqW8RpZyxh9jybPN5W9ypump,2026-10-16 03:23:09,2026-10-16 03:23:16
+AutoCorp,CORP,OPEN,,,,1.0,,,holding,EkC97ruNmtDw9Rq3DPXTwhx6VhxTgrRH6m7XvsjAkKUM,2026-10-16 03:23:41,
+number go hmm,PONDR,OPEN,,,,1.0,,,holding,9EaQMq1EMbFZNHSdYwZuB5HCxEqfX6Dca2uSKhWnpump,2026-10-16 03:23:59,
+Meme Index 100,MEME100,OPEN,,,,1.0,,,holding,YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump,2026-10-16 03:31:49,
+Rankz,RANKZ,OPEN,,,,1.0,,,holding,7d8W2JerSognHYeBAtcg2RaJs97rccUkAbR8KTVhpump,2026-10-16 03:31:51,
