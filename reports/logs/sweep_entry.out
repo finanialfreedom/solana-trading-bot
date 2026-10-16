@@ -1,4 +1,0 @@
-interleaved sweep [entry]: 4 configs x 2 reps x 600s = 1.3h max
-
---- rep 1/2 order: ['A-entry-none', 'B-entry-1', 'C-entry-2', 'D-entry-3'] ---
->>> A-entry-none-r1

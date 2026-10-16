@@ -6,7 +6,55 @@ stop loss (fixed)     3.0%
 per-trade risk        locked (1.0 SOL max size, 8.0 SOL max at risk)
 scope                 current program run only (honest execution math:
                       realizable-price marks, adverse slippage on both sides)
-configurations        0 pooled
-trades counted        0
+configurations        29 pooled
+trades counted        2293
 
-No results recorded yet. Nothing to score.
+------------------------------------------------------------------------------
+1. MAXIMUM SUCCESS RATE REACHED
+------------------------------------------------------------------------------
+   95.4% of trades closed green
+   configuration: 02-buysol-0.3   (216 trades from 1 block(s))
+   its average return per trade: +29.96%   net +11.082 SOL
+
+   success rate across every configuration, best first:
+     02-buysol-0.3   95.4%   n=216   avg  +29.96%   net  +11.082 SOL
+     B-buysol-0.3    93.3%   n=90    avg  +29.63%   net   +4.112 SOL
+     C-buysol-0.5    93.1%   n=102   avg  +53.46%   net  +10.970 SOL
+     E-buysol0.3-tight  88.7%   n=97    avg  +23.11%   net   +3.720 SOL
+     A-control       80.1%   n=382   avg  +11.47%   net   +0.287 SOL
+     01-control      72.4%   n=308   avg   -0.53%   net   -2.693 SOL
+     A-entry-none    16.5%   n=254   avg  -11.16%   net  -26.685 SOL
+     D-bank70         7.5%   n=94    avg   -4.27%   net   -0.761 SOL
+
+------------------------------------------------------------------------------
+2. HIGHEST TAKE-PROFIT SETTING THAT WORKED
+------------------------------------------------------------------------------
+   take profit arms at +3.0% stop loss: +10% arm trigger, 8% trailing callback
+   configuration: E-buysol0.3-tight   (97 trades from 1 block(s))
+   its average return per trade: +23.11%   median +6.03%   net +3.720 SOL
+   full reward-side settings: {"MAX_TRADES": "1500", "MIN_CONFIRM_BUY_SOL": "0.3", "TAKE_PROFIT_TRIGGER_PCT": "10", "TRAILING_STOP_PCT": "8"}
+
+   every take-profit arm, most aggressive setting first:
+     E-buysol0.3-tight tp + 10%  trail   8%  avg  +23.11%  n=97
+
+------------------------------------------------------------------------------
+3. BEST OVERALL CONFIGURATION BY AVERAGE RETURN
+------------------------------------------------------------------------------
+   C-buysol-0.5   avg +53.46% per trade, median +20.67%, win 93.1%, net +10.970 SOL
+   n=102 trades from 1 block(s)
+   settings: {"MAX_TRADES": "1500", "MIN_CONFIRM_BUY_SOL": "0.5"}
+
+   all configurations ranked by average return:
+     C-buysol-0.5   avg  +53.46%  med  +20.67%  win  93.1%  net  +10.970 SOL  n=102
+     02-buysol-0.3  avg  +29.96%  med  +14.52%  win  95.4%  net  +11.082 SOL  n=216
+     B-buysol-0.3   avg  +29.63%  med  +17.20%  win  93.3%  net   +4.112 SOL  n=90
+     E-buysol0.3-tight avg  +23.11%  med   +6.03%  win  88.7%  net   +3.720 SOL  n=97
+     A-control      avg  +11.47%  med   +1.36%  win  80.1%  net   +0.287 SOL  n=382
+     01-control     avg   -0.53%  med   +0.65%  win  72.4%  net   -2.693 SOL  n=308
+     D-bank70       avg   -4.27%  med   -3.25%  win   7.5%  net   -0.761 SOL  n=94
+     A-control-pure-ride avg   -4.76%  med   -3.24%  win   3.3%  net   -1.412 SOL  n=120
+     C-bank50       avg   -6.37%  med   -3.24%  win   1.2%  net   -1.742 SOL  n=85
+     B-bank30       avg   -7.30%  med   -3.26%  win   6.6%  net   -1.274 SOL  n=91
+     A-entry-none   avg  -11.16%  med   -6.16%  win  16.5%  net  -26.685 SOL  n=254
+
+==============================================================================
