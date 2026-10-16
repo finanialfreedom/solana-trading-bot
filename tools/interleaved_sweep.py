@@ -269,15 +269,27 @@ LADDER_SCHEDULE: list[tuple[str, dict[str, str]]] = [
 ]
 
 # How much simulated slippage the strategy can survive. This is the go-live question:
-# dry-run fills at the exact curve quote with no delay, so the recorded edge is an
-# upper bound. Each arm applies progressively harsher adverse slippage to both sides
-# (entry and exit) and the sweep shows where the edge dies. If it survives 5-8%, the
-# real thing has room; if it dies at 2%, the edge is too thin for real money.
+# dry-run fills at the exact curve quote with no delay, so any recorded edge is an
+# upper bound and must be knocked down before it is believed. Each arm applies
+# progressively harsher adverse slippage to both sides (entry and exit) and the sweep
+# shows where the edge dies.
+#
+# Published cost data for brand-new pump.fun tokens says a realistic round trip is
+# already in the single-digit percent before any adversarial flow:
+#   - 1.25% venue fee each way on the curve, so ~2.5% per round trip by itself
+#     (pump.fun charges 1.25%; post-migration PumpSwap runs ~0.3% a side)
+#   - price impact of a 1 SOL buy at genesis is ~3.3%, well documented, and a sell of
+#     the same size pays it again
+#   - 26-32% of launch-window swap attempts simply fail and are charged anyway
+#   - thin-pair aggregator quotes observed 8-12% off actual execution
+# So the 0% arm measured a fantasy that no wallet can actually get, which is why it is
+# not part of this sweep. 2% is treated as the realistic floor (fees), and 5-8% stands
+# in for impact plus latency plus competing flow. If the edge survives 8%, real money
+# has room; if it dies at 2%, the edge is too thin to trade.
 SLIPPAGE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    ("A-slip0", {"SIM_SLIPPAGE_BPS": "0"}),
-    ("B-slip2", {"SIM_SLIPPAGE_BPS": "200"}),
-    ("C-slip5", {"SIM_SLIPPAGE_BPS": "500"}),
-    ("D-slip8", {"SIM_SLIPPAGE_BPS": "800"}),
+    ("A-slip2", {"SIM_SLIPPAGE_BPS": "200"}),
+    ("B-slip5", {"SIM_SLIPPAGE_BPS": "500"}),
+    ("C-slip8", {"SIM_SLIPPAGE_BPS": "800"}),
 ]
 
 SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
