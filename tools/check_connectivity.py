@@ -52,7 +52,14 @@ ARM_STALL_SECONDS = 300
 #
 # Matched on the script path, and the probing shell excludes its own PID, because the
 # probe's command line contains this pattern and would otherwise always match itself.
-SWEEP_PROC_PATTERN = r"interleaved_sweep\.py|sweep_program\.ps1|run_sweep_program\.cmd"
+#
+# The bot itself is launched as `python -c "import asyncio, bot ..."`, which matches
+# none of the script paths. It must be included explicitly: when an arm is killed, that
+# grandchild otherwise survives and keeps trading, writing to the same reports\*.csv as
+# the arm the supervisor starts next, so both trade logs are corrupted.
+SWEEP_PROC_PATTERN = (
+    r"interleaved_sweep\.py|sweep_program\.ps1|run_sweep_program\.cmd|import asyncio, bot"
+)
 SELF_GUARD = "$_.ProcessId -ne $PID -and "
 
 

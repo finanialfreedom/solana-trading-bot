@@ -326,6 +326,26 @@ def read_results() -> list[dict]:
     return out
 
 
+def program_run_start() -> str | None:
+    """Timestamp the current program run began, if the supervisor recorded one."""
+    started = REPO / "reports" / "logs" / "program_started.txt"
+    if not started.exists():
+        return None
+    text = started.read_text(encoding="utf-8").strip()
+    return text or None
+
+
+def completed_arms(since: str | None) -> set[str]:
+    """Arm labels ('A-cur-r1') that already have results in *this* run."""
+    if not since:
+        return set()
+    return {
+        row["label"]
+        for row in read_results()
+        if str(row.get("started", "")) >= since and row.get("label")
+    }
+
+
 def pooled_by_label() -> dict[str, dict]:
     """Pool every block of a config into one trade-weighted estimate."""
     known = {label for label, _ in SCHEDULE}
@@ -388,12 +408,24 @@ def main() -> None:
     print(f"interleaved sweep [{schedule_name}]: {len(SCHEDULE)} configs x {reps} reps x "
           f"{block_seconds}s = {len(SCHEDULE) * reps * block_seconds / 3600:.1f}h max", flush=True)
 
+    # A stage runs for hours and the machine can kill it part-way (reboot, antivirus,
+    # console close). Remember which arms of this run already have results, so a restart
+    # resumes at the first unfinished arm instead of redoing the whole stage. Without
+    # this, a stage longer than the gap between kills can never finish: it restarts from
+    # scratch every time and never reaches its completion marker.
+    already = completed_arms(program_run_start())
+    if already:
+        print(f"resuming: {len(already)} arm(s) already scored in this run", flush=True)
+
     for rep in range(reps):
         # rotate the order each rep so no config always gets the same slot
         order = SCHEDULE[rep % len(SCHEDULE):] + SCHEDULE[:rep % len(SCHEDULE)]
         print(f"\n--- rep {rep + 1}/{reps} order: {[lbl for lbl, _ in order]} ---", flush=True)
         for label, overrides in order:
             run_label = f"{label}-r{rep + 1}"
+            if run_label in already:
+                print(f">>> {run_label} (already scored in this run; skipped)", flush=True)
+                continue
             env_overrides = {"MAX_TRADES": MAX_TRADES, **overrides}
             cmd = [str(PYTHON), "tools/run_experiment.py", run_label, str(block_seconds)]
             cmd += [f"{k}={v}" for k, v in env_overrides.items()]

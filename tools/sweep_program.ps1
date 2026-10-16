@@ -20,6 +20,17 @@ function Log([string]$msg) {
     Add-Content -Path $logFile -Value $line
 }
 
+function Clear-StrayBots {
+    # An experiment's bot is launched as `python -c "import asyncio, bot ..."`, so it
+    # matches none of the sweep script paths. If a stage is force-killed, that grandchild
+    # can outlive the sweep and keep trading, writing to the same reports\*.csv as the arm
+    # we are about to start -- two bots feeding one trade log corrupts both. Clear them
+    # before every attempt; a bot we own is started fresh right after.
+    Get-CimInstance Win32_Process -Filter "Name='python.exe'" -ErrorAction SilentlyContinue |
+        Where-Object { $_.CommandLine -match 'import asyncio, bot' } |
+        ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+}
+
 # Single-instance guard. This script is launched repeatedly by Task Scheduler, so a
 # second copy must never start and fight the first over the same ports and log files.
 if (Test-Path $lockFile) {
@@ -71,6 +82,7 @@ foreach ($step in $plan) {
 
     for ($attempt = 1; $attempt -le 6 -and -not $ok; $attempt++) {
         Log "start $name attempt $attempt ($($step.Reps) x $($step.Secs)s)"
+        Clear-StrayBots
         & "$root\.venv\Scripts\python.exe" -u tools\interleaved_sweep.py $step.Secs $step.Reps $name > $out 2> $err
         $code = $LASTEXITCODE
         $finished = Select-String -Path $out -Pattern 'sweep finished' -Quiet -ErrorAction SilentlyContinue
