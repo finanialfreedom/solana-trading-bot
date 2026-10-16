@@ -1,0 +1,12 @@
+==============================================================================
+FINAL SCOREBOARD
+==============================================================================
+
+stop loss (fixed)     3.0%
+per-trade risk        locked (1.0 SOL max size, 8.0 SOL max at risk)
+scope                 current program run only (honest execution math:
+                      realizable-price marks, adverse slippage on both sides)
+configurations        0 pooled
+trades counted        0
+
+No results recorded yet. Nothing to score.
