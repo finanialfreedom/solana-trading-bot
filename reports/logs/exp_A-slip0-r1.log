@@ -1,214 +1,100 @@
-2026-10-16 03:31:24,942 INFO RPC HTTP https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:26,123 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:26,224 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:26,406 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:26,589 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:26,589 INFO Trader ready mode=DRY-RUN probe=1.00 add=0.00 SOL stop-loss=3.0% breakeven-after=+5.0% trailing-TP arm=12% callback=10% max_open=16 max_trades=1500 excel=D:\AI\solana-trading-bot\reports\pumpfun_trades.xlsx
-2026-10-16 03:31:26,589 INFO Security filters: no min liquidity, holders, LP-lock, or verified | no minimum total liquidity | tax fixed and <= 1%
-2026-10-16 03:31:26,589 INFO DRY-RUN is on: orders are simulated, no transactions are sent.
-2026-10-16 03:31:26,589 INFO Connecting WebSocket wss://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:26,589 INFO Watching Pump.fun program 6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P
-2026-10-16 03:31:26,589 INFO Trailing TP/SL watchdog started  tick=0.25s armed=0.08s stale=0.20s  SL floor=3.0%  breakeven after +5.0%  arm=12%  callback=10%
-2026-10-16 03:31:26,589 INFO Confirm window started  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:27,373 INFO Subscribed (id=51762406). Ctrl+C to stop.
-2026-10-16 03:31:28,107 INFO NEW TOKEN    ( )  mint=CUmau8kK9vTpXn8YUW52wrFGAq7agVC9Bqr4Vu71pump  curve=DMm3dxsrjy2TG9W3PvCyo7KP33ZWRM1ePZT7WBLQBgjF  sig=2uLFGonn31rJsePrbMm3JAdLUAxHx9ADKBEWPzzArJWcjwZ9bjsQFf5pHJwjbNub44BSdU3eHsNzF8r5rZpVnQAY
-2026-10-16 03:31:28,107 INFO WATCH     mint=CUmau8kK9vTpXn8YUW52wrFGAq7agVC9Bqr4Vu71pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:28,823 INFO NEW TOKEN  PUMP (PUMP)  mint=EVPDHbSUDXK95T8bzQez96QcTG3ZhCNvPoEtDAmXDvpg  curve=8xbj6Cm5MKVnWPnDrrxSt46FuJ3iuFmxYL7LAxSrB8F6  sig=21Sg6fnMSjU2ndaWoadsXfasXp3hQhecTraPAPnaLvpKgnpzW4gu5RdKcVhGReExoaJywwxU7erU4QyiR9zHVLQZ
-2026-10-16 03:31:28,823 INFO WATCH  PUMP  mint=EVPDHbSUDXK95T8bzQez96QcTG3ZhCNvPoEtDAmXDvpg  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:29,423 INFO NEW TOKEN  billions (BILLIONS)  mint=5VPYeSWXpXx6SfszoX8hPM5xNYc8WPTZsxWVQ8KFEPbH  curve=F8zMMob8TYSoybTPQAYNLn2RkxcRwyzmviCsSDwTV8pm  sig=5LLMJ6LE8E2kvVtEeJ7CnG3tdW6nM75voCF1KuwBfA9Sbomv9MGzE39D41T6ZXXF5vExTRBSzye5SDe59J9ggDW5
-2026-10-16 03:31:29,423 INFO WATCH  BILLIONS  mint=5VPYeSWXpXx6SfszoX8hPM5xNYc8WPTZsxWVQ8KFEPbH  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:30,474 INFO NEW TOKEN  Custom Pairs (PAIR)  mint=9muk24CxeRdH276HYytkXKbkSexUHFTksuD1B6qMpump  curve=8eZ8syuoCHaAo9eTVzXrwkinJTgEjveY2ygWD1PUXpd8  sig=5QioCqZBRXyoL722BiE4Rdp71s34dsFGU5MkomKTi4kLE3ZfT3tjZmEED4WCianWv8TqeLmKKFfECGLZFTASoT37
-2026-10-16 03:31:30,474 INFO WATCH  PAIR  mint=9muk24CxeRdH276HYytkXKbkSexUHFTksuD1B6qMpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:30,690 INFO NEW TOKEN  sig=5nWqUPpBD8Ld8v3pHRwxi4eVszrqBskVQhGnmX7sWmoKt4PxTFb4XrffbRW12xs2BUHQKifzADBHSwekhnmQs533  (could not decode metadata)
-2026-10-16 03:31:31,024 INFO NEW TOKEN  Custom Pairs (PAIR)  mint=DSiFhYNfdmELBSqfepeWryRaumFZdADG3M4ERHpJERCd  curve=2MwHRoESD5cF6waTyMhULgFw5zNi3PMo4JJMKK7gGs8d  sig=32RCntKQUK6gGSijq3yVasuCFiCpnoCTyXpgdqXJ56XTc81NonEyG1Fookb6z6VKav3a6nBSZ54ZwxLUJUjSeY4g
-2026-10-16 03:31:31,024 INFO WATCH  PAIR  mint=DSiFhYNfdmELBSqfepeWryRaumFZdADG3M4ERHpJERCd  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:33,122 INFO SKIP CONFIRM     low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$70126  mint=CUmau8kK9vTpXn8YUW52wrFGAq7agVC9Bqr4Vu71pump
-2026-10-16 03:31:33,423 INFO NEW TOKEN  sig=5wBwhLJkCZg7UMZnxB2V5twfFQHvTDMPJWp6NaM5UxEFsUEFSaZ1MpGZah4ccnopN4x3ZtarhsriQfckCxjXNBEE  (could not decode metadata)
-2026-10-16 03:31:33,790 INFO NEW TOKEN  \U0001f408\u200d\u2b1b Fomo Cat \U0001f408\u200d\u2b1b (FOMOCAT)  mint=GsXwH6N22K7yFRichUQiHNdiYVBAVBExwsN2NUDxpump  curve=HuiwfcXGgQUHkt4ry3MXiSgn7Nz9uGupECtXTPQYaJv8  sig=3uWFSur1KfMzs7cBksZqsC9bDiCoHZ2Cpgpk2L5wuQ2YtXY6dvZvVjmF5mi5FQBSZQG3fNx9JW6GX8TNN1eDzTh1
-2026-10-16 03:31:33,790 INFO WATCH  FOMOCAT  mint=GsXwH6N22K7yFRichUQiHNdiYVBAVBExwsN2NUDxpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:33,856 INFO NEW TOKEN  sig=3BgQ1SSV1GAyVai8vvjhHPdK48sFdsHgvrQeJaqyQhiAUzQndRVWuQMmfjPtGd3LcXwKUh7q1t8RSoTNLYbNBBvx  (could not decode metadata)
-2026-10-16 03:31:33,873 INFO SKIP CONFIRM  PUMP  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2960  mint=EVPDHbSUDXK95T8bzQez96QcTG3ZhCNvPoEtDAmXDvpg
-2026-10-16 03:31:34,622 INFO SKIP CONFIRM  BILLIONS  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$0  mint=5VPYeSWXpXx6SfszoX8hPM5xNYc8WPTZsxWVQ8KFEPbH
-2026-10-16 03:31:35,479 INFO NEW TOKEN  CopyPad (COPY)  mint=EWWjrjhLGL1XpwUN7CUPSp45mfxvkHsAapeax9JJpump  curve=DxAqthqhib4CAj1WaUDjgji1FvF4ZHMT1bC1GB9J4PHv  sig=2GZMgv6EELEHrPRDDS5BASP4AZYmZpgTVgTv6masdRASzYZfN7puN25LxdJMTHKXmorJnregtqb1nGN8XFAsyoxM
-2026-10-16 03:31:35,479 INFO WATCH  COPY  mint=EWWjrjhLGL1XpwUN7CUPSp45mfxvkHsAapeax9JJpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:35,629 INFO SKIP CONFIRM  PAIR  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$0  mint=9muk24CxeRdH276HYytkXKbkSexUHFTksuD1B6qMpump
-2026-10-16 03:31:36,073 INFO NEW TOKEN  mirax.fun (MIRAX)  mint=3fcYnPsgcV6sfbZTL4QPw7GfBv3WNdbQRYNgjoenpump  curve=FNaJZtFwKXVYE82aVMNWeXmjZ9hL3GVB8AH4QBGoWpaD  sig=TorNZkP2zvZkvRJeCfpCvGUMrsRNmfwrBrjXWRrfHv1ca6Fok2rwFx5sw6SwWgrP5bRG7JrM7JaC3DrF4kNTZiy
-2026-10-16 03:31:36,073 INFO WATCH  MIRAX  mint=3fcYnPsgcV6sfbZTL4QPw7GfBv3WNdbQRYNgjoenpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:36,118 INFO SKIP CONFIRM  PAIR  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$70126  mint=DSiFhYNfdmELBSqfepeWryRaumFZdADG3M4ERHpJERCd
-2026-10-16 03:31:36,254 INFO NEW TOKEN  Boner Coin (BONER)  mint=Dojfbwh6w7JxsbfQxS6MahGokGrm9T95iviHd4v8pump  curve=8aF6eSuw8R3T45EqqXmN55V7EdrZmiLYmufkF76Twg5L  sig=32BT65qPxxD1zomXW3hQhip6GYmWidGtEfkNhd668Ped6JqUqg2V3Cx9zCDvYDtgkJwwnJJ9DkenEiwXwA9w4rY4
-2026-10-16 03:31:36,254 INFO WATCH  BONER  mint=Dojfbwh6w7JxsbfQxS6MahGokGrm9T95iviHd4v8pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:36,323 INFO NEW TOKEN  sig=29dj2fkhY8256LUpZfBQgA1B3kvqz6QopooYUybBMg9VBK51jNDFYgGHcxLLULdhFuVVbjdprN8Cy5z8VXoXict8  (could not decode metadata)
-2026-10-16 03:31:37,440 INFO NEW TOKEN  You guys are getting paid? (GETPAID)  mint=GP9wWkqjdTwQFJveU9KRp42wawxiukAJSKFELA14pump  curve=3nao2Ffv96w2rDJGepEktBNqqK6tFrESMuQ5iVKhUfR9  sig=66U8MFF6jGgcRKYiMSi3hzmjrwtWw26AQfUFxds6mE66FPm638QSMhN7RDwGZRQcCEeQ41BJmtpvnUPYxsoLyhMh
-2026-10-16 03:31:37,456 INFO WATCH  GETPAID  mint=GP9wWkqjdTwQFJveU9KRp42wawxiukAJSKFELA14pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:38,871 INFO SKIP CONFIRM  FOMOCAT  low-buy-sol 0.05 < 2.0  buyers=2  buy_sol=0.05  mc=$1741  mint=GsXwH6N22K7yFRichUQiHNdiYVBAVBExwsN2NUDxpump
-2026-10-16 03:31:40,622 INFO SKIP CONFIRM  COPY  low-buy-sol 0.50 < 2.0  buyers=3  buy_sol=0.50  mc=$3040  mint=EWWjrjhLGL1XpwUN7CUPSp45mfxvkHsAapeax9JJpump
-2026-10-16 03:31:41,123 INFO SKIP CONFIRM  MIRAX  low-buy-sol 0.36 < 2.0  buyers=2  buy_sol=0.36  mc=$3092  mint=3fcYnPsgcV6sfbZTL4QPw7GfBv3WNdbQRYNgjoenpump
-2026-10-16 03:31:41,373 INFO SKIP CONFIRM  BONER  low-buy-sol 0.11 < 2.0  buyers=2  buy_sol=0.11  mc=$2982  mint=Dojfbwh6w7JxsbfQxS6MahGokGrm9T95iviHd4v8pump
-2026-10-16 03:31:42,191 INFO NEW TOKEN  A Mini Dog (AMD)  mint=6t8j6cgneKLKswvuzhqLSfv36c4sh1tLB6jp9dtTpump  curve=2hJUpqMa4x1k9gbZ6GaoSwn5BmZXGsscmbtyPx9U6Umm  sig=35SgwfqMP6T12V8yGWERnpSs7d4n2REKi4c1NXjfNe43kVuwdgnTynHUj9EKcqYEBgMjeDGCs1ngxtZvvq5HjDpd
-2026-10-16 03:31:42,191 INFO WATCH  AMD  mint=6t8j6cgneKLKswvuzhqLSfv36c4sh1tLB6jp9dtTpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:42,624 INFO SKIP CONFIRM  GETPAID  low-buy-sol 0.61 < 2.0  buyers=1  buy_sol=0.61  mc=$3069  mint=GP9wWkqjdTwQFJveU9KRp42wawxiukAJSKFELA14pump
-2026-10-16 03:31:42,975 INFO NEW TOKEN  sig=8Af9iQ8sw82pvFeHZ286xDjdRFwEmpAjR8Bu78tyPW1F1ZinjvdMwk23ti57QVxubFXDYGiWrGXkSdaFEoARENd  (could not decode metadata)
-2026-10-16 03:31:43,473 INFO NEW TOKEN  Meme Index 100 (MEME100)  mint=YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump  curve=3LKToXN1W8y7q9F3PtvbuBq8iB3EDcTUewQvVkgA71Re  sig=dnHG6VjRZz2vEFKjYuqdepybeSPLBzBQoVPyAU5uiCCDpQueEpxc9Hq9NpTkNNywsMPdZaNu99RvdcYEkjaptzG
-2026-10-16 03:31:43,473 INFO WATCH  MEME100  mint=YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:43,557 INFO NEW TOKEN  sig=275wRZcHU8LRFFtTTpTGwny6XstsFuXYQq54Zu9yVX9G8UGy22Tt5SXuCdGGhgH9MDdcyah1cFViWuZKYNNbnxnM  (could not decode metadata)
-2026-10-16 03:31:44,740 INFO NEW TOKEN  Bonk (Bonk)  mint=8MmyLgQdvzaijxptgpgBdMt99uiYkF3m4jrrdQLTpump  curve=4iUm3ND7WHc3pZy4Ej3nh2FRgcgFBNRZemv7qdaUtDLW  sig=bVYmvdCoEGksfdUqbYfwPk3qSRvMqUk8umcZxCfbUsBDfds2QJ7WfTuG5SaoCCJk8MvLz65G3QCiXWCMiHFNG7d
-2026-10-16 03:31:44,740 INFO WATCH  Bonk  mint=8MmyLgQdvzaijxptgpgBdMt99uiYkF3m4jrrdQLTpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:45,306 INFO NEW TOKEN  Rankz (RANKZ)  mint=7d8W2JerSognHYeBAtcg2RaJs97rccUkAbR8KTVhpump  curve=5xpzCKUfVhiEF6UF8swYgHYEHggVd5yNUsNSNzLUPK9A  sig=4ScoT46Va5n2GVS4iWczX6dA2NnQ5k3MiCSeV12R5Ajx31wVzueKkeiuwkZHz5FNMZBNrjLBNbfXGUx8rhQyyoQt
-2026-10-16 03:31:45,306 INFO WATCH  RANKZ  mint=7d8W2JerSognHYeBAtcg2RaJs97rccUkAbR8KTVhpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:45,340 INFO NEW TOKEN  Bonk (Bonk)  mint=6oWX3UcfGvGTgnja3RkDonQPpQM9R353jj97ZStxLV2s  curve=5L6SHjGbw6WjhP68Lu4LMxT1uExaWwZRpnRuqPWY1Y7B  sig=jWmW6y5u1Usin7Ls2J13ZeQK7qj5etV1yTnNwMr9oR2DtNMvXym3Yb7fEx511AuHNUhXJvvZMG6WZ7gb3BFT8BL
-2026-10-16 03:31:45,340 INFO WATCH  Bonk  mint=6oWX3UcfGvGTgnja3RkDonQPpQM9R353jj97ZStxLV2s  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:45,624 INFO NEW TOKEN  wrappedape (wApe)  mint=F6fupVJoNWG59F99hTCpbae8NhNCTPTooMpix8oSpump  curve=AS8Q4WP2pNXDrkmJxoCwYVV2kXFwatMVa74nGiQoD1qK  sig=355RnAZRBQwFbWpGBvSRj4qofwCAytHR7GNbBuR6Vd11XwYoxGWBHZpURrp1UWPdJ5NvKRJAiRk7srGeAaLABr2j
-2026-10-16 03:31:45,624 INFO WATCH  wApe  mint=F6fupVJoNWG59F99hTCpbae8NhNCTPTooMpix8oSpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:47,372 INFO SKIP CONFIRM  AMD  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$0  mint=6t8j6cgneKLKswvuzhqLSfv36c4sh1tLB6jp9dtTpump
-2026-10-16 03:31:48,623 INFO CONFIRM  MEME100  buyers=9  buy_sol=4.08  mc=$3716  probe=1.00  mint=YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump
-2026-10-16 03:31:48,790 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:48,907 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:49,040 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:49,274 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:49,424 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:49,608 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:49,788 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:49,788 INFO DRY-RUN BUY  MEME100 (YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump)  spend=1.0000 SOL  tokens=34277831558568  entry_price=2.9173374001e-05  create_sig=probe
-2026-10-16 03:31:49,824 INFO BUY MEME100  1/1500  invested=1.0000 SOL  mint=YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
-2026-10-16 03:31:50,073 INFO SKIP CONFIRM  Bonk  low-buy-sol 0.00 < 2.0  buyers=2  buy_sol=0.00  mc=$0  mint=8MmyLgQdvzaijxptgpgBdMt99uiYkF3m4jrrdQLTpump
-2026-10-16 03:31:50,226 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:50,306 INFO NEW TOKEN  Weird Cat (WEIRDCAT)  mint=nPtx4sCQ1U4r3hBMivKm2PzyzDvmY3FP4wQaduJpump  curve=9yqS76P3xuxWP2ePbDxgGE4NDoAh3RcgxEekZ6kHCA2W  sig=61yxsfwwmcGdw8ahgfn7ewaTn5wCMfdhV8wPsmcCnfEELDRTMcBgYn3i75qFYauFi4CuPLbEGTStc5bAZrU9P9fu
-2026-10-16 03:31:50,307 INFO WATCH  WEIRDCAT  mint=nPtx4sCQ1U4r3hBMivKm2PzyzDvmY3FP4wQaduJpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:50,323 INFO CONFIRM  RANKZ  buyers=10  buy_sol=9.69  mc=$3090  probe=1.00  mint=7d8W2JerSognHYeBAtcg2RaJs97rccUkAbR8KTVhpump
-2026-10-16 03:31:50,457 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:50,490 INFO SL TO BREAKEVEN  MEME100  at +20.3%  floor=entry  mint=YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump
-2026-10-16 03:31:50,490 INFO TRAILING ON  MEME100  armed at +20.3%  peak=3.5108575195e-05  callback=10%  mint=YsALHbPSQkSu53AQsAKCxKFVknAPpJ8Vr58GoyNpump
-2026-10-16 03:31:50,590 INFO NEW TOKEN  1B GOAT (GOAT)  mint=J9R8L3kw71BEVdKAF5K5SykZkecQR7Bc24Nh1si2pump  curve=HNAUUXbG2YzxNyAysSyjLgZwr59zgoAvLpdFyxPX9Rot  sig=tVwju1BK2f8GeHQhVuQU9ShSsB1CgBbn2zUsC2oP16b84aZHgggfFuQwF3S8i7TcYP9eLQFXSQw7DfVP2W7A8gM
-2026-10-16 03:31:50,590 INFO WATCH  GOAT  mint=J9R8L3kw71BEVdKAF5K5SykZkecQR7Bc24Nh1si2pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:50,624 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:50,807 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:50,873 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,039 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,173 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,257 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,357 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,457 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,457 INFO DRY-RUN BUY  RANKZ (7d8W2JerSognHYeBAtcg2RaJs97rccUkAbR8KTVhpump)  spend=1.0000 SOL  tokens=34277831558568  entry_price=2.9173374001e-05  create_sig=probe
-2026-10-16 03:31:51,457 INFO BUY RANKZ  2/1500  invested=1.0000 SOL  mint=7d8W2JerSognHYeBAtcg2RaJs97rccUkAbR8KTVhpump  1- Liquidity (LP tokens) Locked 135.29% | 2- Total Locked Liquidity $0
-2026-10-16 03:31:51,626 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:51,690 INFO SKIP CONFIRM  Bonk  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$71243  mint=6oWX3UcfGvGTgnja3RkDonQPpQM9R353jj97ZStxLV2s
-2026-10-16 03:31:51,690 INFO SKIP CONFIRM  wApe  low-buy-sol 0.02 < 2.0  buyers=1  buy_sol=0.02  mc=$2965  mint=F6fupVJoNWG59F99hTCpbae8NhNCTPTooMpix8oSpump
-2026-10-16 03:31:51,790 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:52,157 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:52,357 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:52,540 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:52,757 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:52,992 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:53,224 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:53,524 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:53,757 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:53,975 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:54,157 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:54,358 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:54,598 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:54,825 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:55,056 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:55,297 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:55,489 INFO SKIP CONFIRM  WEIRDCAT  low-buy-sol 0.05 < 2.0  buyers=2  buy_sol=0.05  mc=$2571  mint=nPtx4sCQ1U4r3hBMivKm2PzyzDvmY3FP4wQaduJpump
-2026-10-16 03:31:55,509 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:55,745 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:55,745 INFO SKIP CONFIRM  GOAT  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2960  mint=J9R8L3kw71BEVdKAF5K5SykZkecQR7Bc24Nh1si2pump
-2026-10-16 03:31:55,959 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:56,008 INFO NEW TOKEN  Claude the Anthropic Alligator (CLAW)  mint=B2WdxFR957n4BKHJi4qjYCYJh4K3253Q8rzNhzwCpump  curve=F7CTergBLcFPptHc5HXBdHG4b3KCLG3SxsNSm8D5Vzwb  sig=5hzZbTeob9xmhYUKfGcrjH225xJhaGFizcz66bEbBf3tU2edn9k25LKamariL6N7ghs38kwcZ9CX1Fc1YvsxMGs9
-2026-10-16 03:31:56,008 INFO WATCH  CLAW  mint=B2WdxFR957n4BKHJi4qjYCYJh4K3253Q8rzNhzwCpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:56,212 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:56,441 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:56,624 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:56,824 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:57,040 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:57,257 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:57,342 INFO NEW TOKEN  Aegis Scan (AEGIS)  mint=AydHAJV6WEc5TxAr2tjUiUGEsi8XGDMAoQhTPr8Fpump  curve=3zUU2qCeXLoY4R4osiS8GAH99nahurnLkiST4zJobGHe  sig=uAnsDuq4XRigexVdZ1g6cvNYeJduobVWiwK6dDtRvJpFbGDQHLAXiaMzcU4rZcmvo6swn5eKfLc4CzcyWn69VhX
-2026-10-16 03:31:57,342 INFO WATCH  AEGIS  mint=AydHAJV6WEc5TxAr2tjUiUGEsi8XGDMAoQhTPr8Fpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:57,359 INFO NEW TOKEN  Trump $250 Bill (250)  mint=69HWE16rUhsZUt8JTN4RRayFTqB94TwFVZEoc2ezpump  curve=4Ux3mKgkzvmPkjsivBo6L94AwoiwfXHQ6yeiK65uUnbK  sig=5uwQmwBSFnUacMvXFcGS9KC81dWQa7JTamLLVayYQKTRzoiNnXcFi6WVV3U6RBeccPgy4aKzsofTXSZTh6q8RGLp
-2026-10-16 03:31:57,359 INFO WATCH  250  mint=69HWE16rUhsZUt8JTN4RRayFTqB94TwFVZEoc2ezpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:31:57,491 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:57,659 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:57,824 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:57,991 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:58,389 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:58,601 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:58,824 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:58,991 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:59,207 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:59,442 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:59,680 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:31:59,897 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:00,124 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:00,341 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:00,573 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:00,743 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:00,974 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:01,195 INFO NEW TOKEN  funcoin (funcoin)  mint=6BwztVKZVroSEWsVR3Js3coCnKfdPw9k3EhvdCBNpump  curve=FzU2RHN7p3K2r92CSvCaFDaF3fxprB7EpZeEogx5ma4j  sig=2zT1GhJVVcEHGkwa9k3PEu7rudVUNezRwSSauo8tV7oQQnf1FHDNnPjK8pKosX6egAxSnXPbMJisEgLUqrAix2XJ
-2026-10-16 03:32:01,195 INFO WATCH  funcoin  mint=6BwztVKZVroSEWsVR3Js3coCnKfdPw9k3EhvdCBNpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:01,206 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:01,257 INFO SKIP CONFIRM  CLAW  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2942  mint=B2WdxFR957n4BKHJi4qjYCYJh4K3253Q8rzNhzwCpump
-2026-10-16 03:32:01,424 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:01,624 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:01,841 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:02,057 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:02,091 INFO NEW TOKEN  funcoin (funcoin)  mint=5sSLkqKkeDycaMyUfWCVw17XrkXq33m41PspCAyfbkYe  curve=6rtBsHAiesAqrnVqWfi9AhJZMbdCEqCuR8EqMrLsnwph  sig=2GXyttbQXjMq2b2vP3d32sjAs7YkWxrqDWqo4DhCNxP6Lox6rJzVhnC5oiwrzX6kCrQ7qm6BsQh4f5XXPTdDRoPU
-2026-10-16 03:32:02,091 INFO WATCH  funcoin  mint=5sSLkqKkeDycaMyUfWCVw17XrkXq33m41PspCAyfbkYe  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:02,274 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:02,490 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:02,490 INFO SKIP CONFIRM  AEGIS  low-buy-sol 0.11 < 2.0  buyers=3  buy_sol=0.11  mc=$3253  mint=AydHAJV6WEc5TxAr2tjUiUGEsi8XGDMAoQhTPr8Fpump
-2026-10-16 03:32:02,490 INFO SKIP CONFIRM  250  low-buy-sol 0.00 < 2.0  buyers=12  buy_sol=0.00  mc=$0  mint=69HWE16rUhsZUt8JTN4RRayFTqB94TwFVZEoc2ezpump
-2026-10-16 03:32:02,708 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:02,957 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:02,957 INFO NEW TOKEN  NeoSoul (DNA)  mint=HJWqNFuxy9MB5AkF3ByEKk4iM8v9PH7mK2gxX85Ppump  curve=Dk2dG12GYrD7WnUw7FcSdWTLCLV9VPUUc7C1ikN43mMC  sig=4VbieZpNBRp8wtNKLpTuCoxUaCBBWJ1ZzuQTEHfBR9rZ4tL4LpBzMAfaQD9UT13Yt5exTwrWGVrtegNGMe3goB35
-2026-10-16 03:32:02,957 INFO WATCH  DNA  mint=HJWqNFuxy9MB5AkF3ByEKk4iM8v9PH7mK2gxX85Ppump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:03,190 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:03,224 INFO NEW TOKEN  USMS (USMS)  mint=GDgnKWuXuWdC1HDbbx2aeysyC63cPFAG9XzCY8Ngpump  curve=7H9nJFR9WXxsAXdBNRsg4C376aH9MbXRkVuWbLejnZsn  sig=aodjoffWrU8yX3e2fag8UACesn1WgeggDtUn25jo8z145jomrVvwyUbbx5ktS5JwjZQsXPsoYq36ucmRVGkkLjF
-2026-10-16 03:32:03,224 INFO WATCH  USMS  mint=GDgnKWuXuWdC1HDbbx2aeysyC63cPFAG9XzCY8Ngpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:03,418 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:03,626 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:03,825 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:04,059 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:04,228 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:04,376 INFO NEW TOKEN  MICHO ($MICHO)  mint=BjGWVCd2EUFabCyn9S2nZ13RzHnoL2v1XP1B1igzpump  curve=3sUEBnKwzEKUhvQxWFS2ZLWwWdarcg8yoSgqe8eteu9X  sig=5Ce4RU7FuczpvgjxmGUgtDuZdVYMMxCkqPnbAuzyMQUMzxfun4YYziip8b74gn3KgzELJUPr5pYuZMzQY6MhN6nP
-2026-10-16 03:32:04,376 INFO WATCH  $MICHO  mint=BjGWVCd2EUFabCyn9S2nZ13RzHnoL2v1XP1B1igzpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:04,392 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:04,591 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:04,767 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:04,938 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:05,041 INFO NEW TOKEN  sig=2VxAvdT4UHCRWENthUmry51mwN99HGBnxPfCwhLGVgsAoDJZS7hLfsAyp3LpWCeQyLh8MP4q4cumKwvMj7FK7qz7  (could not decode metadata)
-2026-10-16 03:32:05,176 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:05,401 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:05,619 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:05,850 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:06,033 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:06,207 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:06,287 INFO SKIP CONFIRM  funcoin  low-buy-sol 0.00 < 2.0  buyers=8  buy_sol=0.00  mc=$0  mint=6BwztVKZVroSEWsVR3Js3coCnKfdPw9k3EhvdCBNpump
-2026-10-16 03:32:06,444 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:06,629 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:06,864 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:07,064 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:07,279 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:07,291 INFO SKIP CONFIRM  funcoin  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$71243  mint=5sSLkqKkeDycaMyUfWCVw17XrkXq33m41PspCAyfbkYe
-2026-10-16 03:32:07,491 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:07,735 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:08,045 INFO SKIP CONFIRM  DNA  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2942  mint=HJWqNFuxy9MB5AkF3ByEKk4iM8v9PH7mK2gxX85Ppump
-2026-10-16 03:32:08,105 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:08,292 INFO SKIP CONFIRM  USMS  low-buy-sol 0.06 < 2.0  buyers=2  buy_sol=0.06  mc=$1409  mint=GDgnKWuXuWdC1HDbbx2aeysyC63cPFAG9XzCY8Ngpump
-2026-10-16 03:32:08,493 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:08,872 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:09,224 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:09,354 INFO NEW TOKEN  PAIRS (PAIRS)  mint=BeaprjNnztzGEf9RXhjVXjiMxLhG2jAiur6zDo7Ypump  curve=2P9Hy9hok9581PLGrzLno7KP25p6BZ57jZHPF5JzEzqU  sig=2Geo9fPHrYYNa4WaBTUciYsPDxa2CML9fAUj8q1odVEd7Dw1bfXBjYmAfodGi5VBCBxcHXw1cfjgLV1Hwnsikz6Q
-2026-10-16 03:32:09,354 INFO WATCH  PAIRS  mint=BeaprjNnztzGEf9RXhjVXjiMxLhG2jAiur6zDo7Ypump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:09,553 INFO SKIP CONFIRM  $MICHO  low-buy-sol 0.15 < 2.0  buyers=2  buy_sol=0.15  mc=$4302  mint=BjGWVCd2EUFabCyn9S2nZ13RzHnoL2v1XP1B1igzpump
-2026-10-16 03:32:09,630 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:10,029 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:10,403 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:10,952 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:11,297 INFO NEW TOKEN  The Pumpfun Flywheel (Pumpwheel)  mint=9d4dveWsG6aMpUUjq8UQBKnK4Yb7J1Fs6xfbgaMDpump  curve=5rYGWFrng5jq77YiHm5gYq6vb3iCNSb3RR7R3JiHHyz2  sig=5U6YWK916h5ctQSMWbRwiYwtABJLwionm5gqND5VhaG3S61TZT24cmoBGwGPUJE1RQkBkZ5jG2m3juWRkFqqeTey
-2026-10-16 03:32:11,297 INFO WATCH  Pumpwheel  mint=9d4dveWsG6aMpUUjq8UQBKnK4Yb7J1Fs6xfbgaMDpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
-2026-10-16 03:32:11,369 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:11,756 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:12,182 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:12,598 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:12,990 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
-2026-10-16 03:32:13,420 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:15,245 INFO RPC HTTP https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:17,037 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:17,160 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:17,334 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:17,577 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:17,584 INFO Trader ready mode=DRY-RUN probe=1.00 add=0.00 SOL stop-loss=3.0% breakeven-after=+5.0% trailing-TP arm=12% callback=10% max_open=16 max_trades=1500 excel=D:\AI\solana-trading-bot\reports\pumpfun_trades.xlsx
+2026-10-16 04:39:17,585 INFO Security filters: no min liquidity, holders, LP-lock, or verified | no minimum total liquidity | tax fixed and <= 1%
+2026-10-16 04:39:17,585 INFO DRY-RUN is on: orders are simulated, no transactions are sent.
+2026-10-16 04:39:17,585 INFO Connecting WebSocket wss://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:17,585 INFO Watching Pump.fun program 6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P
+2026-10-16 04:39:17,586 INFO Trailing TP/SL watchdog started  tick=0.25s armed=0.08s stale=0.20s  SL floor=3.0%  breakeven after +5.0%  arm=12%  callback=10%
+2026-10-16 04:39:17,587 INFO Confirm window started  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:18,774 INFO Subscribed (id=49946422). Ctrl+C to stop.
+2026-10-16 04:39:19,717 INFO NEW TOKEN  DOPE ROADSTER (DOPE)  mint=8JcLryzCNPszco35LAzJsuGYQvq7Tg6FMeWa4MYupump  curve=9GjR2WpNnEhX3YjDCHYFvPhrtGXLTqVy1k7aeJaeKhK2  sig=3fVnhvy3fZYxtWZmnKTTcMc8P9wE6aZCqmLv5aWGzajyC7xMA6ECY3C4YXMc9wuKNXBeaqa72EudaWzeL38u7FLw
+2026-10-16 04:39:19,717 INFO WATCH  DOPE  mint=8JcLryzCNPszco35LAzJsuGYQvq7Tg6FMeWa4MYupump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:20,230 INFO NEW TOKEN  yo retards pls read its real (pump deploy)  mint=BqZ74fFVLjWyCzgQFjXXc3egVUhjqu9mWKJb7z7Wpump  curve=8qs7vmU5957YARBfNvZcCYbE81Cd72SnmTyb5whrVJbV  sig=2o19FkVYjRMZ1BV7qecXz92LQRVaHdN3mmSK1b5yQfwtcYm2R8xDotxxdCH2tXLtVMMHDiq8AubR1HHKeR1ch6G6
+2026-10-16 04:39:20,230 INFO WATCH  pump deploy  mint=BqZ74fFVLjWyCzgQFjXXc3egVUhjqu9mWKJb7z7Wpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:20,265 INFO NEW TOKEN  yo retards pls read its real (pump deploy)  mint=5m1m1S9fDf8jvN7XVWBuNVV9U8JD7Tx3jHiPyNRcpump  curve=6WeUo5o3EZdrwFq1DzU9na78rJjdJMPvkpg2S217XVXs  sig=5rdoYrKDWvPNVyVvye5Y4tLNJfEi2yaJCHvVrdTFp1sAbVvwyyqQ6oxWbnD6TQZBKPD7bqUrixVQFdQw4edYK8Xz
+2026-10-16 04:39:20,265 INFO WATCH  pump deploy  mint=5m1m1S9fDf8jvN7XVWBuNVV9U8JD7Tx3jHiPyNRcpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:20,265 INFO NEW TOKEN  yo retards pls read its real (pump deploy)  mint=FGWTLKxbWK5cqXfKFsPYeA7aAdtEwGnVD1GX45q8pump  curve=66HpGoztnarXtgPLuWswumdasxNqkkou1KquMxD2xdCA  sig=5HwRUWMGbhEeToCkCssMRw2fWAGCMhvR9cB7ZfzNgPwCYaK8N6MrnZE6ekNSx2vyRFm34tgzo9fw86iW8ypT3fyi
+2026-10-16 04:39:20,265 INFO WATCH  pump deploy  mint=FGWTLKxbWK5cqXfKFsPYeA7aAdtEwGnVD1GX45q8pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:23,112 INFO NEW TOKEN  BYD ($BYD)  mint=9JjCwSecxGC4jkje9eHxCypr3AgBxCLztV7BcCPqpump  curve=CGGPnefvuCAdUNBB7zHCwqRvTScRAMfpJK5ohqevwJpt  sig=619s6CZiV7fxfY8g4SRt5VQjTsD9MmbdCik5TVwUSyeTXKHEkRLuT6o4TzvtWsuttReu16BVejWLEUpYNJtqxmMV
+2026-10-16 04:39:23,113 INFO WATCH  $BYD  mint=9JjCwSecxGC4jkje9eHxCypr3AgBxCLztV7BcCPqpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:24,886 INFO SKIP CONFIRM  DOPE  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2975  mint=8JcLryzCNPszco35LAzJsuGYQvq7Tg6FMeWa4MYupump
+2026-10-16 04:39:25,016 INFO NEW TOKEN  GIGA ($GIGA)  mint=2Cez7nomGUMiUqh1GyT8nqh3VPXJoNMpoUi2PWzppump  curve=HheESQVo5vpTwoBE4cTLrFaxjk5p7KQFUsAaCYoMWLpX  sig=4B65JojKo6Z311ewajfVajnz3xtvVpnXBHDS3bSRy7By1Wh9WJtPSiNDpe5ga6BGrjzc6eggfRQsyzfRDbZxwkxZ
+2026-10-16 04:39:25,016 INFO WATCH  $GIGA  mint=2Cez7nomGUMiUqh1GyT8nqh3VPXJoNMpoUi2PWzppump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:25,389 INFO SKIP CONFIRM  pump deploy  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2966  mint=BqZ74fFVLjWyCzgQFjXXc3egVUhjqu9mWKJb7z7Wpump
+2026-10-16 04:39:25,389 INFO SKIP CONFIRM  pump deploy  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2966  mint=5m1m1S9fDf8jvN7XVWBuNVV9U8JD7Tx3jHiPyNRcpump
+2026-10-16 04:39:25,389 INFO SKIP CONFIRM  pump deploy  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2966  mint=FGWTLKxbWK5cqXfKFsPYeA7aAdtEwGnVD1GX45q8pump
+2026-10-16 04:39:26,207 INFO NEW TOKEN  RAMP ROADSTER (RAMP)  mint=DwbSu6Kb1Ey7bQfzQMpy9qBu62YXm52xdijitUYNqPpG  curve=3iWwzHUeYrzKx6ArK7tuEGBZeQqchaPrPoZXpMQ2RtuF  sig=2iGhaQa77z3VWYvK76B967sPmdBYd2HY7se6PYAMmjwAfXrDDW5pQuXGtRc3S2qCn1mbQT5pJvzJN7Rn2Fay1hB3
+2026-10-16 04:39:26,207 INFO WATCH  RAMP  mint=DwbSu6Kb1Ey7bQfzQMpy9qBu62YXm52xdijitUYNqPpG  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:27,598 INFO NEW TOKEN  yo retards pls read its real (pump deploy)  mint=HciEYZKv92Jso92L2V3odgSQMBXC57aGdcF2xwH1pump  curve=EMjWeVX9SVYVqZzUN79QoJWkipAyXKDZR9vUF548JKFB  sig=4HmWErH6Pq5iuepLZwYuiD73GdDRUmFwCWkyLyp6Ry7k45TwLWSzBqgRFaTTpS8ZJrSTSu9Wb3U3UmEKs1H7F64S
+2026-10-16 04:39:27,598 INFO WATCH  pump deploy  mint=HciEYZKv92Jso92L2V3odgSQMBXC57aGdcF2xwH1pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:27,779 INFO NEW TOKEN  yo retards pls read its real (pump deploy)  mint=814i8AxP1BrqZx4tAD15THaDJx82b3W1CAJ9Ciofpump  curve=4cEZt1WexPUtiKqz9oTNCTzvFgchAt7juUyxxTkuW4HT  sig=3uTrkfJ237TXGt9NCeTV1akqYSdejvrwpcP1zXhM7K7pPAiqxnjFwjpDWJB1pXwLrLCTVXV65uNYgFbsims81SQa
+2026-10-16 04:39:27,779 INFO WATCH  pump deploy  mint=814i8AxP1BrqZx4tAD15THaDJx82b3W1CAJ9Ciofpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:27,786 INFO NEW TOKEN  yo retards pls read its real (pump deploy)  mint=3o4nXFuqk19pocvwcgz9qd9YhxsxaKuuN7CcmuREpump  curve=37VWP5NUWTXWbu3M53miu11FbJLfJ7ufpDovUVbuNaQs  sig=2PaRaYZhNZBUDz1y6bCD3t3rZeSeEd3L5c1qi6Z7LbPHKfQ1zdNkDezLdnKo4tWfLit8WcjE94zCH62JpBU78ctz
+2026-10-16 04:39:27,787 INFO WATCH  pump deploy  mint=3o4nXFuqk19pocvwcgz9qd9YhxsxaKuuN7CcmuREpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:27,949 INFO NEW TOKEN  PEPE DOG (DOG)  mint=BaPbujKz3MjrRbQd9Fh5uvGTUAGqBszo6unq3qXApump  curve=C78TXULaW5WC9DuqQ7eAgsq1ru4zn6qXkFH7vj37UNbR  sig=5neu5gPcssU8biAJZbTrji7KBE9jzkq9ux1TicALfY6QZSbgUbw5f6iZjBxeLtExa6s959EeePKmLJJyuMiwkfqJ
+2026-10-16 04:39:27,949 INFO WATCH  DOG  mint=BaPbujKz3MjrRbQd9Fh5uvGTUAGqBszo6unq3qXApump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:28,158 INFO SKIP CONFIRM  $BYD  low-buy-sol 0.04 < 2.0  buyers=2  buy_sol=0.04  mc=$1025  mint=9JjCwSecxGC4jkje9eHxCypr3AgBxCLztV7BcCPqpump
+2026-10-16 04:39:28,374 INFO NEW TOKEN  sig=2rJfLUbDqdZeAMmDRj2dT1rW5xY2fBqcPU8rKRKJ3RUEcgiKpUjoW9ZWhzBUpcxpuZ32H35tr6JCikWVMN6NwYVy  (could not decode metadata)
+2026-10-16 04:39:29,614 INFO NEW TOKEN  Chaotic Rocket (CHAROC)  mint=2xKt4U5vTRxx3gzystRk96zB58Y1rjg48TgiZmispump  curve=djSefyrD69E2xiGR3cLzprjwFu9GPU8HmGgXauzrmkE  sig=SE94kXvP9wRLHudAGB8aqb6EtzM5VzTfAWQxLgrsrAUJugLVCgDu5KvWh7UN9xx7bH63U5dryEyo7Kd493TAr6y
+2026-10-16 04:39:29,614 INFO WATCH  CHAROC  mint=2xKt4U5vTRxx3gzystRk96zB58Y1rjg48TgiZmispump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:29,912 INFO NEW TOKEN  DERPCAT (DERP)  mint=4RJrnvbKAXVmVwSgy3Ui7aXxwvUKTnKKKwpDcJ8Tpump  curve=3zfDY23KXVd5w7jh2eiyn1orVsmYUogvsEKQBQFeoLuX  sig=569UZdDu5GuRw8H1qpAMeh5gaPy3q3DY8XBKCF8aRfkgwuYzzr56yvkBNVPVs7fkfCKocEJsJwBvzUkshkYM7Ftr
+2026-10-16 04:39:29,912 INFO WATCH  DERP  mint=4RJrnvbKAXVmVwSgy3Ui7aXxwvUKTnKKKwpDcJ8Tpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:30,187 INFO SKIP CONFIRM  $GIGA  low-buy-sol 0.14 < 2.0  buyers=2  buy_sol=0.14  mc=$2088  mint=2Cez7nomGUMiUqh1GyT8nqh3VPXJoNMpoUi2PWzppump
+2026-10-16 04:39:30,255 INFO NEW TOKEN  1 $ Inu (1Inu)  mint=AEC3nGjouHkUKNXcRgXqDdzTgWVwhMxT5DuvMfgTpump  curve=FtqbnnLszZgNLrXhgTqb6XDALk8fGTLHy1EEHcKJNjiH  sig=64kx8TrrrhYWhofPR7w3a3AGeAMHq4giNTi6KragreygdgNGbWMuTfNqX8h8vSbnwsN33uk7Tz8gSiE9mPcQacU9
+2026-10-16 04:39:30,256 INFO WATCH  1Inu  mint=AEC3nGjouHkUKNXcRgXqDdzTgWVwhMxT5DuvMfgTpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:31,435 INFO SKIP CONFIRM  RAMP  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2948  mint=DwbSu6Kb1Ey7bQfzQMpy9qBu62YXm52xdijitUYNqPpG
+2026-10-16 04:39:32,438 INFO NEW TOKEN  Back to the Future (BTF)  mint=AD7vbG2KnLAg9QCrjkucnbkDcxGFPWUu968HPF8apump  curve=7VR8UxfouSyA7oZbJEAh1h1QMZY7j2XU5Xa9v74mh2sd  sig=3tRAEhF3HnZLjJYrZou7Amend6bQvFKYspUsPp2ymJ5ku2ajUuiauQygX7kSgka5PnQL1XG8FKKdjzBiNaK4Te3e
+2026-10-16 04:39:32,438 INFO WATCH  BTF  mint=AD7vbG2KnLAg9QCrjkucnbkDcxGFPWUu968HPF8apump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:32,688 INFO SKIP CONFIRM  pump deploy  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2948  mint=HciEYZKv92Jso92L2V3odgSQMBXC57aGdcF2xwH1pump
+2026-10-16 04:39:32,932 INFO SKIP CONFIRM  pump deploy  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2948  mint=814i8AxP1BrqZx4tAD15THaDJx82b3W1CAJ9Ciofpump
+2026-10-16 04:39:32,933 INFO SKIP CONFIRM  pump deploy  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$2966  mint=3o4nXFuqk19pocvwcgz9qd9YhxsxaKuuN7CcmuREpump
+2026-10-16 04:39:33,198 INFO SKIP CONFIRM  DOG  low-buy-sol 0.00 < 2.0  buyers=1  buy_sol=0.00  mc=$0  mint=BaPbujKz3MjrRbQd9Fh5uvGTUAGqBszo6unq3qXApump
+2026-10-16 04:39:33,913 INFO NEW TOKEN  PICHICA (PICHKA)  mint=8jdrdbajTP3EKUR4pUbgHRpB6r7Ro7EHYGcHBvdgpump  curve=FtEXqm5y3kd4LbqY4pfQpLvxCQh3ZKG6NQNjkosHPLCM  sig=4QosetK1BqkgTp7feiTZQiptSmB9zXbCnxg9eTzSbJxoun7VQUaqdmvwmnC21B32Dzne1h5d3QsfVLx8oV3T3d4T
+2026-10-16 04:39:33,913 INFO WATCH  PICHKA  mint=8jdrdbajTP3EKUR4pUbgHRpB6r7Ro7EHYGcHBvdgpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:34,461 INFO NEW TOKEN  sig=5rHhDAkA2LkqNYHrfdWHgNYvXj4K6EDJs76NkcKV389YmKeT4DQSwJgGHnXwgzjhvCo7iDEzr3PimvSFLvXFpgDM  (could not decode metadata)
+2026-10-16 04:39:34,731 INFO SKIP CONFIRM  CHAROC  low-buy-sol 0.80 < 2.0  buyers=1  buy_sol=0.80  mc=$4597  mint=2xKt4U5vTRxx3gzystRk96zB58Y1rjg48TgiZmispump
+2026-10-16 04:39:34,984 INFO SKIP CONFIRM  DERP  low-buy-sol 0.05 < 2.0  buyers=1  buy_sol=0.05  mc=$4376  mint=4RJrnvbKAXVmVwSgy3Ui7aXxwvUKTnKKKwpDcJ8Tpump
+2026-10-16 04:39:35,489 INFO SKIP CONFIRM  1Inu  low-buy-sol 0.09 < 2.0  buyers=1  buy_sol=0.09  mc=$3064  mint=AEC3nGjouHkUKNXcRgXqDdzTgWVwhMxT5DuvMfgTpump
+2026-10-16 04:39:36,086 INFO NEW TOKEN  CCKSCKR (CCK)  mint=9BLm2F7jaXnpPAFq77YhPomYXXxbnGj7tRYmSufdpump  curve=7f919h5zdsmk1mtWujv1VMmmwoVDnf5CkLzhTKoc9eFd  sig=41n67vPtaku9fN21ZbajsPQx8ASo62gNdoyW5SRk6BvvaJYpB14VgxT2aYrYMXMNTEVUNKJvunndf8JStp4bpifH
+2026-10-16 04:39:36,086 INFO WATCH  CCK  mint=9BLm2F7jaXnpPAFq77YhPomYXXxbnGj7tRYmSufdpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:36,461 INFO NEW TOKEN  prisoners (PRISON)  mint=CxP2L4a2gpzJYf7S6JFZY3eahsbxxZKgByqdWPV4pump  curve=qGg3ZD9wc62aCgz7rH6X9yS9Gw5Dh9s5wHB5QsudXu5  sig=4ymSAC38qNFu1WwaKBmFffBdnTYZ3xWLVFx28Kjm1tvTonyDnGRNsxLMXpXgNkNQXE7hezhrrMt4gtGxX1LrP9Vr
+2026-10-16 04:39:36,461 INFO WATCH  PRISON  mint=CxP2L4a2gpzJYf7S6JFZY3eahsbxxZKgByqdWPV4pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:36,956 INFO NEW TOKEN  VRL (vrl)  mint=EzB4qJYeZdKPKcGDY5ypoqJPptxEoqgdjbLTBJxapump  curve=5qtxZMmpQEtx9jaGsf1TTrsG6PNigsC1mDwCkQtg8ztP  sig=5dwGqLRV7agjK8tySCfKoUgyn7Y3e5FDK7cZKrDYn3avABEEm7ZmvWuGm31U3AVPixnPjjWXNC7Uhmj2dZbZwkUf
+2026-10-16 04:39:36,956 INFO WATCH  vrl  mint=EzB4qJYeZdKPKcGDY5ypoqJPptxEoqgdjbLTBJxapump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:37,487 INFO SKIP CONFIRM  BTF  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$89  mint=AD7vbG2KnLAg9QCrjkucnbkDcxGFPWUu968HPF8apump
+2026-10-16 04:39:38,985 INFO SKIP CONFIRM  PICHKA  low-buy-sol 0.08 < 2.0  buyers=3  buy_sol=0.08  mc=$1159  mint=8jdrdbajTP3EKUR4pUbgHRpB6r7Ro7EHYGcHBvdgpump
+2026-10-16 04:39:41,248 INFO SKIP CONFIRM  CCK  low-buy-sol 0.00 < 2.0  buyers=0  buy_sol=0.00  mc=$2948  mint=9BLm2F7jaXnpPAFq77YhPomYXXxbnGj7tRYmSufdpump
+2026-10-16 04:39:41,479 INFO SKIP CONFIRM  PRISON  low-buy-sol 0.00 < 2.0  buyers=1  buy_sol=0.00  mc=$2948  mint=CxP2L4a2gpzJYf7S6JFZY3eahsbxxZKgByqdWPV4pump
+2026-10-16 04:39:41,978 INFO SKIP CONFIRM  vrl  low-buy-sol 0.28 < 2.0  buyers=2  buy_sol=0.28  mc=$3948  mint=EzB4qJYeZdKPKcGDY5ypoqJPptxEoqgdjbLTBJxapump
+2026-10-16 04:39:43,253 INFO NEW TOKEN  Shekel (SHKL)  mint=5as1SZiijHQBq2FmPwToMuv1zadrtfdb9rddT5zBpump  curve=9UE4EY6E8d17a7VQC6vg2Q4HxnwZpWnKTrkuhaXiqtgZ  sig=3mqKDPieRb39qMaRTeh96F4dZoxNFnFUNZahzp8DA6YMk5oneoecQGGTr65zModdYr2xHXjFoXJUkyA3umdUg4dr
+2026-10-16 04:39:43,254 INFO WATCH  SHKL  mint=5as1SZiijHQBq2FmPwToMuv1zadrtfdb9rddT5zBpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:44,791 INFO NEW TOKEN  sig=5m4wxFQswh84GhbFcFKWzvsGWQQEmPGGmvNeRwtLrWyajDKJFBd91yv6sJH93iZdUCCqUPycTH86yFLytDfWzmDo  (could not decode metadata)
+2026-10-16 04:39:45,165 INFO NEW TOKEN  Klappay (KLAPPAY)  mint=9bySyyGaZ83BNv5YgicGhT3Ss3ziidVQRn9Ybraypump  curve=82RGKRMR4C2Bum9EretJX1Wi7ts91wa1BpHYgTxq1Efg  sig=3xZGTfPWTZoLHZo7p7WDz73ySKTtsr2mN81LNngeMXk1oCatmqEDKKSeds3UvHUCyy9tk3HqSpPdg33GxgznWBLV
+2026-10-16 04:39:45,165 INFO WATCH  KLAPPAY  mint=9bySyyGaZ83BNv5YgicGhT3Ss3ziidVQRn9Ybraypump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:46,087 INFO NEW TOKEN  VEILTROLL (VEILTROLL)  mint=ocQkotYQjj1jzVqq3ZyZtL4oRXcLK6zMuwLXqWRpump  curve=5Lv4f5FjAkRRKaYEZf6tsMjZVbmVfPgK7UfmG2rkysfQ  sig=2NnYTyh2deuwKyJ3SkXEB5EvroNfm4D9PBFrxMAebo6MNN5DftKvg5XDdFWc58W7MLModnGnzyp9Dcnp5k8Km9u6
+2026-10-16 04:39:46,087 INFO WATCH  VEILTROLL  mint=ocQkotYQjj1jzVqq3ZyZtL4oRXcLK6zMuwLXqWRpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:47,824 INFO NEW TOKEN  Grokazon (GZON)  mint=8LwcuvF6drQ21pmhZm1qGZBdeLkLGHx2q9XHDV65pump  curve=HfYMvddP6MSJU3gciaSjDTQ2F6vXdeCKLL74Ed83Wk3t  sig=2FooiVPavTY5p2M4my3STUY4HyfbrJSTBN3syLqFy1MdMQ3vGH6v4ZJGRQXvkwrfNHRLBStB5HcZd9pAZBpktMWc
+2026-10-16 04:39:47,824 INFO WATCH  GZON  mint=8LwcuvF6drQ21pmhZm1qGZBdeLkLGHx2q9XHDV65pump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:48,020 INFO NEW TOKEN  rivaly.fun (RIVALY)  mint=6N22dmEVa9Ky8ezvhm5FvCtTpFgd9fLBuSW9wSmwpump  curve=77VZVG2zN8ah8Co9CmEBNmGvViUCJePcp2iKqWpUHpEA  sig=4QEr7wviso8pPAcsusfp7BSTaoCaKkiGsvEjgsXG6ocQPMLZ3B6XjVYoPQewnUyH1UE7wH4tjYwNdEW52upbZebX
+2026-10-16 04:39:48,020 INFO WATCH  RIVALY  mint=6N22dmEVa9Ky8ezvhm5FvCtTpFgd9fLBuSW9wSmwpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:48,265 INFO SKIP CONFIRM  SHKL  low-buy-sol 0.38 < 2.0  buyers=1  buy_sol=0.38  mc=$3025  mint=5as1SZiijHQBq2FmPwToMuv1zadrtfdb9rddT5zBpump
+2026-10-16 04:39:48,805 INFO NEW TOKEN  Liam the Trader (LIAM)  mint=AASNWzXhR3zWR61kACeG73BZA2PsYMLW8vGcBYQUpump  curve=BPTPE827Bjvus4ukcAppZSgmgCHDRMaecASsXrCc6EVC  sig=kR2DiUzmSYqYKb9wRv4rf7RGNZCVXmtYGGPkkoS5V6e1Hu22YcT6Pr8QGvnnfQhdE9BzFoyHnB6grFBxq995Jv1
+2026-10-16 04:39:48,805 INFO WATCH  LIAM  mint=AASNWzXhR3zWR61kACeG73BZA2PsYMLW8vGcBYQUpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:48,805 INFO NEW TOKEN  SUPER INU (SINU)  mint=3szhHxoagYbDNEEj35cmBxKr3iadFLrrSVyjjuwapump  curve=Qm5XfczA8iKKUFHMUt7eXx5eiUMoocnQMBroXBmjxAL  sig=4fS8EaFPB89aCKA35u7WXfLNWZ9cmc6JCBSB9hFrKzh2RDFAG32hy4QBd3XTSyGa9PXnGP5F7xApVQvrtRrgWLUe
+2026-10-16 04:39:48,806 INFO WATCH  SINU  mint=3szhHxoagYbDNEEj35cmBxKr3iadFLrrSVyjjuwapump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:49,037 INFO NEW TOKEN  Dark Knight (KNIGHT)  mint=7Bx83dDYzrEG2oFXd52bNJyCdPXumbKKCUDFPVcxpump  curve=6aEEBeDJGgBMYSQ5iiYSQF4vKzd3Qm3ZBnKpatNDTbDx  sig=33Ry68Yhp6RLcrd17D3yrJuZTnCmEzErjXoifbQ4xZnMB8QSnyn5v5PE9zrSDkPQA9SVMV3ivr3U9BUbat1WqzVY
+2026-10-16 04:39:49,037 INFO WATCH  KNIGHT  mint=7Bx83dDYzrEG2oFXd52bNJyCdPXumbKKCUDFPVcxpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:50,273 INFO SKIP CONFIRM  KLAPPAY  low-buy-sol 0.90 < 2.0  buyers=2  buy_sol=0.90  mc=$3147  mint=9bySyyGaZ83BNv5YgicGhT3Ss3ziidVQRn9Ybraypump
+2026-10-16 04:39:51,264 INFO CONFIRM  VEILTROLL  buyers=2  buy_sol=4.92  mc=$3239  probe=1.00  mint=ocQkotYQjj1jzVqq3ZyZtL4oRXcLK6zMuwLXqWRpump
+2026-10-16 04:39:51,479 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:51,537 INFO NEW TOKEN  PEPE DOG (DOG)  mint=6fVxBQhJNGAqvQsihS7ZGiMqvnPyKNbnFHfZujKmpump  curve=5iGgS4yker4NkLXdBc7mDz1UzgWLti4FD1ZHdT6v7dKX  sig=4j7pLb6jZorUHSMn4mmSGjiWRb4SrUjWAQvwrnwfutms2kdbo1pqWDqhVogTAxWPc5ELcUrFJVWhLiRunZnvML6m
+2026-10-16 04:39:51,539 INFO WATCH  DOG  mint=6fVxBQhJNGAqvQsihS7ZGiMqvnPyKNbnFHfZujKmpump  probe=1.00 after 5s  add=0.00 after 10s if mc>=$5000
+2026-10-16 04:39:51,686 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:51,840 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:52,147 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:52,253 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
+2026-10-16 04:39:52,410 INFO HTTP Request: POST https://mainnet.helius-rpc.com/?api-key=***
