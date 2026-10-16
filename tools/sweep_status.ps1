@@ -8,6 +8,12 @@ $stateFile = 'reports\logs\program_state.txt'
 $logFile   = 'reports\logs\program.log'
 $doneFlag  = 'reports\logs\program_complete.flag'
 
+# The 24-hour validation is a manual gate, so it is reported on its own line below the
+# five automatic stages rather than inside $planOrder.
+$approvalFile = 'reports\logs\hour24_approved.txt'
+$hour24State  = 'reports\logs\hour24_state.txt'
+$hour24Flag   = 'reports\logs\hour24_complete.flag'
+
 $planOrder = @('slippage', 'threshold', 'protect2', 'ladder', 'final')
 $done = @(Get-Content $stateFile -ErrorAction SilentlyContinue | Where-Object { $_ })
 
@@ -47,6 +53,29 @@ foreach ($stage in $planOrder) {
         if ($finished) { $detail += '  [printed completion marker]' }
     }
     Write-Output ("  {0,-9} {1,-8} {2}" -f $stage, $state, $detail)
+}
+
+# The sixth step is not a stage: it never starts unless a human unlocks it.
+$h24 = if (Test-Path $hour24Flag) { 'COMPLETE' }
+       elseif (Test-Path $approvalFile) { 'APPROVED' }
+       elseif (Test-Path $doneFlag) { 'WAITING ' }
+       else { 'gated' }
+$h24detail = ''
+if (Test-Path $hour24State) {
+    $arms24 = @(Get-Content $hour24State | Where-Object { $_ })
+    if ($arms24) { $h24detail = "arms: $($arms24 -join ', ')" }
+}
+if (Test-Path $approvalFile) {
+    $planned = Select-String -Path $approvalFile -Pattern '^arm\s*=\s*(\S+)' -AllMatches |
+        ForEach-Object { $_.Matches } | ForEach-Object { $_.Groups[1].Value }
+    $secs = Select-String -Path $approvalFile -Pattern '^secs\s*=\s*(\d+)' |
+        ForEach-Object { $_.Matches[0].Groups[1].Value } | Select-Object -First 1
+    if (-not $secs) { $secs = 86400 }
+    $h24detail = "approved: $($planned -join ', ') @ ${secs}s each"
+}
+Write-Output ("  {0,-9} {1,-8} {2}" -f 'hour24', $h24, $h24detail)
+if ($h24 -eq 'WAITING ') {
+    Write-Output '            ^ manual gate: write reports\logs\hour24_approved.txt, then re-run with -RunHour24'
 }
 
 Write-Output ''
