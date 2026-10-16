@@ -11,11 +11,23 @@ Set-Location $root
 
 $stateFile = Join-Path $root 'reports\logs\program_state.txt'
 $logFile = Join-Path $root 'reports\logs\program.log'
+$lockFile = Join-Path $root 'reports\logs\program.lock'
+$doneFlag = Join-Path $root 'reports\logs\program_complete.flag'
 
 function Log([string]$msg) {
     $line = "[{0}] {1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $msg
     Add-Content -Path $logFile -Value $line
 }
+
+# Single-instance guard. This script is launched repeatedly by Task Scheduler, so a
+# second copy must never start and fight the first over the same ports and log files.
+if (Test-Path $lockFile) {
+    $holder = (Get-Content $lockFile -ErrorAction SilentlyContinue | Select-Object -First 1)
+    if ($holder -and (Get-Process -Id $holder -ErrorAction SilentlyContinue)) {
+        exit 0
+    }
+}
+Set-Content -Path $lockFile -Value $PID -NoNewline
 
 # Ordered: slippage decides go/no-go, so it runs first. Then what to buy, then how to
 # sell, then the combined confirmation.
@@ -27,6 +39,7 @@ $plan = @(
     @{ Name = 'final';     Secs = 1800; Reps = 2 }
 )
 
+if (Test-Path $doneFlag) { Log 'already complete; nothing to do'; exit 0 }
 if (-not (Test-Path $stateFile)) { New-Item -ItemType File -Path $stateFile -Force | Out-Null }
 $done = @(Get-Content $stateFile -ErrorAction SilentlyContinue | Where-Object { $_ })
 
@@ -40,7 +53,7 @@ foreach ($step in $plan) {
     $err = Join-Path $root "reports\logs\sweep_$name.err"
     $ok = $false
 
-    for ($attempt = 1; $attempt -le 4 -and -not $ok; $attempt++) {
+    for ($attempt = 1; $attempt -le 6 -and -not $ok; $attempt++) {
         Log "start $name attempt $attempt ($($step.Reps) x $($step.Secs)s)"
         & "$root\.venv\Scripts\python.exe" -u tools\interleaved_sweep.py $step.Secs $step.Reps $name > $out 2> $err
         $code = $LASTEXITCODE
@@ -58,10 +71,11 @@ foreach ($step in $plan) {
         Add-Content -Path $stateFile -Value $name
     } else {
         # Do not block the rest of the night on one stage; record it and move on.
-        Log "WARNING: $name abandoned after 4 attempts"
+        Log "WARNING: $name abandoned after 6 attempts"
         Add-Content -Path $stateFile -Value "$name-ABANDONED"
     }
 }
 
-Set-Content -Path (Join-Path $root 'reports\logs\program_complete.flag') -Value (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+Set-Content -Path $doneFlag -Value (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+Remove-Item $lockFile -ErrorAction SilentlyContinue
 Log "PROGRAM COMPLETE"
