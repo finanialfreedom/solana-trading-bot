@@ -43,6 +43,18 @@ SWEEP_TASK = "SolanaBotSweepProgram"
 # so five quiet minutes means it is stuck.
 ARM_STALL_SECONDS = 300
 
+# Processes that make up "the sweep". The supervisor is matched as well as the arm: a
+# running supervisor owns the single-instance lock, so counting only the arm made
+# keep_job_alive() think the job was dead during the gaps between arms (and while an arm
+# slept between retries) and launch a second supervisor. Two supervisors then fought
+# over the same ports and log files, each killing the other's arm mid-block, which is
+# how protect2 spent hours restarting instead of finishing.
+#
+# Matched on the script path, and the probing shell excludes its own PID, because the
+# probe's command line contains this pattern and would otherwise always match itself.
+SWEEP_PROC_PATTERN = r"interleaved_sweep\.py|sweep_program\.ps1|run_sweep_program\.cmd"
+SELF_GUARD = "$_.ProcessId -ne $PID -and "
+
 
 def emit(line: str) -> None:
     """Print for the task log and append to connectivity.log."""
@@ -135,10 +147,16 @@ def flush_dns() -> None:
 
 
 def sweep_alive() -> bool:
-    """Is a sweep or an experiment arm running?"""
+    """Is the sweep running (supervisor or an experiment arm)?
+
+    Counting the supervisor too is essential: between arms, and during the 30s sleep
+    between a stage's retry attempts, no arm exists but the job is very much alive.
+    Seeing "nothing running" in those windows made keep_job_alive() start a second
+    supervisor, and the pair would kill each other's arms.
+    """
     ps = (
-        "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "
-        "'run_experiment|interleaved_sweep' } | Measure-Object | "
+        "Get-CimInstance Win32_Process | Where-Object { " + SELF_GUARD
+        + "$_.CommandLine -match '" + SWEEP_PROC_PATTERN + "' } | Measure-Object | "
         "Select-Object -ExpandProperty Count"
     )
     out = run_cmd(["powershell", "-NoProfile", "-Command", ps]).strip()
@@ -163,19 +181,26 @@ def start_sweep(note: str) -> None:
 
 
 def restart_wedged_arm() -> None:
-    """Kill a sweep arm that is holding a dead connection, so the supervisor retries.
+    """Kill a wedged sweep (supervisor and arm), so the job is restarted clean.
 
     Only called when the network was down and the newest arm log has been silent well
     past a normal logging gap, which is the signature of an arm blocked on the socket.
-    The supervisor treats a short run as unfinished and retries it, so this is safe.
+    The supervisor is killed alongside the arm so the single-instance lock is released
+    and the retry starts from a clean process; keep_job_alive() then re-runs the task,
+    and the program resumes at the first stage it has not completed.
     """
     ps = (
-        "Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -match "
-        "'run_experiment|interleaved_sweep' } | ForEach-Object { "
+        "Get-CimInstance Win32_Process | Where-Object { " + SELF_GUARD
+        + "$_.CommandLine -match '" + SWEEP_PROC_PATTERN + "' } | ForEach-Object { "
         "Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"
     )
     run_cmd(["powershell", "-NoProfile", "-Command", ps])
-    emit(stamp("heal: wedged arm killed; supervisor will retry"))
+    # The supervisor is gone now, so drop its lock or the restart would exit immediately.
+    try:
+        (LOG_DIR / "program.lock").unlink(missing_ok=True)
+    except OSError:
+        pass
+    emit(stamp("heal: wedged sweep killed; restarting clean"))
 
 
 def keep_job_alive() -> None:
