@@ -36,7 +36,11 @@ function Install-Task {
         [string]$Description
     )
 
-    $action = New-ScheduledTaskAction -Execute $Execute -Argument $Argument -WorkingDirectory $root
+    # -Argument rejects an empty string ("null or empty"), so only pass it when the task
+    # actually has arguments. ConnWatch has none and failed to register without this.
+    $actionArgs = @{ Execute = $Execute; WorkingDirectory = $root }
+    if ($Argument) { $actionArgs['Argument'] = $Argument }
+    $action = New-ScheduledTaskAction @actionArgs
     $trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) `
         -RepetitionInterval (New-TimeSpan -Minutes $EveryMinutes)
     # RepetitionDuration omitted on purpose: the task repeats indefinitely.
