@@ -29,6 +29,12 @@ if (Test-Path $lockFile) {
 }
 Set-Content -Path $lockFile -Value $PID -NoNewline
 
+# Fresh instance confirmed. If Norton's firewall is blocking the RPC or the WebSocket
+# trade stream, everything below still "runs" but produces no trades -- a silent,
+# expensive failure. Check first and leave a timestamped record.
+& "$root\.venv\Scripts\python.exe" tools\check_connectivity.py --log 2>&1 |
+    ForEach-Object { Log "net: $_" }
+
 # Ordered: slippage decides go/no-go, so it runs first. Then what to buy, then how to
 # sell, then the combined confirmation.
 $plan = @(
