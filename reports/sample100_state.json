@@ -1,0 +1,145 @@
+{
+  "created_at": "2026-10-17T15:54:01+04:00",
+  "target_trades": 100,
+  "block_seconds": 1800,
+  "arms": {
+    "quality/A-quality-old": {
+      "stage": "quality",
+      "label": "A-quality-old",
+      "seed_trades": 9,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "0",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    "quality/A2-quality-buyers15": {
+      "stage": "quality",
+      "label": "A2-quality-buyers15",
+      "seed_trades": 4,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    "quality/A3-quality-mc5k": {
+      "stage": "quality",
+      "label": "A3-quality-mc5k",
+      "seed_trades": 5,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "5000",
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    "entry/A-entry-none": {
+      "stage": "entry",
+      "label": "A-entry-none",
+      "seed_trades": 127,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "0",
+        "MIN_CONFIRM_BUY_SOL": "0",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "entry/A2-entry-buyers15": {
+      "stage": "entry",
+      "label": "A2-entry-buyers15",
+      "seed_trades": 13,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "0",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "entry/B-entry-1": {
+      "stage": "entry",
+      "label": "B-entry-1",
+      "seed_trades": 10,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "1",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "entry/C-entry-2": {
+      "stage": "entry",
+      "label": "C-entry-2",
+      "seed_trades": 10,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "entry/D-entry-3": {
+      "stage": "entry",
+      "label": "D-entry-3",
+      "seed_trades": 9,
+      "overrides": {
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "3",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "pressure/A-press-off": {
+      "stage": "pressure",
+      "label": "A-press-off",
+      "seed_trades": 1,
+      "overrides": {
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "pressure/B-press-net1": {
+      "stage": "pressure",
+      "label": "B-press-net1",
+      "seed_trades": 1,
+      "overrides": {
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    "pressure/C-press-r50": {
+      "stage": "pressure",
+      "label": "C-press-r50",
+      "seed_trades": 1,
+      "overrides": {
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0.5"
+      }
+    },
+    "pressure/D-press-both": {
+      "stage": "pressure",
+      "label": "D-press-both",
+      "seed_trades": 1,
+      "overrides": {
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5"
+      }
+    }
+  }
+}
