@@ -567,11 +567,19 @@ def test_curve_refresh_failure_pauses_entries() -> None:
     from types import SimpleNamespace
 
     class FailingClient:
-        async def get_multiple_accounts(self, _keys: object) -> object:
+        async def get_multiple_accounts(
+            self,
+            _keys: object,
+            **_kwargs: object,
+        ) -> object:
             raise ConnectionError("offline")
 
     class RecoveredClient:
-        async def get_multiple_accounts(self, _keys: object) -> object:
+        async def get_multiple_accounts(
+            self,
+            _keys: object,
+            **_kwargs: object,
+        ) -> object:
             return SimpleNamespace(value=[None])
 
     trader = Trader.__new__(Trader)

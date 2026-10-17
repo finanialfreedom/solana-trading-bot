@@ -199,15 +199,12 @@ def parse_global(data: bytes) -> GlobalConfig:
 
 
 def parse_create_event(payload: bytes) -> CreateInfo | None:
-    candidates = [payload]
-    if len(payload) > 8:
-        candidates.append(payload[8:])
-    for blob in candidates:
-        try:
-            return _parse_create_body(blob)
-        except Exception:
-            continue
-    return None
+    if len(payload) <= 8 or payload[:8] != CREATE_EVENT_DISC:
+        return None
+    try:
+        return _parse_create_body(payload[8:])
+    except Exception:
+        return None
 
 
 def _parse_create_body(data: bytes) -> CreateInfo:
@@ -240,7 +237,9 @@ def _parse_create_body(data: bytes) -> CreateInfo:
 
 
 def parse_trade_event(payload: bytes) -> TradeInfo | None:
-    body = payload[8:] if payload[:8] == TRADE_EVENT_DISC else payload
+    if len(payload) <= 8 or payload[:8] != TRADE_EVENT_DISC:
+        return None
+    body = payload[8:]
     if len(body) < 32 + 8 + 8 + 1 + 32 + 8 + 8 + 8:
         return None
     try:

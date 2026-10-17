@@ -186,7 +186,7 @@ class Trader:
         return self.global_cfg.fee_recipient if self.global_cfg else None
 
     async def _account_exists(self, pubkey: Pubkey) -> bool:
-        resp = await self.client.get_account_info(pubkey)
+        resp = await self.client.get_account_info(pubkey, commitment=Confirmed)
         return resp.value is not None
 
     async def _mint_token_program(self, mint: Pubkey) -> Pubkey:
@@ -194,7 +194,7 @@ class Trader:
         cached = self._token_programs.get(key)
         if cached is not None:
             return cached
-        response = await self.client.get_account_info(mint)
+        response = await self.client.get_account_info(mint, commitment=Confirmed)
         if response.value is None:
             raise RuntimeError(f"Mint account not found: {mint}")
         owner = response.value.owner
@@ -205,13 +205,16 @@ class Trader:
 
     async def _token_balance(self, token_account: Pubkey) -> int:
         try:
-            response = await self.client.get_token_account_balance(token_account)
+            response = await self.client.get_token_account_balance(
+                token_account,
+                commitment=Confirmed,
+            )
             return int(response.value.amount)
         except Exception:
             return 0
 
     async def load_curve(self, curve_pk: Pubkey) -> BondingCurve | None:
-        resp = await self.client.get_account_info(curve_pk)
+        resp = await self.client.get_account_info(curve_pk, commitment=Confirmed)
         if resp.value is None:
             return None
         try:
@@ -224,7 +227,7 @@ class Trader:
         if not keys:
             return {}
         try:
-            resp = await self.client.get_multiple_accounts(keys)
+            resp = await self.client.get_multiple_accounts(keys, commitment=Confirmed)
         except Exception as exc:
             self._curve_refresh_available = False
             logger.warning("Batch curve refresh failed: %s", exc)
@@ -479,6 +482,12 @@ class Trader:
 
         curve = await self.load_curve(info.bonding_curve)
         if curve is None:
+            if live_trading_enabled():
+                logger.warning(
+                    "Skip live buy %s: confirmed bonding-curve account is unavailable",
+                    info.symbol,
+                )
+                return
             curve = self._curve_from_create(info)
         if curve.complete:
             logger.info("Skip %s: bonding curve already complete", info.symbol)

@@ -11,6 +11,7 @@ __pycache__/
 # Volatile bot output: rewritten continuously during sweeps and full of random
 # base58 strings that trip GitHub push protection. Keep these on disk, not in git.
 reports/logs/
+reports/archive/
 reports/creator_history.json
 reports/blocked.csv
 reports/trades.csv

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 import sys
 from pathlib import Path
 from types import SimpleNamespace
@@ -17,11 +18,13 @@ from spl.token.instructions import get_associated_token_address  # noqa: E402
 
 from pumpfun import (  # noqa: E402
     BUYBACK_FEE_RECIPIENT,
+    CREATE_EVENT_DISC,
     associated_bonding_curve,
     bonding_curve_v2_pda,
     build_buy_exact_sol_in,
     build_create_ata,
     build_sell,
+    parse_create_event,
 )
 from positions import PositionBook  # noqa: E402
 from trader import SendResult, TOKEN_2022, Trader  # noqa: E402
@@ -136,6 +139,56 @@ def check_token_2022_routing() -> None:
     check("non-cashback sell has upgraded 16-account layout", len(sell.accounts) == 16)
 
 
+def check_create_v2_event() -> None:
+    fixture = base64.b64decode(
+        "G3KpTd7rY3YLAAAATWVtZXRocm9waWMLAAAATUVNRVRIUk9QSUMyAAAA"
+        "aHR0cHM6Ly94eXp6enp6enp6enp6enp6enp6ei5jb20vcy9hdFBhU3NW"
+        "c1F4M04xODRq6iOoXPaX5wO7a+3D7N5jXLm0ROYNsS2fzoPn1aoKNhBZ"
+        "Lx3o4Iq7+Y13thQHNaWg3gWRAc5wzMC6tpNX5mvkpUeiWZlcFZ2F2Dxr"
+        "XChLn/8+aDnALIZ23GgeiegL8oKlR6JZmVwVnYXYPGtcKEuf/z5oOcAsh"
+        "nbcaB6J6Avygkra02oAAAAAABDYR+PPAwAArCP8BgAAAAB4xftR0QIAAID"
+        "GpH6NAwAG3fbh7nWP3hhCXbzkbM3athr8TYO5DSf+vfko2KGL/AAAAAAAA"
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArCP8BgAAAAAAAAAAAAAA"
+        "AAA="
+    )
+    event = parse_create_event(fixture)
+    check("captured CreateV2 event decodes", event is not None)
+    check(
+        "CreateV2 mint matches the on-chain instruction",
+        event is not None
+        and str(event.mint) == "8CMHpLwawJe645oStzacSnqivfboK71119LqiVyy2Nmb",
+    )
+    check(
+        "CreateV2 curve matches the on-chain instruction",
+        event is not None
+        and str(event.bonding_curve)
+        == "26pQ5qfpURtHe3yqyJmckEpyvojEC8P9dC6N536go7X1",
+    )
+    check("fixture carries the CreateEvent discriminator", fixture[:8] == CREATE_EVENT_DISC)
+    check(
+        "non-CreateEvent program data is rejected",
+        parse_create_event(b"\x00" * 8 + fixture[8:]) is None,
+    )
+
+
+async def check_confirmed_mint_lookup() -> None:
+    class MintClient:
+        def __init__(self) -> None:
+            self.commitment = None
+
+        async def get_account_info(self, _mint, commitment=None):
+            self.commitment = commitment
+            return SimpleNamespace(value=SimpleNamespace(owner=TOKEN_2022))
+
+    client = MintClient()
+    trader = Trader.__new__(Trader)
+    trader.client = client
+    trader._token_programs = {}
+    owner = await trader._mint_token_program(Keypair().pubkey())
+    check("mint owner is resolved from chain", owner == TOKEN_2022)
+    check("new mint lookup uses confirmed state", str(client.commitment) == "confirmed")
+
+
 def check_pending_slot() -> None:
     first = Keypair().pubkey()
     second = Keypair().pubkey()
@@ -152,7 +205,9 @@ def check_pending_slot() -> None:
 
 def main() -> None:
     check_token_2022_routing()
+    check_create_v2_event()
     check_pending_slot()
+    asyncio.run(check_confirmed_mint_lookup())
     asyncio.run(check_confirmation())
     print("All live transaction safety checks passed.")
 

@@ -12,6 +12,7 @@ import logging
 from typing import Any
 
 from solana.rpc.async_api import AsyncClient
+from solana.rpc.commitment import Confirmed
 from solana.rpc.websocket_api import SolanaWsClient
 from solders.rpc.config import RpcTransactionLogsFilterMentions
 
@@ -244,7 +245,10 @@ async def main() -> None:
     keypair = load_keypair()
     logger.info("RPC HTTP %s", RPC_URL_LOG)
 
-    async with AsyncClient(RPC_URL) as client:
+    # New Pump.fun accounts often are not finalized within the 5-second entry
+    # window. Confirmed reads avoid false "mint not found" fallbacks while still
+    # requiring the creation transaction to have landed on-chain.
+    async with AsyncClient(RPC_URL, commitment=Confirmed) as client:
         if not await client.is_connected():
             raise RuntimeError(f"Cannot reach RPC: {RPC_URL}")
         await print_wallet_summary(client, keypair)
