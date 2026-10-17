@@ -15,6 +15,7 @@ from datetime import datetime
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO))
 TRADES = REPO / "reports" / "trades.csv"
 EXPERIMENTS = REPO / "reports" / "experiments.jsonl"
 STATE = REPO / "reports" / "combined100_state.json"
