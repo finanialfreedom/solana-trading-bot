@@ -97,11 +97,11 @@ def main() -> None:
     quality = effective(QUALITY_SCHEDULE)
     assert_unique("quality", quality)
     assert_adjacent_one_variable("quality", quality)
-    quality_raw = dict(QUALITY_SCHEDULE)
-    check("quality: B-quality-25 inherits global net-buy threshold",
-          "MIN_CONFIRM_NET_SOL" not in quality_raw["B-quality-25"])
-    check("quality: C-quality-30 inherits global net-buy threshold",
-          "MIN_CONFIRM_NET_SOL" not in quality_raw["C-quality-30"])
+    check(
+        "quality: only old, buyers15, and mc5k arms remain",
+        [label for label, _values in quality]
+        == ["A-quality-old", "A2-quality-buyers15", "A3-quality-mc5k"],
+    )
 
     print("\nEffective pressure settings:")
     for label, values in pressure:

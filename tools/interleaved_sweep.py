@@ -235,10 +235,7 @@ FINAL_SCHEDULE: list[tuple[str, dict[str, str]]] = [
 # defaults in every arm. Adjacent arms change exactly one entry variable:
 #   A -> A2: unique buyers 0 -> 15
 #   A2 -> A3: MC floor $0 -> $5k
-#   A3 -> B: gross buys 2 -> 25 SOL
-#   B -> C: gross buys 25 -> 30 SOL
-# B/C deliberately inherit the global MIN_CONFIRM_NET_SOL instead of redundantly
-# overriding it. Every arm keeps 2% simulated slippage.
+# Every arm keeps 2% simulated slippage.
 QUALITY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     (
         "A-quality-old",
@@ -271,28 +268,6 @@ QUALITY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
             "MIN_CONFIRM_BUY_SOL": "2",
             "MIN_CONFIRM_MC_USD": "5000",
             "MIN_CONFIRM_NET_SOL": "1",
-            "MAX_CONFIRM_SELL_RATIO": "0.5",
-            "REGIME_FILTER_ENABLED": "false",
-            "SIM_SLIPPAGE_BPS": "200",
-        },
-    ),
-    (
-        "B-quality-25",
-        {
-            "MIN_UNIQUE_BUYERS": "15",
-            "MIN_CONFIRM_BUY_SOL": "25",
-            "MIN_CONFIRM_MC_USD": "5000",
-            "MAX_CONFIRM_SELL_RATIO": "0.5",
-            "REGIME_FILTER_ENABLED": "false",
-            "SIM_SLIPPAGE_BPS": "200",
-        },
-    ),
-    (
-        "C-quality-30",
-        {
-            "MIN_UNIQUE_BUYERS": "15",
-            "MIN_CONFIRM_BUY_SOL": "30",
-            "MIN_CONFIRM_MC_USD": "5000",
             "MAX_CONFIRM_SELL_RATIO": "0.5",
             "REGIME_FILTER_ENABLED": "false",
             "SIM_SLIPPAGE_BPS": "200",
