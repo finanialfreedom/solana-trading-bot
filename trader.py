@@ -4,16 +4,19 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from dataclasses import dataclass
 from time import monotonic
 from typing import Any
 
 from solana.rpc.async_api import AsyncClient
+from solana.rpc.commitment import Confirmed
 from solana.rpc.models import TxOpts
 from solders.compute_budget import set_compute_unit_limit, set_compute_unit_price
 from solders.keypair import Keypair
 from solders.message import MessageV0
 from solders.pubkey import Pubkey
 from solders.transaction import VersionedTransaction
+from spl.token.constants import TOKEN_2022_PROGRAM_ID
 from spl.token.instructions import get_associated_token_address
 
 from config import (
@@ -73,6 +76,13 @@ from pumpfun import (
 from wallet import get_sol_balance, lamports_to_sol
 
 logger = logging.getLogger("pump-trader")
+TOKEN_2022 = Pubkey.from_string(str(TOKEN_2022_PROGRAM_ID))
+
+
+@dataclass(frozen=True, slots=True)
+class SendResult:
+    signature: str
+    wallet_delta_lamports: int
 
 
 def _account_data(account: Any) -> bytes:
@@ -105,6 +115,8 @@ class Trader:
         self._curve_pause_logged = False
         self._buy_lock = asyncio.Lock()
         self._sell_lock = asyncio.Lock()
+        self._tx_lock = asyncio.Lock()
+        self._token_programs: dict[str, Pubkey] = {}
         self.security = SecurityScanner(client)
         self.trailing = TrailingGuard(self)
         self.confirm = Confirmer(self)
@@ -176,6 +188,27 @@ class Trader:
     async def _account_exists(self, pubkey: Pubkey) -> bool:
         resp = await self.client.get_account_info(pubkey)
         return resp.value is not None
+
+    async def _mint_token_program(self, mint: Pubkey) -> Pubkey:
+        key = str(mint)
+        cached = self._token_programs.get(key)
+        if cached is not None:
+            return cached
+        response = await self.client.get_account_info(mint)
+        if response.value is None:
+            raise RuntimeError(f"Mint account not found: {mint}")
+        owner = response.value.owner
+        if owner not in {TOKEN_PROGRAM_ID, TOKEN_2022}:
+            raise RuntimeError(f"Unsupported token program {owner} for mint {mint}")
+        self._token_programs[key] = owner
+        return owner
+
+    async def _token_balance(self, token_account: Pubkey) -> int:
+        try:
+            response = await self.client.get_token_account_balance(token_account)
+            return int(response.value.amount)
+        except Exception:
+            return 0
 
     async def load_curve(self, curve_pk: Pubkey) -> BondingCurve | None:
         resp = await self.client.get_account_info(curve_pk)
@@ -254,14 +287,50 @@ class Trader:
         tokens_out = tokens_out_for_sol_in(curve, spend, self._fee_bps(curve))
         if tokens_out <= 0:
             return
+        actual_spend = spend
         if live_trading_enabled():
             if self._open_position(position.mint) is None:
                 logger.info("Skip add %s: sold before scale-in send", position.symbol)
                 return
+            try:
+                token_program = await self._mint_token_program(info.mint)
+            except Exception:
+                logger.exception("Skip add %s: cannot resolve token program", position.symbol)
+                return
+            user_ata = get_associated_token_address(
+                self.wallet.pubkey(),
+                info.mint,
+                token_program,
+            )
+            curve_ata = associated_bonding_curve(
+                info.mint,
+                info.bonding_curve,
+                token_program,
+            )
+            tokens_before = await self._token_balance(user_ata)
             min_tokens = tokens_out * (10_000 - SLIPPAGE_BPS) // 10_000
-            sent = await self._send_buy(info, curve, spend, min_tokens)
+            sent = await self._send_buy(
+                info,
+                curve,
+                spend,
+                min_tokens,
+                token_program=token_program,
+                user_ata=user_ata,
+                curve_ata=curve_ata,
+            )
             if not sent:
                 return
+            tokens_after = await self._token_balance(user_ata)
+            tokens_out = tokens_after - tokens_before
+            if tokens_out <= 0:
+                logger.error(
+                    "Confirmed add %s returned no token balance increase; "
+                    "not updating the position (signature=%s)",
+                    position.symbol,
+                    sent.signature,
+                )
+                return
+            actual_spend = max(spend, -sent.wallet_delta_lamports)
             onchain = await self.load_curve(live_pos.bonding_curve)
             if onchain:
                 curve = onchain
@@ -278,13 +347,13 @@ class Trader:
                     live_pos.entry_price * old_tokens + entry * tokens_out
                 ) / total
             live_pos.token_amount = total
-            live_pos.sol_spent += spend
+            live_pos.sol_spent += actual_spend
             live_pos.scaled = True
             live_pos.update_reserves(
                 curve.virtual_quote_reserves + spend,
                 max(0, curve.virtual_token_reserves - tokens_out),
             )
-            extra = spend / LAMPORTS_PER_SOL
+            extra = actual_spend / LAMPORTS_PER_SOL
             REPORT.record_add(mint=str(live_pos.mint), extra_sol=extra)
             logger.info(
                 "ADD %s  +%.4f SOL  total=%.4f SOL  mint=%s",
@@ -442,6 +511,18 @@ class Trader:
             )
             return
 
+        try:
+            token_program = await self._mint_token_program(info.mint)
+        except Exception:
+            logger.exception("Skip %s: cannot resolve mint token program", info.symbol)
+            return
+        user_ata = get_associated_token_address(owner=self.wallet.pubkey(), mint=info.mint, token_program_id=token_program)
+        curve_ata = associated_bonding_curve(
+            info.mint,
+            info.bonding_curve,
+            token_program,
+        )
+
         fee_bps = self._fee_bps(curve)
         tokens_out = tokens_out_for_sol_in(curve, spend, fee_bps)
         if tokens_out <= 0:
@@ -457,17 +538,35 @@ class Trader:
                 logger.info("Skip %s: token amount is 0 after simulated slippage", info.symbol)
                 return
         min_tokens = tokens_out * (10_000 - SLIPPAGE_BPS) // 10_000
-        # What we actually pay per token, not the price before our own buy. The old
-        # pre-trade price made every position open showing ~+6.7% for a 1 SOL order
-        # (the size of its own price impact), inflating every peak and distorting the
-        # exit rules that read those peaks.
-        entry_price = spend / tokens_out
         sig = "dry-run"
+        actual_spend = spend
 
         if live:
-            sig = await self._send_buy(info, curve, spend, min_tokens)
-            if not sig:
+            tokens_before = await self._token_balance(user_ata)
+            sent = await self._send_buy(
+                info,
+                curve,
+                spend,
+                min_tokens,
+                token_program=token_program,
+                user_ata=user_ata,
+                curve_ata=curve_ata,
+            )
+            if not sent:
                 return
+            sig = sent.signature
+            tokens_after = await self._token_balance(user_ata)
+            filled_tokens = tokens_after - tokens_before
+            if filled_tokens <= 0:
+                logger.error(
+                    "Confirmed buy %s returned no token balance increase; "
+                    "not recording a position (signature=%s)",
+                    info.symbol,
+                    sig,
+                )
+                return
+            tokens_out = filled_tokens
+            actual_spend = max(spend, -sent.wallet_delta_lamports)
             onchain = await self.load_curve(info.bonding_curve)
             if onchain:
                 curve = onchain
@@ -483,15 +582,18 @@ class Trader:
                 signature,
             )
 
+        # Use the confirmed token delta and total wallet outflow in live mode. This
+        # includes network/ATA costs, so reported P&L matches the funded wallet.
+        entry_price = actual_spend / tokens_out
         position = Position(
             mint=info.mint,
             bonding_curve=info.bonding_curve,
-            associated_bonding_curve=associated_bonding_curve(info.mint, info.bonding_curve),
+            associated_bonding_curve=curve_ata,
             creator=curve.creator or info.creator,
             name=info.name,
             symbol=info.symbol,
             token_amount=tokens_out,
-            sol_spent=spend,
+            sol_spent=actual_spend,
             entry_price=entry_price,
             virtual_token_reserves=curve.virtual_token_reserves - tokens_out,
             # Only the fee-net SOL actually reaches the curve. Adding the gross amount
@@ -500,7 +602,7 @@ class Trader:
             dry_run=not live,
         )
         self.book.add(position)
-        invested = spend / LAMPORTS_PER_SOL
+        invested = actual_spend / LAMPORTS_PER_SOL
         REPORT.record_open(
             name=info.name,
             symbol=info.symbol,
@@ -523,7 +625,11 @@ class Trader:
         curve: BondingCurve,
         spend: int,
         min_tokens: int,
-    ) -> str | None:
+        *,
+        token_program: Pubkey,
+        user_ata: Pubkey,
+        curve_ata: Pubkey,
+    ) -> SendResult | None:
         owner = self.wallet.pubkey()
         sol = await get_sol_balance(self.client, owner)
         reserve = int(MIN_SOL_RESERVE * LAMPORTS_PER_SOL)
@@ -542,13 +648,12 @@ class Trader:
             logger.warning("Skip live buy %s: missing creator or fee recipient", info.symbol)
             return None
 
-        user_ata = get_associated_token_address(owner, info.mint, TOKEN_PROGRAM_ID)
         ixs: list[Any] = [
             set_compute_unit_limit(COMPUTE_UNIT_LIMIT),
             set_compute_unit_price(PRIORITY_FEE_MICROLAMPORTS),
         ]
         if not await self._account_exists(user_ata):
-            ixs.append(build_create_ata(owner, owner, info.mint))
+            ixs.append(build_create_ata(owner, owner, info.mint, token_program))
         if not self._volume_ready and not await self._account_exists(user_volume_pda(owner)):
             ixs.append(build_init_user_volume(owner, owner))
             self._volume_ready = True
@@ -559,13 +664,14 @@ class Trader:
             build_buy_exact_sol_in(
                 mint=info.mint,
                 bonding_curve=info.bonding_curve,
-                associated_curve=associated_bonding_curve(info.mint, info.bonding_curve),
+                associated_curve=curve_ata,
                 associated_user=user_ata,
                 user=owner,
                 fee_recipient=fee_recipient,
                 creator=creator,
                 spendable_sol=spend,
                 min_tokens_out=min_tokens,
+                token_program=token_program,
             )
         )
         return await self._send(ixs)
@@ -639,6 +745,7 @@ class Trader:
         live = live_trading_enabled() and not position.dry_run
         if not live and SIM_SLIPPAGE_BPS > 0:
             sol_out = sol_out * (10_000 - SIM_SLIPPAGE_BPS) // 10_000
+        actual_out = sol_out
         if live:
             sent = await self._send_sell(position, sol_out, token_amount=token_amount)
             if not sent:
@@ -646,10 +753,21 @@ class Trader:
                 if position.remaining_tokens >= 0:
                     position.remaining_tokens += token_amount
                 return
+            actual_out = sent.wallet_delta_lamports
+            if actual_out <= 0:
+                logger.error(
+                    "Confirmed scale-out %s did not increase wallet SOL; "
+                    "not booking proceeds (signature=%s)",
+                    position.symbol,
+                    sent.signature,
+                )
+                if position.remaining_tokens >= 0:
+                    position.remaining_tokens += token_amount
+                return
         async with self._sell_lock:
             if self.book.get(position.mint) is None:
                 return
-            position.realized_sol += sol_out
+            position.realized_sol += actual_out
             left = position.tokens_held
             if left <= 0:
                 # The ladder sold the whole position: book it as a completed trade
@@ -683,7 +801,7 @@ class Trader:
             "SCALE-OUT  %s  sold=%s tokens  got=%.4f SOL  left=%s (%.0f%%)  %s  mint=%s",
             position.symbol,
             token_amount,
-            sol_out / LAMPORTS_PER_SOL,
+            actual_out / LAMPORTS_PER_SOL,
             left,
             100.0 * left / max(1, position.token_amount),
             reason,
@@ -709,17 +827,27 @@ class Trader:
             # A dry-run exit must not be better than a real one: selling into a
             # falling curve competes with every other seller.
             sol_out = sol_out * (10_000 - SIM_SLIPPAGE_BPS) // 10_000
-        total_out = sol_out + position.realized_sol
+        live = live_trading_enabled() and not position.dry_run
+        actual_out = sol_out
+        if live:
+            sent = await self._send_sell(position, sol_out, token_amount=held)
+            if not sent:
+                return
+            actual_out = sent.wallet_delta_lamports
+            if actual_out <= 0:
+                logger.error(
+                    "Confirmed sell %s did not increase wallet SOL; "
+                    "position remains open (signature=%s)",
+                    position.symbol,
+                    sent.signature,
+                )
+                return
+        total_out = actual_out + position.realized_sol
         pnl = (
             (total_out - position.sol_spent) / position.sol_spent * 100.0
             if position.sol_spent > 0
             else 0.0
         )
-        live = live_trading_enabled() and not position.dry_run
-        if live:
-            sent = await self._send_sell(position, sol_out, token_amount=held)
-            if not sent:
-                return
         exit_sol = total_out / LAMPORTS_PER_SOL
         async with self._sell_lock:
             if self.book.get(position.mint) is None:
@@ -753,7 +881,7 @@ class Trader:
         quoted_sol: int,
         *,
         token_amount: int | None = None,
-    ) -> str | None:
+    ) -> SendResult | None:
         creator = position.creator
         fee_recipient = self._fee_recipient()
         if creator is None or fee_recipient is None:
@@ -768,39 +896,85 @@ class Trader:
         owner = self.wallet.pubkey()
         sell_tokens = position.tokens_held if token_amount is None else token_amount
         min_sol = quoted_sol * (10_000 - SLIPPAGE_BPS) // 10_000
-        user_ata = get_associated_token_address(owner, position.mint, TOKEN_PROGRAM_ID)
+        try:
+            token_program = await self._mint_token_program(position.mint)
+        except Exception:
+            logger.exception("Skip live sell %s: cannot resolve token program", position.symbol)
+            return None
+        user_ata = get_associated_token_address(owner, position.mint, token_program)
+        curve_ata = associated_bonding_curve(
+            position.mint,
+            position.bonding_curve,
+            token_program,
+        )
+        current_curve = await self.load_curve(position.bonding_curve)
+        cashback_enabled = bool(current_curve and current_curve.is_cashback_coin)
         ixs = [
             set_compute_unit_limit(COMPUTE_UNIT_LIMIT),
             set_compute_unit_price(PRIORITY_FEE_MICROLAMPORTS),
             build_sell(
                 mint=position.mint,
                 bonding_curve=position.bonding_curve,
-                associated_curve=position.associated_bonding_curve,
+                associated_curve=curve_ata,
                 associated_user=user_ata,
                 user=owner,
                 fee_recipient=fee_recipient,
                 creator=creator,
                 token_amount=sell_tokens,
                 min_sol_output=min_sol,
+                token_program=token_program,
+                cashback_enabled=cashback_enabled,
             ),
         ]
         return await self._send(ixs)
 
-    async def _send(self, instructions: list[Any]) -> str | None:
-        try:
-            blockhash = (await self.client.get_latest_blockhash()).value.blockhash
-            msg = MessageV0.try_compile(
-                payer=self.wallet.pubkey(),
-                instructions=instructions,
-                address_lookup_table_accounts=[],
-                recent_blockhash=blockhash,
-            )
-            tx = VersionedTransaction(msg, [self.wallet])
-            resp = await self.client.send_transaction(
-                tx,
-                opts=TxOpts(skip_preflight=True, skip_confirmation=True),
-            )
-            return str(resp.value)
-        except Exception:
-            logger.exception("Transaction send failed")
-            return None
+    async def _send(self, instructions: list[Any]) -> SendResult | None:
+        async with self._tx_lock:
+            try:
+                owner = self.wallet.pubkey()
+                before = int(
+                    (await self.client.get_balance(owner, commitment=Confirmed)).value
+                )
+                latest = (await self.client.get_latest_blockhash()).value
+                msg = MessageV0.try_compile(
+                    payer=owner,
+                    instructions=instructions,
+                    address_lookup_table_accounts=[],
+                    recent_blockhash=latest.blockhash,
+                )
+                tx = VersionedTransaction(msg, [self.wallet])
+                response = await self.client.send_transaction(
+                    tx,
+                    opts=TxOpts(
+                        skip_preflight=False,
+                        skip_confirmation=True,
+                        preflight_commitment=Confirmed,
+                    ),
+                )
+                signature = response.value
+                confirmed = await self.client.confirm_transaction(
+                    signature,
+                    commitment=Confirmed,
+                    last_valid_block_height=latest.last_valid_block_height,
+                )
+                status = confirmed.value[0] if confirmed.value else None
+                if status is None or status.err is not None:
+                    logger.error(
+                        "Transaction failed on chain signature=%s error=%s",
+                        signature,
+                        status.err if status is not None else "missing confirmation status",
+                    )
+                    return None
+                after = int(
+                    (await self.client.get_balance(owner, commitment=Confirmed)).value
+                )
+                delta = after - before
+                logger.info(
+                    "Transaction confirmed signature=%s wallet_delta=%+.9f SOL",
+                    signature,
+                    delta / LAMPORTS_PER_SOL,
+                )
+                return SendResult(str(signature), delta)
+            except Exception:
+                logger.exception("Transaction send/confirmation failed")
+                return None

@@ -25,6 +25,11 @@ FEE_CONFIG_PDA, _ = Pubkey.find_program_address(
     [b"fee_config", bytes(PUMP_FUN_PROGRAM_ID)],
     FEE_PROGRAM_ID,
 )
+# Pump.fun requires one listed buyback recipient after the bonding-curve-v2 PDA
+# on every bonding-curve buy/sell (April 2026 protocol upgrade).
+BUYBACK_FEE_RECIPIENT = Pubkey.from_string(
+    "5YxQFdt3Tr9zJLvkFccqXVUwhdTWJQc1fFg2YPbxvxeD"
+)
 
 # Fallback start curve (classic Pump.fun SOL-paired defaults).
 DEFAULT_VIRTUAL_TOKEN_RESERVES = 1_073_000_000_000_000
@@ -41,6 +46,8 @@ class BondingCurve:
     complete: bool
     creator: Pubkey | None = None
     creator_fee_bps: int = 0
+    is_mayhem_mode: bool = False
+    is_cashback_coin: bool = False
 
     @property
     def price(self) -> float:
@@ -87,6 +94,14 @@ def bonding_curve_pda(mint: Pubkey) -> Pubkey:
     return pda
 
 
+def bonding_curve_v2_pda(mint: Pubkey) -> Pubkey:
+    pda, _ = Pubkey.find_program_address(
+        [b"bonding-curve-v2", bytes(mint)],
+        PUMP_FUN_PROGRAM_ID,
+    )
+    return pda
+
+
 def creator_vault_pda(creator: Pubkey) -> Pubkey:
     pda, _ = Pubkey.find_program_address([b"creator-vault", bytes(creator)], PUMP_FUN_PROGRAM_ID)
     return pda
@@ -100,8 +115,12 @@ def user_volume_pda(user: Pubkey) -> Pubkey:
     return pda
 
 
-def associated_bonding_curve(mint: Pubkey, curve: Pubkey) -> Pubkey:
-    return get_associated_token_address(curve, mint, TOKEN_PROGRAM_ID)
+def associated_bonding_curve(
+    mint: Pubkey,
+    curve: Pubkey,
+    token_program: Pubkey = TOKEN_PROGRAM_ID,
+) -> Pubkey:
+    return get_associated_token_address(curve, mint, token_program)
 
 
 def _u64(data: bytes, offset: int) -> int:
@@ -137,8 +156,13 @@ def parse_bonding_curve(data: bytes) -> BondingCurve:
     complete = bool(data[offset + 40])
     creator = None
     creator_fee_bps = 0
+    is_mayhem_mode = False
+    is_cashback_coin = False
     if len(data) >= 81:
         creator = Pubkey.from_bytes(data[49:81])
+    if len(data) >= 83:
+        is_mayhem_mode = bool(data[81])
+        is_cashback_coin = bool(data[82])
     if len(data) >= 123:
         creator_fee_bps = _u64(data, 115)
     return BondingCurve(
@@ -150,6 +174,8 @@ def parse_bonding_curve(data: bytes) -> BondingCurve:
         complete=complete,
         creator=creator,
         creator_fee_bps=creator_fee_bps,
+        is_mayhem_mode=is_mayhem_mode,
+        is_cashback_coin=is_cashback_coin,
     )
 
 
@@ -278,7 +304,7 @@ def _buy_sell_accounts(
     creator: Pubkey,
     token_program: Pubkey,
 ) -> list[AccountMeta]:
-    return [
+    accounts = [
         AccountMeta(GLOBAL_PDA, False, False),
         AccountMeta(fee_recipient, False, True),
         AccountMeta(mint, False, False),
@@ -296,6 +322,13 @@ def _buy_sell_accounts(
         AccountMeta(FEE_CONFIG_PDA, False, False),
         AccountMeta(FEE_PROGRAM_ID, False, False),
     ]
+    accounts.extend(
+        [
+            AccountMeta(bonding_curve_v2_pda(mint), False, False),
+            AccountMeta(BUYBACK_FEE_RECIPIENT, False, True),
+        ]
+    )
+    return accounts
 
 
 def build_buy_exact_sol_in(
@@ -343,6 +376,7 @@ def build_sell(
     token_amount: int,
     min_sol_output: int,
     token_program: Pubkey = TOKEN_PROGRAM_ID,
+    cashback_enabled: bool = False,
 ) -> Instruction:
     data = SELL_DISC + struct.pack("<Q", token_amount) + struct.pack("<Q", min_sol_output)
     # Sell account order: token_program comes after creator_vault (IDL).
@@ -362,6 +396,14 @@ def build_sell(
         AccountMeta(FEE_CONFIG_PDA, False, False),
         AccountMeta(FEE_PROGRAM_ID, False, False),
     ]
+    if cashback_enabled:
+        accounts.append(AccountMeta(user_volume_pda(user), False, True))
+    accounts.extend(
+        [
+            AccountMeta(bonding_curve_v2_pda(mint), False, False),
+            AccountMeta(BUYBACK_FEE_RECIPIENT, False, True),
+        ]
+    )
     return Instruction(PUMP_FUN_PROGRAM_ID, data, accounts)
 
 
@@ -377,5 +419,10 @@ def build_init_user_volume(payer: Pubkey, user: Pubkey) -> Instruction:
     return Instruction(PUMP_FUN_PROGRAM_ID, INIT_USER_VOLUME_DISC, accounts)
 
 
-def build_create_ata(payer: Pubkey, owner: Pubkey, mint: Pubkey) -> Instruction:
-    return create_associated_token_account(payer, owner, mint, TOKEN_PROGRAM_ID)
+def build_create_ata(
+    payer: Pubkey,
+    owner: Pubkey,
+    mint: Pubkey,
+    token_program: Pubkey = TOKEN_PROGRAM_ID,
+) -> Instruction:
+    return create_associated_token_account(payer, owner, mint, token_program)
