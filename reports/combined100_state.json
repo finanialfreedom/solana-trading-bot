@@ -1,0 +1,7 @@
+{
+  "status": "paused_for_exit_fix",
+  "started": "2026-10-17 16:20:54",
+  "target_trades": 100,
+  "active_seconds": 16270.193,
+  "closed_trades_at_pause": 42
+}

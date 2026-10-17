@@ -162,6 +162,10 @@ TRAILING_TICK_SECONDS = _env_float("TRAILING_TICK_SECONDS", 0.25)
 TRAILING_ARMED_TICK_SECONDS = _env_float("TRAILING_ARMED_TICK_SECONDS", 0.08)
 # Re-poll a position's curve only if it has not been marked for this long.
 TRAILING_STALE_SECONDS = _env_float("TRAILING_STALE_SECONDS", 0.2)
+# A token that pumps enough to arm trailing but then goes flat may never retrace far
+# enough to trigger its callback. Free the account-risk slot after ten minutes with
+# no new peak; every fresh high restarts this clock.
+TRAILING_IDLE_EXIT_SECONDS = _env_float("TRAILING_IDLE_EXIT_SECONDS", 600.0)
 
 # Graduation (bonding curve -> PumpSwap AMM) handling.# When a coin completes its curve the curve account is closed and reports zero
 # reserves. Treating that as "price is zero" liquidated every winner for -100%,

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+from time import monotonic
 from typing import Any
 
 from solana.rpc.async_api import AsyncClient
@@ -99,6 +100,9 @@ class Trader:
         self.global_cfg: GlobalConfig | None = None
         self._volume_ready = False
         self._cap_logged = False
+        self._curve_refresh_available = True
+        self._curve_refresh_retry_at = 0.0
+        self._curve_pause_logged = False
         self._buy_lock = asyncio.Lock()
         self._sell_lock = asyncio.Lock()
         self.security = SecurityScanner(client)
@@ -189,8 +193,13 @@ class Trader:
         try:
             resp = await self.client.get_multiple_accounts(keys)
         except Exception as exc:
+            self._curve_refresh_available = False
             logger.warning("Batch curve refresh failed: %s", exc)
             return {}
+        if not self._curve_refresh_available:
+            logger.info("Batch curve refresh recovered; entries resumed")
+        self._curve_refresh_available = True
+        self._curve_pause_logged = False
         out: dict[str, BondingCurve | None] = {}
         for pk, acc in zip(keys, resp.value or [], strict=False):
             if acc is None:
@@ -216,6 +225,9 @@ class Trader:
         live_pos = self._open_position(position.mint)
         if live_pos is None:
             logger.info("Skip add %s: already closed or exiting", position.symbol)
+            return
+        if not await self._entry_price_refresh_ready(live_pos.bonding_curve):
+            logger.warning("Skip add %s: RPC batch price refresh is unavailable", position.symbol)
             return
         spend = self.book.clamp_to_remaining_risk(requested)
         if spend <= 0:
@@ -315,6 +327,13 @@ class Trader:
         existing: bool,
         spend_sol: float | None = None,
     ) -> None:
+        if not await self._entry_price_refresh_ready(info.bonding_curve):
+            if not self._curve_pause_logged:
+                logger.warning(
+                    "Entries paused: RPC batch price refresh is unavailable"
+                )
+                self._curve_pause_logged = True
+            return
         if REPORT.opened_count() >= MAX_TRADES:
             if not self._cap_logged:
                 logger.info("Reached %s-trade cap. Excel report: %s", MAX_TRADES, REPORT.path)
@@ -328,6 +347,17 @@ class Trader:
                 await self._buy(info, signature, existing=existing, spend_sol=spend_sol)
         finally:
             self.book.clear_pending(info.mint)
+
+    async def _entry_price_refresh_ready(self, curve: Pubkey) -> bool:
+        """Do not add risk while the watchdog cannot refresh exit prices."""
+        if self._curve_refresh_available:
+            return True
+        now = monotonic()
+        if now < self._curve_refresh_retry_at:
+            return False
+        self._curve_refresh_retry_at = now + 5.0
+        await self.load_curves([curve])
+        return self._curve_refresh_available
 
     async def _buy(
         self,

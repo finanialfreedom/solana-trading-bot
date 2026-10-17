@@ -40,6 +40,7 @@ class Position:
     trailing_armed: bool = False
     breakeven_locked: bool = False
     peak_price: float = 0.0
+    peak_updated_at: float = 0.0
     last_mark_at: float = field(default_factory=time)
     scaled: bool = False
     # Best/worst PnL seen while the position was open (max favorable / adverse excursion).
@@ -200,9 +201,11 @@ class Position:
         ):
             self.trailing_armed = True
             self.peak_price = price
+            self.peak_updated_at = time()
             newly_armed = True
         elif self.trailing_armed and price > self.peak_price:
             self.peak_price = price
+            self.peak_updated_at = time()
         return newly_armed
 
 

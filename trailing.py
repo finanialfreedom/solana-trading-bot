@@ -22,6 +22,7 @@ from config import (
     TAKE_PROFIT_PCT,
     TAKE_PROFIT_TRIGGER_PCT,
     TRAILING_ARMED_TICK_SECONDS,
+    TRAILING_IDLE_EXIT_SECONDS,
     TRAILING_LOCK_BREAKEVEN,
     TRAILING_STALE_SECONDS,
     TRAILING_STOP_PCT,
@@ -60,7 +61,8 @@ class TrailingGuard:
     async def run(self, stop: asyncio.Event) -> None:
         logger.info(
             "Trailing TP/SL watchdog started  tick=%.2fs armed=%.2fs stale=%.2fs  "
-            "SL floor=%.1f%%  breakeven after +%.1f%%  arm=%.0f%%  callback=%.0f%%",
+            "SL floor=%.1f%%  breakeven after +%.1f%%  arm=%.0f%%  callback=%.0f%% "
+            "idle-exit=%.0fs",
             TRAILING_TICK_SECONDS,
             TRAILING_ARMED_TICK_SECONDS,
             TRAILING_STALE_SECONDS,
@@ -68,6 +70,7 @@ class TrailingGuard:
             BREAKEVEN_ARM_PCT,
             TAKE_PROFIT_TRIGGER_PCT,
             TRAILING_STOP_PCT,
+            TRAILING_IDLE_EXIT_SECONDS,
         )
         try:
             while not stop.is_set():
@@ -280,6 +283,17 @@ class TrailingGuard:
                     return (
                         f"{source} trailing-stop {pnl:.1f}% "
                         f"(-{drop:.1f}% from peak, tol={callback:.0f}%)"
+                    )
+            if (
+                TRAILING_IDLE_EXIT_SECONDS > 0
+                and position.peak_updated_at > 0
+                and pnl > 0
+            ):
+                idle = time() - position.peak_updated_at
+                if idle >= TRAILING_IDLE_EXIT_SECONDS:
+                    return (
+                        f"{source} trailing-idle {pnl:.1f}% "
+                        f"after {idle:.0f}s without a new peak"
                     )
             return None
         if TRAILING_STOP_PCT <= 0 and TAKE_PROFIT_PCT > 0 and pnl >= TAKE_PROFIT_PCT:

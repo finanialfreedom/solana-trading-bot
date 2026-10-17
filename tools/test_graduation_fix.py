@@ -11,6 +11,7 @@ from __future__ import annotations
 import asyncio
 import sys
 from pathlib import Path
+from time import time
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -533,6 +534,62 @@ def test_dry_run_execution_is_honest() -> None:
         config.SIM_SLIPPAGE_BPS = original
 
 
+def test_trailing_idle_exit_frees_risk() -> None:
+    print("\n[trailing idle exit]")
+    import trailing as trailing_mod
+
+    entry = 2.7958993476e-05
+    pos = make_position(entry)
+    pos.mark_graduated(entry * 2)
+    check("trailing arms on a profitable position", pos.track_peak())
+
+    original = trailing_mod.TRAILING_IDLE_EXIT_SECONDS
+    try:
+        trailing_mod.TRAILING_IDLE_EXIT_SECONDS = 10.0
+        pos.peak_updated_at = time() - 11.0
+        reason = trailing_mod.TrailingGuard.decide_exit(pos, "test")
+        check("idle trailing winner exits", "trailing-idle" in (reason or ""), str(reason))
+
+        old_peak_at = pos.peak_updated_at
+        pos.mark_graduated(entry * 2.1)
+        pos.track_peak()
+        check("a fresh high resets the idle clock", pos.peak_updated_at > old_peak_at)
+        check(
+            "fresh runner is not exited as idle",
+            trailing_mod.TrailingGuard.decide_exit(pos, "test") is None,
+        )
+    finally:
+        trailing_mod.TRAILING_IDLE_EXIT_SECONDS = original
+
+
+def test_curve_refresh_failure_pauses_entries() -> None:
+    print("\n[RPC price-refresh entry pause]")
+    from types import SimpleNamespace
+
+    class FailingClient:
+        async def get_multiple_accounts(self, _keys: object) -> object:
+            raise ConnectionError("offline")
+
+    class RecoveredClient:
+        async def get_multiple_accounts(self, _keys: object) -> object:
+            return SimpleNamespace(value=[None])
+
+    trader = Trader.__new__(Trader)
+    trader.client = FailingClient()
+    trader._curve_refresh_available = True
+    trader._curve_refresh_retry_at = 0.0
+    trader._curve_pause_logged = False
+    key = Pubkey.from_string(WSOL)
+
+    asyncio.run(trader.load_curves([key]))
+    check("failed batch refresh marks entries unsafe", not trader._curve_refresh_available)
+
+    trader.client = RecoveredClient()
+    rows = asyncio.run(trader.load_curves([key]))
+    check("successful refresh re-enables entries", trader._curve_refresh_available)
+    check("missing curve is still represented after recovery", str(key) in rows)
+
+
 def main() -> None:
     test_zero_reserves_do_not_liquidate()
     test_curve_closing_before_first_mark_is_not_a_writeoff()
@@ -546,6 +603,8 @@ def main() -> None:
     test_confirm_sell_pressure()
     test_confirm_quality_gate()
     test_dry_run_execution_is_honest()
+    test_trailing_idle_exit_frees_risk()
+    test_curve_refresh_failure_pauses_entries()
     print()
     if FAILURES:
         print(f"FAILED: {len(FAILURES)} check(s): {', '.join(FAILURES)}")
