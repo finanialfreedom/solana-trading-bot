@@ -1,0 +1,111 @@
+{
+  "stage": "quality",
+  "status": "complete",
+  "generated_at": "2026-10-17T10:39:03+04:00",
+  "source": "reports/experiments.jsonl only",
+  "arms": [
+    {
+      "label": "A-quality-old",
+      "blocks": 1,
+      "trades": 9,
+      "mean_return_pct": 926.365,
+      "median_return_pct": 32.789,
+      "win_rate_pct": 100.0,
+      "avg_win_pct": 926.37,
+      "avg_loss_pct": 0.0,
+      "net_sol": 83.3729,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "0",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    {
+      "label": "A2-quality-buyers15",
+      "blocks": 1,
+      "trades": 4,
+      "mean_return_pct": 27.988,
+      "median_return_pct": 30.331,
+      "win_rate_pct": 100.0,
+      "avg_win_pct": 27.99,
+      "avg_loss_pct": 0.0,
+      "net_sol": 1.1195,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    {
+      "label": "A3-quality-mc5k",
+      "blocks": 1,
+      "trades": 5,
+      "mean_return_pct": 154.348,
+      "median_return_pct": 53.142,
+      "win_rate_pct": 100.0,
+      "avg_win_pct": 154.35,
+      "avg_loss_pct": 0.0,
+      "net_sol": 7.7174,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "5000",
+        "MIN_CONFIRM_NET_SOL": "1",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    {
+      "label": "B-quality-25",
+      "blocks": 1,
+      "trades": 1,
+      "mean_return_pct": 80.278,
+      "median_return_pct": 80.278,
+      "win_rate_pct": 100.0,
+      "avg_win_pct": 80.28,
+      "avg_loss_pct": 0.0,
+      "net_sol": 0.8028,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "25",
+        "MIN_CONFIRM_MC_USD": "5000",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    },
+    {
+      "label": "C-quality-30",
+      "blocks": 1,
+      "trades": 0,
+      "mean_return_pct": 0.0,
+      "median_return_pct": 0.0,
+      "win_rate_pct": 0.0,
+      "avg_win_pct": 0.0,
+      "avg_loss_pct": 0.0,
+      "net_sol": 0.0,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "30",
+        "MIN_CONFIRM_MC_USD": "5000",
+        "MAX_CONFIRM_SELL_RATIO": "0.5",
+        "REGIME_FILTER_ENABLED": "false",
+        "SIM_SLIPPAGE_BPS": "200"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "request": "analyze_completed_sweep",
+  "stage": "quality",
+  "fingerprint": "20783475053fa0bf",
+  "summary_path": "reports/ai/quality_summary.json",
+  "context_policy": "Use only the compact summary; do not attach logs or trades.csv."
+}
