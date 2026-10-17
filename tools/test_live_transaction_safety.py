@@ -23,6 +23,7 @@ from pumpfun import (  # noqa: E402
     build_create_ata,
     build_sell,
 )
+from positions import PositionBook  # noqa: E402
 from trader import SendResult, TOKEN_2022, Trader  # noqa: E402
 
 
@@ -135,8 +136,23 @@ def check_token_2022_routing() -> None:
     check("non-cashback sell has upgraded 16-account layout", len(sell.accounts) == 16)
 
 
+def check_pending_slot() -> None:
+    first = Keypair().pubkey()
+    second = Keypair().pubkey()
+    book = PositionBook(max_open=1, max_total_sol=1.0)
+    check("first canary candidate reserves its only slot", book.mark_pending(first))
+    check("a second pending candidate cannot overbook the slot", not book.mark_pending(second))
+    check(
+        "reserved candidate does not reject its own entry",
+        book.open_reason(1, adding=True) is None,
+    )
+    book.clear_pending(first)
+    check("slot is reusable after pending clears", book.mark_pending(second))
+
+
 def main() -> None:
     check_token_2022_routing()
+    check_pending_slot()
     asyncio.run(check_confirmation())
     print("All live transaction safety checks passed.")
 

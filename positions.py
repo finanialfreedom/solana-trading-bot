@@ -241,6 +241,8 @@ class PositionBook:
         key = str(mint)
         if key in self._positions or key in self._pending:
             return False
+        if len(self._positions) + len(self._pending) >= self.max_open:
+            return False
         self._pending.add(key)
         return True
 

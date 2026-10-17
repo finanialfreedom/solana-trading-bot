@@ -465,7 +465,9 @@ class Trader:
                 spend / LAMPORTS_PER_SOL,
             )
 
-        blocked = self.book.open_reason(spend)
+        # _consider_buy already reserved this position slot with mark_pending().
+        # Re-counting that same pending mint here makes max_open=1 reject itself.
+        blocked = self.book.open_reason(spend, adding=True)
         if blocked:
             logger.info("Skip %s (%s): %s", info.symbol, info.mint, blocked)
             return
