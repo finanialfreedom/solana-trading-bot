@@ -329,8 +329,8 @@ HONEYPOT_SIMULATION = _env_bool("HONEYPOT_SIMULATION", True)
 def require_private_key() -> None:
     if not WALLET_KEYPAIR_PATH and not PRIVATE_KEY and not PRIVATE_KEY_JSON:
         raise RuntimeError(
-            "Missing wallet keypair. Set WALLET_KEYPAIR_PATH to a Solana CLI JSON "
-            "keypair file (preferred), or set PRIVATE_KEY/PRIVATE_KEY_JSON."
+            "Missing wallet keypair. Set WALLET_KEYPAIR_PATH to a local Solana CLI "
+            "JSON or base58 key file (preferred), or set PRIVATE_KEY/PRIVATE_KEY_JSON."
         )
 
 
