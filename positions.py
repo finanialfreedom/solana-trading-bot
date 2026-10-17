@@ -62,6 +62,11 @@ class Position:
         return self.token_amount if self.remaining_tokens < 0 else self.remaining_tokens
 
     @property
+    def capital_at_risk(self) -> int:
+        """Initial SOL not yet recovered through completed scale-outs."""
+        return max(0, self.sol_spent - self.realized_sol)
+
+    @property
     def mark_price(self) -> float:
         if self.graduated and self.amm_price > 0:
             return self.amm_price
@@ -217,6 +222,18 @@ class PositionBook:
     def all(self) -> list[Position]:
         return list(self._positions.values())
 
+    @property
+    def deployed_lamports(self) -> int:
+        return sum(position.capital_at_risk for position in self._positions.values())
+
+    @property
+    def remaining_risk_lamports(self) -> int:
+        return max(0, self.max_total_lamports - self.deployed_lamports)
+
+    def clamp_to_remaining_risk(self, requested_lamports: int) -> int:
+        """Size an entry/add so combined open capital never exceeds the account cap."""
+        return max(0, min(int(requested_lamports), self.remaining_risk_lamports))
+
     def mark_pending(self, mint: Pubkey) -> bool:
         key = str(mint)
         if key in self._positions or key in self._pending:
@@ -230,7 +247,7 @@ class PositionBook:
     def open_reason(self, extra_sol_lamports: int, *, adding: bool = False) -> str | None:
         if not adding and len(self._positions) + len(self._pending) >= self.max_open:
             return f"max open positions ({self.max_open})"
-        deployed = sum(p.sol_spent for p in self._positions.values())
+        deployed = self.deployed_lamports
         if deployed + extra_sol_lamports > self.max_total_lamports:
             return (
                 f"max total SOL at risk "

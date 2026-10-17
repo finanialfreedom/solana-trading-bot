@@ -387,6 +387,81 @@ def test_confirm_sell_pressure() -> None:
          confirm_mod.MIN_CONFIRM_MC_USD) = orig
 
 
+def test_confirm_quality_gate() -> None:
+    """Only broad, strong demand should be allowed to consume a position slot."""
+    print("\n[confirm quality gate]")
+    import confirm as confirm_mod
+    from confirm import Candidate, Confirmer
+    from pumpfun import CreateInfo
+
+    info = CreateInfo(
+        name="T", symbol="T", uri="", mint=Pubkey.from_string(WSOL),
+        bonding_curve=Pubkey.from_string(WSOL), creator=None,
+        virtual_token_reserves=int(1.073e15), virtual_quote_reserves=int(30 * LAMPORTS_PER_SOL),
+    )
+    gate = Confirmer.__new__(Confirmer)
+    original = (
+        confirm_mod.MIN_UNIQUE_BUYERS,
+        confirm_mod.MIN_CONFIRM_BUY_SOL,
+        confirm_mod.MIN_CONFIRM_NET_SOL,
+        confirm_mod.MAX_CONFIRM_SELL_RATIO,
+        confirm_mod.MIN_CONFIRM_MC_USD,
+    )
+    try:
+        confirm_mod.MIN_UNIQUE_BUYERS = 15
+        confirm_mod.MIN_CONFIRM_BUY_SOL = 25.0
+        confirm_mod.MIN_CONFIRM_NET_SOL = 1.0
+        confirm_mod.MAX_CONFIRM_SELL_RATIO = 0.5
+        confirm_mod.MIN_CONFIRM_MC_USD = 5_000.0
+
+        healthy = Candidate(
+            info=info,
+            buyers={f"buyer-{i}" for i in range(15)},
+            buy_sol=int(25 * LAMPORTS_PER_SOL),
+            sell_sol=int(5 * LAMPORTS_PER_SOL),
+            # At $100/SOL this is a $5k market cap.
+            last_quote=int(50 * LAMPORTS_PER_SOL),
+            last_token=int(1e15),
+        )
+        check("strict quality gate passes broad demand",
+              Confirmer._probe_block_reason(gate, healthy, 100.0) is None)
+
+        few = Candidate(
+            info=info, buyers={f"buyer-{i}" for i in range(14)},
+            buy_sol=healthy.buy_sol, sell_sol=healthy.sell_sol,
+            last_quote=healthy.last_quote, last_token=healthy.last_token,
+        )
+        reason = Confirmer._probe_block_reason(gate, few, 100.0)
+        check("quality gate rejects fewer than 15 buyers",
+              reason is not None and "few-buyers" in reason, f"{reason}")
+
+        weak = Candidate(
+            info=info, buyers=set(healthy.buyers),
+            buy_sol=int(24.99 * LAMPORTS_PER_SOL), sell_sol=healthy.sell_sol,
+            last_quote=healthy.last_quote, last_token=healthy.last_token,
+        )
+        reason = Confirmer._probe_block_reason(gate, weak, 100.0)
+        check("quality gate rejects less than 25 SOL",
+              reason is not None and "low-buy-sol" in reason, f"{reason}")
+
+        small = Candidate(
+            info=info, buyers=set(healthy.buyers),
+            buy_sol=healthy.buy_sol, sell_sol=healthy.sell_sol,
+            last_quote=int(49 * LAMPORTS_PER_SOL), last_token=int(1e15),
+        )
+        reason = Confirmer._probe_block_reason(gate, small, 100.0)
+        check("quality gate rejects market cap below $5k",
+              reason is not None and "low-mc" in reason, f"{reason}")
+    finally:
+        (
+            confirm_mod.MIN_UNIQUE_BUYERS,
+            confirm_mod.MIN_CONFIRM_BUY_SOL,
+            confirm_mod.MIN_CONFIRM_NET_SOL,
+            confirm_mod.MAX_CONFIRM_SELL_RATIO,
+            confirm_mod.MIN_CONFIRM_MC_USD,
+        ) = original
+
+
 def test_dry_run_execution_is_honest() -> None:
     """A dry-run fill must not be booked better than a real one.
 
@@ -469,6 +544,7 @@ def main() -> None:
     test_gradual_ladder_banks_proportionally()
     test_regime_gate_blocks_cold_market()
     test_confirm_sell_pressure()
+    test_confirm_quality_gate()
     test_dry_run_execution_is_honest()
     print()
     if FAILURES:

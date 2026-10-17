@@ -1,0 +1,18 @@
+---
+description: Limit sweep AI analysis to one compact request at completion
+alwaysApply: true
+---
+
+# Sweep AI cost control
+
+- While a sweep arm or stage is running, do not launch recurring AI status checks or
+  repeatedly analyze partial results. Use local process/log inspection only when the
+  user explicitly asks for current status.
+- Analyze a sweep once, after its `sweep finished` marker and compact completion request
+  exist under `reports/ai/requests/`.
+- For that analysis, use only the corresponding `reports/ai/*_summary.json`, generated
+  from `reports/experiments.jsonl`.
+- Never attach or ingest `reports/trades.csv`, `reports/logs/`, raw arm logs, or the full
+  `experiments.jsonl` into an AI prompt.
+- A request filename includes a result fingerprint. Treat an existing request with the
+  same fingerprint as already requested; do not request another analysis.

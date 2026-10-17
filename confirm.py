@@ -187,10 +187,14 @@ class Confirmer:
             return
         spend = min(BUY_PROBE_SOL, MAX_SOL_PER_TRADE)
         logger.info(
-            "CONFIRM  %s  buyers=%s  buy_sol=%.2f  mc=$%.0f  probe=%.2f  mint=%s",
+            "CONFIRM  %s  buyers=%s  buy_sol=%.2f  sell_sol=%.2f  "
+            "net_sol=%+.2f  sell_ratio=%.2f  mc=$%.0f  probe=%.2f  mint=%s",
             cand.info.symbol,
             cand.unique_buyers,
             cand.buy_sol / LAMPORTS_PER_SOL,
+            cand.sell_sol / LAMPORTS_PER_SOL,
+            cand.net_buy_sol / LAMPORTS_PER_SOL,
+            cand.sell_ratio,
             cand.mc_usd(sol_usd),
             spend,
             cand.info.mint,

@@ -106,7 +106,16 @@ BUY_SOL_AMOUNT = _env_float("BUY_SOL_AMOUNT", 1.0)
 BUY_PROBE_SOL = _env_float("BUY_PROBE_SOL", 1.0)
 BUY_ADD_SOL = _env_float("BUY_ADD_SOL", 0.0)
 MAX_SOL_PER_TRADE = _env_float("MAX_SOL_PER_TRADE", 1.0)
-MAX_TOTAL_SOL_AT_RISK = _env_float("MAX_TOTAL_SOL_AT_RISK", 8.0)
+# Portfolio-level risk budget for dry-run sizing. This is deliberately not a
+# per-trade stop: at most this fraction of the paper account may be deployed across
+# all simultaneously open positions. The old static 8 SOL cap is replaced by a
+# value derived from account equity so changing the paper balance keeps the same
+# portfolio risk policy.
+PAPER_ACCOUNT_SOL = max(0.0, _env_float("PAPER_ACCOUNT_SOL", 100.0))
+MAX_ACCOUNT_RISK_PCT = min(100.0, max(0.0, _env_float("MAX_ACCOUNT_RISK_PCT", 10.0)))
+MAX_COMBINED_OPEN_RISK_SOL = PAPER_ACCOUNT_SOL * MAX_ACCOUNT_RISK_PCT / 100.0
+# Backward-compatible name used by PositionBook and older tooling.
+MAX_TOTAL_SOL_AT_RISK = MAX_COMBINED_OPEN_RISK_SOL
 MAX_OPEN_POSITIONS = _env_int("MAX_OPEN_POSITIONS", 16)
 MAX_TRADES = _env_int("MAX_TRADES", 100)
 MIN_SOL_RESERVE = _env_float("MIN_SOL_RESERVE", 0.02)
@@ -115,27 +124,26 @@ CONFIRM_SECONDS = _env_float("CONFIRM_SECONDS", 5.0)
 CONFIRM_EXPIRE_SECONDS = _env_float("CONFIRM_EXPIRE_SECONDS", 25.0)
 CONFIRM_TICK_SECONDS = _env_float("CONFIRM_TICK_SECONDS", 0.25)
 ADD_AFTER_SECONDS = _env_float("ADD_AFTER_SECONDS", 10.0)
-MIN_UNIQUE_BUYERS = _env_int("MIN_UNIQUE_BUYERS", 0)
-# Require real buying pressure in the confirm window before probing. Measured on
-# 1,394 logged entries: this is the single strongest entry signal.
-#   evening win rate  9.3% (off) -> 25.6% at 2 SOL -> 32.7% at 3 SOL
-#   morning win rate 84.8% (off) -> 95.2% at 2 SOL
-# and it keeps the big runners (identical max MFE), unlike an exit-side cap.
-MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 2.0)
+MIN_UNIQUE_BUYERS = _env_int("MIN_UNIQUE_BUYERS", 15)
+# Require broad, strong demand before probing. A chronological holdout over 2,824
+# instrumented dry-run trades found buyers>=15, gross buys>=25 SOL and MC>=$5k
+# raised win rate from 11.0% to 35.8% in both halves. This is deliberately stricter
+# than the old 2 SOL gate: capacity should be spent on quality, not trade count.
+MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 25.0)
 # Confirm-window sell pressure. Gross buy volume alone is trivially produced by the
 # deployer and a couple of bots, and gross buys are what the bot has been gating on.
 # A launch where more money is leaving than arriving is being dumped into -- which is
-# the population that goes flat and then bleeds. Both default to off (0).
-MIN_CONFIRM_NET_SOL = _env_float("MIN_CONFIRM_NET_SOL", 0.0)
-MAX_CONFIRM_SELL_RATIO = _env_float("MAX_CONFIRM_SELL_RATIO", 0.0)
-MIN_CONFIRM_MC_USD = _env_float("MIN_CONFIRM_MC_USD", 0.0)
+# the population that goes flat and then bleeds. Keep both guards enabled.
+MIN_CONFIRM_NET_SOL = _env_float("MIN_CONFIRM_NET_SOL", 1.0)
+MAX_CONFIRM_SELL_RATIO = _env_float("MAX_CONFIRM_SELL_RATIO", 0.5)
+MIN_CONFIRM_MC_USD = _env_float("MIN_CONFIRM_MC_USD", 5_000.0)
 MIN_ADD_UNIQUE_BUYERS = _env_int("MIN_ADD_UNIQUE_BUYERS", 0)
 MIN_ADD_MC_USD = _env_float("MIN_ADD_MC_USD", 5_000.0)
 DEAD_COIN_SECONDS = _env_float("DEAD_COIN_SECONDS", 30.0)
 DEAD_COIN_MIN_PNL_PCT = _env_float("DEAD_COIN_MIN_PNL_PCT", 10.0)
 PUMP_TOKEN_SUPPLY = _env_float("PUMP_TOKEN_SUPPLY", 1_000_000_000_000_000.0)
 
-STOP_LOSS_PCT = _env_float("STOP_LOSS_PCT", 3.0)
+STOP_LOSS_PCT = _env_float("STOP_LOSS_PCT", 6.0)
 BREAKEVEN_ARM_PCT = _env_float("BREAKEVEN_ARM_PCT", 3.5)
 TAKE_PROFIT_PCT = _env_float("TAKE_PROFIT_PCT", 30.0)  # kept as fallback
 TAKE_PROFIT_TRIGGER_PCT = _env_float("TAKE_PROFIT_TRIGGER_PCT", TAKE_PROFIT_PCT)

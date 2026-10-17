@@ -83,19 +83,52 @@ SECURITY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ),
 ]
 
-# Entry-momentum filters. These three have been at zero all along, so the bot buys
-# every launch including ones with no buying interest -- which is exactly the ~54%
-# of cold-regime trades that never tick above entry. Joining the logged entry-time
-# momentum (buyers / buy_sol) to outcomes showed a large, monotonic improvement
-# *within both regimes*, and it does not cut the big runners (identical max MFE):
-#   evening win rate  9.3% -> 30.8% at buyers>=5, 32.7% at buy_sol>=3
-#   morning win rate 84.8% -> 95.6% at buy_sol>=1
-# This sweep re-tests that live, on current market conditions.
+# Entry-momentum filters, one variable per adjacent arm. Every arm explicitly turns
+# off MC and sell-pressure gates so changing global defaults cannot silently confound
+# this experiment:
+#   A -> A2 isolates unique buyers (0 -> 15)
+#   A2 -> B -> C -> D isolates gross buy volume (0 -> 1 -> 2 -> 3 SOL)
 ENTRY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
-    ("A-entry-none", {"MIN_CONFIRM_BUY_SOL": "0", "MIN_UNIQUE_BUYERS": "0"}),
-    ("B-entry-1", {"MIN_CONFIRM_BUY_SOL": "1"}),
-    ("C-entry-2", {"MIN_CONFIRM_BUY_SOL": "2"}),
-    ("D-entry-3", {"MIN_CONFIRM_BUY_SOL": "3"}),
+    (
+        "A-entry-none",
+        {
+            "MIN_UNIQUE_BUYERS": "0", "MIN_CONFIRM_BUY_SOL": "0",
+            "MIN_CONFIRM_MC_USD": "0", "MIN_CONFIRM_NET_SOL": "0",
+            "MAX_CONFIRM_SELL_RATIO": "0",
+        },
+    ),
+    (
+        "A2-entry-buyers15",
+        {
+            "MIN_UNIQUE_BUYERS": "15", "MIN_CONFIRM_BUY_SOL": "0",
+            "MIN_CONFIRM_MC_USD": "0", "MIN_CONFIRM_NET_SOL": "0",
+            "MAX_CONFIRM_SELL_RATIO": "0",
+        },
+    ),
+    (
+        "B-entry-1",
+        {
+            "MIN_UNIQUE_BUYERS": "15", "MIN_CONFIRM_BUY_SOL": "1",
+            "MIN_CONFIRM_MC_USD": "0", "MIN_CONFIRM_NET_SOL": "0",
+            "MAX_CONFIRM_SELL_RATIO": "0",
+        },
+    ),
+    (
+        "C-entry-2",
+        {
+            "MIN_UNIQUE_BUYERS": "15", "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_MC_USD": "0", "MIN_CONFIRM_NET_SOL": "0",
+            "MAX_CONFIRM_SELL_RATIO": "0",
+        },
+    ),
+    (
+        "D-entry-3",
+        {
+            "MIN_UNIQUE_BUYERS": "15", "MIN_CONFIRM_BUY_SOL": "3",
+            "MIN_CONFIRM_MC_USD": "0", "MIN_CONFIRM_NET_SOL": "0",
+            "MAX_CONFIRM_SELL_RATIO": "0",
+        },
+    ),
 ]
 
 # Regime gate. Walk-forward replay over 2,946 closed trades said gating entries on
@@ -130,18 +163,16 @@ DEADCOIN_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("D-dead-off", {"DEAD_COIN_SECONDS": "0"}),
 ]
 
-# Confirm-window sell pressure. The gate has only ever looked at gross buy volume,
-# which the deployer and a couple of bots can manufacture on their own. Track sells
-# too and reject launches that are being dumped into. MIN_CONFIRM_BUY_SOL stays at its
-# current 2.0 in every arm so this measures the increment, not the level.
-#   A-press-off   control
-#   B-press-net1  require buys - sells >= 1 SOL in the window
-#   C-press-r50   require sells <= 0.5x buys
-#   D-press-both  both guards together
+# Confirm-window sell pressure, with both pressure knobs explicit in every arm so
+# global defaults cannot collapse the experiment:
+#   A-press-off   no pressure guard
+#   B-press-net1  net buys >= 1 SOL; sell-ratio guard off
+#   C-press-r50   sells <= 0.5x buys; net-buy guard off
+#   D-press-both  both guards enabled
 PRESSURE_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ("A-press-off", {"MIN_CONFIRM_NET_SOL": "0", "MAX_CONFIRM_SELL_RATIO": "0"}),
-    ("B-press-net1", {"MIN_CONFIRM_NET_SOL": "1"}),
-    ("C-press-r50", {"MAX_CONFIRM_SELL_RATIO": "0.5"}),
+    ("B-press-net1", {"MIN_CONFIRM_NET_SOL": "1", "MAX_CONFIRM_SELL_RATIO": "0"}),
+    ("C-press-r50", {"MIN_CONFIRM_NET_SOL": "0", "MAX_CONFIRM_SELL_RATIO": "0.5"}),
     ("D-press-both", {"MIN_CONFIRM_NET_SOL": "1", "MAX_CONFIRM_SELL_RATIO": "0.5"}),
 ]
 
@@ -200,9 +231,79 @@ FINAL_SCHEDULE: list[tuple[str, dict[str, str]]] = [
     ),
 ]
 
+# Step 5: maximize entry quality while keeping the same effective sell-pressure
+# defaults in every arm. Adjacent arms change exactly one entry variable:
+#   A -> A2: unique buyers 0 -> 15
+#   A2 -> A3: MC floor $0 -> $5k
+#   A3 -> B: gross buys 2 -> 25 SOL
+#   B -> C: gross buys 25 -> 30 SOL
+# B/C deliberately inherit the global MIN_CONFIRM_NET_SOL instead of redundantly
+# overriding it. Every arm keeps 2% simulated slippage.
+QUALITY_SCHEDULE: list[tuple[str, dict[str, str]]] = [
+    (
+        "A-quality-old",
+        {
+            "MIN_UNIQUE_BUYERS": "0",
+            "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_MC_USD": "0",
+            "MIN_CONFIRM_NET_SOL": "1",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "false",
+            "SIM_SLIPPAGE_BPS": "200",
+        },
+    ),
+    (
+        "A2-quality-buyers15",
+        {
+            "MIN_UNIQUE_BUYERS": "15",
+            "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_MC_USD": "0",
+            "MIN_CONFIRM_NET_SOL": "1",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "false",
+            "SIM_SLIPPAGE_BPS": "200",
+        },
+    ),
+    (
+        "A3-quality-mc5k",
+        {
+            "MIN_UNIQUE_BUYERS": "15",
+            "MIN_CONFIRM_BUY_SOL": "2",
+            "MIN_CONFIRM_MC_USD": "5000",
+            "MIN_CONFIRM_NET_SOL": "1",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "false",
+            "SIM_SLIPPAGE_BPS": "200",
+        },
+    ),
+    (
+        "B-quality-25",
+        {
+            "MIN_UNIQUE_BUYERS": "15",
+            "MIN_CONFIRM_BUY_SOL": "25",
+            "MIN_CONFIRM_MC_USD": "5000",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "false",
+            "SIM_SLIPPAGE_BPS": "200",
+        },
+    ),
+    (
+        "C-quality-30",
+        {
+            "MIN_UNIQUE_BUYERS": "15",
+            "MIN_CONFIRM_BUY_SOL": "30",
+            "MIN_CONFIRM_MC_USD": "5000",
+            "MAX_CONFIRM_SELL_RATIO": "0.5",
+            "REGIME_FILTER_ENABLED": "false",
+            "SIM_SLIPPAGE_BPS": "200",
+        },
+    ),
+]
+
 # Capacity is the binding constraint, so the bar should be higher than it is.
 #
-# Only ~8 positions fit inside MAX_TOTAL_SOL_AT_RISK=8 at 1 SOL each, and the logs show
+# Up to 10 one-SOL positions fit inside the account-level limit: 100 SOL paper
+# equity x 10% combined open risk = 10 SOL. The logs previously showed
 # 'max open positions' rejecting 2,750 entries and 'max total SOL at risk' rejecting
 # 1,221 -- all of which had already passed the entry filter. Slots are therefore scarce
 # and are currently filled first-come-first-served, so a coin with 2 SOL of buying takes
@@ -221,7 +322,7 @@ THRESHOLD_SCHEDULE: list[tuple[str, dict[str, str]]] = [
 
 # Reward-side packages. These knobs interact (a tight callback is only safe behind a
 # floor), so they are tested as coherent packages rather than one knob at a time.
-# Stop loss and per-trade risk are deliberately untouched.
+# Position exits and the 10% account-level combined risk cap are deliberately untouched.
 #   A-cur    what .env does today: arm +12%, trail 10%, first floor at peak 50%
 #   B-tight  arm +10%, trail 6%, floors from peak 20%
 #   C-mid    arm +12%, trail 8%, floors from peak 25%
@@ -301,10 +402,20 @@ SCHEDULES: dict[str, list[tuple[str, dict[str, str]]]] = {
     "pressure": PRESSURE_SCHEDULE,
     "protect": PROTECT_SCHEDULE,
     "final": FINAL_SCHEDULE,
+    "quality": QUALITY_SCHEDULE,
     "threshold": THRESHOLD_SCHEDULE,
     "protect2": PROTECT2_SCHEDULE,
     "ladder": LADDER_SCHEDULE,
     "slippage": SLIPPAGE_SCHEDULE,
+}
+
+# A standalone sweep normally runs exactly one named schedule. The pre-24h quality
+# program is the exception: once its corrected five-arm comparison lands, continue
+# through the two queued diagnostic sweeps without requiring another shell command.
+# D-labelled arms are already members of entry/pressure; there are no separate
+# schedules named "R-defend" or "D".
+AUTO_ADVANCE: dict[str, tuple[str, ...]] = {
+    "quality": ("entry", "pressure"),
 }
 
 
@@ -347,10 +458,18 @@ def completed_arms(since: str | None) -> set[str]:
 
 
 def pooled_by_label() -> dict[str, dict]:
-    """Pool every block of a config into one trade-weighted estimate."""
+    """Pool current-program blocks of a config into one trade-weighted estimate.
+
+    Earlier runs can reuse the same labels but may have different execution math.
+    Mixing them into the live scoreboard polluted intermediate decisions even though
+    final_report.py correctly scoped its own report.
+    """
     known = {label for label, _ in SCHEDULE}
+    since = program_run_start()
     agg: dict[str, dict] = {}
     for row in read_results():
+        if since and str(row.get("started", "")) < since:
+            continue
         label = base_label(row.get("label", ""))
         if label not in known or not row.get("n"):
             continue
@@ -454,6 +573,45 @@ def main() -> None:
                 return
 
     print("\n*** sweep finished; see pooled results above ***", flush=True)
+
+    # Emit exactly one compact analysis request for this completed result set. The
+    # handoff reads experiments.jsonl only; raw logs and trades.csv never enter AI
+    # context. Its result fingerprint makes retries/restarts idempotent.
+    handoff = [
+        str(PYTHON),
+        "tools/compact_ai_handoff.py",
+        schedule_name,
+        str(reps),
+        *(label for label, _ in SCHEDULE),
+    ]
+    handoff_result = subprocess.run(handoff, cwd=str(REPO))
+    if handoff_result.returncode != 0:
+        print(
+            "*** WARNING: compact AI completion handoff failed; "
+            "the sweep result remains valid ***",
+            flush=True,
+        )
+
+    follow_ups = AUTO_ADVANCE.get(schedule_name, ())
+    for next_schedule in follow_ups:
+        print(
+            f"\n*** auto-advance: {schedule_name} -> {next_schedule} "
+            f"({block_seconds}s x {reps} rep(s)) ***",
+            flush=True,
+        )
+        cmd = [
+            str(PYTHON),
+            "-u",
+            str(Path(__file__).resolve()),
+            str(block_seconds),
+            str(reps),
+            next_schedule,
+        ]
+        result = subprocess.run(cmd, cwd=str(REPO))
+        if result.returncode != 0:
+            sys.exit(
+                f"auto-advance stopped: {next_schedule} exited {result.returncode}"
+            )
 
 
 if __name__ == "__main__":

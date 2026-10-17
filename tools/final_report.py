@@ -3,8 +3,8 @@
 Answers the two questions that decide whether this goes live:
 
   1. the best success rate (share of trades that closed green) any configuration reached
-  2. the most aggressive take-profit setting that still came out ahead, given that the
-     stop loss is pinned at 3% and per-trade risk is fixed
+  2. the most aggressive take-profit setting that still came out ahead under the
+     configured position exits and account-level combined open-risk cap
 
 Reads reports/experiments.jsonl, pools each configuration's repeat blocks into one
 trade-weighted number, and refuses to crown a winner on a sample too small to mean
@@ -21,6 +21,10 @@ REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
 from config import (  # noqa: E402
+    MAX_ACCOUNT_RISK_PCT,
+    MAX_COMBINED_OPEN_RISK_SOL,
+    MAX_SOL_PER_TRADE,
+    PAPER_ACCOUNT_SOL,
     STOP_LOSS_PCT,
     TAKE_PROFIT_TRIGGER_PCT,
     TRAILING_STOP_PCT,
@@ -138,8 +142,13 @@ def main() -> None:
     say("FINAL SCOREBOARD")
     say("=" * 78)
     say("")
-    say(f"stop loss (fixed)     {STOP_LOSS_PCT:.1f}%")
-    say("per-trade risk        locked (1.0 SOL max size, 8.0 SOL max at risk)")
+    say(f"position exit stop    {STOP_LOSS_PCT:.1f}% strategy threshold "
+        "(not the account-risk cap)")
+    say(f"paper account         {PAPER_ACCOUNT_SOL:.1f} SOL")
+    say(f"combined open risk    {MAX_ACCOUNT_RISK_PCT:.1f}% = "
+        f"{MAX_COMBINED_OPEN_RISK_SOL:.1f} SOL maximum")
+    say(f"per-position size     up to {MAX_SOL_PER_TRADE:.1f} SOL; dynamically "
+        "clamped at remaining account risk")
     say("scope                 current program run only (honest execution math:")
     say("                      realizable-price marks, adverse slippage on both sides)")
     say(f"configurations        {len(arms)} pooled")
@@ -192,7 +201,7 @@ def main() -> None:
         winner = max(profitable, key=lambda a: eff(a, "TAKE_PROFIT_TRIGGER_PCT", TAKE_PROFIT_TRIGGER_PCT))
         tp = eff(winner, "TAKE_PROFIT_TRIGGER_PCT", TAKE_PROFIT_TRIGGER_PCT)
         trail = eff(winner, "TRAILING_STOP_PCT", TRAILING_STOP_PCT)
-        say(f"   take profit arms at +{STOP_LOSS_PCT:.1f}% stop loss: "
+        say(f"   take profit arms at {STOP_LOSS_PCT:.1f}% position-exit threshold: "
             f"+{tp:.0f}% arm trigger, {trail:.0f}% trailing callback")
         say(f"   configuration: {winner['label']}   ({winner['n']} trades from "
             f"{winner['blocks']} block(s))")

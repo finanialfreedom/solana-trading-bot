@@ -135,6 +135,14 @@ class TrailingGuard:
 
     async def _mark_from_amm(self, position: Position, *, graduated: bool) -> None:
         """Re-price a graduated position from the AMM pool price."""
+        # Start the hold clock the first time the curve can no longer be priced.
+        # graduated_at used to be set only after a successful AMM quote, so a coin
+        # Jupiter cannot price — or whose curve account is simply gone — never
+        # reached this timeout. Those positions then sat in the book forever and
+        # filled the SOL-at-risk cap, which is what froze the 24h run at 03:53.
+        if position.graduated_at <= 0:
+            position.graduated_at = time()
+            position.graduated = True
         usd = await self.trader.security.token_usd_price(str(position.mint))
         if usd > 0 and self._sol_usd > 0:
             # Jupiter quotes whole tokens; convert to lamports per raw unit so it
@@ -144,17 +152,18 @@ class TrailingGuard:
             self._after_mark(position, source="amm")
             return
         # No price yet: keep the last good mark and retry on the next tick, but do
-        # not hold an unpriceable position forever.
+        # not hold an unpriceable position forever. `graduated` is False when the
+        # curve account itself is missing; that case has to time out too.
         position.last_mark_at = time()
-        if graduated and position.graduated_at > 0:
-            waited = time() - position.graduated_at
-            if waited >= GRADUATION_PRICE_TIMEOUT_SECONDS:
-                logger.warning(
-                    "No AMM price for %s after %.0fs; exiting on last known mark",
-                    position.symbol,
-                    waited,
-                )
-                self.schedule_exit(position, "graduation-price-timeout")
+        waited = time() - position.graduated_at
+        if waited >= GRADUATION_PRICE_TIMEOUT_SECONDS:
+            logger.warning(
+                "No AMM price for %s after %.0fs (curve %s); exiting on last known mark",
+                position.symbol,
+                waited,
+                "complete" if graduated else "missing",
+            )
+            self.schedule_exit(position, "graduation-price-timeout")
 
     def _tick_seconds(self) -> float:
         if any(p.trailing_armed for p in self.trader.book.all()):

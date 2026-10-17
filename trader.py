@@ -27,6 +27,7 @@ from config import (
     LAMPORTS_PER_SOL,
     MAX_OPEN_POSITIONS,
     MAX_SOL_PER_TRADE,
+    MAX_ACCOUNT_RISK_PCT,
     MAX_TOTAL_SOL_AT_RISK,
     MAX_TRADES,
     MAX_INSIDER_TOKENS,
@@ -34,6 +35,7 @@ from config import (
     MIN_SOL_RESERVE,
     SECURITY_FILTERS_ENABLED,
     PRIORITY_FEE_MICROLAMPORTS,
+    PAPER_ACCOUNT_SOL,
     BREAKEVEN_ARM_PCT,
     SIM_SLIPPAGE_BPS,
     SLIPPAGE_BPS,
@@ -110,6 +112,7 @@ class Trader:
         logger.info(
             "Trader ready mode=%s probe=%.2f add=%.2f SOL stop-loss=%.1f%% "
             "breakeven-after=+%.1f%% trailing-TP arm=%.0f%% callback=%.0f%% "
+            "paper_account=%.2f SOL combined_open_risk=%.1f%%/%.2f SOL "
             "max_open=%s max_trades=%s excel=%s",
             mode,
             BUY_PROBE_SOL if CONFIRM_SECONDS > 0 else BUY_SOL_AMOUNT,
@@ -118,6 +121,9 @@ class Trader:
             BREAKEVEN_ARM_PCT,
             TAKE_PROFIT_TRIGGER_PCT,
             TRAILING_STOP_PCT,
+            PAPER_ACCOUNT_SOL,
+            MAX_ACCOUNT_RISK_PCT,
+            MAX_TOTAL_SOL_AT_RISK,
             MAX_OPEN_POSITIONS,
             MAX_TRADES,
             REPORT.path,
@@ -204,13 +210,24 @@ class Trader:
         return position
 
     async def scale_in(self, position: Position, info: CreateInfo, *, spend_sol: float) -> None:
-        spend = _clamp_buy_lamports(spend_sol)
-        if spend <= 0:
+        requested = _clamp_buy_lamports(spend_sol)
+        if requested <= 0:
             return
         live_pos = self._open_position(position.mint)
         if live_pos is None:
             logger.info("Skip add %s: already closed or exiting", position.symbol)
             return
+        spend = self.book.clamp_to_remaining_risk(requested)
+        if spend <= 0:
+            logger.info("Skip add %s: combined account risk cap is full", position.symbol)
+            return
+        if spend < requested:
+            logger.info(
+                "Clamp add %s from %.4f to %.4f SOL at combined account risk cap",
+                position.symbol,
+                requested / LAMPORTS_PER_SOL,
+                spend / LAMPORTS_PER_SOL,
+            )
         blocked = self.book.open_reason(spend, adding=True)
         if blocked:
             logger.info("Skip add %s: %s", position.symbol, blocked)
@@ -323,13 +340,28 @@ class Trader:
         if REPORT.opened_count() >= MAX_TRADES:
             logger.info("Skip %s: reached %s-trade session cap", info.symbol, MAX_TRADES)
             return
-        spend = _clamp_buy_lamports(spend_sol)
-        if spend <= 0:
+        requested = _clamp_buy_lamports(spend_sol)
+        if requested <= 0:
             logger.info("Skip buy: BUY_SOL_AMOUNT/MAX_SOL_PER_TRADE is 0")
             return
+        spend = self.book.clamp_to_remaining_risk(requested)
+        if spend <= 0:
+            logger.info(
+                "Skip %s: combined account risk cap %.2f SOL is full",
+                info.symbol,
+                MAX_TOTAL_SOL_AT_RISK,
+            )
+            return
+        if spend < requested:
+            logger.info(
+                "Clamp buy %s from %.4f to %.4f SOL at combined account risk cap",
+                info.symbol,
+                requested / LAMPORTS_PER_SOL,
+                spend / LAMPORTS_PER_SOL,
+            )
         if spend < int(BUY_SOL_AMOUNT * LAMPORTS_PER_SOL):
             logger.info(
-                "Clamped buy from %.4f to %.4f SOL (MAX_SOL_PER_TRADE)",
+                "Effective buy size %.4f -> %.4f SOL (per-trade/account cap)",
                 BUY_SOL_AMOUNT,
                 spend / LAMPORTS_PER_SOL,
             )
