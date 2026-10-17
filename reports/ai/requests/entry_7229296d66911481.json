@@ -1,0 +1,7 @@
+{
+  "request": "analyze_completed_sweep",
+  "stage": "entry",
+  "fingerprint": "7229296d66911481",
+  "summary_path": "reports/ai/entry_summary.json",
+  "context_policy": "Use only the compact summary; do not attach logs or trades.csv."
+}

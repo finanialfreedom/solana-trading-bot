@@ -1,0 +1,7 @@
+{
+  "request": "analyze_completed_sweep",
+  "stage": "pressure",
+  "fingerprint": "bd6bd1384a40186b",
+  "summary_path": "reports/ai/pressure_summary.json",
+  "context_policy": "Use only the compact summary; do not attach logs or trades.csv."
+}

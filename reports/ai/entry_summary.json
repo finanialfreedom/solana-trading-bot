@@ -1,0 +1,103 @@
+{
+  "stage": "entry",
+  "status": "complete",
+  "generated_at": "2026-10-17T13:09:28+04:00",
+  "source": "reports/experiments.jsonl only",
+  "arms": [
+    {
+      "label": "A-entry-none",
+      "blocks": 1,
+      "trades": 127,
+      "mean_return_pct": 422.833,
+      "median_return_pct": -8.571,
+      "win_rate_pct": 27.6,
+      "avg_win_pct": 1587.96,
+      "avg_loss_pct": -20.42,
+      "net_sol": 533.5644,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "0",
+        "MIN_CONFIRM_BUY_SOL": "0",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    {
+      "label": "A2-entry-buyers15",
+      "blocks": 1,
+      "trades": 13,
+      "mean_return_pct": 33.288,
+      "median_return_pct": 32.993,
+      "win_rate_pct": 100.0,
+      "avg_win_pct": 33.29,
+      "avg_loss_pct": 0.0,
+      "net_sol": 4.3275,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "0",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    {
+      "label": "B-entry-1",
+      "blocks": 1,
+      "trades": 10,
+      "mean_return_pct": 28.831,
+      "median_return_pct": 23.65,
+      "win_rate_pct": 100.0,
+      "avg_win_pct": 28.83,
+      "avg_loss_pct": 0.0,
+      "net_sol": 2.8831,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "1",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    {
+      "label": "C-entry-2",
+      "blocks": 1,
+      "trades": 10,
+      "mean_return_pct": 58.568,
+      "median_return_pct": 55.319,
+      "win_rate_pct": 90.0,
+      "avg_win_pct": 65.92,
+      "avg_loss_pct": -7.56,
+      "net_sol": 5.8568,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "2",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    },
+    {
+      "label": "D-entry-3",
+      "blocks": 1,
+      "trades": 9,
+      "mean_return_pct": 36.842,
+      "median_return_pct": 25.252,
+      "win_rate_pct": 88.9,
+      "avg_win_pct": 42.55,
+      "avg_loss_pct": -8.84,
+      "net_sol": 3.3158,
+      "overrides": {
+        "MAX_TRADES": "1500",
+        "MIN_UNIQUE_BUYERS": "15",
+        "MIN_CONFIRM_BUY_SOL": "3",
+        "MIN_CONFIRM_MC_USD": "0",
+        "MIN_CONFIRM_NET_SOL": "0",
+        "MAX_CONFIRM_SELL_RATIO": "0"
+      }
+    }
+  ]
+}
