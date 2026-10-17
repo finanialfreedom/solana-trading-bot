@@ -13,6 +13,7 @@ from config import (  # noqa: E402
     LAMPORTS_PER_SOL,
     MAX_ACCOUNT_RISK_PCT,
     MAX_COMBINED_OPEN_RISK_SOL,
+    MAX_OPEN_POSITIONS,
     PAPER_ACCOUNT_SOL,
 )
 from positions import Position, PositionBook  # noqa: E402
@@ -47,23 +48,29 @@ def main() -> None:
     check("paper account is 100 SOL", PAPER_ACCOUNT_SOL == 100.0)
     check("combined account risk is 10%", MAX_ACCOUNT_RISK_PCT == 10.0)
     check("derived combined cap is 10 SOL", MAX_COMBINED_OPEN_RISK_SOL == 10.0)
+    check("maximum open positions is 10", MAX_OPEN_POSITIONS == 10)
 
-    book = PositionBook(max_open=16, max_total_sol=MAX_COMBINED_OPEN_RISK_SOL)
+    book = PositionBook(
+        max_open=MAX_OPEN_POSITIONS,
+        max_total_sol=MAX_COMBINED_OPEN_RISK_SOL,
+    )
     for _ in range(10):
         book.add(position(1.0))
     check("ten 1-SOL positions use the full cap",
           book.deployed_lamports == 10 * LAMPORTS_PER_SOL)
     check("no combined risk remains", book.remaining_risk_lamports == 0)
-    check("an eleventh 1-SOL position is rejected",
-          "max total SOL at risk" in (book.open_reason(LAMPORTS_PER_SOL) or ""))
+    check(
+        "an eleventh 1-SOL position is rejected by the open-position limit",
+        "max open positions (10)" in (book.open_reason(LAMPORTS_PER_SOL) or ""),
+    )
 
-    fractional = PositionBook(max_open=16, max_total_sol=10.0)
+    fractional = PositionBook(max_open=MAX_OPEN_POSITIONS, max_total_sol=10.0)
     fractional.add(position(9.75))
     check("last entry is clamped to remaining 0.25 SOL",
           fractional.clamp_to_remaining_risk(LAMPORTS_PER_SOL)
           == int(0.25 * LAMPORTS_PER_SOL))
 
-    recovered = PositionBook(max_open=16, max_total_sol=10.0)
+    recovered = PositionBook(max_open=MAX_OPEN_POSITIONS, max_total_sol=10.0)
     recovered.add(position(1.0, realized_sol=0.4))
     check("banked proceeds reduce capital still at risk",
           recovered.deployed_lamports == int(0.6 * LAMPORTS_PER_SOL))

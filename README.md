@@ -42,7 +42,7 @@ Stop with `Ctrl+C`.
 | `BUY_ADD_SOL` | `0.8` | Second buy once the add window has passed and MC is high enough |
 | `MAX_SOL_PER_TRADE` | `1` | Hard cap per coin (probe + add) |
 | `MAX_TRADES` | `100` | Session stops opening after this many buys |
-| `MAX_OPEN_POSITIONS` | `4` | Max concurrent positions |
+| `MAX_OPEN_POSITIONS` | `10` | Hard maximum number of concurrent positions |
 | `CONFIRM_SECONDS` | `5` | Wait this long after launch, then buy the probe |
 | `ADD_AFTER_SECONDS` | `10` | Earliest time for the add-on buy |
 | `MIN_ADD_MC_USD` | `5000` | Add the extra size only if market cap has reached this |
