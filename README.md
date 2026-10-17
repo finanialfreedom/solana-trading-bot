@@ -12,7 +12,12 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-Edit `.env`: set `PRIVATE_KEY` (or `PRIVATE_KEY_JSON`). For faster RPC, set `HELIUS_API_KEY` from [dashboard.helius.dev](https://dashboard.helius.dev) (free plan is fine to test). Leave `RPC_URL` / `WSS_URL` empty and the bot will use Helius automatically.
+Edit `.env`: set `WALLET_KEYPAIR_PATH` to a Solana CLI JSON keypair stored outside
+the repository. Inline `PRIVATE_KEY` / `PRIVATE_KEY_JSON` values remain supported
+for backward compatibility but are not recommended for funded wallets. For faster
+RPC, set `HELIUS_API_KEY` from [dashboard.helius.dev](https://dashboard.helius.dev)
+(free plan is fine to test). Leave `RPC_URL` / `WSS_URL` empty and the bot will use
+Helius automatically.
 
 ## Run
 
@@ -27,6 +32,7 @@ Stop with `Ctrl+C`.
 
 | Variable | Default | Meaning |
 |---|---|---|
+| `WALLET_KEYPAIR_PATH` | empty | Preferred path to a Solana CLI JSON keypair outside the repository |
 | `DRY_RUN` | `true` | Simulate orders only |
 | `ENABLE_LIVE_TRADING` | `false` | Required, with `DRY_RUN=false`, to send real txs |
 | `BUY_ON_NEW_TOKEN` | `true` | Buy when a new Pump.fun token is created |

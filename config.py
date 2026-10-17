@@ -39,7 +39,9 @@ else:
 RPC_URL_LOG = _redact_rpc(RPC_URL)
 WSS_URL_LOG = _redact_rpc(WSS_URL)
 
-# Phantom/Solflare private key as base58, or a JSON byte array via PRIVATE_KEY_JSON.
+# Prefer a Solana CLI keypair file kept outside the repository. Inline secrets remain
+# supported for backward compatibility, but should not be used for funded wallets.
+WALLET_KEYPAIR_PATH = os.getenv("WALLET_KEYPAIR_PATH", "").strip()
 PRIVATE_KEY = os.getenv("PRIVATE_KEY", "").strip()
 PRIVATE_KEY_JSON = os.getenv("PRIVATE_KEY_JSON", "").strip()
 
@@ -325,9 +327,10 @@ HONEYPOT_SIMULATION = _env_bool("HONEYPOT_SIMULATION", True)
 
 
 def require_private_key() -> None:
-    if not PRIVATE_KEY and not PRIVATE_KEY_JSON:
+    if not WALLET_KEYPAIR_PATH and not PRIVATE_KEY and not PRIVATE_KEY_JSON:
         raise RuntimeError(
-            "Missing wallet secret. Set PRIVATE_KEY or PRIVATE_KEY_JSON in the .env file."
+            "Missing wallet keypair. Set WALLET_KEYPAIR_PATH to a Solana CLI JSON "
+            "keypair file (preferred), or set PRIVATE_KEY/PRIVATE_KEY_JSON."
         )
 
 

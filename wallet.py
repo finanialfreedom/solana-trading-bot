@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
 from solana.rpc.async_api import AsyncClient
@@ -15,13 +16,27 @@ from config import (
     PRIVATE_KEY,
     PRIVATE_KEY_JSON,
     TOKEN_PROGRAM_ID,
+    WALLET_KEYPAIR_PATH,
     require_private_key,
 )
 
 
 def load_keypair() -> Keypair:
-    """Load a keypair from PRIVATE_KEY (base58) or PRIVATE_KEY_JSON (byte array)."""
+    """Load a keypair from a local file or a legacy inline secret."""
     require_private_key()
+
+    if WALLET_KEYPAIR_PATH:
+        path = Path(WALLET_KEYPAIR_PATH).expanduser().resolve()
+        if not path.is_file():
+            raise FileNotFoundError(f"Wallet keypair file not found: {path}")
+        secret = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(secret, list) or not all(
+            isinstance(value, int) and 0 <= value <= 255 for value in secret
+        ):
+            raise ValueError(
+                "WALLET_KEYPAIR_PATH must contain a Solana CLI JSON byte array."
+            )
+        return Keypair.from_bytes(bytes(secret))
 
     if PRIVATE_KEY_JSON:
         secret = json.loads(PRIVATE_KEY_JSON)
