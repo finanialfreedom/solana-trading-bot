@@ -2,32 +2,44 @@
 FINAL SCOREBOARD
 ==============================================================================
 
-stop loss (fixed)     3.0%
-per-trade risk        locked (1.0 SOL max size, 8.0 SOL max at risk)
+position exit stop    3.0% strategy threshold (not the account-risk cap)
+paper account         100.0 SOL
+combined open risk    10.0% = 10.0 SOL maximum
+per-position size     up to 1.0 SOL; dynamically clamped at remaining account risk
 scope                 current program run only (honest execution math:
                       realizable-price marks, adverse slippage on both sides)
-configurations        8 pooled
-trades counted        899
+configurations        16 pooled
+trades counted        2867
 
 ------------------------------------------------------------------------------
 1. MAXIMUM SUCCESS RATE REACHED
 ------------------------------------------------------------------------------
-   14.4% of trades closed green
-   configuration: A-thr2   (153 trades from 2 block(s))
-   its average return per trade: +75.77%   net +115.925 SOL
+   14.6% of trades closed green
+   configuration: B-stack-press   (164 trades from 2 block(s))
+   its average return per trade: +7.69%   net +12.611 SOL
 
    success rate across every configuration, best first:
+     B-stack-press   14.6%   n=164   avg   +7.69%   net  +12.611 SOL
      A-thr2          14.4%   n=153   avg  +75.77%   net +115.925 SOL
-     A-cur           14.1%   n=64    avg   +2.98%   net   +1.910 SOL
+     C-lad-late      13.1%   n=229   avg   +4.38%   net  +10.027 SOL
+     A-stack-off     12.6%   n=255   avg   +6.84%   net  +17.431 SOL
+     A-cur           12.1%   n=199   avg  +20.82%   net  +41.432 SOL
      A-slip2         12.0%   n=200   avg   +0.31%   net   +0.624 SOL
-     C-slip8         10.1%   n=148   avg   -2.87%   net   -4.244 SOL
-     B-thr4           9.1%   n=88    avg   -2.17%   net   -1.907 SOL
-     B-slip5          4.6%   n=150   avg   -8.37%   net  -12.555 SOL
+     B-lad-early     11.5%   n=147   avg   +1.48%   net   +2.170 SOL
+     B-tight         10.9%   n=256   avg   +6.79%   net  +17.391 SOL
 
 ------------------------------------------------------------------------------
 2. HIGHEST TAKE-PROFIT SETTING THAT WORKED
 ------------------------------------------------------------------------------
-   No take-profit arms have finished yet.
+   take profit arms at 3.0% position-exit threshold: +12% arm trigger, 10% trailing callback
+   configuration: B-lad-early   (147 trades from 2 block(s))
+   its average return per trade: +1.48%   median -5.87%   net +2.170 SOL
+   full reward-side settings: {"MAX_TRADES": "1500", "MC_SCALE_OUT_LADDER": "25000:40,60000:30,150000:30,300000:40,600000:40,1000000:100"}
+
+   every take-profit arm, most aggressive setting first:
+     B-lad-early    tp + 12%  trail  10%  avg   +1.48%  n=147
+     C-lad-late     tp + 12%  trail  10%  avg   +4.38%  n=229
+     B-tight        tp + 10%  trail   6%  avg   +6.79%  n=256
 
 ------------------------------------------------------------------------------
 3. BEST OVERALL CONFIGURATION BY AVERAGE RETURN
@@ -38,8 +50,16 @@ trades counted        899
 
    all configurations ranked by average return:
      A-thr2         avg  +75.77%  med   -5.87%  win  14.4%  net +115.925 SOL  n=153
-     A-cur          avg   +2.98%  med   -5.87%  win  14.1%  net   +1.910 SOL  n=64
+     A-cur          avg  +20.82%  med   -5.87%  win  12.1%  net  +41.432 SOL  n=199
+     B-stack-press  avg   +7.69%  med   -5.87%  win  14.6%  net  +12.611 SOL  n=164
+     A-stack-off    avg   +6.84%  med   -5.87%  win  12.6%  net  +17.431 SOL  n=255
+     B-tight        avg   +6.79%  med   -5.87%  win  10.9%  net  +17.391 SOL  n=256
+     C-lad-late     avg   +4.38%  med   -5.87%  win  13.1%  net  +10.027 SOL  n=229
+     B-lad-early    avg   +1.48%  med   -5.87%  win  11.5%  net   +2.170 SOL  n=147
      A-slip2        avg   +0.31%  med   -5.87%  win  12.0%  net   +0.624 SOL  n=200
+     D-loose        avg   -0.08%  med   -5.87%  win   9.7%  net   -0.234 SOL  n=310
+     C-mid          avg   -1.29%  med   -5.87%  win   9.6%  net   -3.242 SOL  n=251
+     A-lad-cur      avg   -1.66%  med   -5.87%  win   7.2%  net   -3.672 SOL  n=221
      B-thr4         avg   -2.17%  med   -5.87%  win   9.1%  net   -1.907 SOL  n=88
      C-slip8        avg   -2.87%  med  -17.04%  win  10.1%  net   -4.244 SOL  n=148
      B-slip5        avg   -8.37%  med  -11.55%  win   4.6%  net  -12.555 SOL  n=150
