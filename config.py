@@ -125,11 +125,10 @@ CONFIRM_EXPIRE_SECONDS = _env_float("CONFIRM_EXPIRE_SECONDS", 25.0)
 CONFIRM_TICK_SECONDS = _env_float("CONFIRM_TICK_SECONDS", 0.25)
 ADD_AFTER_SECONDS = _env_float("ADD_AFTER_SECONDS", 10.0)
 MIN_UNIQUE_BUYERS = _env_int("MIN_UNIQUE_BUYERS", 15)
-# Require broad, strong demand before probing. A chronological holdout over 2,824
-# instrumented dry-run trades found buyers>=15, gross buys>=25 SOL and MC>=$5k
-# raised win rate from 11.0% to 35.8% in both halves. This is deliberately stricter
-# than the old 2 SOL gate: capacity should be spent on quality, not trade count.
-MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 25.0)
+# Combined candidate from the isolated entry/quality sweeps: broad participation,
+# a practical 2 SOL gross-demand floor, and the $5k market-cap floor below. The
+# 25/30 SOL quality arms produced almost no trades and are no longer used.
+MIN_CONFIRM_BUY_SOL = _env_float("MIN_CONFIRM_BUY_SOL", 2.0)
 # Confirm-window sell pressure. Gross buy volume alone is trivially produced by the
 # deployer and a couple of bots, and gross buys are what the bot has been gating on.
 # A launch where more money is leaving than arriving is being dumped into -- which is
